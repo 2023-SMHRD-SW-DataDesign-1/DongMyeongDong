@@ -1,1 +1,1 @@
-# DongMyeongDong
+# 동명동이용팀 핵심 프로젝트
