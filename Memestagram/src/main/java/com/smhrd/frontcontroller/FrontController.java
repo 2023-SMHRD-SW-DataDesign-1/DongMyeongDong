@@ -21,6 +21,7 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		list.put("KakaoLoginCon.do", new KakaoLoginCon());
 		
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
