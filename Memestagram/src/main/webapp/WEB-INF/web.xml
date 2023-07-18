@@ -4,4 +4,25 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>KakaoLoginCon</servlet-name>
+  	<display-name>KaKaoLogin</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.controller.KakaoLoginCon</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<display-name>FrontController</display-name>
+  	<description></description>
+  	<servlet-class>com.smhrd.frontcontroller.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>KakaoLoginCon</servlet-name>
+  	<url-pattern>/KakaoLoginCon</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FrontController</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
