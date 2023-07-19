@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="board_list" value="${BoardDAO.showboard()}"></c:set>
+<div>
+<c:set var="board_list" value="${BoardDAO.showboard()}"></c:set></div>
 <a href="BoardMain.jsp">게시글 작성</a>
 </body>
 </html>

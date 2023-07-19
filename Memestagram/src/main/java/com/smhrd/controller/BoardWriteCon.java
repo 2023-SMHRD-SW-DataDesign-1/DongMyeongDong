@@ -42,11 +42,11 @@ public class BoardWriteCon implements command {
 			e.printStackTrace();
 		}
 		
-		String writer = multi.getParameter("writer");
+		String writer = multi.getParameter("jkhg");
 		String filename = multi.getFilesystemName("filename");
 		String content = multi.getParameter("content");
 		
-		System.out.println("title : "+title);
+	
 		System.out.println("filename : "+filename);
 		System.out.println("content : "+content);
 		

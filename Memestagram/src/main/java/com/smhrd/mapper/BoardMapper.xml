@@ -4,8 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.BoardMapper">
 	<insert id="upload" parameterType="boardDTO">
-		insert into "" values(num_board.nextval,
-		#{${info.mem_id}}, #{board_content}, sysdate, #{Board_like}, #{Board_img})
+		insert into (board_seq, mem_id, board_content, board_date, board_img) values(num_board.nextval,
+		#{mem_id}, #{board_content}, sysdate, #{board_img})
 	</insert>
 	
 	<insert id="join" parameterType="DTO">
