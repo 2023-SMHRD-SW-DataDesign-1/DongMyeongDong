@@ -20,8 +20,7 @@
 		<tr>
 			<td colspan="2"><input name="filename" type="file" value="${}"
 				style="float: right;"><br>
-				 <input name="filename2" value="${}"
-				type="file" style="float: right;"><br> <textarea
+				 <textarea value="${}"
 					name="board_content" rows="10" style="resize: none;"></textarea></td>
 		</tr>
 
