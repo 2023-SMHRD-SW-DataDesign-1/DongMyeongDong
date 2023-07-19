@@ -11,6 +11,6 @@
 </head>
 <body>
 <c:set var="board_list" value="${BoardDAO.showboard()}"></c:set>
-<a href="BoardMain.jsp" >게시글 작성</a>
+<a href="BoardMain.jsp">게시글 작성</a>
 </body>
 </html>

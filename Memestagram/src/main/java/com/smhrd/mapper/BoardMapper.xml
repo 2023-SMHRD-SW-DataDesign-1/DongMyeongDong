@@ -5,7 +5,11 @@
 <mapper namespace="com.smhrd.mapper.BoardMapper">
 	<insert id="upload" parameterType="boardDTO">
 		insert into "" values(num_board.nextval,
-		#{title}, #{writer}, #{filename}, #{content}, sysdate)
+		#{${info.mem_id}}, #{board_content}, sysdate, #{Board_like}, #{Board_img})
+	</insert>
+	
+	<insert id="join" parameterType="DTO">
+	insert into tennis values(#{email},#{pw},#{tel},#{address})
 	</insert>
 	
 	<select id="showboard" resultType="boardDTO">
