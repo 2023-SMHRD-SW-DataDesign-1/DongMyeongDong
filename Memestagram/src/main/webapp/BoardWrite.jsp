@@ -1,5 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,23 +13,19 @@
 <div id = "board">
 				<form action="BoardWriteCon.do" method="post" enctype="multipart/form-data">
 				<table id="list">
-					<tr>
-						<td>제목</td>
-						<td><input type="text" name="title" > </td>
-					</tr>
-					<tr>
-						<td>작성자</td>
-						<td><input  type="text" name="writer"> </td>
-					</tr>
+					
+						작성자 = ${info.mem_id}
 					<tr>
 						<td colspan="2">내용</td>
 					</tr>
+				
 					<tr>
 						<td colspan="2">
-							<input name="filename" type="file" style="float: right;">
-							<textarea name="content"  rows="10" style="resize: none;"></textarea>			
+							<input name="filename" type="file" style="float: right;" ><br>
+							<textarea name="board_content"  rows="10" style="resize: none;" ></textarea>			
 						</td>
 					</tr>
+
 					<tr>
 						<td colspan="2">
 							<input type="reset" value="초기화">

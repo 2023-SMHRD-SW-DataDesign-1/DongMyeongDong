@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.smhrd.command.command;
+import com.smhrd.controller.BoardWriteCon;
 import com.smhrd.controller.KakaoLoginCon;
 
 
@@ -20,7 +21,7 @@ public class FrontController extends HttpServlet {
 	HashMap<String, command> list =  new HashMap<String, command>();
 	public void init(ServletConfig config) throws ServletException {
 		list.put("KakaoLoginCon.do", new KakaoLoginCon());
-		
+
 		
 	}
 
