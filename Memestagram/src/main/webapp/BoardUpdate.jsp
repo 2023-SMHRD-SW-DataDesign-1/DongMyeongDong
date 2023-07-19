@@ -18,10 +18,10 @@
 		</tr>
 
 		<tr>
-			<td colspan="2"><input name="filename" type="file" value="${}"
+<%-- 			<td colspan="2"><input name="filename" type="file" value="${}"
 				style="float: right;"><br>
 				 <textarea value="${}"
-					name="board_content" rows="10" style="resize: none;"></textarea></td>
+					name="board_content" rows="10" style="resize: none;"></textarea></td> --%>
 		</tr>
 
 		<tr>

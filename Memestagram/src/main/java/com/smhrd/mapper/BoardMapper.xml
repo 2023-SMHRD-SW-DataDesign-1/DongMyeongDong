@@ -3,20 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.BoardMapper">
-	<insert id="upload" parameterType="boardDTO">
-		insert into (board_seq, mem_id, board_content, board_date, board_img) values(num_board.nextval,
-		#{mem_id}, #{board_content}, sysdate, #{board_img})
+	<insert id="upload" parameterType="BoardDTO">
+		insert into board (board_seq, board_writer, board_content, board_date, board_img) values(num_board.nextval,
+		#{board_writer}, #{board_content}, sysdate, #{board_img})
 	</insert>
 	
-	<insert id="join" parameterType="DTO">
-	insert into tennis values(#{email},#{pw},#{tel},#{address})
-	</insert>
-	
-	<select id="showboard" resultType="boardDTO">
+<!-- 	<select id="showboard" resultType="boardDTO">
 	select * from "" order by ""
-	</select>
+	</select> -->
 	
-	<select id="showone" parameterType="int" resultType="boardDTO">
+<!-- 	<select id="showone" parameterType="int" resultType="boardDTO">
 	select * from "" where num= #{num}
-	</select>
+	</select> -->
 </mapper>

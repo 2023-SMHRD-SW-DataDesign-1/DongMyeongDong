@@ -17,8 +17,9 @@ public class BoardDTO {
 
 	 private int board_seq;
 	 @NonNull private String mem_id;
-	 @NonNull private String board_contnent;
+	 @NonNull private String board_content;
 	 private String board_date;
+	 private String board_like;
 	 @NonNull private String board_img;
 	 private String board_vid;
 	

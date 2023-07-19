@@ -6,8 +6,8 @@
 <properties resource="com/smhrd/database/db.properties"></properties>
 
   <typeAliases>
-	<typeAlias type="com.smhrd.model.DTO" alias="DTO"/>
-	<typeAlias type="com.smhrd.model.MessageDTO" alias="MessageDTO"/>
+	
+	
 	<typeAlias type="com.smhrd.model.BoardDTO" alias="BoardDTO"/>
 	</typeAliases>
 	
