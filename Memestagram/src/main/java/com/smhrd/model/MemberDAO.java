@@ -27,34 +27,34 @@ public class MemberDAO {
 		}
 
 
-		public MemberDTO kakaoLogin(MemberDTO m) {
+//		public MemberDTO kakaoLogin(MemberDTO m) {
+//			SqlSession session = sqlSessionFactory.openSession(true);
+//			System.out.println("---------------");
+//			System.out.println(m.getMem_id());
+//			System.out.println(m.getMem_email());
+//			MemberDTO mem = session.selectOne("kakaoLogin", m);
+//			return mem;
+//		}
+
+
+//		public int kakaoJoin(MemberDTO m) {
+//			SqlSession session = sqlSessionFactory.openSession(true);
+//			int result = session.insert("kakaoJoin", m);	
+//			session.close();
+//			return result;
+//		}
+
+
+		public MemberDTO snsLogin(MemberDTO m) {
 			SqlSession session = sqlSessionFactory.openSession(true);
-			System.out.println("---------------");
-			System.out.println(m.getMem_id());
-			System.out.println(m.getMem_email());
-			MemberDTO mem = session.selectOne("kakaoLogin", m);
+			MemberDTO mem = session.selectOne("snsLogin", m);
 			return mem;
 		}
 
 
-		public int kakaoJoin(MemberDTO m) {
+		public int snsJoin(MemberDTO m) {
 			SqlSession session = sqlSessionFactory.openSession(true);
-			int result = session.insert("kakaoJoin", m);	
-			session.close();
-			return result;
-		}
-
-
-		public MemberDTO naverLogin(MemberDTO m) {
-			SqlSession session = sqlSessionFactory.openSession(true);
-			MemberDTO mem = session.selectOne("naverLogin", m);
-			return null;
-		}
-
-
-		public int naverJoin(MemberDTO m) {
-			SqlSession session = sqlSessionFactory.openSession(true);
-			int result = session.insert("NaverJoin", m);	
+			int result = session.insert("snsJoin", m);	
 			session.close();
 			return result;
 		}

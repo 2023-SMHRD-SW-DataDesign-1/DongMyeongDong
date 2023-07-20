@@ -26,13 +26,16 @@
 
 				$.ajax({
 					url : "NaverLoginCon.do",
-					type : "POST",
+					type : "post",
+					datatype : 'json',
 					data : {"email":email, "name":name},
 					success : function(result){
 						if(result == 'Y'){
+							
 							window.opener.location.href = "Home.jsp";
 							window.close();
 						}else{
+							
 							window.opener.location.href = "insertId.jsp";
 							window.close();
 						}

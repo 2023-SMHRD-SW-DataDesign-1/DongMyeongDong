@@ -18,8 +18,8 @@ public class NaverLoginCon implements command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String email= request.getParameter("email");
-        String name= request.getParameter("name");
+		String email = request.getParameter("email");
+        String name = request.getParameter("name");
         System.out.println("[NaverLoginCon]");
         System.out.println("naver email : "+email);
         System.out.println("naver name : "+name);
@@ -27,26 +27,28 @@ public class NaverLoginCon implements command {
         HttpSession session = request.getSession();
         MemberDAO mdao = new MemberDAO();
         
-        MemberDTO m = mdao.naverLogin(new MemberDTO(name, email));
+        MemberDTO m1 = new MemberDTO(name, email);
+        MemberDTO m2 = mdao.snsLogin(m1);
         String result = "";
-        if(m != null) {
-        	session.setAttribute("member", m);
-        	result ="Y";
-        }else {
-        	m.setLogin_type("naver");
-        	session.setAttribute("member", m);
+        if(m2.getMem_id() == null) {
+        	m1.setLogin_type("naver");
+        	session.setAttribute("member", m1);
         	result ="N";
+        }else {
+        	session.setAttribute("member", m2);
+        	result ="Y";
         }
+        
         
         Gson gson = new Gson();
         String json = gson.toJson(result);
-        
+        response.setContentType("text/json;charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(json);
         
         
         
-		return "Main.jsp";
+		return null;
 	}
 
 }

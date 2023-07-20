@@ -26,29 +26,34 @@ public class KakaoLoginCon implements command{
         System.out.println(user_name);
         System.out.println(email);
         MemberDAO mdao = new MemberDAO();
-        MemberDTO m = mdao.kakaoLogin(new MemberDTO(user_name, email));
         
+        MemberDTO m1 = new MemberDTO(user_name, email);
+        MemberDTO m2 = mdao.snsLogin(m1);
+        System.out.println(m2.getMem_email());
         HttpSession session = request.getSession();
+        
         String result = "";
-        if (m != null) {
-        	session.setAttribute("member", m);
-        	result = "Y";
-        }else {
-        	m.setLogin_type("kakao");
-        	session.setAttribute("member", m);
-        	
+        
+        if (m2.getMem_id() == null) {
+        	m1.setLogin_type("kakao");
+        	session.setAttribute("member", m1);
         	result = "N";
+        }else {
+        	session.setAttribute("member", m2);
+        	result = "Y";
         }
         
+      
+        
         Gson gson = new Gson();
-        String json = gson.toJson(result);
+		// [{  },{  }]
+		String json = gson.toJson(result);
+		response.setContentType("text/json;charset=utf-8");
+		PrintWriter out =response.getWriter();
+		out.println(json); 
+		System.out.println(json);
         
-        PrintWriter out = response.getWriter();
-        out.print(json);
-        
-        
-        
-		return "Main.jsp";
+		return null;
 	}
 
 }
