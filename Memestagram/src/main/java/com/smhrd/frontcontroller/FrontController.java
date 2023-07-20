@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.smhrd.command.command;
 import com.smhrd.controller.BoardWriteCon;
+import com.smhrd.controller.IdCheckCon;
+import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
+import com.smhrd.controller.NaverLoginCon;
 
 
 public class FrontController extends HttpServlet {
@@ -22,7 +24,10 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		list.put("KakaoLoginCon.do", new KakaoLoginCon());
 		list.put("BoardWriteCon.do", new BoardWriteCon());
-
+		list.put("NaverLoginCon.do", new NaverLoginCon());
+		
+		list.put("IdCheckCon.do", new IdCheckCon());		
+		list.put("JoinCon.do", new JoinCon());		
 		
 	}
 
@@ -46,14 +51,16 @@ public class FrontController extends HttpServlet {
 		
 		command con = list.get(path);
 		String moveURL = con.execute(request, response);
-		
-		if(moveURL.contains("forward")) {
-			moveURL = moveURL.substring("forward".length());
-			RequestDispatcher rd = request.getRequestDispatcher(moveURL);
-			rd.forward(request, response);
-		}else {
-			response.sendRedirect(moveURL);
+		if(moveURL != null) {
+			if(moveURL.contains("forward")) {
+				moveURL = moveURL.substring("forward".length());
+				RequestDispatcher rd = request.getRequestDispatcher(moveURL);
+				rd.forward(request, response);
+			}else {
+				response.sendRedirect(moveURL);
+			}
 		}
+		
 		
 	}
 

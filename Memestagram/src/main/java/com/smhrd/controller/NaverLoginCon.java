@@ -8,36 +8,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
-
 import com.google.gson.Gson;
 import com.smhrd.command.command;
 import com.smhrd.model.MemberDAO;
 import com.smhrd.model.MemberDTO;
 
-public class KakaoLoginCon implements command{
+public class NaverLoginCon implements command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String user_name= request.getParameter("user_name");
-        String email= request.getParameter("email");
-        
-        System.out.println(user_name);
-        System.out.println(email);
-        MemberDAO mdao = new MemberDAO();
-        MemberDTO m = mdao.kakaoLogin(new MemberDTO(user_name, email));
+		String email= request.getParameter("email");
+        String name= request.getParameter("name");
+        System.out.println("[NaverLoginCon]");
+        System.out.println("naver email : "+email);
+        System.out.println("naver name : "+name);
         
         HttpSession session = request.getSession();
+        MemberDAO mdao = new MemberDAO();
+        
+        MemberDTO m = mdao.naverLogin(new MemberDTO(name, email));
         String result = "";
-        if (m != null) {
+        if(m != null) {
         	session.setAttribute("member", m);
-        	result = "Y";
+        	result ="Y";
         }else {
-        	m.setLogin_type("kakao");
+        	m.setLogin_type("naver");
         	session.setAttribute("member", m);
-        	
-        	result = "N";
+        	result ="N";
         }
         
         Gson gson = new Gson();
