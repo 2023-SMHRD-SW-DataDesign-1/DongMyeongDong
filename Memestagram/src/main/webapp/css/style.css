@@ -1,16 +1,19 @@
-@charset "UTF-8";
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; /* 모든 요소에 테두리 까지 포함한 너비값 지정 */
   font-family: "Poppins", sans-serif; /* 폰트 설정 */
 }
+@font-face {
+  font-family: "Billabong";
+  src: url("font/BILLABONG.OTF");
+  font-weight: normal;
+}
 body {
   min-height: 100%;
-  background: #e3f2fd;
+  /* background: #e3f2fd; */
 }
 .logo {
   display: flex;
@@ -19,25 +22,27 @@ body {
 }
 
 .logo .menu-icon {
-  color: #333;
+  color: black;
   font-size: 24px;
   margin-right: 14px;
   cursor: pointer;
 }
 .logo .logo-name {
-  color: #333;
-  font-size: 22px;
+  color: black;
+  font-size: 30px;
   font-weight: 500;
+  font-family: "Billabong";
 }
 .sidebar {
   position: fixed;
   top: 0;
   /* left: -100%; */
   height: 100%;
-  width: 260px;
+  width: 340px;
   padding: 20px 0;
   background-color: #fff;
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid lightgray;
   transition: all 0.4s ease; /* 애니메이션 부드럽게 하는 속성 */
 }
 .sidebar .sidebar-content {
@@ -63,12 +68,12 @@ body {
 }
 .nav-link .icon {
   margin-right: 14px;
-  font-size: 20px;
-  color: #707070;
+  font-size: 25px;
+  color: black;
 }
 .nav-link .link {
   font-size: 16px;
-  color: #707070;
+  color: black;
   font-weight: 400;
 }
 .lists .nav-link:hover .icon,
@@ -96,7 +101,7 @@ nav.open ~ .overlay {
 }
 .box-sidebar{
   flex-grow: 0;
-  width: 260px;
+  width: 340px;
   height: 100vh;
 }
 .box-contents{
@@ -123,4 +128,177 @@ nav.open ~ .overlay {
 .profile img{
   width: 100px;
   height: 100px;
+}
+
+/* 게시글 영역 */
+#posts {
+  margin: 0 auto;
+  padding: 0;
+  width: 470px;
+  list-style-type: none;
+}
+
+/* 게시글 내용 */
+.post{
+  padding: auto;
+  margin: auto;
+  margin-top: 10px;
+  /* border: 1px solid black; */
+  text-align: center;
+}
+
+/* 헤더 */
+.header{
+  height: 60px;
+  display: flex;
+}
+
+.profile_icon{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 40px;
+  margin-right: 10px;
+}
+.profile_icon img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.id{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: left;  /* 수평 정렬 */
+  width: 390px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.menu{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 40px;
+}
+.menu i{
+  font-size: 25px;
+  color: black;
+}
+.menu i:hover{
+  cursor: pointer;
+}
+
+/* 콘텐츠 영역 */
+.content{
+  background-color: black;
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  height: 585px;
+}
+
+.content video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.content img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 버튼 라인 */
+.buttons{
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  justify-content: left;  /* 수평 정렬 */
+  height: 46px;
+}
+
+.button{
+  width: 40px;
+}
+
+.button .icon {
+  margin-right: 15px;
+  font-size: 25px;
+  color: black;
+}
+
+.button .icon:hover {
+  cursor: pointer;
+}
+
+/* 좋아요 라인 */
+.like{
+  height: 25px;
+  text-align: left;
+}
+
+.like span{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* 댓글 라인 */
+.comments{
+  font-size: 15px;
+  height: 50px;
+  text-align: left;
+}
+
+.comments_show{
+  font-size: 15px;
+  height: 25px;
+  text-align: left;
+}
+
+.comments_input{
+  font-size: 15px;
+  height: 25px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.comments_input input{
+  border: none;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.show_more{
+  font-size: 12px;
+  color: #707070;
+}
+
+.show_all{
+  font-size: 12px;
+  color: #707070;
+}
+
+.show_more:hover{
+  cursor: pointer;
+}
+
+.show_all:hover{
+  cursor: pointer;
+}
+
+/* 로딩 영역 */
+article h1 {
+  text-align: left;
+  border-bottom: 1px dotted #E3E3E3;
+}
+
+article p {
+  text-align: justify;
+  line-height: 1.5;
+  font-size: 1.1em;
+}
+
+#loading {
+  display: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
 }
