@@ -21,7 +21,7 @@
 				
 					<tr>
 						<td colspan="2">
-							<input name="filename" type="file" style="float: right;" ><br>
+							<input name="board_img" type="file" style="float: right;" ><br>
 							<textarea name="board_content"  rows="10" style="resize: none;" ></textarea>			
 						</td>
 					</tr>
