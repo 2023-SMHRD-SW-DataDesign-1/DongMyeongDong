@@ -36,7 +36,7 @@
                 </li>
                 <li class="list">
                     <a href="Balance.jsp" class="nav-link">
-                        <i class="bx bx-cable-car icon"></i>
+                        <i class="bx bx-joystick-alt icon"></i>
                         <span class="link">밸런스게임</span>
                     </a>
                 </li>
