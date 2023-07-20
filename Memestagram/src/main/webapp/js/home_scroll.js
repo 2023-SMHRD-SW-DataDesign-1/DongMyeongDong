@@ -25,6 +25,9 @@ $(document).ready(function () {
 var count = 1;
 
 function getPost() {
+	
+	//DB 접속해서 새로운 글 select
+	
 
     if(count > 7){
         count = 1;

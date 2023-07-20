@@ -8,11 +8,18 @@
 		#{board_writer}, #{board_content}, sysdate, #{board_img})
 	</insert>
 	
-<!-- 	<select id="showboard" resultType="boardDTO">
-	select * from "" order by ""
-	</select> -->
+ 	<select id="showboard" resultType="boardDTO">
+	select * from board order by board_seq desc
+	</select> 
 	
 <!-- 	<select id="showone" parameterType="int" resultType="boardDTO">
 	select * from "" where num= #{num}
 	</select> -->
+	<delete id="deleteboard" parameterType="BoardDTO">
+	delete from board where board_seq = #{board_seq}
+	</delete>
+	
+	<update id="updateboard" parameterType="BoardDTO">
+	update board set board_img =#{},board_content =#{}, board_date=sysdate where id=#{board_writer}
+	</update>
 </mapper>

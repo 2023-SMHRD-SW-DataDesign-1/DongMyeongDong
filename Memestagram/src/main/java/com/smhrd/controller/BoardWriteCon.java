@@ -42,10 +42,10 @@ public class BoardWriteCon implements command {
 			e.printStackTrace();
 		}
 		
-		//String mem_id = multi.getParameter("jkhg");
+		
 		String board_img = multi.getFilesystemName("board_img");
 		String board_content = multi.getParameter("board_content");
-		String board_writer = "sun";
+		String board_writer = multi.getParameter("mem_id");
 	
 		System.out.println("filename : "+board_img);
 		System.out.println("content : "+board_content);

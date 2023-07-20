@@ -10,23 +10,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
 
-		작성자 = ${info.mem_id}
-		<tr>
-			<td colspan="2">내용</td>
-		</tr>
 
-		<tr>
-<%-- 			<td colspan="2"><input name="filename" type="file" value="${}"
-				style="float: right;"><br>
-				 <textarea value="${}"
-					name="board_content" rows="10" style="resize: none;"></textarea></td> --%>
-		</tr>
 
-		<tr>
-			<td colspan="2"><input type="reset" value="초기화"> <input
-				type="submit" value="작성하기"></td>
+ 			<input name="board_img" type="file" value="${board_img}" style="float: right;"><br>
+				 <textarea value="${board_content}"
+					name="board_content" rows="10" style="resize: none;"></textarea>
+					<input type="hidden" name="board_seq" value="${param.board_seq}">
+
+			<input type="reset" value="초기화"> 
+			<input type="submit" value="수정하기">
 		</tr>
 	</table>
 </body>

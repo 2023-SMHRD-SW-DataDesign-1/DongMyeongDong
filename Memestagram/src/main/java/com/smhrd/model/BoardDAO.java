@@ -25,7 +25,29 @@ public class BoardDAO {
 	
 	return board_list;
 	}
-
+	
+	public static ArrayList<BoardDTO> myboard(){
+		SqlSession session = sqlSessionFactory.openSession(true);
+		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("myboard");
+	session.close();
+	
+	return board_list;
+	}
+	
+	public int deleteboard(String board_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = session.delete("deleteboard", board_seq);
+		session.close();
+		
+		return row;
+	}
+	public int updateboard(BoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = session.update("updateboard", dto);
+		session.close();
+		
+		return row;
+	}
 
 
 
