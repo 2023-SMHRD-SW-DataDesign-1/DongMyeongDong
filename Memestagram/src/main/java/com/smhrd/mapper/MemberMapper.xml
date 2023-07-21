@@ -7,8 +7,8 @@
 		select mem_id from member_info where mem_id = #{id}
 	</select>
 	
-	<select id="kakaoLogin" parameterType="MemberDTO" resultType="MemberDTO">
-		select * from member_info where mem_id = #{mem_id} and mem_email = #{mem_email}
+	<select id="snsLogin" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member_info where mem_email = #{mem_email} and login_type = #{login_type}
 	</select>
 	
 	<insert id="joinMember" parameterType="MemberDTO">
@@ -16,9 +16,11 @@
 	</insert>
 	
 	
-	<insert id="kakaoJoin" parameterType="MemberDTO">
-		insert into member_info(mem_id,mem_email,login_type) values (#{mem_id},#{mem_email},#{login_type})
+	<insert id="snsJoin" parameterType="MemberDTO">
+		insert into member_info(mem_id,mem_img,mem_email,login_type) values (#{mem_id},#{mem_img},#{mem_email},#{login_type, jdbcType=VARCHAR})
 	</insert>
+	
+	
 	
 	
 </mapper>

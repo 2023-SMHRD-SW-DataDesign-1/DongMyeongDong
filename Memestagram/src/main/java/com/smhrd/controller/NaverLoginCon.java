@@ -2,6 +2,7 @@ package com.smhrd.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,35 +19,43 @@ public class NaverLoginCon implements command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String email= request.getParameter("email");
-        String name= request.getParameter("name");
+		MemberDAO mdao = new MemberDAO();
+		String result = "";
+		
+		String email = request.getParameter("email");
+        String name = request.getParameter("name");
         System.out.println("[NaverLoginCon]");
         System.out.println("naver email : "+email);
         System.out.println("naver name : "+name);
         
         HttpSession session = request.getSession();
-        MemberDAO mdao = new MemberDAO();
         
-        MemberDTO m = mdao.naverLogin(new MemberDTO(name, email));
-        String result = "";
-        if(m != null) {
-        	session.setAttribute("member", m);
-        	result ="Y";
-        }else {
-        	m.setLogin_type("naver");
-        	session.setAttribute("member", m);
+        String login_type = "naver";
+        
+        MemberDTO m1 = new MemberDTO(name, email,login_type);
+        MemberDTO m2 = mdao.snsLogin(m1);
+        
+        
+        
+        if(Objects.isNull(m2)== true) {
+        	m1.setLogin_type("naver");
+        	session.setAttribute("member", m1);
         	result ="N";
+        }else {
+        	session.setAttribute("member", m2);
+        	result ="Y";
         }
+        
         
         Gson gson = new Gson();
         String json = gson.toJson(result);
-        
+        response.setContentType("text/json;charset=utf-8");
         PrintWriter out = response.getWriter();
         out.print(json);
         
         
         
-		return "Main.jsp";
+		return null;
 	}
 
 }

@@ -89,11 +89,14 @@
 							$.ajax({
 								url : 'KakaoLoginCon.do',
 								type : 'post',
+								datatype : 'json',
 								data : param,
 								success : function(result) {
 									if(result == 'Y'){
+										
 										location.href = "Home.jsp";
 									}else{
+										
 										location.href = "insertId.jsp";
 									}
 									

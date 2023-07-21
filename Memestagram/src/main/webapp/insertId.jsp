@@ -14,10 +14,10 @@
         <h1>회원가입 화면</h1>
         <p>친구들의 사진과 동영상을 보려면 가입하세요</p>
 
-        <form action="snsJoinCon" method="post" enctype="multipart/form-data">
+        <form action="SnsJoinCon.do" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="아이디" name="id" id="id">
             <br>
-           
+           	
             프로필이미지 <input type="file" name="pro_img">
             <div id="error">
             	<div id="iderror"></div>
