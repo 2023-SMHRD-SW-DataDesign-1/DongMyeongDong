@@ -90,10 +90,10 @@
                 <span>사용자</span>
                 <br>
                 <hr>
-                <form action="" method="post">
-                    이메일 : <input type="text" name="email">
+                <form action="Profile_editCon.do" method="post">
+                    이메일 : <input type="text" name="mem_id">
                     <br>
-                    비밀번호 : <input type="password" name="pw">
+                    비밀번호 : <input type="password" name="mem_pw">
                     <br>
                     비밀번호 확인 : <input type="password" name="pw_ck">
                     <br>
