@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.ArrayList;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -13,10 +15,15 @@ import lombok.Setter;
 public class ProfileDTO {
 	
 	@NonNull String mem_id;
-	@NonNull private int mem_reward;
+	private int mem_reward;
 	@NonNull private String mem_img;
-	@NonNull private String following;
-	@NonNull private String follower;
-	private String board;
+	private int following;
+	private int follower;
+	private int boardcount;
+	@NonNull private String boardcontent;
+	
+	public ProfileDTO() {
+		
+	}
 
 }

@@ -8,9 +8,21 @@
 		select M.mem_img, M.mem_reward
 			,(select count(F.following) from follow F where F.following = M.mem_id) AS followingnumber
 			,(select count(F.follower) from follow F where F.following = M.mem_id) AS followernumber
+			,(select count(B.board_seq) from board B where B.mem_id = M.mem_id) AS boardcount
 		from member_info M
 		where M.mem_id = #{mem_id};
 	</select>
+	
+	<select id="boardContent" resultType="ProfileDTO">
+		select board_content
+		from board
+		where mem_id = #{mem_id};
+	</select>
+	
+	<update id="profileEdit" parameterType="ProfileDTO">
+		update member_info set mem_pw = #{mem_pw}
+		where mem_id = #{mem_id}
+	</update>
 
 </mapper>
 	

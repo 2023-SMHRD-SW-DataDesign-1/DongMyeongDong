@@ -27,5 +27,6 @@
   <mappers>
     <mapper resource="com/smhrd/mapper/BoardMapper.xml"/>
     <mapper resource="com/smhrd/mapper/MemberMapper.xml"/>
+     <mapper resource="com/smhrd/mapper/ProfileMapper.xml"/>
   </mappers>
 </configuration>
