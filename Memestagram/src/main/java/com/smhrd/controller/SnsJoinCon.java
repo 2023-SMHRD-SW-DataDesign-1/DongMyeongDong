@@ -60,19 +60,23 @@ public class SnsJoinCon implements command {
 
 		System.out.println(id);
 		
-		
+		MemberDTO mResult = new MemberDTO();
 		
 		if (m.getLogin_type().equals("kakao")) {
 			MemberDTO m2 = new MemberDTO(id,pro_img, m.getMem_email(), "kakao");
 			System.out.println(m2.getLogin_type());
 			mdao.snsJoin(m2);
+			mResult = mdao.snsLogin(m2);
 		} else if (m.getLogin_type().equals("naver")) {
 			MemberDTO m2 = new MemberDTO(id,pro_img, m.getMem_email(), "naver");
 			System.out.println(m2.getLogin_type());
 			mdao.snsJoin(m2);
+			mResult = mdao.snsLogin(m2);
 		}
-
-		return "Login.jsp";
+		
+		session.setAttribute("member", mResult);
+		
+		return "Home.jsp";
 	}
 
 }

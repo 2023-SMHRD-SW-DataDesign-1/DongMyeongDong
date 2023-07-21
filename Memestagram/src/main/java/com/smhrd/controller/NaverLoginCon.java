@@ -2,6 +2,7 @@ package com.smhrd.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,9 @@ public class NaverLoginCon implements command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		MemberDAO mdao = new MemberDAO();
+		String result = "";
+		
 		String email = request.getParameter("email");
         String name = request.getParameter("name");
         System.out.println("[NaverLoginCon]");
@@ -25,12 +29,15 @@ public class NaverLoginCon implements command {
         System.out.println("naver name : "+name);
         
         HttpSession session = request.getSession();
-        MemberDAO mdao = new MemberDAO();
         
-        MemberDTO m1 = new MemberDTO(name, email);
+        String login_type = "naver";
+        
+        MemberDTO m1 = new MemberDTO(name, email,login_type);
         MemberDTO m2 = mdao.snsLogin(m1);
-        String result = "";
-        if(m2.getMem_id() == null) {
+        
+        
+        
+        if(Objects.isNull(m2)== true) {
         	m1.setLogin_type("naver");
         	session.setAttribute("member", m1);
         	result ="N";

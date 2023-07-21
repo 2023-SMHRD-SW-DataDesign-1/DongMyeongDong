@@ -2,6 +2,7 @@ package com.smhrd.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,16 +26,17 @@ public class KakaoLoginCon implements command{
         
         System.out.println(user_name);
         System.out.println(email);
-        MemberDAO mdao = new MemberDAO();
         
-        MemberDTO m1 = new MemberDTO(user_name, email);
+        MemberDAO mdao = new MemberDAO();
+        String login_type = "kakao";
+        MemberDTO m1 = new MemberDTO(user_name, email,login_type);
         MemberDTO m2 = mdao.snsLogin(m1);
-        System.out.println(m2.getMem_email());
+        
         HttpSession session = request.getSession();
         
         String result = "";
         
-        if (m2.getMem_id() == null) {
+        if (Objects.isNull(m2) == true) {
         	m1.setLogin_type("kakao");
         	session.setAttribute("member", m1);
         	result = "N";
