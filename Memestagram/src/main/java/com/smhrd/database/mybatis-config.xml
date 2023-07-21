@@ -10,6 +10,7 @@
 	
 	<typeAlias type="com.smhrd.model.BoardDTO" alias="BoardDTO"/>
 	<typeAlias type="com.smhrd.model.MemberDTO" alias="MemberDTO"/>
+	<typeAlias type="com.smhrd.model.MemberDTO" alias="ProfileDTO"/>
 	</typeAliases>
 	
   <environments default="development">
