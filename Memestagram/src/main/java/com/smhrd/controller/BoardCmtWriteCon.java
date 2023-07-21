@@ -29,7 +29,7 @@ public class BoardCmtWriteCon implements command {
 
         // 여기서 댓글 내용, 게시글 고유 번호, 사용자 ID를 활용하여 데이터베이스에 저장 또는 처리 작업을 수행
 
-        int row = new BoardCmtDAO().upload(new BoardCmtDTO(
+        int row = new BoardCmtDAO().cmtupload(new BoardCmtDTO(
         		board_seq, mem_id, board_cmt_content));
 		
 		// 성공 실패 여부확인

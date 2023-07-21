@@ -26,7 +26,7 @@ public class BoardCmtDeleteCon implements command {
 		System.out.println("번호 : " + board_cmt_seq);
 		
 		BoardCmtDAO dao = new BoardCmtDAO();
-		int row = dao.deletecmt(board_cmt_seq);
+		int row = dao.cmtdelete(board_cmt_seq);
 
 	
 		// 성공 실패 여부확인

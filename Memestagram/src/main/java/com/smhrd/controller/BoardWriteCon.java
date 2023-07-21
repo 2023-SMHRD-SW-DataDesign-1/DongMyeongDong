@@ -42,17 +42,27 @@ public class BoardWriteCon implements command {
 			e.printStackTrace();
 		}
 		
-		
-		String board_img = multi.getFilesystemName("board_img");
+		String mem_id = multi.getParameter("member.mem_id");
 		String board_content = multi.getParameter("board_content");
-		String board_writer = multi.getParameter("mem_id");
-	
-		System.out.println("filename : "+board_img);
+		String board_img = multi.getFilesystemName("board_img");
+		
+		if(board_content ==null) {
+			board_content = "";
+		}
+		if(board_img ==null) {
+			board_img = "";
+		}
+			
+		
+		System.out.println("id : "+mem_id);
 		System.out.println("content : "+board_content);
+		System.out.println("filename : "+board_img);
+		
+		
 		
 		//upload메소드 호출
-		int row = new BoardDAO().upload(new BoardDTO(
-				board_writer, board_img, board_content));
+		int row = new BoardDAO().boardupload(new BoardDTO(
+				mem_id,  board_content, board_img));
 		
 		// 성공 실패 여부확인
 		if(row>0) {
@@ -61,7 +71,7 @@ public class BoardWriteCon implements command {
 			System.out.println("업로드 실패");
 		}
 		
-		return "Main.jsp";
+		return "Home.jsp";
 	}
 
 }

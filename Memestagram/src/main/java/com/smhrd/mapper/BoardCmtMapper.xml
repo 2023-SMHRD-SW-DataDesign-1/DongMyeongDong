@@ -4,13 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.BoardMapper">
 
-	<insert id="upload" parameterType="BoardCmtDTO">
+	<insert id="cmtupload" parameterType="BoardCmtDTO">
 		insert into board_cmt values(cmt_board.nextval,
 		#{board_seq}, #{mem_id}, #{board_cmt_content} ,sysdate)
 	</insert>
 	
 
-	<delete id="deleteboard" parameterType="BoardCmtDTO">
+	<delete id="cmtdelete" parameterType="BoardCmtDTO">
 	delete from board_cmt where board_seq = #{board_seq}
 	</delete>
 

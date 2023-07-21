@@ -21,7 +21,7 @@ public class BoardDeleteCon implements command {
 		System.out.println("번호 : " + board_seq);
 		
 		BoardDAO dao = new BoardDAO();
-		int row = dao.deleteboard(board_seq);
+		int row = dao.boarddelete(board_seq);
 		
 		if (row > 0) {
 	         System.out.println("게시글 삭제 성공");

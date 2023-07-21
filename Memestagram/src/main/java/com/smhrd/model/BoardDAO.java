@@ -11,9 +11,9 @@ public class BoardDAO {
 
 	static SqlSessionFactory sqlSessionFactory = sqlsessionmanager.getSqlSession();
 
-	public int upload(BoardDTO dto) {
+	public int boardupload(BoardDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.insert("upload", dto);
+		int row = session.insert("boardupload", dto);
 		session.close();
 		
 		return row;
@@ -34,16 +34,16 @@ public class BoardDAO {
 	return board_list;
 	}
 	
-	public int deleteboard(String board_seq) {
+	public int boarddelete(String board_seq) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.delete("deleteboard", board_seq);
+		int row = session.delete("boarddelete", board_seq);
 		session.close();
 		
 		return row;
 	}
-	public int updateboard(BoardDTO dto) {
+	public int boardupdate(BoardDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.update("updateboard", dto);
+		int row = session.update("boardupdate", dto);
 		session.close();
 		
 		return row;

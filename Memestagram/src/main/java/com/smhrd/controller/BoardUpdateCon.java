@@ -47,7 +47,7 @@ try {
 		
 		BoardDTO b_info = new BoardDTO(board_img, board_content);
 		BoardDAO dao = new BoardDAO();
-		int result = dao.updateboard(b_info);
+		int result = dao.boardupdate(b_info);
 		
 		if(result>0) {
 			System.out.println("업데이트 성공");
