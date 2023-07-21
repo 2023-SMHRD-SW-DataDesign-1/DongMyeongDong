@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page isELIgnored = "false" %>    
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html>
@@ -87,13 +88,13 @@
             <div class="profile">
                 <h1>프로필 화면</h1>
                 <img src="https://img.freepik.com/free-photo/adorable-kitty-looking-like-it-want-to-hunt_23-2149167099.jpg?w=1380&t=st=1689734133~exp=1689734733~hmac=8dacd687b920db1dceb8a2b8331cb74df48a0f51b8bfa1b276796ac659596a5b" alt="">
-                <span>사용자</span>
+                <span>사용자 : ${mem_id} </span>
                 <button id="btn_profile_edit">프로필 편집</button>
                 <br>
-                <p>게시물 : <span>0</span></p>
-                <p>팔로워 : <span>0</span></p>
-                <p>팔로잉 : <span>0</span></p>
-                <p>리워드 : <span>0</span></p>
+                <p>게시물 : <span></span></p>
+                <p>팔로워 : <span>${following}</span></p>
+                <p>팔로잉 : <span>${follower}</span></p>
+                <p>리워드 : <span>${mem_reward}</span></p>
                 <hr>
                 <p>게시물</p>
             </div>
