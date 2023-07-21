@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 * {
@@ -6,10 +7,12 @@
   box-sizing: border-box; /* 모든 요소에 테두리 까지 포함한 너비값 지정 */
   font-family: "Poppins", sans-serif; /* 폰트 설정 */
 }
+
 body {
   min-height: 100%;
   /* background: #e3f2fd; */
 }
+
 .logo {
   display: flex;
   align-items: center;
@@ -100,7 +103,9 @@ nav.open ~ .overlay {
   height: 100vh;
 }
 .box-contents{
-  text-align: center;
+  display: flex;
+  flex-direction: column; /* flex 방향 설정 */
+  align-items: center;
   flex-grow: 1;
   height: 100vh;
 }
@@ -296,4 +301,210 @@ article p {
   width: 50px;
   height: 50px;
   text-align: center;
+}
+
+/* 프로필 수정 영역 */
+.profile_edit{
+  margin-top: 20px;
+  width: 60%;
+  height: 60%;
+}
+
+.div_head{
+  width: 100%;
+  height: 15%;
+}
+
+.div_user{
+  display: flex;
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid lightgray;
+}
+
+.user_icon{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user_icon img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.user_name{
+  display: flex;
+  align-items: center;
+  width: 45%;
+  height: 100%;
+}
+
+.user_icon_change{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 45%;
+  height: 100%;
+}
+
+.user_icon_change label{
+  margin-right: 10px;
+  color: #0095F6;
+  font-weight: bold;
+}
+.user_icon_change label:hover{
+  cursor: pointer;
+}
+
+.user_icon_change input{
+  display: none;
+}
+
+.div_edit{
+  display: flex;
+  width: 100%;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.div_edit form{
+  width: 100%;
+  height: 100%;
+}
+
+.div_edit_inner{
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.div_edit_1{
+  width: 20%;
+  height: 100%;
+  text-align: right;
+}
+
+.div_edit_1 span{
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.div_edit_2{
+  width: 80%;
+  height: 100%;
+}
+
+.div_edit_2 input{
+  border : 1px solid lightgray;
+  width: 50%;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.div_edit_submit{
+  margin-top: 50px;
+  text-align: right;
+}
+
+.div_edit_submit input{
+  display: none;
+}
+
+.div_edit_submit label{
+  display:inline-block;
+  text-align: center;
+  background-color: #0095F6;
+  color: white;
+  width: 60px;
+  height: 30px;
+  border-radius: 10px;
+}
+.div_edit_submit label:hover{
+  cursor: pointer;
+}
+
+/* 리워드 상점 영역 */
+.shop_user_info{
+  display: flex;
+  width: 60%;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.shop_user_info_title{
+  width: 60%;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.shop_user_info_icon{
+  text-align: center;
+  width: 10%;
+}
+.shop_user_info_icon img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.shop_user_info_name{
+  text-align: left;
+  width: 15%;
+}
+.shop_user_info_point{
+  text-align: center;
+  width: 15%;
+}
+
+.shop_product_div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  width: 60%;
+  height: 90%;
+}
+
+.shop_product{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 300px;
+  height: 400px;
+}
+
+.shop_product_img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 85%;
+}
+
+.shop_product_img img{
+  width: 300px;
+  height: 300px;
+}
+
+.shop_product_brand, .shop_product_name, .shop_product_price{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+
+.shop_product_price{
+  font-weight: bold;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- CSS -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/login.css" />
 <!-- Boxicons CSS -->
 <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
 	rel="stylesheet" />
@@ -21,41 +21,46 @@
 
 
 <body>
-	<div class="login_form">
-		<h1>로그인 화면</h1>
-		<form action="#" method="post">
-			<input type="text" placeholder="사용자 이름 또는 이메일" name="id"> <br>
-			<input type="password" placeholder="비밀번호" name="pw"> <br>
-			<input type="submit" value="로그인">
-		</form>
+    <div class="login_form">
+        <div class="image_section">
+            <img src="image/instagram_login.png" alt="">
+        </div>
+        <div class="login_section">
+            <div class="logo_div">
+                <h1>memestagram</h1>
+            </div>
+            <div class="form_div">
+                <form action="#" method="post">
+                    <div>
+                        <input type="text" placeholder="사용자 이름 또는 이메일" name="id" id="id_input">
+                    </div>
+                    <div>
+                        <input type="password" placeholder="비밀번호" name="pw" id="pw_input">
+                    </div>
+                    <div>
+                        <input type="submit" value="로그인" id="submit_login">
+                    </div>
+                    <div>
+                        <button id="naver_id_login">네이버 로그인</button>
+                    </div>
+                    <div>
+                        <button id="kakao-login-btn">카카오 로그인</button>
+                    </div>
+                </form>
+            </div>
 
-		<button id="btn_naver_login">네이버 로그인</button>
-		<button id="btn_kakao_login">카카오 로그인</button>
-
-		<p>
-			계정이 없으신가요? <a href="./Join.jsp" class="">가입하기</a>
-		</p>
-	</div>
-	<!-- 카카오 로그인 버튼 -->
-	<button id="kakao-login-btn">
-		<img alt="" src="./img/kakao_login_medium_wide.png">
-	</button>
-	<!-- 네이버 로그인 버튼 -->
-	<div id="naver_id_login">
-		<button id="naver_id_login">
-			<img alt="" src="./img/btnG_완성형.png">
-		</button>
-	</div>
-
-
-
+            <div class="join_div">
+                <p>계정이 없으신가요? <a href="./join.html" class="p_join">가입하기</a></p>
+            </div>
+        </div>
+    </div>
 
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
 		var naver_id_login = new naver_id_login("xrSyb5GTqUoKNqtl6LnH",
 				"http://localhost:8081/maven/NaverLogin.jsp");
 		var state = naver_id_login.getUniqState();
-		naver_id_login.setButton("green", 3, 65);
+		/* naver_id_login.setButton("green", 3, 65); */
 		naver_id_login.setDomain("http://localhost:8081/maven/Login.jsp");
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();

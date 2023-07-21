@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 * {
@@ -100,7 +101,9 @@ nav.open ~ .overlay {
   height: 100vh;
 }
 .box-contents{
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-grow: 1;
   height: 100vh;
 }
@@ -296,4 +299,130 @@ article p {
   width: 50px;
   height: 50px;
   text-align: center;
+}
+
+/* 게시물 작성 영역 */
+.create_post{
+  width: 80%;
+  height: 80%;
+  border: 1px solid lightgray;
+}
+
+.cp_header{
+  display: flex;
+  align-items: center;
+  height: 5%;
+  border-bottom: 1px solid lightgray;
+}
+
+.cp_header_div1{
+  width: 10%;
+  text-align: left;
+}
+
+.cp_header_div1 i{
+  padding-left: 10px;
+  font-size: 20px;
+}
+.cp_header_div1 i:hover{
+	cursor: pointer;
+}
+
+.cp_header_div2{
+  width: 80%;
+  text-align: center;
+}
+
+.cp_header_div2 span{
+  font-weight: bold;
+}
+
+.cp_header_div3{
+  width: 10%;
+  text-align: right;
+}
+.cp_header_div3:hover{
+  cursor: pointer;
+}
+
+.cp_header_div3 span{
+  padding-right: 10px;
+  font-weight: bold;
+  color: #0095F6;
+}
+
+.cp_content{
+  display: flex;
+  height: 95%;
+  width: 100%;
+}
+
+.cp_file{
+  width: 70%;
+  border-right: 1px solid lightgray;
+  position: relative;
+}
+
+.cp_file img{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-upload{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color : white;
+  background-color: #0095F6;
+  border: none;
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+}
+.btn-upload:hover{
+	cursor: pointer;
+}
+
+#file {
+  display: none;
+}
+
+.cp_text{
+  width: 30%;
+}
+
+.cp_text_user{
+  display: flex;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid lightgray;
+  align-items: center;
+}
+
+.cp_text_user div{
+  margin-left: 15px;
+}
+
+.cp_text_user div img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.cp_text_area{
+  width: 100%;
+  height: 90%;
+}
+
+#cp_text_area{
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
 }

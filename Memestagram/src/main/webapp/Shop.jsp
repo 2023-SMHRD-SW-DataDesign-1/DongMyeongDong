@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu | Side Navigation Bar</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/shop.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 </head>
@@ -84,7 +84,72 @@
         </div>
 
         <div class="box-contents">
-            <h1>리워드 상점 화면</h1>
+            <div class="shop_user_info">
+                <div class="shop_user_info_title">리워드 상점</div>
+                <div class="shop_user_info_icon">
+                    <img src="./image/user.png" alt="">
+                </div>
+                <div class="shop_user_info_name">user_name</div>
+                <div class="shop_user_info_point">10,000,000 P</div>
+            </div>
+            <div class="shop_product_div">
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_americano.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        아이스 아메리카노
+                    </div>
+                    <div class="shop_product_price">
+                        5,500 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_americano.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        아이스 아메리카노
+                    </div>
+                    <div class="shop_product_price">
+                        5,500 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_americano.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        아이스 아메리카노
+                    </div>
+                    <div class="shop_product_price">
+                        5,500 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_americano.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        아이스 아메리카노
+                    </div>
+                    <div class="shop_product_price">
+                        5,500 P
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

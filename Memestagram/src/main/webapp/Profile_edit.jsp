@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu | Side Navigation Bar</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/profile_edit.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 </head>
@@ -83,41 +83,50 @@
             
         </div>
 
-        <div class="box-contents">
-            <div class="profile">
-                <h1>프로필 편집 화면</h1>
-                <img src="https://img.freepik.com/free-photo/adorable-kitty-looking-like-it-want-to-hunt_23-2149167099.jpg?w=1380&t=st=1689734133~exp=1689734733~hmac=8dacd687b920db1dceb8a2b8331cb74df48a0f51b8bfa1b276796ac659596a5b" alt="">
-                <span>사용자</span>
-                <br>
-                <hr>
-                <form action="Profile_editCon.do" method="post">
-                    이메일 : <input type="text" name="mem_id">
-                    <br>
-                    비밀번호 : <input type="password" name="mem_pw">
-                    <br>
-                    비밀번호 확인 : <input type="password" name="pw_ck">
-                    <br>
-                    <input type="submit" value="수정하기">
-                    <input type="reset" value="초기화">
-                    <br>
-                </form>
-                <button id="btn_cancle">취소</button>
+		<div class="box-contents">
+            <div class="profile_edit">
+                <div class="div_head">
+                    <h2>프로필 편집</h2>
+                </div>
+                <div class="div_user">
+                    <div class="user_icon">
+                        <img src="./image/user.png" alt="">
+                    </div>
+                    <div class="user_name">
+                        user_name
+                    </div>
+                    <div class="user_icon_change">
+                        <label for="btn_change_icon">프로필 사진 바꾸기</label>
+                        <input type="file" id="btn_change_icon">
+                    </div>
+                </div>
+                <div class="div_edit">
+                    <form action="" method="post">
+                        <div class="div_edit_inner">
+                            <div class="div_edit_1">
+                                <span>비밀번호</span>
+                            </div>
+                            <div class="div_edit_2">
+                                <input type="password" placeholder="수정할 비밀번호 입력" name="pw">
+                            </div>
+                        </div>
+                        <div class="div_edit_inner">
+                            <div class="div_edit_1">
+                                <span>비밀번호 확인</span>
+                            </div>
+                            <div class="div_edit_2">
+                                <input type="password" placeholder="수정할 비밀번호 입력" name="pw">
+                            </div>
+                        </div>
+                        <div class="div_edit_submit">
+                            <label for="input_submit">제출</label>
+                            <input type="submit" id="input_submit" value="제출">
+                        </div>
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
-    <!-- <section class="overlay"></section> -->
-
-    <script>
-
-        let btn_cancle = document.getElementById('btn_cancle');
-
-        btn_cancle.addEventListener("click", ()=>{
-            window.location.href = "./Profile.jsp";
-        });
-
-    </script>
-
 </body>
 
 </html>

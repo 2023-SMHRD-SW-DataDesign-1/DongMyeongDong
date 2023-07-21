@@ -1,0 +1,139 @@
+@charset "UTF-8";
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 모든 요소에 테두리 까지 포함한 너비값 지정 */
+    font-family: "Poppins", sans-serif;
+    /* 폰트 설정 */
+}
+body {
+    align-items: center;
+}
+
+h1 {
+    font-family: "Billabong";
+}
+
+.login_form {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    /* 수직 정렬 */
+    justify-content: center;
+    /* 수평 정렬 */
+}
+
+.image_section {
+    width: 380px;
+    height: 580px;
+    margin-right: 20px;
+}
+
+.image_section img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.login_section {
+    text-align: center;
+    width: 350px;
+    height: 580px;
+    border: 1px solid lightgray;
+}
+
+.logo_div {
+    height: 20%;
+    position: relative;
+}
+
+.logo_div h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+}
+
+.form_div {
+    height: 70%;
+    position: relative;
+}
+
+.form_div form{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+form div{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#id_input{
+    height: 40px;
+    width: 100%;
+    border: 1px solid lightgray;
+}
+
+#pw_input{
+    height: 40px;
+    width: 100%;
+    border: 1px solid lightgray;
+}
+
+#submit_login{
+    height: 40px;
+    width: 100%;
+    border: none;
+    color : white;
+    background-color: #0095F6;
+    font-weight: bold;
+}
+
+#submit_login:hover{
+    cursor: pointer;
+}
+
+#naver_id_login{
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+    background-color: #00C73C;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+#naver_id_login:hover{
+    cursor: pointer;
+}
+
+#kakao-login-btn{
+    height: 40px;
+    width: 100%;
+    background-color: #F9E000;
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+
+#kakao-login-btn:hover{
+    cursor: pointer;
+}
+
+.join_div {
+    height: 10%;
+    position: relative;
+}
+
+.p_join{
+    text-decoration: none;
+    color: #0095F6;
+}
