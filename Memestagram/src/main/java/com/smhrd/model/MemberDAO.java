@@ -48,6 +48,7 @@ public class MemberDAO {
 		public MemberDTO snsLogin(MemberDTO m) {
 			SqlSession session = sqlSessionFactory.openSession(true);
 			MemberDTO mem = session.selectOne("snsLogin", m);
+			session.close();
 			return mem;
 		}
 

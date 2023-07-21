@@ -1,55 +1,59 @@
 
+
 $(document).ready(function () {
-    var win = $(window);
-    var bodyOffset = $('body').offset();
-    
-    $('#posts').append(getPost(0));
-    // Each time the user scrolls
-    win.scroll(function () {
-        // End of the document reached?
-        // console.log($(document).height(), win.height(), win.scrollTop());
-        if ($(document).height() - win.height() == win.scrollTop()) {
-            $('#loading').show();
-            $('#posts').append(getPost());// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
-            $('#loading').hide();
-        }
-
-        if ($(document).scrollTop() > bodyOffset.top) {
-            $('#video').addClass('scroll');
-            $('.scroll').get(0).play();
-        } else {
-            $('.scroll').get(0).pause();
-            $('#video').removeClass('scroll');
-        }
-    });
-    
-    
-});
-
-// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
-var count = 1;
-
-function getPost(num) {
-	$.ajax({
-		url : "BoardShowCon.do",
-		type : "post",
-		data : {"num" : num},
-		datatype : "json",
-		success : function(data){
+		    var win = $(window);
+		    var bodyOffset = $('body').offset();
+		    
+		    /* $('#posts').append(getPost(0)); */
+		    console.log(getPost(0));
+		    // Each time the user scrolls
+		    win.scroll(function () {
+		        // End of the document reached?
+		        // console.log($(document).height(), win.height(), win.scrollTop());
+		        if ($(document).height() - win.height() == win.scrollTop()) {
+		            $('#loading').show();
+		            alert($('#board_seq:first').val());
+		            $('#posts').append(getPost($('#board_seq:last').val()));// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
+		            $('#loading').hide();
+		        }
+	
+		        if ($(document).scrollTop() > bodyOffset.top) {
+		            $('#video').addClass('scroll');
+		            $('.scroll').get(0).play();
+		        } else {
+		            $('.scroll').get(0).pause();
+		            $('#video').removeClass('scroll');
+		        }
+		    });
+		    
+		    
+		});
+	
+		// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
+		var count = 1;
+		var content = "";
+		function getPost(num) {
 			
-			for (d of data) {
-				var content = `<div class="post">
+			$.ajax({
+				url : "BoardShowCon.do",
+				type : "post",
+				data : {"num" : num},
+				datatype : "json",
+				success : function(data){
+					
+					$.each(data, function(index, data) {
+						content += `<div class="post">
             <div class="header">
                 <div class="profile_icon">
-                    <img src="./image/user.png" alt="">
+                <input type='hidden' value="${data.board_seq}" id="board_seq">    
                 </div>
-                <div class="id">사용자 아이디 ${count}</div>
+                <div class="id"> ${data.mem_id}</div>
                 <div class="menu">
                     <i class='bx bx-dots-horizontal-rounded'></i>
                 </div>
             </div>
             <div class="content">
-                <video id="video" src="./video/${count++}.mp4" controls autoplay muted playsinline></video>
+                
             </div>
             <div class="buttons">
                 <div class="button">
@@ -68,9 +72,9 @@ function getPost(num) {
                 <span>개</span>
             </div>
             <div class="comments">
-                <span><b>작성자</b></span>
+                <span><b>${data.mem_id}</b></span>
                 <span> </span>
-                <span>댓글 내용입니다.</span> <br>
+                <span>${data.board_content}</span> <br>
                 <span class="show_more">더 보기</span>
             </div>
             <div class="comments_show">
@@ -81,15 +85,20 @@ function getPost(num) {
             </div>
             <hr>
         </div>`;
-			}
-			return content;
-		} // success 닫히는 곳
-	});
+						
+						
+					})
+					$('#posts').append(content);
+				},// success 닫히는 곳
+				fail : function(){
+					alert("통신 실패");
+				}
+			});
+			
+		   
+		    
+		    
+		    
 	
-   
-    
-    
-    
-
-    
-}
+		    
+		}

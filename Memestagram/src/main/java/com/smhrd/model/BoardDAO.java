@@ -11,21 +11,43 @@ public class BoardDAO {
 
 	static SqlSessionFactory sqlSessionFactory = sqlsessionmanager.getSqlSession();
 
-	public int upload(BoardDTO dto) {
+	public int boardupload(BoardDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.insert("upload", dto);
+		int row = session.insert("boardupload", dto);
 		session.close();
 		
 		return row;
 	}
-	public static ArrayList<BoardDTO> showboard(){
+	public static ArrayList<BoardDTO> boardshow(PagingDTO p){
 		SqlSession session = sqlSessionFactory.openSession(true);
-		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("showboard");
+		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("boardshow",p);
 	session.close();
 	
 	return board_list;
 	}
-
+	
+	public static ArrayList<BoardDTO> myboard(){
+		SqlSession session = sqlSessionFactory.openSession(true);
+		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("myboard");
+	session.close();
+	
+	return board_list;
+	}
+	
+	public int boarddelete(String board_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = session.delete("boarddelete", board_seq);
+		session.close();
+		
+		return row;
+	}
+	public int boardupdate(BoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = session.update("boardupdate", dto);
+		session.close();
+		
+		return row;
+	}
 
 
 

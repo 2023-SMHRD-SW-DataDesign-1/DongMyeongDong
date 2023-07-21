@@ -1,5 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html>
@@ -86,10 +89,11 @@
             <div class="post">
                 <h1>게시글 작성 화면</h1>
                 <hr>
-                <form action="" method="post">
-                    파일 첨부 : <input type="file" name="filename">
+                <form action="BoardWriteCon.do" method="post" enctype="multipart/form-data">
+                    파일 첨부 : <input type="file" name="board_img">
                     <br>
-                    <textarea name="post_text" cols="30" rows="10"></textarea>
+                    <textarea name="board_content" cols="30" rows="10"></textarea>
+                    <input type="hidden" name="member.mem_id" value="${member.mem_id}">
                     <br>
                     <input type="submit" value="공유하기">
                 </form>

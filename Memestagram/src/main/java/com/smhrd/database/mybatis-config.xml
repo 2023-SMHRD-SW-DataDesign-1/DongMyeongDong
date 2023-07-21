@@ -9,7 +9,10 @@
 	
 	
 	<typeAlias type="com.smhrd.model.BoardDTO" alias="BoardDTO"/>
+	<typeAlias type="com.smhrd.model.BoardCmtDTO" alias="BoardCmtDTO"/>
 	<typeAlias type="com.smhrd.model.MemberDTO" alias="MemberDTO"/>
+	<typeAlias type="com.smhrd.model.MemberDTO" alias="ProfileDTO"/>
+	<typeAlias type="com.smhrd.model.PagingDTO" alias="PagingDTO"/>
 	</typeAliases>
 	
   <environments default="development">
@@ -25,6 +28,8 @@
   </environments>
   <mappers>
     <mapper resource="com/smhrd/mapper/BoardMapper.xml"/>
+    <mapper resource="com/smhrd/mapper/BoardCmtMapper.xml"/>
     <mapper resource="com/smhrd/mapper/MemberMapper.xml"/>
+     <mapper resource="com/smhrd/mapper/ProfileMapper.xml"/>
   </mappers>
 </configuration>

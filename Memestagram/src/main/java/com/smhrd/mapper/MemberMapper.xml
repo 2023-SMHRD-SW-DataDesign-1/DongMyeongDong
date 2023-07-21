@@ -21,6 +21,7 @@
 	</insert>
 	
 
+
 	<select id="memLogin" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from member_info where mem_id = #{mem_id} and mem_pw = #{mem_pw}
 	</select>
@@ -33,6 +34,7 @@
 		where M.mem_id = #{mem_id};
 
 	</select>
+
 	
 
 </mapper>

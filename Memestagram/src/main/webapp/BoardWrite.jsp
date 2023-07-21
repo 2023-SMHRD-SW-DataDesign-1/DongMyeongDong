@@ -14,15 +14,16 @@
 				<form action="BoardWriteCon.do" method="post" enctype="multipart/form-data">
 				<table id="list">
 					
-						작성자 = ${info.mem_id}
+						작성자 = ${member.mem_id}
 					<tr>
 						<td colspan="2">내용</td>
 					</tr>
 				
 					<tr>
 						<td colspan="2">
-							<input name="board_img" type="file" style="float: right;" ><br>
-							<textarea name="board_content"  rows="10" style="resize: none;" ></textarea>			
+							<input name="board_img" type="file" ><br>
+							<textarea name="board_content"  rows="10" style="resize: none;" ></textarea>
+							<input type="hidden" name="${member.mem_id}">			
 						</td>
 					</tr>
 
