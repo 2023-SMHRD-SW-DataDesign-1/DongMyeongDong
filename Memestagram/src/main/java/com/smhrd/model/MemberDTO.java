@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,9 +18,10 @@ public class MemberDTO {
 	@NonNull private String mem_id;
 	@NonNull private String mem_pw;
 	@NonNull private String mem_img;
-	private String mem_reward;
+	private int mem_reward;
 	@NonNull private String mem_email;
 	private String login_type;
+	@NonNull private List<FollowDTO> followList;
 	
 	public MemberDTO(String mem_id, String mem_email,String login_type) {
 		

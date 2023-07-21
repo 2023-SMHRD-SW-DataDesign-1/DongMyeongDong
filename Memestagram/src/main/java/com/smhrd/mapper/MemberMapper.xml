@@ -20,8 +20,18 @@
 		insert into member_info(mem_id,mem_img,mem_email,login_type) values (#{mem_id},#{mem_img},#{mem_email},#{login_type, jdbcType=VARCHAR})
 	</insert>
 	
+
 	<select id="memLogin" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from member_info where mem_id = #{mem_id} and mem_pw = #{mem_pw}
+	</select>
+	
+	<select id="showmember" resultType="MemberDTO">
+		select M.mem_id, M.mem_img, M.mem_reward
+			,(select count(mem_id) from follow F where F.mem_id = M.mem_id) AS followingnumber
+			,(select count(follower) from follow F where F.mem_id = M.mem_id) AS followernumber
+		from member_info M 
+		where M.mem_id = #{mem_id};
+
 	</select>
 	
 

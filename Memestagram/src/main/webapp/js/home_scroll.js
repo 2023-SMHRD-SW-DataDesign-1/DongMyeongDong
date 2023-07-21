@@ -1,13 +1,16 @@
+
 $(document).ready(function () {
     var win = $(window);
     var bodyOffset = $('body').offset();
+    
+    $('#posts').append(getPost(0));
     // Each time the user scrolls
     win.scroll(function () {
         // End of the document reached?
         // console.log($(document).height(), win.height(), win.scrollTop());
         if ($(document).height() - win.height() == win.scrollTop()) {
             $('#loading').show();
-            $('#posts').append(getPost());
+            $('#posts').append(getPost());// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
             $('#loading').hide();
         }
 
@@ -19,17 +22,23 @@ $(document).ready(function () {
             $('#video').removeClass('scroll');
         }
     });
+    
+    
 });
 
 // DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 var count = 1;
 
-function getPost() {
-
-    if(count > 7){
-        count = 1;
-    }
-    var content = `<div class="post">
+function getPost(num) {
+	$.ajax({
+		url : "BoardShowCon.do",
+		type : "post",
+		data : {"num" : num},
+		datatype : "json",
+		success : function(data){
+			
+			for (d of data) {
+				var content = `<div class="post">
             <div class="header">
                 <div class="profile_icon">
                     <img src="./image/user.png" alt="">
@@ -72,6 +81,15 @@ function getPost() {
             </div>
             <hr>
         </div>`;
+			}
+			return content;
+		} // success 닫히는 곳
+	});
+	
+   
+    
+    
+    
 
-    return content;
+    
 }
