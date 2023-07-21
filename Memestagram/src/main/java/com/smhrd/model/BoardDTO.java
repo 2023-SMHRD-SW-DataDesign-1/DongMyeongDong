@@ -19,8 +19,23 @@ public class BoardDTO {
 	 @NonNull private String mem_id;
 	 @NonNull private String board_content;
 	 private String board_date;
-	 private String board_like;
+	 private int board_like;
 	 @NonNull private String board_img;
 	 private String board_vid;
+	 
+	public BoardDTO(@NonNull String board_content, @NonNull String board_img) {
+		this.board_content = board_content;
+		this.board_img = board_img;
+	}
+
+	public BoardDTO(@NonNull String mem_id, @NonNull String board_content, String board_date, int board_like,
+			@NonNull String board_img) {
+		this.mem_id = mem_id;
+		this.board_content = board_content;
+		this.board_date = board_date;
+		this.board_like = board_like;
+		this.board_img = board_img;
+	}
+
 	
 }

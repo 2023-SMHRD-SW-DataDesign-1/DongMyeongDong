@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+
 import com.smhrd.database.sqlsessionmanager;
 
 
@@ -12,6 +13,7 @@ import com.smhrd.database.sqlsessionmanager;
 public class ProfileDAO {
 
 	static SqlSessionFactory sqlSessionFactory = sqlsessionmanager.getSqlSession();
+
 
 	
 	// 프로필 화면에서 회원정보 보여주는 메소드

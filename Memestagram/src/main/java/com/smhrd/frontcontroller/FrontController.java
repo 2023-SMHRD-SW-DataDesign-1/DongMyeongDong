@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
+import com.smhrd.controller.BoardCmtDeleteCon;
+import com.smhrd.controller.BoardCmtWriteCon;
+import com.smhrd.controller.BoardDeleteCon;
+import com.smhrd.controller.BoardUpdateCon;
 import com.smhrd.controller.BoardWriteCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
@@ -27,13 +31,17 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		list.put("KakaoLoginCon.do", new KakaoLoginCon());
 		list.put("BoardWriteCon.do", new BoardWriteCon());
+		list.put("BoardUpdateCon.do", new BoardUpdateCon());
+		list.put("BoardDeleteCon.do", new BoardDeleteCon());
+		list.put("BoardCmtWriteCon.do", new BoardCmtWriteCon());
+		list.put("BoardCmtDeleteCon.do", new BoardCmtDeleteCon());
 		list.put("NaverLoginCon.do", new NaverLoginCon());
-		
 		list.put("IdCheckCon.do", new IdCheckCon());		
 		list.put("JoinCon.do", new JoinCon());		
 		list.put("SnsJoinCon.do", new SnsJoinCon());	
 		list.put("ProfileCon", new ProfileCon());
 		list.put("Profile_editCont", new Profile_editCon());
+		list.put("ProfileCon.do", new ProfileCon());		
 		
 	}
 
