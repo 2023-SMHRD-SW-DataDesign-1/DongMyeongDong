@@ -14,7 +14,7 @@ import com.smhrd.model.BoardCmtDTO;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.BoardDTO;
 
-@WebServlet("/BoardCmtWriteCon.do")
+
 public class BoardCmtWriteCon implements command {
 
 	@Override

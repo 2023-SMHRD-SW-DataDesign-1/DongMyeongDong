@@ -21,7 +21,7 @@
 				
 					<tr>
 						<td colspan="2">
-							<input name="board_img" type="file" style="float: right;" ><br>
+							<input name="board_img" type="file" ><br>
 							<textarea name="board_content"  rows="10" style="resize: none;" ></textarea>
 							<input type="hidden" name="${info.mem_id}">			
 						</td>
