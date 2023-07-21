@@ -7,7 +7,7 @@
 		insert into board (board_seq, mem_id, board_content, board_date, board_img) values(num_board.nextval,
 		#{mem_id}, #{board_content}, sysdate, #{board_img})
 	</insert>
-	<!-- num_board.nextval -->
+
  	<select id="showboard" resultType="boardDTO">
 	select * from board order by board_seq desc
 	</select> 

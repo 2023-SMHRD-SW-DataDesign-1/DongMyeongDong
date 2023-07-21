@@ -20,6 +20,7 @@ import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
 import com.smhrd.controller.NaverLoginCon;
+import com.smhrd.controller.ProfileCon;
 import com.smhrd.controller.SnsJoinCon;
 
 
@@ -37,6 +38,7 @@ public class FrontController extends HttpServlet {
 		list.put("IdCheckCon.do", new IdCheckCon());		
 		list.put("JoinCon.do", new JoinCon());		
 		list.put("SnsJoinCon.do", new SnsJoinCon());		
+		list.put("ProfileCon.do", new ProfileCon());		
 		
 	}
 

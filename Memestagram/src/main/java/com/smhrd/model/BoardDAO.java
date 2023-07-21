@@ -18,9 +18,9 @@ public class BoardDAO {
 		
 		return row;
 	}
-	public static ArrayList<BoardDTO> showboard(){
+	public static ArrayList<BoardDTO> boardshow(){
 		SqlSession session = sqlSessionFactory.openSession(true);
-		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("showboard");
+		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("boardshow");
 	session.close();
 	
 	return board_list;

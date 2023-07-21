@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html>
@@ -91,6 +92,7 @@
                     <div class="header">
                         <div class="profile_icon">
                             <img src="./image/user.png" alt="">
+  
                         </div>
                         <div class="id">사용자 아이디</div>
                         <div class="menu">
@@ -98,7 +100,16 @@
                         </div>
                     </div>
                     <div class="content">
-                        <img src="./image/astronaut-8061095_1280.png" alt="">
+                    <%String[] video = { "avi", "mp4", "wav", "wmv", "mov", "flv", "mpg","AVI","MP4","WAV","WMV","MOV","FLV","MPG" };
+                    	String[] img = {"BMP","JPEG","GIF","PNG","PSD","PDD","TIF","Exif","PDF","RAW","AI","EPS","SVG","SVGZ","IFF","FPX",
+                    			"FRM","PCX","PCT","PIC","PXR","SCT","TGA","VDA","PPM","PGM","PBM","PNM","WEBP","BPG","CGM","SVG","HEIC"
+                    			,"bmp","jpeg","gif","png","psd","pdd","tif","exif","EXIF","pdf","raw","ai","eps","svg","svgz","iff","fpx","frm",
+                    			"pcx","pct","pic","pxr","sct","tga","vda","ppm","pgm","pbm","pnm","webp","bpg","cgm","svg","heic"};
+                    	
+                    %>
+                    
+                        <img src="C:\Users\smhrd\Desktop\jspServlet\.metadata\.plugins\org.eclipse.wst.
+                        server.core\tmp0\wtpwebapps\Memestagram\img.${BoardDAO.board_img}" alt="">
                     </div>
                     <div class="buttons">
                         <div class="button">
