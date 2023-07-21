@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu | Side Navigation Bar</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/post.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 </head>
@@ -86,30 +86,33 @@
         </div>
 
         <div class="box-contents">
-            <div class="post">
-                <h1>게시글 작성 화면</h1>
-                <hr>
-                <form action="BoardWriteCon.do" method="post" enctype="multipart/form-data">
-                    파일 첨부 : <input type="file" name="board_img">
-                    <br>
-                    <textarea name="board_content" cols="30" rows="10"></textarea>
-                    <input type="hidden" name="member.mem_id" value="${member.mem_id}">
-                    <br>
-                    <input type="submit" value="공유하기">
-                </form>
-                <button id="btn_cancle">취소</button>
-            </div>
+            <div class="create_post">
+                <div class="cp_header">
+                    <div class="cp_header_div1"><i class='bx bx-arrow-back'></i></div>
+                    <div class="cp_header_div2"><span>새 게시물 만들기</span></div>
+                    <div class="cp_header_div3"><span>공유하기</span></div>
+                </div>
+                <div class="cp_content">
+                    <div class="cp_file">
+                        <img src="./image/files.png" alt="">
+                        <label for="file">
+                            <div class="btn-upload">파일 올리기</div>
+                          </label>
+                        <input type="file" id="file"></input>
+                    </div>
+                    <div class="cp_text">
+                        <div class="cp_text_user">
+                            <div><img src="./image/user.png" alt=""></div>
+                            <div>user_name</div>
+                        </div>
+                        <div class="cp_text_area">
+                            <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </div>
     </div>
-
-    <script>
-        let btn_cancle = document.getElementById('btn_cancle');
-
-        btn_cancle.addEventListener("click", () => {
-            window.location.href = "./Home.jsp";
-        });
-    </script>
-
 </body>
 
 </html>

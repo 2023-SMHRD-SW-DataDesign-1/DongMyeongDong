@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu | Side Navigation Bar</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/profile.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 </head>
@@ -85,34 +85,50 @@
         </div>
 
         <div class="box-contents">
-            <div class="profile">
-                <h1>프로필 화면</h1>
-                <img src= "${mem_img}" alt="">
-                <span>사용자 : ${mem_id} </span>
-                <button id="btn_profile_edit">프로필 편집</button>
-                <br>
-                <p>게시물 : <span>${boardcount}</span></p>
-                <p>팔로워 : <span>${following}</span></p>
-                <p>팔로잉 : <span>${follower}</span></p>
-                <p>리워드 : <span>${mem_reward}</span></p>
-                <hr>
-                <p>게시물</p>
-                ${board}
-                
-                
+            <div class="div_profile">
+                <div class="div_user">
+                    <div class="user_icon">
+                        <img src="./image/user.png" alt="">
+                    </div>
+                    <div class="user_info">
+                        <div class="user_info_name">
+                            <div>아이디</div>
+                            <div><button id="btn_profile_edit">프로필 편집</button></div>
+                        </div>
+                        <div class="user_info_others">
+                            <div>게시물 0</div>
+                            <div>팔로워 0</div>
+                            <div>팔로우 0</div>
+                            <div>리워드 0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="div_menu">
+                    <button>게시물</button>
+                    <button>상품 목록</button>
+                </div>
+                <div class="div_post">
+                    <!-- 사용자 게시물 보여주는 영역 -->
+                    <img src="./image/astronaut-8061095_1280.png" alt="">
+                    <img src="./image/dolomites-8095996_1280.jpg" alt="">
+                    <img src="./image/herons-7881512_1280.png" alt="">
+                    <img src="./image/hummingbird-8013214_1280.jpg" alt="">
+                    <img src="./image/public-speaking-8093767_1280.png" alt="">
+                    <img src="./image/tennis-7968714_1280.png" alt="">
+                    <img src="./image/vietnam-8121062_1920.jpg" alt="">
+                </div>
             </div>
-
         </div>
     </div>
     <!-- <section class="overlay"></section> -->
 
     <script>
 
-        let btn_profile_edit = document.getElementById('btn_profile_edit');
+    	let btn_profile_edit = document.getElementById('btn_profile_edit');
 
-        btn_profile_edit.addEventListener("click", ()=>{
-            window.location.href = "./Profile_edit.jsp";
-        });
+    	btn_profile_edit.addEventListener("click", ()=>{
+    	    window.location.href = "./Profile_edit.jsp";	
+    	});
 
     </script>
 

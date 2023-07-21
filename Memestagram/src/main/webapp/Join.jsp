@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>join</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/join.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <!-- jquery -->
@@ -22,35 +22,44 @@
 
 <body>
 
-	
     <div class="join_form">
-        <h1>회원가입 화면</h1>
-        <p>친구들의 사진과 동영상을 보려면 가입하세요</p>
-
-        <form action="JoinCon.do" method="post" enctype="multipart/form-data">
-            <input type="text" placeholder="아이디" name="id" id="id">
-            <br>
-           <!--  <input type="text" placeholder="사용자 이름" name="name">
-            <br> -->
-            <input type="password" placeholder="비밀번호" name="pw" id="pw">
-            <br>
-            <input type="password" placeholder="비밀번호 확인" name="pw_ck" id="pw_ck">
-            <br>
-            <input type="text" placeholder="이메일" name="email" id="email">
-            <br>
-            <p>이메일은 계정찾기에 사용됩니다.</p>
-            프로필이미지 <input type="file" name="pro_img">
+        <div class="join_section">
+            <div class="logo_div">
+                <h1>memestagram</h1>
+                <p>재미있는 컨텐츠를 즐기고 리워드를 <br>획득하기 위해서 가입하세요.</p>
+            </div>
+            <div class="form_div">
+                <form action="#" method="post">
+                    <div>
+                        <input type="text" placeholder="사용자 이름 또는 계정" name="id" id="id_input">
+                    </div>
+                    <div>
+                        <input type="password" placeholder="비밀번호" name="pw" id="pw_input">
+                    </div>
+                    <div>
+                        <input type="password" placeholder="비밀번호 확인" name="pw_ck" id="pw_ck_input">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="이메일 주소" name="email" id="email">
+                    </div>
+                    <div>
+                        <input type="submit" value="회원가입" id="submit_join">
+                    </div>
+                </form>
+            </div>
             <div id="error">
             	<div id="iderror"></div>
             	<div id="pwerror"></div>
             	<div id="pwckerror"></div>
             	<div id="emailerror"></div>
             </div>
-            <button type="submit" onclick="joinCheck()">가입</button>
-        </form>
-
-        <p>계정이 있으신가요? <a href="./Login.jsp" class="">로그인</a></p>
+            <div class="join_div">
+                <p>계정이 있으신가요? <a href="./join.html" class="p_login">로그인</a></p>
+            </div>
+        </div>
     </div>
+    
+
     
     <script type="text/javascript">
 		//$(document).ready(function(){
@@ -70,13 +79,13 @@
 				}
 			}
 			
-			$('#id').on("focusout",function(){
-				let id = $('#id').val();
+			$('#id_input').on("focusout",function(){
+				let id = $('#id_input').val();
 				let idCheck = /^[a-z]+[a-z0-9]{5,19}$/g;
 				
 				// 아이디 빈값 체크
 				if(id == "" || id.length == 0){
-					$('#id').focus();
+					$('#id_input').focus();
 					$('#iderror').html("아이디를 입력해주세요.");
 					$('#error').css('color','red');
 					//$('#id:focus').css('outline','red');
@@ -117,9 +126,9 @@
 				})
 			})
 		
-		$('#pw').on("focusout",function(){	
+		$('#pw_input').on("focusout",function(){	
 			let pwdcheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-			let pw = $('#pw').val();
+			let pw = $('#pw_input').val();
 			console.log(pw);
 			if (!pwdcheck.test(pw) || pw.length < 8) {
 				$('#pwerror').html("비밀번호는 최소 8자리에 숫자, 문자, 특수문자 각 1개 이상 포함해주세요.");
@@ -134,10 +143,10 @@
 			
 		})	
 			
-		$('#pw_ck').on("focusout",function(){
+		$('#pw_ck_input').on("focusout",function(){
 			
-			let pw = $('#pw').val();
-			let pw_ck = $('#pw_ck').val();
+			let pw = $('#pw_input').val();
+			let pw_ck = $('#pw_ck_input').val();
 			
 			if(pw != pw_ck){
 				$('#pwckerror').html("비밀번호가 일치하지 않습니다.");
@@ -151,9 +160,7 @@
 			
 			
 		})	
-			
-			
-			
+				
 	
 		$('#email').on("focusout",function(){
 			
