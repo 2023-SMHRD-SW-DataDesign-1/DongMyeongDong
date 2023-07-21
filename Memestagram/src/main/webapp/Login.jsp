@@ -23,14 +23,14 @@
 <body>
 	<div class="login_form">
 		<h1>로그인 화면</h1>
-		<form action="#" method="post">
-			<input type="text" placeholder="사용자 이름 또는 이메일" name="id"> <br>
-			<input type="password" placeholder="비밀번호" name="pw"> <br>
-			<input type="submit" value="로그인">
-		</form>
+		
+		
+			<input type="text" placeholder="사용자 이름 또는 이메일" name="id" id="id"> <br>
+			<input type="password" placeholder="비밀번호" name="pw" id="pw"> <br>
+			
+			<button id="loginBtn">로그인</button>
+		
 
-		<button id="btn_naver_login">네이버 로그인</button>
-		<button id="btn_kakao_login">카카오 로그인</button>
 
 		<p>
 			계정이 없으신가요? <a href="./Join.jsp" class="">가입하기</a>
@@ -52,11 +52,40 @@
 
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
+		$('#loginBtn').on('click',function(){
+			let id = $('#id').val();
+			let pw = $('#pw').val();
+			
+			
+			$.ajax({
+				url : "LoginCon.do",
+				type : "POST",
+				data : {"id" : id,"pw":pw},
+				datatype : 'json',
+				success : function(data){
+					if(data == 'Y'){
+						
+						location.href = "Home.jsp";
+					}else if(data == 'N'){
+						
+						alert("존재하지 않는 회원입니다.")
+						location.href = "Login.jsp";
+					}
+				},
+				
+				error : function(data){
+					alert("통신 실패 로그인");
+				}
+				
+			});
+		})
+	</script>
+	<script type="text/javascript">
 		var naver_id_login = new naver_id_login("xrSyb5GTqUoKNqtl6LnH",
 				"http://localhost:8081/maven/NaverLogin.jsp");
 		var state = naver_id_login.getUniqState();
 		naver_id_login.setButton("green", 3, 65);
-		naver_id_login.setDomain("http://localhost:8081/maven/Login.jsp");
+		//naver_id_login.setDomain("http://localhost:8081/maven/Login.jsp");
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
@@ -116,6 +145,9 @@
 			});
 
 		})
+		
+		
 	</script>
+	
 </body>
 </html>

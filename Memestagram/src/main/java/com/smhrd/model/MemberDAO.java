@@ -58,4 +58,11 @@ public class MemberDAO {
 			session.close();
 			return result;
 		}
+
+
+		public MemberDTO memLogin(MemberDTO m) {
+			SqlSession session = sqlSessionFactory.openSession(true);
+			MemberDTO mem = session.selectOne("memLogin", m);
+			return mem;
+		}
 }

@@ -20,7 +20,9 @@
 		insert into member_info(mem_id,mem_img,mem_email,login_type) values (#{mem_id},#{mem_img},#{mem_email},#{login_type, jdbcType=VARCHAR})
 	</insert>
 	
+	<select id="memLogin" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member_info where mem_id = #{mem_id} and mem_pw = #{mem_pw}
+	</select>
 	
-	
-	
+
 </mapper>

@@ -64,6 +64,15 @@ public class MemberDTO {
 
 
 
+	public MemberDTO(@NonNull String mem_id, @NonNull String mem_pw) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+	}
+
+
+
+
 
 
 
