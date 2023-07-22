@@ -3,27 +3,31 @@
 $(document).ready(function () {
 		    var win = $(window);
 		    var bodyOffset = $('body').offset();
+		    var currentPage = 1;
+		    getPost(currentPage);
 		    
-		    /* $('#posts').append(getPost(0)); */
-		    console.log(getPost(0));
 		    // Each time the user scrolls
 		    win.scroll(function () {
 		        // End of the document reached?
 		        // console.log($(document).height(), win.height(), win.scrollTop());
+		        
+		        
 		        if ($(document).height() - win.height() == win.scrollTop()) {
+					alert($('.board_seq:last').html());
 		            $('#loading').show();
-		            alert($('#board_seq:first').val());
-		            $('#posts').append(getPost($('#board_seq:last').val()));// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
+		            currentPage += 1;
+		            getPost(currentPage);
+		            //$('#posts').append(getPost(currentPage));// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
 		            $('#loading').hide();
 		        }
 	
-		        if ($(document).scrollTop() > bodyOffset.top) {
+		       /* if ($(document).scrollTop() > bodyOffset.top) {
 		            $('#video').addClass('scroll');
 		            $('.scroll').get(0).play();
 		        } else {
 		            $('.scroll').get(0).pause();
 		            $('#video').removeClass('scroll');
-		        }
+		        }*/
 		    });
 		    
 		    
@@ -31,13 +35,13 @@ $(document).ready(function () {
 	
 		// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 		var count = 1;
-		var content = "";
-		function getPost(num) {
-			
+		
+		function getPost(page) {
+			var content = "";
 			$.ajax({
 				url : "BoardShowCon.do",
 				type : "post",
-				data : {"num" : num},
+				data : {"page" : page},
 				datatype : "json",
 				success : function(data){
 					
@@ -45,7 +49,7 @@ $(document).ready(function () {
 						content += `<div class="post">
             <div class="header">
                 <div class="profile_icon">
-                <input type='hidden' value="${data.board_seq}" id="board_seq">    
+                <p class="board_seq" data-no="${data.board_seq}">${data.board_seq}</p>   
                 </div>
                 <div class="id"> ${data.mem_id}</div>
                 <div class="menu">
@@ -53,7 +57,7 @@ $(document).ready(function () {
                 </div>
             </div>
             <div class="content">
-                
+                <img src="img/${data.mem_img}">
             </div>
             <div class="buttons">
                 <div class="button">
@@ -68,7 +72,7 @@ $(document).ready(function () {
             </div>
             <div class="like">
                 <span>좋아요</span>
-                <span class="like_count">7.7만</span>
+                <span class="like_count">${data.board_likes}</span>
                 <span>개</span>
             </div>
             <div class="comments">
@@ -78,7 +82,7 @@ $(document).ready(function () {
                 <span class="show_more">더 보기</span>
             </div>
             <div class="comments_show">
-                <span class="show_all">댓글 1234개 모두 보기</span>
+                <span class="show_all">댓글 ${data.board_cmt_cnt}개 모두 보기</span>
             </div>
             <div class="comments_input">
                 <input type="text" placeholder="댓글 달기...">

@@ -27,7 +27,7 @@ public class LoginCon implements command {
 		System.out.println(pw);
 		HttpSession session = request.getSession();
 		
-		MemberDTO m = new MemberDAO() .memLogin(new MemberDTO(id, pw));
+		MemberDTO m = new MemberDAO().memLogin(new MemberDTO(id, pw));
 		String loginCheck = "";
 		if (Objects.isNull(m) == true) {
         	

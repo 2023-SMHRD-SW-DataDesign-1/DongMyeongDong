@@ -12,6 +12,9 @@
 	select * from board order by board_seq desc
 	</select> 
 	
+	<select id="boardCount" resultType="int">
+		select count(*) from board
+	</select>
 <!-- 	<select id="showone" parameterType="int" resultType="boardDTO">
 	select * from "" where num= #{num}
 	</select> -->
@@ -20,7 +23,8 @@
 	</delete>
 	
 	<select id ="boardshow" parameterType="PagingDTO" resultType="boardDTO">
-		select * from (select rownum as r,b.* from board b order by board_seq desc) a where a.r between #{start} and #{end}
+		
+		select * from (select rownum as r,x.* from (select b.*,(select count(*) from board_like l where l.mem_id = b.mem_id ) as board_likes,(select mem_img from member_info m where m.mem_id = b.mem_id) as mem_img ,(select count(*) from board_cmt c where c.board_seq = b.board_seq) as board_cmt_cnt from board b order by b.board_seq desc) x) a where a.r between #{start} and #{end}
 	</select>
 	<!-- <update id="boardupdate" parameterType="BoardDTO">
 	update board set board_img =#{},board_content =#{}, board_date=sysdate where id=#{board_writer}

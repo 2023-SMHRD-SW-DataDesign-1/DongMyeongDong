@@ -48,6 +48,12 @@ public class BoardDAO {
 		
 		return row;
 	}
+	public int boardCount() {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int cnt = session.selectOne("boardCount");
+		session.close();
+		return cnt;
+	}
 
 
 

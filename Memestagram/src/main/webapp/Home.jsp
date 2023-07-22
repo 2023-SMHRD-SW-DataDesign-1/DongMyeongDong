@@ -15,7 +15,7 @@
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-     <script src="js/home_scroll.js"></script>
+    <script src="js/home_scroll.js"></script>
 </head>
 
 <body>
