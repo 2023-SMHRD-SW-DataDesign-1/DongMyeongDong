@@ -13,7 +13,7 @@ $(document).ready(function () {
 		        
 		        
 		        if ($(document).height() - win.height() == win.scrollTop()) {
-					alert($('.board_seq:last').html());
+					
 		            $('#loading').show();
 		            currentPage += 1;
 		            getPost(currentPage);
@@ -21,18 +21,27 @@ $(document).ready(function () {
 		            $('#loading').hide();
 		        }
 	
-		       /* if ($(document).scrollTop() > bodyOffset.top) {
+		         if ($(document).scrollTop() > bodyOffset.top) {
 		            $('#video').addClass('scroll');
 		            $('.scroll').get(0).play();
 		        } else {
 		            $('.scroll').get(0).pause();
 		            $('#video').removeClass('scroll');
-		        }*/
+		        }
 		    });
 		    
 		    
 		});
-	
+		img = ["png","PNG","JPG","jpg","GIF","gif","TIFF","tiff","psd","PSD","AI","ai","SVG","svg","EPS","eps","JFIF","jfif","BPG","bpg","SVG","svg","CGM","cgm","BMP","bmp","Exif","exif"];
+		
+		function  getExtension(filename){
+			
+			var filelen = filename.length;
+			var lastdot = filename.lastIndexOf('.');
+			var fileExt = filename.substring(lastdot+1, filelen).toLowerCase();
+			
+			return fileExt;
+		}
 		// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 		var count = 1;
 		
@@ -56,9 +65,15 @@ $(document).ready(function () {
                     <i class='bx bx-dots-horizontal-rounded'></i>
                 </div>
             </div>
-            <div class="content">
-                <img src="img/${data.mem_img}">
-            </div>
+            <div class="content">`;
+            var fileExtension = getExtension(data.board_img);
+            
+            if (img.includes(fileExtension)){
+				content+= '<img src="img/'+data.board_img+'">';
+			}else{
+				content+= '<video id="video" src="img/'+data.board_img+'" controls autoplay muted playsinline></video>';
+			}
+            	content += `</div>
             <div class="buttons">
                 <div class="button">
                     <i class="bx bx-heart icon"></i>
