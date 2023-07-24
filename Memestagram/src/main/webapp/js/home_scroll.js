@@ -13,7 +13,7 @@ $(document).ready(function () {
 		        
 		        
 		        if ($(document).height() - win.height() == win.scrollTop()) {
-					alert($('.board_seq:last').html());
+					
 		            $('#loading').show();
 		            currentPage += 1;
 		            getPost(currentPage);
@@ -57,7 +57,7 @@ $(document).ready(function () {
                 </div>
             </div>
             <div class="content">
-                <img src="img/${data.mem_img}">
+                <video src="https://${data.board_img}"controls autoplay muted playsinline></video>
             </div>
             <div class="buttons">
                 <div class="button">
@@ -93,6 +93,8 @@ $(document).ready(function () {
 						
 					})
 					$('#posts').append(content);
+					
+					
 				},// success 닫히는 곳
 				fail : function(){
 					alert("통신 실패");
