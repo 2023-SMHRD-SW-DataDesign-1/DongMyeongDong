@@ -23,8 +23,7 @@ import com.smhrd.controller.KakaoLoginCon;
 import com.smhrd.controller.LikeUploadCon;
 import com.smhrd.controller.LoginCon;
 import com.smhrd.controller.NaverLoginCon;
-import com.smhrd.controller.ProfileCon;
-import com.smhrd.controller.Profile_editCon;
+import com.smhrd.controller.ProfileEditCon;
 import com.smhrd.controller.SnsJoinCon;
 
 
@@ -43,11 +42,8 @@ public class FrontController extends HttpServlet {
 		list.put("JoinCon.do", new JoinCon());		
 		
 		list.put("LoginCon.do", new LoginCon());		
-
 		list.put("SnsJoinCon.do", new SnsJoinCon());	
-		list.put("ProfileCon", new ProfileCon());
-		list.put("Profile_editCont", new Profile_editCon());
-		list.put("ProfileCon.do", new ProfileCon());		
+		list.put("ProfileEditCon.do", new ProfileEditCon());	
 		list.put("BoardShowCon.do", new BoardShowCon());		
 		list.put("LikeUpload.do", new LikeUploadCon());		
 		

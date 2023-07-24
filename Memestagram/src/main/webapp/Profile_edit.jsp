@@ -1,5 +1,7 @@
+<%@page import="com.smhrd.model.ProfileDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page isELIgnored = "false"%> 
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -13,6 +15,9 @@
     <link rel="stylesheet" href="css/profile_edit.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <!-- jquery -->
+    <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -92,8 +97,9 @@
                     <div class="user_icon">
                         <img src="./image/user.png" alt="">
                     </div>
+                  
                     <div class="user_name">
-                        user_name
+                        user_name : ${member.mem_id}
                     </div>
                     <div class="user_icon_change">
                         <label for="btn_change_icon">프로필 사진 바꾸기</label>
@@ -101,13 +107,13 @@
                     </div>
                 </div>
                 <div class="div_edit">
-                    <form action="" method="post">
+                    <form action="ProfileEditCon.do" method="post">
                         <div class="div_edit_inner">
                             <div class="div_edit_1">
                                 <span>비밀번호</span>
                             </div>
                             <div class="div_edit_2">
-                                <input type="password" placeholder="수정할 비밀번호 입력" name="pw">
+                                <input type="password" placeholder="수정할 비밀번호 입력" name="mem_pw" id="pw1">
                             </div>
                         </div>
                         <div class="div_edit_inner">
@@ -115,7 +121,8 @@
                                 <span>비밀번호 확인</span>
                             </div>
                             <div class="div_edit_2">
-                                <input type="password" placeholder="수정할 비밀번호 입력" name="pw">
+                                <input type="password" placeholder="수정할 비밀번호 입력" name="mem_pw2" id="pw2">
+                                <input type="hidden" name="mem_id" value="${member.mem_id}">
                             </div>
                         </div>
                         <div class="div_edit_submit">
@@ -127,6 +134,24 @@
             </div>
         </div>
     </div>
+    
+    <script type="text/javascript">
+    
+    $('#input_submit').on('click', function(){
+    	  let pw1 = $('#pw1').val();
+		  let pw2 = $('#pw2').val();
+		  
+		  if(pw1 == pw2) {
+			  alert("비밀번호가 수정되었습니다.")
+		  }else {
+			  alert("비밀번호가 일치하지 않습니다.")
+		  } 
+    	
+    })
+    
+    </script>
+    
+  
 </body>
 
 </html>
