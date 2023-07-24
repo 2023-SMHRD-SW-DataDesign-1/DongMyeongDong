@@ -42,6 +42,33 @@ $(document).ready(function () {
 			
 			return fileExt;
 		}
+		
+		// 좋아요!!!! 업데이트
+$("#heart").on("click", function () {
+	$.ajax({
+      url: "LikeUploadCon.do",
+      type: 'POST',
+      data: { 'board_seq': board_seq, 'mem_id': data.mem_id },
+      success: function (data) {
+          if (data == 1) {
+              $("#heart").attr("class", 'bx bxs-heart');
+              location.reload();
+          } else {
+              $("#heart").attr("class", "bx bx-heart");
+              location.reload();
+          }
+      }, error: function () {
+          $("#heart").attr("class", "bx bx-heart");
+          console.log('오타 찾으세요')
+      }
+
+  });
+
+  });
+    
+
+
+		
 		// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 		var count = 1;
 		
@@ -75,7 +102,7 @@ $(document).ready(function () {
 			}
             	content += `</div>
             <div class="buttons">
-                <div class="button">
+                <div class="button" id=heart>
                     <i class="bx bx-heart icon"></i>
                 </div>
                 <div class="button">

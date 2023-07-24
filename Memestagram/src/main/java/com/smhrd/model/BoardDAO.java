@@ -54,6 +54,13 @@ public class BoardDAO {
 		session.close();
 		return cnt;
 	}
+	public int likeupload(BoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = session.update("likeupload", dto);
+		session.close();
+		
+		return row;
+	}
 
 
 

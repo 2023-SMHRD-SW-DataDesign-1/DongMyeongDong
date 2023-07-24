@@ -20,6 +20,7 @@ import com.smhrd.controller.BoardWriteCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
+import com.smhrd.controller.LikeUploadCon;
 import com.smhrd.controller.LoginCon;
 import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.ProfileCon;
@@ -48,6 +49,7 @@ public class FrontController extends HttpServlet {
 		list.put("Profile_editCont", new Profile_editCon());
 		list.put("ProfileCon.do", new ProfileCon());		
 		list.put("BoardShowCon.do", new BoardShowCon());		
+		list.put("LikeUpload.do", new LikeUploadCon());		
 		
 	}
 

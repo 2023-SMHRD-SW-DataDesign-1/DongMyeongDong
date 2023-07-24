@@ -39,5 +39,10 @@ public class BoardDTO {
 		this.board_img = board_img;
 	}
 
+	public BoardDTO(int board_seq, @NonNull String mem_id) {
+		this.board_seq = board_seq;
+		this.mem_id = mem_id;
+	}
+
 	
 }
