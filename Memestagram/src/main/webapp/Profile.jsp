@@ -1,6 +1,10 @@
+<%@page import="com.smhrd.model.MemberDTO"%>
+<%@page import="com.smhrd.model.ProfileDTO"%>
+<%@page import="com.smhrd.model.ProfileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page isELIgnored = "false"%>    
+<%@ page isELIgnored = "false"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html>
@@ -90,16 +94,21 @@
                     <div class="user_icon">
                         <img src="./image/user.png" alt="">
                     </div>
+                    
+                    
                     <div class="user_info">
                         <div class="user_info_name">
-                            <div>아이디</div>
+                            <div>아이디 : ${member.mem_id} </div>
                             <div><button id="btn_profile_edit">프로필 편집</button></div>
                         </div>
                         <div class="user_info_others">
-                            <div>게시물 0</div>
-                            <div>팔로워 0</div>
-                            <div>팔로우 0</div>
-                            <div>리워드 0</div>
+                    <c:set var="show" value="${ProfileDAO.profileShow2(member.mem_id)}"></c:set>
+                            <div>게시물 : ${show.boardcount} </div>
+                            <div>팔로워 : ${show.follower} </div>
+                            <div>팔로우 : ${show.following} </div>
+                            <div>리워드 : ${show.mem_reward} </div>
+                            <div>이미지 : ${show.mem_img} </div>
+                            <div>이미지 : ${show.mem_id} </div>
                         </div>
                     </div>
                 </div>
@@ -124,11 +133,12 @@
 
     <script>
 
-    	let btn_profile_edit = document.getElementById('btn_profile_edit');
+       let btn_profile_edit = document.getElementById('btn_profile_edit');
 
-    	btn_profile_edit.addEventListener("click", ()=>{
-    	    window.location.href = "./Profile_edit.jsp";	
-    	});
+       btn_profile_edit.addEventListener("click", ()=>{
+           window.location.href = "./Profile_edit.jsp";   
+       });
+       
 
     </script>
 
