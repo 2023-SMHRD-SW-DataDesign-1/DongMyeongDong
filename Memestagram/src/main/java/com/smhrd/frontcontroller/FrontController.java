@@ -22,11 +22,11 @@ import com.smhrd.controller.BuyProductCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
+import com.smhrd.controller.KakaoLogoutCon;
 import com.smhrd.controller.LoginCon;
+import com.smhrd.controller.LogoutCon;
 import com.smhrd.controller.NaverLoginCon;
-
-
-
+import com.smhrd.controller.NaverLogoutCon;
 import com.smhrd.controller.ShopShowCon;
 import com.smhrd.controller.ProfileEditCon;
 import com.smhrd.controller.SnsJoinCon;
@@ -51,8 +51,15 @@ public class FrontController extends HttpServlet {
 		list.put("SnsJoinCon.do", new SnsJoinCon());	
 		list.put("ProfileEditCon.do", new ProfileEditCon());	
 		list.put("BoardShowCon.do", new BoardShowCon());		
-		list.put("ShopShowCon.do", new ShopShowCon());		
-		list.put("buyProduct.do", new BuyProductCon());		
+		list.put("KakaoLogout.do", new KakaoLogoutCon());		
+		list.put("NaverLogout.do", new NaverLogoutCon());	
+		
+		// 로그아웃 컨트롤러
+		list.put("LogoutCon.do", new LogoutCon());		
+		/*
+		 * list.put("buyProduct.do", new BuyProductCon()); list.put("buyProduct.do", new
+		 * BuyProductCon());
+		 */
 				
 		
 	}

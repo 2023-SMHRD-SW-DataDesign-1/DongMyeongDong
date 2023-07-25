@@ -30,8 +30,39 @@ $(document).ready(function () {
 		        }*/
 		    });
 		    
-		    
 }); //document ready 끝나는 부분
+
+function write_reply(e){
+						let bseq = $(e).attr("idx");
+						alert(bseq);
+						let content = $('.input_reply'+bseq).val();
+						
+						if(content == ""){
+							alert("댓글을 입력하세요");
+						}else{
+							
+							$('.input_reply'+bseq).val("");
+							
+							
+							$.ajax({
+								url : "CmtWriteCon.do",
+								type : "get",
+								data : {"bseq":bseq, "content" : content},
+								success : function(cmtCount){
+									alert("댓글 작성 성공");
+									
+									$(".show_all"+bseq).text("댓글 "+cmtCount+"개 모두 보기");
+									cmtList(bseq);
+								},
+								fail : function(){
+									alert("댓글 작성 실패");
+								}
+							
+							});
+						}
+						
+						
+					}
 		img = ["png","PNG","JPG","jpg","GIF","gif","TIFF","tiff","psd","PSD","AI","ai","SVG","svg","EPS","eps","JFIF","jfif","BPG","bpg","SVG","svg","CGM","cgm","BMP","bmp","Exif","exif"];
 		
 		function  getExtension(filename){
@@ -76,7 +107,37 @@ $(document).ready(function () {
 				data : {"page" : page},
 				datatype : "json",
 				success : function(data){
-					
+					function write_reply (){
+						let bseq = $(this).attr("idx");
+						
+						let content = $('.input_reply'+bseq).val();
+						
+						if(content == ""){
+							alert("댓글을 입력하세요");
+						}else{
+							
+							$('.input_reply'+bseq).val("");
+							
+							
+							$.ajax({
+								url : "CmtWriteCon.do",
+								type : "get",
+								data : {"bseq":bseq, "content" : content},
+								success : function(cmtCount){
+									alert("댓글 작성 성공");
+									
+									$(".show_all"+bseq).text("댓글 "+cmtCount+"개 모두 보기");
+									cmtList(bseq);
+								},
+								fail : function(){
+									alert("댓글 작성 실패");
+								}
+							
+							});
+						}
+						
+						
+					}	
 					$.each(data, function(index, data) {
 						content += `<div class="post">
             <div class="header">
@@ -99,7 +160,7 @@ $(document).ready(function () {
 			}*/
             	content += `</div>
             <div class="buttons">
-                <div >
+                <div class="button">
                     <i id="heart" class="bx bx-heart icon"></i>
                 </div>
                 <div class="button">
@@ -130,46 +191,23 @@ $(document).ready(function () {
                 <input type="text" class="input_reply${data.board_seq}" placeholder="댓글 달기...">
                 
             </div>
-            <button class="write_reply" idx="${data.board_seq}">댓글달기</button>
+            <button class="write_reply" idx="${data.board_seq}" onclick="write_reply(this)" >댓글달기</button>
             <hr>
         </div>`;
+        
+        		/*let button = document.querySelector('.write_reply'+data.board_seq);*/
+        		
+        		/*button.addEventListener('click',function(){
+					write_reply();
+				})*/
 						
 				cmtList(data.board_seq);
 					})
 					$('#posts').append(content);
 					
-					$('.write_reply').on('click',function(){
-						let bseq = $(this).attr("idx");
-						
-						let content = $('.input_reply'+bseq).val();
-						
-						if(content == ""){
-							alert("댓글을 입력하세요");
-						}else{
-							
-							$('.input_reply'+bseq).val("");
-							
-							
-							$.ajax({
-								url : "CmtWriteCon.do",
-								type : "get",
-								data : {"bseq":bseq, "content" : content},
-								success : function(cmtCount){
-									alert("댓글 작성 성공");
-									
-									$(".show_all"+bseq).text("댓글 "+cmtCount+"개 모두 보기");
-									cmtList(bseq);
-								},
-								fail : function(){
-									alert("댓글 작성 실패");
-								}
-							
-							});
-						}
-						
-						
-						
-					})
+					/*$('.write_reply').on('click',function(){*/
+					
+				/*	})*/
 					
 				},// success 닫히는 곳
 				fail : function(){
