@@ -28,6 +28,13 @@
 	</update>
 	
 	
+	
+	<update id="uploadImg" parameterType="String">
+		update member_info set mem_img = #{mem_img}
+		where mem_id = #{mem_id}
+	</update> 
+	
+	
 
 </mapper>
 	

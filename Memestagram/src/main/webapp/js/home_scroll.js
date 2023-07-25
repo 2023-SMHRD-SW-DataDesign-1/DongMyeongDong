@@ -1,7 +1,9 @@
+var currentPage = 1;
+
 $(document).ready(function() {
 	var win = $(window);
 	var bodyOffset = $('body').offset();
-	var currentPage = 1;
+	
 	getPost(currentPage);
 
 
@@ -107,14 +109,66 @@ function getExtension(filename) {
 	return fileExt;
 
 }
-
+function cmtList(bseq){
+			$.ajax({
+				url : "CmtListCon.do",
+				type : "post",
+				data : {"bseq" : bseq},
+				success : function(cmtList){
+					$(".comments_list"+bseq).html("");
+					$.each(cmtList,function(index,cmt){
+						
+						$(".comments_list"+bseq).append("<p id='cmt_seq'"+cmt.board_cmt_seq+">"+cmt.board_cmt_content+"</p>");
+						
+						if(index == 2){
+							return false;
+						}
+					})
+				},
+				error:function(){
+					alert("댓글 리스트 불러오기 실패");
+				}
+			})
+			
+		}
 
 
 // DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 var count = 1;
+function write_reply() {
+	let bseq = $(this).attr("idx");
 
+	let content = $('.input_reply' + bseq).val();
+
+	if (content == "") {
+		alert("댓글을 입력하세요");
+	} else {
+
+		$('.input_reply' + bseq).val("");
+
+
+		$.ajax({
+			url: "CmtWriteCon.do",
+			type: "get",
+			data: { "bseq": bseq, "content": content },
+			success: function(cmtCount) {
+				alert("댓글 작성 성공");
+
+				$(".show_all" + bseq).text("댓글 " + cmtCount + "개 모두 보기");
+				cmtList(bseq);
+			},
+			fail: function() {
+				alert("댓글 작성 실패");
+			}
+
+		});
+	}
+
+
+}
 
 function getPost(page) {
+	
 	var content = "";
 	$.ajax({
 		url: "BoardShowCon.do",
@@ -122,40 +176,10 @@ function getPost(page) {
 		data: { "page": page },
 		datatype: "json",
 		success: function(data) {
-			function write_reply() {
-				let bseq = $(this).attr("idx");
-
-				let content = $('.input_reply' + bseq).val();
-
-				if (content == "") {
-					alert("댓글을 입력하세요");
-				} else {
-
-					$('.input_reply' + bseq).val("");
-
-
-					$.ajax({
-						url: "CmtWriteCon.do",
-						type: "get",
-						data: { "bseq": bseq, "content": content },
-						success: function(cmtCount) {
-							alert("댓글 작성 성공");
-
-							$(".show_all" + bseq).text("댓글 " + cmtCount + "개 모두 보기");
-							cmtList(bseq);
-						},
-						fail: function() {
-							alert("댓글 작성 실패");
-						}
-
-					});
-				}
-
-
-			}
+			
 			$.each(data, function(index, data) {
+				console.log(data);
 				content += `<div class="post">
-
             <div class="header">
                 <div class="profile_icon">
                 <p class="board_seq" data-no="${data.board_seq}">${data.board_seq}</p>   
@@ -167,7 +191,7 @@ function getPost(page) {
             </div>
             <div class="content">`;
 				var fileExtension = getExtension(data.board_img);
-
+				console.log("dd");
 				if (img.includes(fileExtension)) {
 					content += '<img src="img/' + data.board_img + '">';
 				} else {
@@ -177,9 +201,8 @@ function getPost(page) {
             <div class="buttons">
 
                 <div class="button">
-                <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">
-
-                `;
+                <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">`;
+                
 				if (data.checklike == 'Y') {
 					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
 				} else {
@@ -225,32 +248,22 @@ function getPost(page) {
 				/*button.addEventListener('click',function(){
 					write_reply();
 				})*/
-
+				
 				cmtList(data.board_seq);
-			})
-			$('#posts').append(content);
-
-			/*$('.write_reply').on('click',function(){*/
-
-
-			/*$(".heart").click(function() {*/
+			});
 			
-			/*});*/
 
 
+		$('#posts').append(content);
 		},
+		
 		// success 닫히는 곳
 		fail: function() {
 			alert("통신 실패");
 		}
 
 	});
-	$('#posts').append(content);
-
-	// success 닫히는 곳
 	
-
-
 }
 
 
