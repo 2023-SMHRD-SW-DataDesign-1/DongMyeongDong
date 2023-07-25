@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 	var win = $(window);
 	var bodyOffset = $('body').offset();
@@ -83,12 +81,12 @@ function getPost(page) {
 				content += `</div>
             <div class="buttons">
                 <div class="button">
-                <a idx=${data.board_seq} href="javascript:" class="heart">
+                <a idx=${data.board_seq} href="javascript:void(0)" onclick="heartClick()">
                 `;
 				if (data.checklike == 'Y') {
-					content += '<i class="bx bxs-heart icon" idx="' + data.board_seq + '"></i>';
+					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
 				} else {
-					content += '<i class="bx bx-heart icon" idx="' + data.board_seq + '"></i>';
+					content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="' + data.board_seq + '">';
 				}
 
 
@@ -126,10 +124,11 @@ function getPost(page) {
 			$('#posts').append(content);
 
 
-			$(".heart").click(function() {
-				let board_seq = $(this).children('i').attr('idx');
+			/*$(".heart").click(function() {*/
+			function heartClick(){
+				let board_seq = $(this).children("img").attr('idx');
 
-				if ($(this).children('i').attr('class') == "bx bx-heart icon") {
+				if ($(this).children('img').attr('class') == "emptyheart") {
 					console.log("빈하트 클릭" + board_seq);
 
 					$.ajax({
@@ -144,19 +143,22 @@ function getPost(page) {
 							$('.like_count' + board_seq).text(heart);
 
 							console.log("좋아요 성공");
-
+							
 						},
 						error: function() {
 							alert('좋아요 실패');
 						}
 					});
-					console.log("꽉찬하트로 바껴라!");
-					$(".bx bx-heart icon").attr("class", "bx bxs-heart icon");
+										$(".emptyheart").attr("src", "./img/fullheart.png");
+										$(".emptyheart").attr("class", "fullheart");
+										console.log("꽉찬하트로 바껴라!");
+
 
 
 
 					// 꽉찬 하트를 눌렀을 때
-				} else if (($(this).children('i').attr('class') == "bx bxs-heart icon")) {
+				} else if (($(this).children('img').attr('class') == "fullheart")) {
+					let board_seq = $(this).children("img").attr('idx');
 					console.log("꽉찬하트 클릭" + board_seq);
 
 					$.ajax({
@@ -170,19 +172,21 @@ function getPost(page) {
 							alert(data);
 							$('.like_count' + board_seq).text(heart);
 
+
 						},
 						error: function() {
-							alert('좋아요 실패');
+							alert('좋아요 해제 실패');
 						}
 					});
-												console.log("빈하트로 바껴라!")
-							$(".bx bxs-heart icon").attr("class", "bx bx-heart icon");
+				console.log("빈하트로 바껴라!")
+					$(".fullheart").attr("src", "./img/emptyheart.png");
+					$(".fullheart").attr("class", "emptyheart");
 
 				}
 
 
 
-			});
+			};
 
 
 		},
