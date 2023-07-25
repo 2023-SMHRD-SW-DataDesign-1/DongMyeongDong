@@ -29,7 +29,7 @@
                 <p>재미있는 컨텐츠를 즐기고 리워드를 <br>획득하기 위해서 가입하세요.</p>
             </div>
             <div class="form_div">
-                <form action="#" method="post">
+                <form action="JoinCon.do" method="post" onsubmit="return joinCheck() " enctype="multipart/form-data">
                     <div>
                         <input type="text" placeholder="사용자 이름 또는 계정" name="id" id="id_input">
                     </div>

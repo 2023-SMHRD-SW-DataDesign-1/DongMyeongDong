@@ -24,7 +24,7 @@
 
     <div class="login_form">
         <div class="image_section">
-            <img src="image/instagram_login.png" alt="">
+            <img src="image/memstagram_login.png" alt="">
         </div>
         <div class="login_section">
             <div class="logo_div">
@@ -41,10 +41,11 @@
                     <div>
                         <input type="submit" value="로그인" id="submit_login">
                     </div>
-                    <div>
-                        <button id="naver_id_login">네이버 로그인</button>
+                    <div id="naver_id_login" style="display:none;">
+                        
                     </div>
-                    <div>
+                    <button id="naver_login">네이버 로그인</button>
+                    <div >
                         <button id="kakao-login-btn">카카오 로그인</button>
                     </div>
                 
@@ -59,6 +60,14 @@
 
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
+		$('#naver_login').on('click',function(){
+			alert("naver click!");
+			var btnNaverLogin = document.getElementById("naver_id_login").firstChild;
+			btnNaverLogin.click();
+		})
+	
+	
+	
 		$('#submit_login').on('click',function(){
 			let id = $('#id_input').val();
 			let pw = $('#pw_input').val();
@@ -92,7 +101,7 @@
 				"http://localhost:8081/maven/NaverLogin.jsp");
 		var state = naver_id_login.getUniqState();
 
-		/* naver_id_login.setButton("green", 3, 65); */
+		naver_id_login.setButton("green", 10, 50); 
 		naver_id_login.setDomain("http://localhost:8081/maven/Login.jsp");
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();
@@ -110,12 +119,13 @@
 							//2. 로그인 성공시, API 호출
 					Kakao.API.request({
 						url : '/v2/user/me',
-						data : { property_keys : ["kakao_account.email","kakao_account.profile.nickname" ] },
+						data : { property_keys : ["kakao_account.email","kakao_account.profile.nickname" ]
+							},
 						success : function(res) {
 							var id = res.id;
 							scope: 'profile_nickname, account_email';
 							alert(JSON.stringify(res));
-
+							prompt : "login";
 							var param = {
 								user_name : res.kakao_account.profile.nickname,
 								email : res.kakao_account.email,

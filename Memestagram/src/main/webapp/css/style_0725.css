@@ -100,9 +100,7 @@ nav.open ~ .overlay {
   height: 100vh;
 }
 .box-contents{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   flex-grow: 1;
   height: 100vh;
 }
@@ -141,6 +139,15 @@ nav.open ~ .overlay {
   margin: auto;
   margin-top: 10px;
   /* border: 1px solid black; */
+  text-align: center;
+}
+
+/* 밸런스 게시글 */
+.balance_post{
+  width: 470px;
+  padding: auto;
+  margin: auto;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -193,12 +200,83 @@ nav.open ~ .overlay {
   height: 585px;
 }
 
+/* 밸런스 게임 콘텐츠 영역 */
+.balance_content{
+  height: 585px;
+  width: 100%;
+}
+
+.balance_content_div{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  height: 80%;
+}
+
 .content video{
   max-width: 100%;
   max-height: 100%;
 }
 
 .content img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.balance_select_div{
+  height: 20%;
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.content_select_1{
+  width: 50%;
+  min-width: 30%;
+  max-width: 70%;
+  background-color: #ff6666;
+  color: white;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.content_select_2{
+  width: 50%;
+  min-width: 30%;
+  max-width: 70%;
+  background-color: #668cff;
+  color: white;
+  border-radius: 10px;
+}
+
+.content_select_1:hover, .content_select_2:hover{
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.content_select_1_name, .content_select_1_count{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 50%;
+  margin-left: 10px;
+}
+
+.content_select_2_name, .content_select_2_count{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  height: 50%;
+  margin-right: 10px;
+}
+
+.balance_content_div video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.balance_content_div img{
   max-width: 100%;
   max-height: 100%;
 }
@@ -249,20 +327,35 @@ nav.open ~ .overlay {
   text-align: left;
 }
 
+/* 댓글 게시 버튼 수정 */
 .comments_input{
   font-size: 15px;
   height: 25px;
-  text-align: left;
   margin-bottom: 10px;
+  display: flex;
 }
+
 
 .comments_input input{
   border: none;
   background-color: white;
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
 
+#comments_btn{
+  border: 0;
+  background-color: transparent;
+  color : #4070f4;
+  font-weight: bold;
+  width: 10%;
+  height: 100%;
+}
+
+#comments_btn:hover{
+  cursor: pointer;
+}
+/* ---------------------- */
 .show_more{
   font-size: 12px;
   color: #707070;
@@ -300,194 +393,8 @@ article p {
   text-align: center;
 }
 
-/* 게시물 작성 영역 */
-.create_post{
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.cp_header{
-  display: flex;
-  align-items: center;
-  height: 5%;
-  border-bottom: 1px solid lightgray;
-}
-
-.cp_header_div1{
-  width: 10%;
-  text-align: left;
-}
-
-.cp_header_div1 i{
-  padding-left: 10px;
-  font-size: 20px;
-}
-.cp_header_div1 i:hover{
-	cursor: pointer;
-}
-
-.cp_header_div2{
-  width: 80%;
-  text-align: center;
-}
-
-.cp_header_div2 span{
-  font-weight: bold;
-}
-
-.cp_header_div3{
-  width: 10%;
-  text-align: right;
-}
-.cp_header_div3:hover{
-	cursor: pointer;
-}
-
-.cp_header_div3 span{
-  padding-right: 10px;
-  font-weight: bold;
-  color: #0095F6;
-}
-
-.cp_content{
-  display: flex;
-  height: 95%;
-  width: 100%;
-}
-
-.cp_file{
-  width: 70%;
-  border-right: 1px solid lightgray;
-  position: relative;
-}
-
-.cp_file img{
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.btn-upload{
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-  color : white;
-  background-color: #0095F6;
-  border: none;
-  width: 120px;
-  height: 30px;
-  font-size: 15px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-.btn-upload:hover{
-	cursor: pointer;
-}
-
-#file {
-  display: none;
-}
-
-.cp_text{
-  width: 30%;
-}
-
-.cp_text_user{
-  display: flex;
-  width: 100%;
-  height: 10%;
-  border-bottom: 1px solid lightgray;
-  align-items: center;
-}
-
-.cp_text_user div{
-  margin-left: 15px;
-}
-
-.cp_text_user div img{
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-.cp_text_area{
-  width: 100%;
-  height: 60%;
-  border-bottom: 1px solid lightgray;
-}
-
-.cp_setting_area{
-  width: 100%;
-  height: 40%;
-  padding-top: 40px;
-  padding-left: 20px;
-}
-
-.select_1_div, .select_2_div, .end_time_div, .reward_div{
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.select_1_div label{
-  width: 20%;
-}
-.select_1_div input{
-  width: 60%;
-}
-.select_1_div input+input{
-  width: 20%;
-}
-.select_1_div input+input{
-  margin-left: 10px;
-  width: 10%;
-}
-
-.select_2_div label{
-  width: 20%;
-}
-.select_2_div input{
-  width: 60%;
-}
-.select_2_div input+input{
-  margin-left: 10px;
-  width: 10%;
-}
-
-.end_time_div label{
-  width: 20%;
-}
-
-.end_time_div input{
-  width: 60%;
-}
-
-.reward_div label{
-  width: 20%;
-}
-
-.reward_div input{
-  width: 60%;
-}
-
-
-#cp_text_area{
-  font-size: 20px;
-  width: 100%;
-  height: 100%;
-  border: none;
-  resize: none;
-  border-bottom-right-radius: 10px;
-}
-
 /* 모달 창 스타일 */
-.modal {
+.post_modal {
   display: none;
   /* 초기에는 모달 창을 숨깁니다. */
   position: fixed;
@@ -501,11 +408,11 @@ article p {
   /* 오버레이 배경색으로 사용할 투명도 조정한 색상 */
 }
 
-.modal-content {
+.post_modal-content {
   border-radius: 10px;
   background-color: #fff;
   margin: 5% auto;
-  width: 70%;
+  width: 60%;
   height: 80%;
 }
 
@@ -521,5 +428,136 @@ article p {
 .close:focus {
   color: black;
   text-decoration: none;
+  cursor: pointer;
+}
+
+/* 게시물 작성 영역 */
+.show_post{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.sp_content{
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.sp_file{
+  display: flex;
+  width:50%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+.sp_file img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sp_file video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sp_detail{
+  width: 50%;
+}
+
+.sp_detail_user{
+  display: flex;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid lightgray;
+  align-items: center;
+}
+
+.sp_detail_user div{
+  margin-left: 15px;
+}
+
+.sp_detail_user div img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.sp_comment_area{
+  width: 100%;
+  height: 65%;
+  border-bottom: 1px solid lightgray;
+}
+
+.sp_comment_area img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.sp_comment{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.sp_comment>div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.sp_comment_area b{
+  margin-right: 10px;
+}
+
+.sp_button_area{
+  display: flex;
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid lightgray;
+}
+
+.sp_button_area>div{
+  margin: 10px;
+}
+.sp_button_area>div+div{
+  margin: 10px;
+  font-weight: bold;
+}
+
+.sp_comment_input_area{
+  width: 100%;
+  height: 10%;
+  font-size: 15px;
+  display: flex;
+}
+
+.sp_comment_input_area input{
+  border: none;
+  background-color: white;
+  width: 90%;
+  height: 50px;
+}
+
+#sp_comments_btn{
+  border: 0;
+  background-color: transparent;
+  color : #4070f4;
+  font-weight: bold;
+  width: 10%;
+  height: 50px;
+}
+
+#sp_comments_btn:hover{
   cursor: pointer;
 }
