@@ -54,14 +54,32 @@ public class BoardDAO {
 		session.close();
 		return cnt;
 	}
-	public int likeupload(BoardDTO dto) {
+	public int likesave(BoardDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.update("likeupload", dto);
+		int row = session.insert("likesave", dto);
 		session.close();
 		
 		return row;
 	}
+	public int likedelete(BoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int row = session.delete("likedelete", dto);
+		session.close();
+		
+		return row;
+	}
+	public int likecheck(BoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int likecheck = session.selectOne("likecheck", dto);
+		session.close();
+		
+		return likecheck;
 
-
-
+	}
+	public int likecount(BoardDTO dto) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int likecount = session.selectOne("likecount", dto);
+		session.close();
+		return likecount;
+	}
 }

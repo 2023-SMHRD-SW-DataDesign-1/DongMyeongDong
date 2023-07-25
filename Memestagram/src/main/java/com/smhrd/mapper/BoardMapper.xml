@@ -31,7 +31,7 @@
 
 		select * from (select rownum as r,x.* from (select
 		b.*,(select count(*) from
-		board_like l where l.mem_id = b.mem_id ) as
+		board_like l where l.board_seq = b.board_seq ) as
 		board_likes,(select
 		mem_img from member_info m where m.mem_id =
 		b.mem_id) as mem_img
@@ -42,13 +42,29 @@
 		between #{start} and #{end}
 	</select>
 
-	<insert id="likeupload" parameterType="BoardDTO">
+	<insert id="likesave" parameterType="BoardDTO">
 		insert into
-		board_like (board_seq, mem_id) values(#{board_seq},
+		board_like
+		(board_seq, mem_id) values(#{board_seq},
 		#{mem_id})
 	</insert>
 
+	<delete id="likedelete" parameterType="BoardDTO">
+		delete from board_like
+		where
+		board_seq = #{board_seq} and mem_id =#{mem_id}
+	</delete>
 
+	<select id="likecheck" parameterType="BoardDTO" resultType="int">
+		select count(*) from board_like where mem_id = #{mem_id} and board_seq =
+		#{board_seq}
+	</select>
+	
+	<select id="likecount" parameterType="BoardDTO" resultType="int">
+		select count(*) from board_like where board_seq =
+		#{board_seq}
+	</select>
+	
 
 	<!-- <update id="boardupdate" parameterType="BoardDTO"> update board set 
 		board_img =#{},board_content =#{}, board_date=sysdate where id=#{board_writer} 

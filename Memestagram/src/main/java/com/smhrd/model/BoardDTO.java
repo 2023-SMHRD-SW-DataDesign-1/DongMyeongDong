@@ -24,6 +24,7 @@ public class BoardDTO {
 	 private String board_vid;
 	 private String mem_img;
 	 private int board_cmt_cnt;
+	 private String checklike;
 	 
 	public BoardDTO(@NonNull String board_content, @NonNull String board_img) {
 		this.board_content = board_content;

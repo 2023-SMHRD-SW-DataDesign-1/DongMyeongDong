@@ -1,88 +1,68 @@
 
 
-$(document).ready(function () {
-		    var win = $(window);
-		    var bodyOffset = $('body').offset();
-		    var currentPage = 1;
-		    getPost(currentPage);
-		    
-		    // Each time the user scrolls
-		    win.scroll(function () {
-		        // End of the document reached?
-		        // console.log($(document).height(), win.height(), win.scrollTop());
-		        
-		        
-		        if ($(document).height() - win.height() == win.scrollTop()) {
-					
-		            $('#loading').show();
-		            currentPage += 1;
-		            getPost(currentPage);
-		            //$('#posts').append(getPost(currentPage));// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
-		            $('#loading').hide();
-		        }
-	
-		         if ($(document).scrollTop() > bodyOffset.top) {
-		            $('#video').addClass('scroll');
-		            $('.scroll').get(0).play();
-		        } else {
-		            $('.scroll').get(0).pause();
-		            $('#video').removeClass('scroll');
-		        }
-		    });
-		    
-		    
-		});
-		img = ["png","PNG","JPG","jpg","GIF","gif","TIFF","tiff","psd","PSD","AI","ai","SVG","svg","EPS","eps","JFIF","jfif","BPG","bpg","SVG","svg","CGM","cgm","BMP","bmp","Exif","exif"];
-		
-		function  getExtension(filename){
-			
-			var filelen = filename.length;
-			var lastdot = filename.lastIndexOf('.');
-			var fileExt = filename.substring(lastdot+1, filelen).toLowerCase();
-			
-			return fileExt;
+$(document).ready(function() {
+	var win = $(window);
+	var bodyOffset = $('body').offset();
+	var currentPage = 1;
+	getPost(currentPage);
+
+	// Each time the user scrolls
+	win.scroll(function() {
+		// End of the document reached?
+		// console.log($(document).height(), win.height(), win.scrollTop());
+
+
+		if ($(document).height() - win.height() == win.scrollTop()) {
+
+			$('#loading').show();
+			currentPage += 1;
+			getPost(currentPage);
+			//$('#posts').append(getPost(currentPage));// getpost메소드에 매개변수로 마지막 글의 seq를 넘겨줘야 됨
+			$('#loading').hide();
 		}
-		
-		// 좋아요!!!! 업데이트
-$("#heart").on("click", function () {
+
+		if ($(document).scrollTop() > bodyOffset.top) {
+			$('#video').addClass('scroll');
+			$('.scroll').get(0).play();
+		} else {
+			$('.scroll').get(0).pause();
+			$('#video').removeClass('scroll');
+		}
+	});
+
+
+});
+img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "AI", "ai", "SVG", "svg", "EPS", "eps", "JFIF", "jfif", "BPG", "bpg", "SVG", "svg", "CGM", "cgm", "BMP", "bmp", "Exif", "exif"];
+
+function getExtension(filename) {
+
+	var filelen = filename.length;
+	var lastdot = filename.lastIndexOf('.');
+	var fileExt = filename.substring(lastdot + 1, filelen).toLowerCase();
+
+	return fileExt;
+}
+
+// 좋아요!!!! 업데이트
+
+
+
+
+
+// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
+var count = 1;
+
+function getPost(page) {
+	var content = "";
 	$.ajax({
-      url: "LikeUploadCon.do",
-      type: 'POST',
-      data: { 'board_seq': board_seq, 'mem_id': data.mem_id },
-      success: function (data) {
-          if (data == 1) {
-              $("#heart").attr("class", 'bx bxs-heart');
-              location.reload();
-          } else {
-              $("#heart").attr("class", "bx bx-heart");
-              location.reload();
-          }
-      }, error: function () {
-          $("#heart").attr("class", "bx bx-heart");
-          console.log('오타 찾으세요')
-      }
+		url: "BoardShowCon.do",
+		type: "post",
+		data: { "page": page },
+		datatype: "json",
+		success: function(data) {
 
-  });
-
-  });
-    
-
-
-		
-		// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
-		var count = 1;
-		
-		function getPost(page) {
-			var content = "";
-			$.ajax({
-				url : "BoardShowCon.do",
-				type : "post",
-				data : {"page" : page},
-				datatype : "json",
-				success : function(data){
-					
-					$.each(data, function(index, data) {
-						content += `<div class="post">
+			$.each(data, function(index, data) {
+				content += `<div class="post">
             <div class="header">
                 <div class="profile_icon">
                 <p class="board_seq" data-no="${data.board_seq}">${data.board_seq}</p>   
@@ -93,18 +73,26 @@ $("#heart").on("click", function () {
                 </div>
             </div>
             <div class="content">`;
-            var fileExtension = getExtension(data.board_img);
-            
-            if (img.includes(fileExtension)){
-				content+= '<img src="img/'+data.board_img+'">';
-			}else{
-				content+= '<video id="video" src="img/'+data.board_img+'" controls autoplay muted playsinline></video>';
-			}
-            	content += `</div>
+				var fileExtension = getExtension(data.board_img);
+
+				if (img.includes(fileExtension)) {
+					content += '<img src="img/' + data.board_img + '">';
+				} else {
+					content += '<video id="video" src="img/' + data.board_img + '" controls autoplay muted playsinline></video>';
+				}
+				content += `</div>
             <div class="buttons">
-                <div class="button" id=heart>
-                    <i class="bx bx-heart icon"></i>
-                </div>
+                <div class="button">
+                <a idx=${data.board_seq} href="javascript:" class="heart">
+                `;
+				if (data.checklike == 'Y') {
+					content += '<i class="bx bxs-heart icon" idx="' + data.board_seq + '"></i>';
+				} else {
+					content += '<i class="bx bx-heart icon" idx="' + data.board_seq + '"></i>';
+				}
+
+
+				content += `</a></div>
                 <div class="button">
                     <i class="bx bx-comment icon"></i>
                 </div>
@@ -114,7 +102,7 @@ $("#heart").on("click", function () {
             </div>
             <div class="like">
                 <span>좋아요</span>
-                <span class="like_count">${data.board_likes}</span>
+                <span class="like_count${data.board_seq}">${data.board_likes}</span>
                 <span>개</span>
             </div>
             <div class="comments">
@@ -129,22 +117,82 @@ $("#heart").on("click", function () {
             <div class="comments_input">
                 <input type="text" placeholder="댓글 달기...">
             </div>
+           
             <hr>
         </div>`;
-						
-						
-					})
-					$('#posts').append(content);
-				},// success 닫히는 곳
-				fail : function(){
-					alert("통신 실패");
-				}
+
+
 			});
-			
-		   
-		    
-		    
-		    
-	
-		    
+			$('#posts').append(content);
+
+
+			$(".heart").click(function() {
+				let board_seq = $(this).children('i').attr('idx');
+
+				if ($(this).children('i').attr('class') == "bx bx-heart icon") {
+					console.log("빈하트 클릭" + board_seq);
+
+					$.ajax({
+						url: 'LikeSaveCon.do',
+						type: 'post',
+						data: {
+							board_seq: board_seq,
+						},
+						success: function(data) {
+							let heart = data;
+							alert(data);
+							$('.like_count' + board_seq).text(heart);
+
+							console.log("좋아요 성공");
+
+						},
+						error: function() {
+							alert('좋아요 실패');
+						}
+					});
+					console.log("꽉찬하트로 바껴라!");
+					$(".bx bx-heart icon").attr("class", "bx bxs-heart icon");
+
+
+
+					// 꽉찬 하트를 눌렀을 때
+				} else if (($(this).children('i').attr('class') == "bx bxs-heart icon")) {
+					console.log("꽉찬하트 클릭" + board_seq);
+
+					$.ajax({
+						url: 'LikeDeleteCon.do',
+						type: 'post',
+						data: {
+							board_seq: board_seq,
+						},
+						success: function(data) {
+							let heart = data;
+							alert(data);
+							$('.like_count' + board_seq).text(heart);
+
+						},
+						error: function() {
+							alert('좋아요 실패');
+						}
+					});
+												console.log("빈하트로 바껴라!")
+							$(".bx bxs-heart icon").attr("class", "bx bx-heart icon");
+
+				}
+
+
+
+			});
+
+
+		},
+		// success 닫히는 곳
+		fail: function() {
+			alert("통신 실패");
 		}
+	});
+
+}
+
+
+
