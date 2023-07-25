@@ -26,4 +26,11 @@ public class ProfileDTO {
 		
 	}
 
+	public ProfileDTO(@NonNull String mem_id) {
+		super();
+		this.mem_id = mem_id;
+	}
+	
+	
+
 }

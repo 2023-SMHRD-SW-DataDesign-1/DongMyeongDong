@@ -13,6 +13,8 @@
 		where M.mem_id = #{mem_id};
 	</select>
 	
+	
+	
 	<select id="boardContent" resultType="ProfileDTO">
 		select board_content
 		from board
@@ -23,6 +25,8 @@
 		update member_info set mem_pw = #{mem_pw}
 		where mem_id = #{mem_id}
 	</update>
+	
+	
 
 </mapper>
 	

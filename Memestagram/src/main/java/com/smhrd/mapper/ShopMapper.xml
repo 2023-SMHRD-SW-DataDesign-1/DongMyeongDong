@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.mapper.ShopMapper">
+	<select id="shopProduct" resultType="ShopDTO">
+		select * from product
+	</select>
+
+	<insert id="buyProduct" parameterType="ShopDTO">
+		insert into shopping_list values(#{product_name},#{mem_id})
+	</insert>
+	
+	
+	<update id="updateReward" parameterType="ShopDTO">
+		update member_info set mem_reward = #{product_price} where mem_id =#{mem_id}
+	
+	</update>
+</mapper>

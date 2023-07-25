@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
-
+@Setter
 @AllArgsConstructor
 
 @NoArgsConstructor
@@ -49,9 +49,6 @@ public class MemberDTO {
 
 
 
-	public void setLogin_type(String login_type) {
-		this.login_type = login_type;
-	}
 
 
 

@@ -21,7 +21,7 @@ public class JoinCon implements command {
 		System.out.println("[joinCon]");
 
 		String savePath = request.getServletContext().getRealPath("/profile_img");
-
+		
 		File Folder = new File(savePath);
 
 		if (!Folder.exists()) {

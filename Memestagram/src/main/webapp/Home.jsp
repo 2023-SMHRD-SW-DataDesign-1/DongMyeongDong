@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +50,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="Shop.jsp" class="nav-link">
+                    <a href="ShopShowCon.do" class="nav-link">
                         <i class="bx bx-cart-alt icon"></i>
                         <span class="link">리워드상점</span>
                     </a>

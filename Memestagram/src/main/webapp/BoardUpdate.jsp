@@ -96,7 +96,7 @@
                     <div class="cp_file">
                         <img src="./image/files.png" alt="">
                         <label for="file">
-                            <div class="btn-upload">파일 올리기</div>
+                            <div class="btn-upload">파일 수정하기</div>
                           </label>
                         <input type="file" id="file" value=""></input>
                     </div>

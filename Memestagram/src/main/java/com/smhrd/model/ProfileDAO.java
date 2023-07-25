@@ -19,7 +19,7 @@ public class ProfileDAO {
 	
 	// 프로필 화면에서 회원정보 보여주는 메소드
 	public ProfileDTO showmember(ProfileDTO pdto) {
-		SqlSession session = sqlSessionFactory.openSession();
+		SqlSession session = sqlSessionFactory.openSession(true);
 		ProfileDTO show = session.selectOne("showmember", pdto);
 		session.close();
 		return show;
@@ -33,11 +33,19 @@ public class ProfileDAO {
 	
 	// 프로필 편집 화면에서 수정 메소드
 	public int profileEdit(ProfileDTO pdto) {
-		SqlSession session = sqlSessionFactory.openSession();
+		SqlSession session = sqlSessionFactory.openSession(true);
 		int row = session.update("profileEdit", pdto);
 		session.close();
 		return row;
 		
+	}
+
+	public ProfileDTO showReward(String mem_id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		ProfileDTO profile = session.selectOne("showReward", mem_id);
+		session.close();
+		
+		return profile;
 	}
 		
 
