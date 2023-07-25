@@ -4,22 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.ProfileMapper">
 
-	<select id="showmember" resultType="ProfileDTO">
-		select M.mem_img, M.mem_reward
-			,(select count(F.following) from follow F where F.following = M.mem_id) AS followingnumber
-			,(select count(F.follower) from follow F where F.following = M.mem_id) AS followernumber
+	<select id="profileShow" parameterType="String" resultType="ProfileDTO">
+		select M.mem_img, M.mem_reward, M.mem_id
+			,(select count(F.following) as following from follow F where F.following = M.mem_id) AS following
+			,(select count(F.follower) as follower from follow F where F.following = M.mem_id) AS follower
 			,(select count(B.board_seq) from board B where B.mem_id = M.mem_id) AS boardcount
 		from member_info M
-		where M.mem_id = #{mem_id};
+		where M.mem_id = #{mem_id}
 	</select>
 	
 	
-	
+
 	<select id="boardContent" resultType="ProfileDTO">
 		select board_content
 		from board
-		where mem_id = #{mem_id};
+		where mem_id = #{mem_id}
 	</select>
+	
 	
 	<update id="profileEdit" parameterType="ProfileDTO">
 		update member_info set mem_pw = #{mem_pw}
