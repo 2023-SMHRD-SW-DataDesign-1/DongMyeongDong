@@ -4,6 +4,7 @@ $(document).ready(function() {
 	var currentPage = 1;
 	getPost(currentPage);
 
+
 	// Each time the user scrolls
 	win.scroll(function() {
 		// End of the document reached?
@@ -28,8 +29,9 @@ $(document).ready(function() {
 		}
 	});
 
+}); //document ready 끝나는 부분
 
-});
+
 
 function heartCheck(e){
 				let board_seq = $(e).children("img").attr('idx');
@@ -103,11 +105,8 @@ function getExtension(filename) {
 	var fileExt = filename.substring(lastdot + 1, filelen).toLowerCase();
 
 	return fileExt;
+
 }
-
-// 좋아요!!!! 업데이트
-
-
 
 
 
@@ -123,9 +122,40 @@ function getPost(page) {
 		data: { "page": page },
 		datatype: "json",
 		success: function(data) {
+			function write_reply() {
+				let bseq = $(this).attr("idx");
 
+				let content = $('.input_reply' + bseq).val();
+
+				if (content == "") {
+					alert("댓글을 입력하세요");
+				} else {
+
+					$('.input_reply' + bseq).val("");
+
+
+					$.ajax({
+						url: "CmtWriteCon.do",
+						type: "get",
+						data: { "bseq": bseq, "content": content },
+						success: function(cmtCount) {
+							alert("댓글 작성 성공");
+
+							$(".show_all" + bseq).text("댓글 " + cmtCount + "개 모두 보기");
+							cmtList(bseq);
+						},
+						fail: function() {
+							alert("댓글 작성 실패");
+						}
+
+					});
+				}
+
+
+			}
 			$.each(data, function(index, data) {
 				content += `<div class="post">
+
             <div class="header">
                 <div class="profile_icon">
                 <p class="board_seq" data-no="${data.board_seq}">${data.board_seq}</p>   
@@ -145,8 +175,10 @@ function getPost(page) {
 				}
 				content += `</div>
             <div class="buttons">
+
                 <div class="button">
                 <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">
+
                 `;
 				if (data.checklike == 'Y') {
 					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
@@ -156,6 +188,7 @@ function getPost(page) {
 
 
 				content += `</a></div>
+
                 <div class="button">
                     <i class="bx bx-comment icon"></i>
                 </div>
@@ -180,13 +213,24 @@ function getPost(page) {
             <div class="comments_input">
                 <input type="text" placeholder="댓글 달기...">
             </div>
-           
+
+            <button class="write_reply" idx="${data.board_seq}" onclick="write_reply(this)" >댓글달기</button>
+
             <hr>
         </div>`;
 
 
-			});
+				/*let button = document.querySelector('.write_reply'+data.board_seq);*/
+
+				/*button.addEventListener('click',function(){
+					write_reply();
+				})*/
+
+				cmtList(data.board_seq);
+			})
 			$('#posts').append(content);
+
+			/*$('.write_reply').on('click',function(){*/
 
 
 			/*$(".heart").click(function() {*/
@@ -199,7 +243,13 @@ function getPost(page) {
 		fail: function() {
 			alert("통신 실패");
 		}
+
 	});
+	$('#posts').append(content);
+
+	// success 닫히는 곳
+	
+
 
 }
 

@@ -101,7 +101,7 @@ form div{
     cursor: pointer;
 }
 
-#naver_id_login{
+#naver_login{
     margin-top: 20px;
     height: 40px;
     width: 100%;
@@ -111,7 +111,7 @@ form div{
     border: none;
 }
 
-#naver_id_login:hover{
+#naver_login:hover{
     cursor: pointer;
 }
 

@@ -58,7 +58,7 @@ public class JoinCon implements command {
 		System.out.println("email : " + email);
 		System.out.println("pro_img : " + pro_img);
 		
-		int result = new MemberDAO().JoinMember(new MemberDTO(id, pw, email, pro_img));
+		int result = new MemberDAO().JoinMember(new MemberDTO(id, pw, pw, email, pro_img));
 		
 		if(result > 0) {
 			System.out.println("회원가입 성공");
