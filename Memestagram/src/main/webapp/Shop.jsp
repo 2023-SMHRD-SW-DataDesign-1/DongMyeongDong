@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false"%>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -13,9 +15,26 @@
     <link rel="stylesheet" href="css/shop.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
+<script type="text/javascript">
+	function buyProduct(e){
+		let price = $(e).children('.shop_product_price').text();
+		let product_name = $(e).children('.shop_product_brand').text();
+		console.log(${member.mem_reward});
+		if(parseInt(price) > ${member.mem_reward}){
+			alert("리워드가 부족합니다");
+		}else{
+			alert("구매 완료");
+			location.href="buyProduct.do?product_name="+product_name+"&product_price="+price;
+		}
+	}
+
+</script>
+
     <div class="sidebar">
         <div class="logo">
             <span class="logo-name">Memestagram</span>
@@ -89,69 +108,32 @@
                 <div class="shop_user_info_icon">
                     <img src="./image/user.png" alt="">
                 </div>
-                <div class="shop_user_info_name">user_name</div>
-                <div class="shop_user_info_point">10,000,000 P</div>
+                <div class="shop_user_info_name">${member.mem_id}</div>	
+                <div class="shop_user_info_point">${member.mem_reward}</div>
             </div>
             <div class="shop_product_div">
-                <div class="shop_product">
-                    <div class="shop_product_img">
-                        <img src="./image/starbucks_americano.jpg" alt="">
-                    </div>
-                    <div class="shop_product_brand">
-                        스타벅스
-                    </div>
-                    <div class="shop_product_name">
-                        아이스 아메리카노
-                    </div>
-                    <div class="shop_product_price">
-                        5,500 P
-                    </div>
+            	<c:forEach var="product" items="${productList }">
+            		<div class="shop_product" onclick="buyProduct(this)">
+            		
+	                    <div class="shop_product_img">
+	                        <img src="./product/${product.product_img }" alt="">
+	                    </div>
+	                    <div class="shop_product_brand">${product.product_name}</div>
+	                   <!--  <div class="shop_product_name">
+	                        아이스 아메리카노
+	                    </div> -->
+	                    <div class="shop_product_price">${product.product_price}</div>
+                    
+                   
                 </div>
-                <div class="shop_product">
-                    <div class="shop_product_img">
-                        <img src="./image/starbucks_americano.jpg" alt="">
-                    </div>
-                    <div class="shop_product_brand">
-                        스타벅스
-                    </div>
-                    <div class="shop_product_name">
-                        아이스 아메리카노
-                    </div>
-                    <div class="shop_product_price">
-                        5,500 P
-                    </div>
-                </div>
-                <div class="shop_product">
-                    <div class="shop_product_img">
-                        <img src="./image/starbucks_americano.jpg" alt="">
-                    </div>
-                    <div class="shop_product_brand">
-                        스타벅스
-                    </div>
-                    <div class="shop_product_name">
-                        아이스 아메리카노
-                    </div>
-                    <div class="shop_product_price">
-                        5,500 P
-                    </div>
-                </div>
-                <div class="shop_product">
-                    <div class="shop_product_img">
-                        <img src="./image/starbucks_americano.jpg" alt="">
-                    </div>
-                    <div class="shop_product_brand">
-                        스타벅스
-                    </div>
-                    <div class="shop_product_name">
-                        아이스 아메리카노
-                    </div>
-                    <div class="shop_product_price">
-                        5,500 P
-                    </div>
-                </div>
+            	
+            	</c:forEach>
+                
             </div>
         </div>
     </div>
+
+
 
 </body>
 

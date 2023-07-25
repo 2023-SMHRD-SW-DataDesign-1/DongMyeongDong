@@ -1,5 +1,7 @@
 package com.smhrd.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -11,7 +13,7 @@ public class BoardCmtDAO {
 
 	public int cmtupload(BoardCmtDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.insert("upload", dto);
+		int row = session.insert("cmtupload", dto);
 		session.close();
 		
 		return row;
@@ -22,6 +24,21 @@ public class BoardCmtDAO {
 		session.close();
 		
 		return row;
+	}
+	
+	public List<BoardCmtDTO> cmtList(int board_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		List<BoardCmtDTO> cmtList = session.selectList("cmtList", board_seq);
+		session.close();
+		
+		return cmtList;
+	}
+	public int cmtCount(int board_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int cmt_count = session.selectOne("cmtCount", board_seq);
+		session.close();
+		
+		return cmt_count;		
 	}
 
 }

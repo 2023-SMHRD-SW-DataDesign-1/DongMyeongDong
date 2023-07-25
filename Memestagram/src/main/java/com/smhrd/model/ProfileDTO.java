@@ -20,6 +20,10 @@ public class ProfileDTO {
 @NonNull	private String mem_pw;
 	private String mem_pw2;
 
+
+
+	
+
 	private String mem_img;
 	private int mem_reward;
 	
@@ -29,7 +33,10 @@ public class ProfileDTO {
 	private int boardcount;
 	private String boardcontent;
 	
-	
+	public ProfileDTO(@NonNull String mem_id) {
+		super();
+		this.mem_id = mem_id;
+	}
 		
 	
 	

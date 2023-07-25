@@ -17,6 +17,7 @@ public class ProfileDAO {
 	
 	
 	// 프로필 화면에서 회원정보 보여주는 메소드
+
 	public static ProfileDTO profileShow2(String mem_id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
 		ProfileDTO show = session.selectOne("profileShow", mem_id);
@@ -33,6 +34,14 @@ public class ProfileDAO {
 		session.close();
 		return row;
 		
+	}
+
+	public ProfileDTO showReward(String mem_id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		ProfileDTO profile = session.selectOne("showReward", mem_id);
+		session.close();
+		
+		return profile;
 	}
 		
 

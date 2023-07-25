@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="Shop.jsp" class="nav-link">
+                    <a href="ShopShowCon.do" class="nav-link">
                         <i class="bx bx-cart-alt icon"></i>
                         <span class="link">리워드상점</span>
                     </a>
@@ -89,6 +89,7 @@
     </div>
 
     <div class="container">
+    
 
         <div class="box-sidebar">
         </div>

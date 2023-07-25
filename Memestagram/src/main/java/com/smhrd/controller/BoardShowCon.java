@@ -22,6 +22,8 @@ public class BoardShowCon implements command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("[showboard]");
+		
+		System.out.println(request.getServletContext().getRealPath("/profile_img"));
 		int page = Integer.parseInt(request.getParameter("page"));
 		BoardDAO BoardDAO = new BoardDAO();
 		int page_row_cnt = 2;

@@ -13,6 +13,7 @@
 	<typeAlias type="com.smhrd.model.MemberDTO" alias="MemberDTO"/>
 	<typeAlias type="com.smhrd.model.ProfileDTO" alias="ProfileDTO"/>
 	<typeAlias type="com.smhrd.model.PagingDTO" alias="PagingDTO"/>
+	<typeAlias type="com.smhrd.model.ShopDTO" alias="ShopDTO"/>
 	</typeAliases>
 	
   <environments default="development">
@@ -31,5 +32,6 @@
     <mapper resource="com/smhrd/mapper/BoardCmtMapper.xml"/>
     <mapper resource="com/smhrd/mapper/MemberMapper.xml"/>
      <mapper resource="com/smhrd/mapper/ProfileMapper.xml"/>
+     <mapper resource="com/smhrd/mapper/ShopMapper.xml"/>
   </mappers>
 </configuration>

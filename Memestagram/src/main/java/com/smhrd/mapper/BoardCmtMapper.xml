@@ -13,5 +13,13 @@
 	<delete id="cmtdelete" parameterType="BoardCmtDTO">
 	delete from board_cmt where board_seq = #{board_seq}
 	</delete>
-
+	
+	
+	<select id="cmtList" parameterType="int" resultType="BoardCmtDTO">
+		select * from board_cmt where board_seq = #{board_seq} order by board_cmt_seq desc
+	</select>
+	
+	<select id="cmtCount" parameterType="int" resultType="int">
+		select count(*) from board_cmt where board_seq = #{board_seq} 
+	</select>
 </mapper>
