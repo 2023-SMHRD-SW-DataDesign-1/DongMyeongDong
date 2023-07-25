@@ -24,6 +24,7 @@ public class BoardDTO {
 	 private String board_vid;
 	 private String mem_img;
 	 private int board_cmt_cnt;
+	 private String checklike;
 	 
 	public BoardDTO(@NonNull String board_content, @NonNull String board_img) {
 		this.board_content = board_content;
@@ -37,6 +38,11 @@ public class BoardDTO {
 		this.board_date = board_date;
 		this.board_likes = board_like;
 		this.board_img = board_img;
+	}
+
+	public BoardDTO(int board_seq, @NonNull String mem_id) {
+		this.board_seq = board_seq;
+		this.mem_id = mem_id;
 	}
 
 	

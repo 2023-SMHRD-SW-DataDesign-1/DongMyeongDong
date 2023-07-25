@@ -229,6 +229,11 @@ nav.open ~ .overlay {
   text-align: left;
 }
 
+#fullheart{
+	height : 15px;
+	width: 15px;
+}
+
 .like span{
   font-size: 15px;
   font-weight: bold;

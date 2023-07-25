@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.smhrd.command.command;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.BoardDTO;
+import com.smhrd.model.MemberDTO;
 import com.smhrd.model.PagingDTO;
 
 public class BoardShowCon implements command {
@@ -35,14 +37,21 @@ public class BoardShowCon implements command {
 		PagingDTO p = new PagingDTO(start, end);
 		
 		ArrayList<BoardDTO> boardList = BoardDAO.boardshow(p);
+		HttpSession session = request.getSession();
 		
 		for (BoardDTO b : boardList) {
-			System.out.println(b.getBoard_content());
-			System.out.println(b.getMem_img());
-			System.out.println(b.getBoard_cmt_cnt());
+			String mem_id = ((MemberDTO) session.getAttribute("member")).getMem_id();
+			int board_seq = b.getBoard_seq();
+			int likecheck = new BoardDAO().likecheck(new BoardDTO(board_seq, mem_id));
+			if(likecheck>0) {
+				b.setChecklike("Y");
+			}else {
+				b.setChecklike("N");
+			}
 		}
 		
-		request.setAttribute("boardList", boardList);
+		
+		//request.setAttribute("boardList", boardList);
 		
 		Gson gson = new Gson();
 		
@@ -50,7 +59,8 @@ public class BoardShowCon implements command {
 		response.setContentType("text/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println(json);
-        
+		
+		
 		
 		return null;
 	}

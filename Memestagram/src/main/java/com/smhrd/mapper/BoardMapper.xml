@@ -4,29 +4,69 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.BoardMapper">
 	<insert id="boardupload" parameterType="BoardDTO">
-		insert into board (board_seq, mem_id, board_content, board_date, board_img) values(num_board.nextval,
-		#{mem_id}, #{board_content}, sysdate, #{board_img})
+		insert into board
+		(board_seq, mem_id, board_content, board_date, board_img)
+		values(num_board.nextval,
+		#{mem_id}, #{board_content}, sysdate,
+		#{board_img})
 	</insert>
 
- 	<select id="showboard" resultType="boardDTO">
-	select * from board order by board_seq desc
-	</select> 
-	
+	<select id="showboard" resultType="boardDTO">
+		select * from board order by
+		board_seq desc
+	</select>
+
 	<select id="boardCount" resultType="int">
 		select count(*) from board
 	</select>
-<!-- 	<select id="showone" parameterType="int" resultType="boardDTO">
-	select * from "" where num= #{num}
-	</select> -->
+	<!-- <select id="showone" parameterType="int" resultType="boardDTO"> select 
+		* from "" where num= #{num} </select> -->
 	<delete id="boarddelete" parameterType="BoardDTO">
-	delete from board where board_seq = #{board_seq}
+		delete from board where
+		board_seq = #{board_seq}
 	</delete>
-	
-	<select id ="boardshow" parameterType="PagingDTO" resultType="boardDTO">
-		
-		select * from (select rownum as r,x.* from (select b.*,(select count(*) from board_like l where l.mem_id = b.mem_id ) as board_likes,(select mem_img from member_info m where m.mem_id = b.mem_id) as mem_img ,(select count(*) from board_cmt c where c.board_seq = b.board_seq) as board_cmt_cnt from board b order by b.board_seq desc) x) a where a.r between #{start} and #{end}
+
+	<select id="boardshow" parameterType="PagingDTO"
+		resultType="boardDTO">
+
+		select * from (select rownum as r,x.* from (select
+		b.*,(select count(*) from
+		board_like l where l.board_seq = b.board_seq ) as
+		board_likes,(select
+		mem_img from member_info m where m.mem_id =
+		b.mem_id) as mem_img
+		,(select count(*) from board_cmt c where
+		c.board_seq = b.board_seq) as
+		board_cmt_cnt from board b order by
+		b.board_seq desc) x) a where a.r
+		between #{start} and #{end}
 	</select>
-	<!-- <update id="boardupdate" parameterType="BoardDTO">
-	update board set board_img =#{},board_content =#{}, board_date=sysdate where id=#{board_writer}
-	</update> -->
+
+	<insert id="likesave" parameterType="BoardDTO">
+		insert into
+		board_like
+		(board_seq, mem_id) values(#{board_seq},
+		#{mem_id})
+	</insert>
+
+	<delete id="likedelete" parameterType="BoardDTO">
+		delete from board_like
+		where
+		board_seq = #{board_seq} and mem_id =#{mem_id}
+	</delete>
+
+	<select id="likecheck" parameterType="BoardDTO" resultType="int">
+		select count(*) from board_like where mem_id = #{mem_id} and board_seq =
+		#{board_seq}
+	</select>
+	
+	<select id="likecount" parameterType="BoardDTO" resultType="int">
+		select count(*) from board_like where board_seq =
+		#{board_seq}
+	</select>
+	
+
+	<!-- <update id="boardupdate" parameterType="BoardDTO"> update board set 
+		board_img =#{},board_content =#{}, board_date=sysdate where id=#{board_writer} 
+		</update> -->
 </mapper>
