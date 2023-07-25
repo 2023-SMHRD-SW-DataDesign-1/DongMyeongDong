@@ -110,27 +110,27 @@ function getExtension(filename) {
 
 }
 function cmtList(bseq){
-			$.ajax({
-				url : "CmtListCon.do",
-				type : "post",
-				data : {"bseq" : bseq},
-				success : function(cmtList){
-					$(".comments_list"+bseq).html("");
-					$.each(cmtList,function(index,cmt){
-						
-						$(".comments_list"+bseq).append("<p id='cmt_seq'"+cmt.board_cmt_seq+">"+cmt.board_cmt_content+"</p>");
-						
-						if(index == 2){
-							return false;
-						}
-					})
-				},
-				error:function(){
-					alert("댓글 리스트 불러오기 실패");
+	$.ajax({
+		url : "CmtListCon.do",
+		type : "post",
+		data : {"bseq" : bseq},
+		success : function(cmtList){
+			$(".comments_list"+bseq).html("");
+			$.each(cmtList,function(index,cmt){
+				
+				$(".comments_list"+bseq).append("<p id='cmt_seq'"+cmt.board_cmt_seq+">"+cmt.board_cmt_content+"</p>");
+				
+				if(index == 2){
+					return false;
 				}
 			})
-			
+		},
+		error:function(){
+			alert("댓글 리스트 불러오기 실패");
 		}
+	})
+	
+}
 
 
 // DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
@@ -232,6 +232,9 @@ function getPost(page) {
             </div>
             <div class="comments_show">
                 <span class="show_all">댓글 ${data.board_cmt_cnt}개 모두 보기</span>
+            </div>
+            <div class="comments_list${data.board_seq}">
+                
             </div>
             <div class="comments_input">
                 <input type="text" placeholder="댓글 달기...">

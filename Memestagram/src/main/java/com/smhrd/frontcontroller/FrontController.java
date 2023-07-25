@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
 import com.smhrd.controller.BoardCmtDeleteCon;
+import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
 import com.smhrd.controller.BoardDeleteCon;
 import com.smhrd.controller.BoardShowCon;
@@ -57,6 +58,7 @@ public class FrontController extends HttpServlet {
 		list.put("SnsJoinCon.do", new SnsJoinCon());
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
+		list.put("CmtListCon.do", new BoardCmtListCon());
 
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
