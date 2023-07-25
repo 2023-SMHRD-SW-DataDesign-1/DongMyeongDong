@@ -43,6 +43,7 @@ public class BoardShowCon implements command {
 			String mem_id = ((MemberDTO) session.getAttribute("member")).getMem_id();
 			int board_seq = b.getBoard_seq();
 			int likecheck = new BoardDAO().likecheck(new BoardDTO(board_seq, mem_id));
+			System.out.println(b.getBoard_content());
 			if(likecheck>0) {
 				b.setChecklike("Y");
 			}else {
