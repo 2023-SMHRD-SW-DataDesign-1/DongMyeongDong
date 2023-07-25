@@ -32,12 +32,23 @@ function test(){
 	}
 }
 
-function setThumbnail(event){
+img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "AI", "ai", "SVG", "svg", "EPS", "eps", "JFIF", "jfif", "BPG", "bpg", "SVG", "svg", "CGM", "cgm", "BMP", "bmp", "EXIF", "exif"];
+
+ function setThumbnail(event){
 	var reader = new FileReader();
 	
 	reader.onload = function(event){
 		
-		var img = document.createElement("video");
+		
+			var filetype = event.target.result;
+			var result = filetype.substr(5,10).substr(0,5);
+			if(result =="video"){
+				var img = document.createElement("video");
+			}else if(result =="image"){
+				var img = document.createElement("img");
+			}
+			
+		
 		img.setAttribute("src", event.target.result);
 		img.setAttribute("class", "col-lg-6");
 		//document.querySelector("#cp_file").appendChild(img);
@@ -45,7 +56,7 @@ function setThumbnail(event){
 	};
 	
 	reader.readAsDataURL(event.target.files[0]);
-}
+} 
 
 </script>
     <div class="sidebar">
@@ -126,7 +137,8 @@ function setThumbnail(event){
                         <label for="file">
                             <div class="btn-upload">파일 올리기</div>
                           </label>
-                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
+							
+							<input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
                         <input type="hidden" value="${member.mem_id}" name="id">
 
                     </div>

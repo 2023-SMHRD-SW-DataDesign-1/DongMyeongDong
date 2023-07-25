@@ -30,6 +30,70 @@ $(document).ready(function() {
 
 
 });
+
+function heartCheck(e){
+				let board_seq = $(e).children("img").attr('idx');
+
+				if ($(e).children('img').attr('class') == "emptyheart") {
+					console.log("빈하트 클릭" + board_seq);
+
+					$.ajax({
+						url: 'LikeSaveCon.do',
+						type: 'post',
+						data: {
+							board_seq: board_seq,
+						},
+						success: function(data) {
+							let heart = data;
+							
+							$('.like_count' + board_seq).text(heart);
+
+							console.log("좋아요 성공");
+							
+						},
+						error: function() {
+							alert('좋아요 실패');
+						}
+					});
+					$("img[idx="+board_seq+"]").attr("src", "./img/fullheart.png");
+					
+										//$(".emptyheart").attr("src", "./img/fullheart.png");
+										$("img[idx="+board_seq+"]").attr("class", "fullheart");
+										//console.log("꽉찬하트로 바껴라!");
+
+
+
+
+					// 꽉찬 하트를 눌렀을 때
+				} else if (($(e).children('img').attr('class') == "fullheart")) {
+					let board_seq = $(e).children("img").attr('idx');
+					console.log("꽉찬하트 클릭" + board_seq);
+
+					$.ajax({
+						url: 'LikeDeleteCon.do',
+						type: 'post',
+						data: {
+							board_seq: board_seq,
+						},
+						success: function(data) {
+							let heart = data;
+							
+							$('.like_count' + board_seq).text(heart);
+
+
+						},
+						error: function() {
+							alert('좋아요 해제 실패');
+						}
+					});
+				console.log("빈하트로 바껴라!")
+					$("img[idx="+board_seq+"]").attr("src", "./img/emptyheart.png");
+					$("img[idx="+board_seq+"]").attr("class", "emptyheart");
+
+				}
+
+
+}
 img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "AI", "ai", "SVG", "svg", "EPS", "eps", "JFIF", "jfif", "BPG", "bpg", "SVG", "svg", "CGM", "cgm", "BMP", "bmp", "Exif", "exif"];
 
 function getExtension(filename) {
@@ -49,6 +113,7 @@ function getExtension(filename) {
 
 // DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 var count = 1;
+
 
 function getPost(page) {
 	var content = "";
@@ -81,7 +146,7 @@ function getPost(page) {
 				content += `</div>
             <div class="buttons">
                 <div class="button">
-                <a idx=${data.board_seq} href="javascript:void(0)" onclick="heartClick()">
+                <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">
                 `;
 				if (data.checklike == 'Y') {
 					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
@@ -125,68 +190,8 @@ function getPost(page) {
 
 
 			/*$(".heart").click(function() {*/
-			function heartClick(){
-				let board_seq = $(this).children("img").attr('idx');
-
-				if ($(this).children('img').attr('class') == "emptyheart") {
-					console.log("빈하트 클릭" + board_seq);
-
-					$.ajax({
-						url: 'LikeSaveCon.do',
-						type: 'post',
-						data: {
-							board_seq: board_seq,
-						},
-						success: function(data) {
-							let heart = data;
-							alert(data);
-							$('.like_count' + board_seq).text(heart);
-
-							console.log("좋아요 성공");
-							
-						},
-						error: function() {
-							alert('좋아요 실패');
-						}
-					});
-										$(".emptyheart").attr("src", "./img/fullheart.png");
-										$(".emptyheart").attr("class", "fullheart");
-										console.log("꽉찬하트로 바껴라!");
-
-
-
-
-					// 꽉찬 하트를 눌렀을 때
-				} else if (($(this).children('img').attr('class') == "fullheart")) {
-					let board_seq = $(this).children("img").attr('idx');
-					console.log("꽉찬하트 클릭" + board_seq);
-
-					$.ajax({
-						url: 'LikeDeleteCon.do',
-						type: 'post',
-						data: {
-							board_seq: board_seq,
-						},
-						success: function(data) {
-							let heart = data;
-							alert(data);
-							$('.like_count' + board_seq).text(heart);
-
-
-						},
-						error: function() {
-							alert('좋아요 해제 실패');
-						}
-					});
-				console.log("빈하트로 바껴라!")
-					$(".fullheart").attr("src", "./img/emptyheart.png");
-					$(".fullheart").attr("class", "emptyheart");
-
-				}
-
-
-
-			};
+			
+			/*});*/
 
 
 		},
