@@ -15,6 +15,7 @@
 	<typeAlias type="com.smhrd.model.PagingDTO" alias="PagingDTO"/>
 	<typeAlias type="com.smhrd.model.ShopDTO" alias="ShopDTO"/>
 	<typeAlias type="com.smhrd.model.BalanceDTO" alias="BalanceDTO"/>
+	<typeAlias type="com.smhrd.model.FollowDTO" alias="FollowDTO"/>
 	</typeAliases>
 	
   <environments default="development">
@@ -35,5 +36,6 @@
      <mapper resource="com/smhrd/mapper/ProfileMapper.xml"/>
      <mapper resource="com/smhrd/mapper/ShopMapper.xml"/>
      <mapper resource="com/smhrd/mapper/BalanceMapper.xml"/>
+     <mapper resource="com/smhrd/mapper/FollowMapper.xml"/>
   </mappers>
 </configuration>
