@@ -27,7 +27,7 @@ public class ProfileShopCon implements command {
 		
 		
 		
-		return null;
+		return "./Profile.jsp";
 	}
 
 }
