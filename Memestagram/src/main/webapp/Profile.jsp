@@ -108,23 +108,26 @@
                             <div>팔로우 : ${show.following} </div>
                             <div>리워드 : ${show.mem_reward} </div>
                             <div>이미지 : ${show.mem_img} </div>
-                            <div>이미지 : ${show.mem_id} </div>
                         </div>
                     </div>
                 </div>
                 <div class="div_menu">
-                    <button>게시물</button>
-                    <button>상품 목록</button>
+                    <button onclick="showPost()">게시물</button>
+                    <button onclick="showProduct()">상품 목록</button>
                 </div>
-                <div class="div_post">
+                <div class="div_post" id="postPart">
+                	<c:set var="board_img" value="${ProfileDAO.boardImg(member.mem_id)}"></c:set>
+                	<c:forEach var="post_board" items="${board_img}">
                     <!-- 사용자 게시물 보여주는 영역 -->
-                    <img src="./image/astronaut-8061095_1280.png" alt="">
-                    <img src="./image/dolomites-8095996_1280.jpg" alt="">
-                    <img src="./image/herons-7881512_1280.png" alt="">
-                    <img src="./image/hummingbird-8013214_1280.jpg" alt="">
-                    <img src="./image/public-speaking-8093767_1280.png" alt="">
-                    <img src="./image/tennis-7968714_1280.png" alt="">
-                    <img src="./image/vietnam-8121062_1920.jpg" alt="">
+                    <img src= "./image/${post_board.board_img}" alt="">
+                    </c:forEach>
+                </div>
+                <div class="div_post" id="productPart">
+                	<c:set var="shopping_list" value="${ProfileDAO.shopping(member.mem_id)}"></c:set>
+                	<c:forEach var="post_shop" items="${shopping_list}">
+                	<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
+                	<img src="${post_shop.shopping_list}" alt="" >
+                	</c:forEach>
                 </div>
             </div>
         </div>
@@ -138,8 +141,18 @@
        btn_profile_edit.addEventListener("click", ()=>{
            window.location.href = "./Profile_edit.jsp";   
        });
+      
        
-
+       function showPost() {
+    	   document.getElementById("postPart").style.display="block";
+    	   document.getElementById("productPart").style.display="none";
+       }
+       
+       function showProduct() {
+    	   document.getElementById("productPart").style.display="block";
+    	   document.getElementById("postPart").style.display="none";
+       }
+       
     </script>
 
 </body>
