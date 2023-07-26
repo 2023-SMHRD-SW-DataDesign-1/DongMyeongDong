@@ -1,0 +1,234 @@
+/* 게시물 작성 영역 */
+.create_post{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.cp_header{
+  display: flex;
+  align-items: center;
+  height: 5%;
+  border-bottom: 1px solid lightgray;
+}
+
+.cp_header_div1{
+  width: 10%;
+  text-align: left;
+}
+
+.cp_header_div1 i{
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.cp_header_div1 i:hover{
+	cursor: pointer;
+}
+
+.cp_header_div2{
+  width: 80%;
+  text-align: center;
+}
+
+.cp_header_div2 span{
+  font-weight: bold;
+}
+
+.cp_header_div3{
+  width: 10%;
+  text-align: right;
+
+}
+.cp_header_div3:hover{
+	cursor: pointer;
+}
+
+.cp_header_div3 span{
+  padding-right: 10px;
+  font-weight: bold;
+  color: #0095F6;
+}
+
+.cp_content{
+  display: flex;
+  height: 95%;
+  width: 100%;
+}
+
+.cp_file{
+  width: 70%;
+  border-right: 1px solid lightgray;
+  position: relative;
+}
+
+.cp_file img{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-upload{
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color : white;
+  background-color: #0095F6;
+  border: none;
+  width: 120px;
+  height: 30px;
+  font-size: 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.btn-upload:hover{
+	cursor: pointer;
+}
+
+#file {
+  display: none;
+}
+
+.cp_text{
+  width: 30%;
+}
+
+.cp_text_user{
+  display: flex;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid lightgray;
+  align-items: center;
+}
+
+.cp_text_user div{
+  margin-left: 15px;
+}
+
+.cp_text_user div img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.cp_text_area_normal{
+  width: 100%;
+  height: 90%;
+  border-bottom: 1px solid lightgray;
+}
+
+.cp_text_area{
+  width: 100%;
+  height: 60%;
+  border-bottom: 1px solid lightgray;
+}
+
+.cp_setting_area{
+  width: 100%;
+  height: 40%;
+  padding-top: 40px;
+  padding-left: 20px;
+}
+
+.select_1_div, .select_2_div, .end_time_div, .reward_div{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.select_1_div label{
+  width: 20%;
+}
+.select_1_div input{
+  width: 60%;
+}
+.select_1_div input+input{
+  width: 20%;
+}
+.select_1_div input+input{
+  margin-left: 10px;
+  width: 10%;
+}
+
+.select_2_div label{
+  width: 20%;
+}
+.select_2_div input{
+  width: 60%;
+}
+.select_2_div input+input{
+  margin-left: 10px;
+  width: 10%;
+}
+
+.end_time_div label{
+  width: 20%;
+}
+
+.end_time_div input{
+  width: 60%;
+}
+
+.reward_div label{
+  width: 20%;
+}
+
+.reward_div input{
+  width: 60%;
+}
+
+#cp_text_area{
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+  border-bottom-right-radius: 10px;
+}
+
+/* 모달 창 스타일 */
+.create_modal {
+  display: none;
+  /* 초기에는 모달 창을 숨깁니다. */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 오버레이 배경색으로 사용할 투명도 조정한 색상 */
+}
+
+.create_modal-content {
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 5% auto;
+  width: 70%;
+  height: 80%;
+}
+
+/* 모달 창 닫기 버튼 스타일 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body.modal-open {
+  overflow: hidden;
+}

@@ -1,0 +1,724 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* 모든 요소에 테두리 까지 포함한 너비값 지정 */
+  font-family: "Poppins", sans-serif; /* 폰트 설정 */
+}
+body {
+  min-height: 100%;
+  /* background: #e3f2fd; */
+}
+.logo {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+}
+.create_post:hover{
+	cursor: pointer;
+}
+.logo .menu-icon {
+  color: black;
+  font-size: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.logo .logo-name {
+  color: black;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Billabong";
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* left: -100%; */
+  height: 100%;
+  width: 340px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid lightgray;
+  transition: all 0.4s ease; /* 애니메이션 부드럽게 하는 속성 */
+}
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column; /* 요소들을 세로로 배치 */
+  justify-content: space-between; /* 요소들을 양쪽 정렬 */
+  padding: 30px 16px;
+}
+.sidebar-content .list {
+  list-style: none;
+}
+.list .nav-link {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.lists .nav-link:hover {
+  background-color: #0095F6;
+}
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 25px;
+  color: black;
+}
+.nav-link .link {
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
+}
+.lists .nav-link:hover .icon,
+.lists .nav-link:hover .link {
+  color: #fff;
+}
+
+.container{
+  display: flex;
+}
+.box-sidebar{
+  flex-grow: 0;
+  width: 340px;
+  height: 100vh;
+}
+.box-contents{
+  text-align: center;
+  flex-grow: 1;
+  height: 100vh;
+}
+
+/* 로그인 화면 */
+.login_form{
+  text-align: center;
+}
+.login_form a{
+  text-decoration: none;
+  color : blue;
+}
+
+/* 회원가입 화면 */
+.join_form{
+  text-align: center;
+}
+
+/* 프로필 화면 */
+.profile img{
+  width: 100px;
+  height: 100px;
+}
+
+/* 게시글 영역 */
+#posts {
+  margin: 0 auto;
+  padding: 0;
+  width: 470px;
+  list-style-type: none;
+}
+
+/* 게시글 내용 */
+.post{
+  padding: auto;
+  margin: auto;
+  margin-top: 10px;
+  /* border: 1px solid black; */
+  text-align: center;
+}
+
+/* 밸런스 게시글 */
+.balance_post{
+  width: 470px;
+  padding: auto;
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* 헤더 */
+.header{
+  height: 60px;
+  display: flex;
+}
+
+.profile_icon{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 40px;
+  margin-right: 10px;
+}
+.profile_icon img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.id{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: left;  /* 수평 정렬 */
+  width: 390px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.menu{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 40px;
+}
+.menu i{
+  font-size: 25px;
+  color: black;
+}
+.menu i:hover{
+  cursor: pointer;
+}
+
+/* 콘텐츠 영역 */
+.content{
+  background-color: black;
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  height: 585px;
+}
+
+/* 밸런스 게임 콘텐츠 영역 */
+.balance_content{
+  height: 585px;
+  width: 100%;
+}
+
+.balance_content_div{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  height: 80%;
+}
+
+.content video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.content img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+.balance_select_div{
+  height: 20%;
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.content_select_1{
+  width: 50%;
+  min-width: 30%;
+  max-width: 70%;
+  background-color: #ff6666;
+  color: white;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.content_select_2{
+  width: 50%;
+  min-width: 30%;
+  max-width: 70%;
+  background-color: #668cff;
+  color: white;
+  border-radius: 10px;
+}
+
+.content_select_1:hover, .content_select_2:hover{
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.content_select_1_name, .content_select_1_count{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 50%;
+  margin-left: 10px;
+}
+
+.content_select_2_name, .content_select_2_count{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  height: 50%;
+  margin-right: 10px;
+}
+
+.balance_content_div video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.balance_content_div img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 버튼 라인 */
+.buttons{
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+  justify-content: left;  /* 수평 정렬 */
+  height: 46px;
+}
+
+.button{
+  width: 40px;
+}
+
+.button .icon {
+  margin-right: 15px;
+  font-size: 25px;
+  color: black;
+}
+
+.button .icon:hover {
+  cursor: pointer;
+}
+
+/* 좋아요 라인 */
+.like{
+  height: 25px;
+  text-align: left;
+}
+
+.like span{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* 댓글 라인 */
+.comments{
+  font-size: 15px;
+  height: 50px;
+  text-align: left;
+}
+
+.comments_show{
+  font-size: 15px;
+  height: 25px;
+  text-align: left;
+}
+
+/* 댓글 게시 버튼 수정 */
+.comments_input{
+  font-size: 15px;
+  height: 25px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+
+.comments_input input{
+  border: none;
+  background-color: white;
+  width: 90%;
+  height: 100%;
+}
+
+#comments_btn{
+  border: 0;
+  background-color: transparent;
+  color : #4070f4;
+  font-weight: bold;
+  width: 10%;
+  height: 100%;
+}
+
+#comments_btn:hover{
+  cursor: pointer;
+}
+/* ---------------------- */
+.show_more{
+  font-size: 12px;
+  color: #707070;
+}
+
+.show_all{
+  font-size: 12px;
+  color: #707070;
+}
+
+.show_more:hover{
+  cursor: pointer;
+}
+
+.show_all:hover{
+  cursor: pointer;
+}
+
+/* 로딩 영역 */
+article h1 {
+  text-align: left;
+  border-bottom: 1px dotted #E3E3E3;
+}
+
+article p {
+  text-align: justify;
+  line-height: 1.5;
+  font-size: 1.1em;
+}
+
+#loading {
+  display: none;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+/* 모달 창 스타일 */
+.post_modal {
+  display: none;
+  /* 초기에는 모달 창을 숨깁니다. */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* 오버레이 배경색으로 사용할 투명도 조정한 색상 */
+}
+
+.post_modal-content {
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 5% auto;
+  width: 60%;
+  height: 80%;
+}
+
+/* 모달 창 닫기 버튼 스타일 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 게시물 상세보기 영역 */
+.post_modal_content_balance {
+  background-color: #fff;
+  margin: 5% auto;
+  width: 60%;
+  height: 80%;
+}
+
+.show_post{
+  width: 100%;
+  height: 100%;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.sp_content{
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.sp_file{
+  display: flex;
+  width:50%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+/* 밸런스게임 상세보기 영역 */
+.sp_balance{
+  display: flex;
+  flex-direction: column;
+  width:50%;
+  height: 100%;
+  padding: 5px;
+  border-right: 1px solid lightgray;
+}
+
+.sp_balance_content_div{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  height: 75%;
+}
+
+.sp_balance_select_div{
+  height: 25%;
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sp_content_select_1{
+  width: 50%;
+  min-width: 30%;
+  max-width: 70%;
+  height: 70%;
+  background-color: #ff6666;
+  color: white;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.sp_content_select_2{
+  width: 50%;
+  min-width: 30%;
+  max-width: 70%;
+  height: 70%;
+  background-color: #668cff;
+  color: white;
+  border-radius: 10px;
+}
+
+.sp_content_select_1:hover, .sp_content_select_2:hover{
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.sp_content_select_1_name, .sp_content_select_1_count{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 50%;
+  margin-left: 10px;
+}
+
+.sp_content_select_2_name, .sp_content_select_2_count{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  height: 50%;
+  margin-right: 10px;
+}
+
+.sp_balance_content_div video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sp_balance_content_div img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sp_detail_balance{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  border-bottom: 1px solid lightgray;
+}
+
+.sp_file img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sp_file video{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sp_detail{
+  width: 50%;
+}
+
+.sp_balance_title{
+  width: 50%;
+}
+
+.sp_balance_time{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 20%;
+}
+
+.sp_balance_time i{
+  font-size: 25px;
+  color: black;
+  margin-right: 10px;
+}
+
+.sp_balance_reward{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 20%;
+}
+
+.sp_balance_reward i{
+  font-size: 25px;
+  color: black;
+  margin-right: 10px;
+}
+
+.sp_menu{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 10%;
+}
+
+.sp_menu i{
+  font-size: 25px;
+  color: black;
+  margin-right: 10px;
+}
+
+.sp_detail_user{
+  display: flex;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid lightgray;
+  align-items: center;
+}
+
+.sp_detail_user div{
+  margin-left: 15px;
+}
+
+.sp_detail_user div img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.sp_comment_area{
+  width: 100%;
+  height: 65%;
+  border-bottom: 1px solid lightgray;
+}
+
+.sp_comment_area img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.sp_comment{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.sp_comment>div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.sp_comment_area b{
+  margin-right: 10px;
+}
+
+.sp_button_area{
+  display: flex;
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid lightgray;
+}
+
+.sp_button_area>div{
+  margin: 10px;
+}
+.sp_button_area>div+div{
+  margin: 10px;
+  font-weight: bold;
+}
+
+.sp_comment_input_area{
+  width: 100%;
+  height: 10%;
+  font-size: 15px;
+  display: flex;
+}
+
+.sp_comment_input_area input{
+  border: none;
+  background-color: white;
+  width: 90%;
+  height: 50px;
+}
+
+#sp_comments_btn{
+  border: 0;
+  background-color: transparent;
+  color : #0095F6;
+  font-weight: bold;
+  width: 10%;
+  height: 50px;
+}
+
+#sp_comments_btn:hover{
+  cursor: pointer;
+}
+
+.expanded {
+  width: 680px; /* Width of the sidebar after expanding */
+}
+
+.balance_info{
+  text-align: right;
+  font-weight: bold;
+}
+
+.balance_title{
+  width: 50%;
+}
+
+.balance_time{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 20%;
+}
+
+.balance_time i{
+  font-size: 25px;
+  color: black;
+  margin-right: 10px;
+}
+
+.balance_reward{
+  display: flex; /* 정렬을 위한 속성 정의 */
+  align-items: center; /* 수직 정렬 */
+  justify-content: center;  /* 수평 정렬 */
+  width: 20%;
+}
+
+.balance_reward i{
+  font-size: 25px;
+  color: black;
+  margin-right: 10px;
+}
