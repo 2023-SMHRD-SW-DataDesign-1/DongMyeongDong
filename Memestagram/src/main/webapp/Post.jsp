@@ -57,7 +57,6 @@ img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "
 	
 	reader.readAsDataURL(event.target.files[0]);
 } 
-
 </script>
     <div class="sidebar">
         <div class="logo">
@@ -137,8 +136,7 @@ img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "
                         <label for="file">
                             <div class="btn-upload">파일 올리기</div>
                           </label>
-							
-							<input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
+						<input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
                         <input type="hidden" value="${member.mem_id}" name="id">
 
                     </div>
@@ -152,7 +150,7 @@ img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
     </form>

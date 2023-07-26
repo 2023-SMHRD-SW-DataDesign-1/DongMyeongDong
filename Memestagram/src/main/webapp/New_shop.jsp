@@ -1,0 +1,282 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar Menu | Side Navigation Bar</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/new_shop.css" />
+    <link rel="stylesheet" href="css/new_post.css">
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <span class="logo-name">Memestagram</span>
+        </div>
+        <div class="sidebar-content">
+            <ul class="lists">
+                <li class="list">
+                    <a href="New_home.jsp" class="nav-link">
+                        <i class='bx bx-home icon'></i>
+                        <span class="link">홈</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#" class="nav-link search">
+                        <i class="bx bx-search icon"></i>
+                        <span class="link">검색</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="New_Balance.jsp" class="nav-link">
+                        <i class='bx bx-joystick-alt icon'></i>
+                        <span class="link">밸런스게임</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="New_shop.jsp" class="nav-link">
+                        <i class="bx bx-cart-alt icon"></i>
+                        <span class="link">리워드상점</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a class="nav-link create_post">
+                        <i class="bx bx-plus-circle icon"></i>
+                        <span class="link">만들기</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="New_profile.jsp" class="nav-link">
+                        <i class="bx bx-user-circle icon"></i>
+                        <span class="link">프로필</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="bottom-cotent">
+                <li class="list">
+                    <a href="#" class="nav-link">
+                        <i class="bx bx-cog icon"></i>
+                        <span class="link">설정</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#" class="nav-link">
+                        <i class="bx bx-log-out icon"></i>
+                        <span class="link">로그아웃</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="box-sidebar">
+            
+        </div>
+
+        <div class="box-contents">
+            <div class="shop_user_info">
+                <div class="shop_user_info_title">리워드 상점</div>
+                <div class="shop_user_info_icon">
+                    <img src="./image/user.png" alt="">
+                </div>
+                <div class="shop_user_info_name">user_name</div>
+                <div class="shop_user_info_point">10,000,000 P</div>
+            </div>
+            <div class="shop_product_div">
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/gs_1000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        GS25
+                    </div>
+                    <div class="shop_product_name">
+                        모바일 상품권 1000
+                    </div>
+                    <div class="shop_product_price">
+                        1,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/gs_3000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        GS25
+                    </div>
+                    <div class="shop_product_name">
+                        모바일 상품권 3000
+                    </div>
+                    <div class="shop_product_price">
+                        3,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/gs_5000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        GS25
+                    </div>
+                    <div class="shop_product_name">
+                        모바일 상품권 5000
+                    </div>
+                    <div class="shop_product_price">
+                        5,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/cu_1000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        CU
+                    </div>
+                    <div class="shop_product_name">
+                        모바일 상품권 1000
+                    </div>
+                    <div class="shop_product_price">
+                        1,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/cu_3000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        CU
+                    </div>
+                    <div class="shop_product_name">
+                        모바일 상품권 3000
+                    </div>
+                    <div class="shop_product_price">
+                        3,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/cu_5000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        CU
+                    </div>
+                    <div class="shop_product_name">
+                        모바일 상품권 5000
+                    </div>
+                    <div class="shop_product_price">
+                        5,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_4500.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        아이스아메리카노T
+                    </div>
+                    <div class="shop_product_price">
+                        4,500 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_5000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        카페라떼T
+                    </div>
+                    <div class="shop_product_price">
+                        5,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/starbucks_10200.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        스타벅스
+                    </div>
+                    <div class="shop_product_name">
+                        아메리카노T + 가나슈 케이크
+                    </div>
+                    <div class="shop_product_price">
+                        10,200 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/moms_6900.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        맘스터치
+                    </div>
+                    <div class="shop_product_name">
+                        싸이버거 세트
+                    </div>
+                    <div class="shop_product_price">
+                        6,900 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/moms_10000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        맘스터치
+                    </div>
+                    <div class="shop_product_name">
+                        싸이플렉스버거 세트
+                    </div>
+                    <div class="shop_product_price">
+                        10,000 P
+                    </div>
+                </div>
+                <div class="shop_product">
+                    <div class="shop_product_img">
+                        <img src="./image/lottecinema_11000.jpg" alt="">
+                    </div>
+                    <div class="shop_product_brand">
+                        롯데시네마
+                    </div>
+                    <div class="shop_product_name">
+                        2D 영화관람권
+                    </div>
+                    <div class="shop_product_price">
+                        11,000 P
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 게시글 세부 화면 modal 창 -->
+    		<div id="balance_post_modal" class="post_modal">
+    		</div>
+
+    		<!-- 게시글 작성 modal 창 -->
+    		<div id="create_modal" class="create_modal">
+    		</div>
+        </div>
+    </div>
+    
+
+    
+    <script src="js/new_post.js"></script>
+
+</body>
+
+</html>
