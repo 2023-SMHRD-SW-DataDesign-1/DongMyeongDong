@@ -15,23 +15,26 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class ProfileDTO {
 		
+// Member_info테이블에 속하는 필드
+@NonNull private String mem_id;
+@NonNull private String mem_pw;
+		 private String mem_pw2;
+		 private String mem_img;
+		 private int mem_reward;
+		 private int boardcount;
 	
-@NonNull	private String mem_id;
-@NonNull	private String mem_pw;
-	private String mem_pw2;
-
-
-
+// Follow테이블에 속하는 필드	
+		 private int follower;
+		 private int following;
 	
-
-	private String mem_img;
-	private int mem_reward;
+// Board테이블에 속하는 필드		
+		 private String board_img;
+		 
+// Product_List테이블에 속하는 테이블
+		 private String product_name;
 	
-	private int follower;
-	private int following;
 	
-	private int boardcount;
-	private String boardcontent;
+	
 	
 	public ProfileDTO(@NonNull String mem_id) {
 		super();

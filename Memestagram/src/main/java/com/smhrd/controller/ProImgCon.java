@@ -24,7 +24,7 @@ System.out.println("[ProImgCon연결 성공]");
 		System.out.println(savePath);
 		
 		// 3. maxSize
-		int maxSize = 10*1024*1024;
+		int maxSize = 100*1024*1024;
 		
 		// 4. encoding
 		String encoding = "UTF-8";
