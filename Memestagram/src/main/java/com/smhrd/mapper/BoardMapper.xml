@@ -21,7 +21,7 @@
 	</select>
 	<!-- <select id="showone" parameterType="int" resultType="boardDTO"> select 
 		* from "" where num= #{num} </select> -->
-	<delete id="boarddelete" parameterType="BoardDTO">
+	<delete id="boarddelete" parameterType="String">
 		delete from board where
 		board_seq = #{board_seq}
 	</delete>

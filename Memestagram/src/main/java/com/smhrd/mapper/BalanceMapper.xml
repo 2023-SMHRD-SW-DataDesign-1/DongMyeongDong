@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.mapper.BalanceMapper">
+
+	<insert id="ballikesave" parameterType="BalanceDTO">
+		insert into
+		balance_like
+		(bal_seq, mem_id) values(#{bal_seq},
+		#{mem_id})
+	</insert>
+
+	<delete id="ballikedelete" parameterType="BalanceDTO">
+		delete from balance_like
+		where
+		bal_seq = #{bal_seq} and mem_id =#{mem_id}
+	</delete>
+
+	<select id="ballikecheck" parameterType="BalanceDTO" resultType="int">
+		select count(*) from balance_like where mem_id = #{mem_id} and bal_seq =
+		#{board_seq}
+	</select>
+	
+	<select id="ballikecount" parameterType="BalanceDTO" resultType="int">
+		select count(*) from balance_like where bal_seq =
+		#{bal_seq}
+	</select>
+
+
+
+</mapper>
