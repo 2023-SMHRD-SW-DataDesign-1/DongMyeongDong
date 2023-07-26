@@ -95,17 +95,17 @@
                 </div>
                 <div class="div_user">
                     <div class="user_icon">
-                        <img src="${savePath}/${profile_img.mem_img}" onerror="./image/user.png" alt="">
+                        <img src="${savePath}/${mem_img}" alt="" id="profile_img">
                     </div>
-                  
                     <div class="user_name">
                         user_name : ${member.mem_id}
                     </div>
                     <div class="user_icon_change">
                         <label for="btn_change_icon">프로필 사진 바꾸기</label>
                         <form id="uploadForm">
-                        <input type="file" id="btn_change_icon">
+                        <input type="file" id="btn_change_icon" name="mem_img">
                         <input type="hidden" name="member_id" value="${member.mem_id}">
+                        <input type="submit">
                         </form>
                     </div>
                 </div>
@@ -150,31 +150,31 @@
 			  alert("비밀번호가 일치하지 않습니다.")
 		  } 
     	
-    })
-    
-    
-        $(function() {
-    	$('#input_submit').on('click', function() {
-    		uploadFile();
-    	});
     });
     
-    function uploadFile() {
-    	var form = $('#uploadForm')[0];
-    	var formData = new FormData(form);
-    	
-    	$.ajax({
-    		url : 'ProImgCon.do',
-    		type : 'POST',
-    		data : formData,
-    		contentType : false,
-    		processData : false,
-    	}).done(function(data){
-    		callback(data);
-    	});
-    }
     
+  
+ $(function() {
+		$('#input_submit').on('click', function(){
+			uploadFile();
+		}); 
+ });
     
+ function uploadFile(){
+	 
+	 var form = $('#uploadForm')[0];
+	 var formData = new FormData(form);
+	 
+	 $.ajax({
+		url : 'ProImgCon.do',
+		type : 'POST',
+		data : formData,
+		contentType : false,
+		processData : false
+	 }).done(function(data){
+		 callback(data);
+	 });
+ }
     
     
     

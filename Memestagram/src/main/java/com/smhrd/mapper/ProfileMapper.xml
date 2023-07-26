@@ -4,6 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.mapper.ProfileMapper">
 
+
+	<!-- 프로필화면에서 게시물수, 팔로워, 팔로잉, 리워드, 이미지수 보여주는 쿼리문 -->
 	<select id="profileShow" parameterType="String" resultType="ProfileDTO">
 		select M.mem_img, M.mem_reward, M.mem_id
 			,(select count(F.following) as following from follow F where F.following = M.mem_id) AS following
@@ -14,27 +16,32 @@
 	</select>
 	
 	
-
-	<select id="boardContent" resultType="ProfileDTO">
-		select board_content
-		from board
-		where mem_id = #{mem_id}
-	</select>
-	
-	
+	<!-- 프로필편집화면에서 비밀번호 수정하는 쿼리문-->
 	<update id="profileEdit" parameterType="ProfileDTO">
 		update member_info set mem_pw = #{mem_pw}
 		where mem_id = #{mem_id}
 	</update>
 	
 	
-	
+	<!-- 프로필편집화면에서 프로필 사진 변경하는 쿼리문 -->
 	<update id="uploadImg" parameterType="String">
 		update member_info set mem_img = #{mem_img}
 		where mem_id = #{mem_id}
 	</update> 
 	
 	
+	<!-- 프로필화면에서 게시물 이미지 보여주는 쿼리문 -->
+	<select id="boardImg" parameterType="String" resultType="ProfileDTO">
+		select board_img from board 
+		where mem_id = #{mem_id}
+	</select>
+	
+	
+	<!-- 프로필화면에서 구매한 상품목록 보여주는 쿼리문 -->
+	<select id="shopping" parameterType="String" resultType="ProfileDTO">
+		select product_name from shopping_list
+		where mem_id = #{mem_id}
+	</select>
 
 </mapper>
 	
