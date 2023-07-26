@@ -32,21 +32,22 @@
 	
 	<!-- 프로필화면에서 게시물 이미지 보여주는 쿼리문 -->
 	<select id="boardImg" parameterType="String" resultType="ProfileDTO">
-		select board_img from board 
+		select board_img 
+		from board 
 		where mem_id = #{mem_id}
 	</select>
 	
 	
 	<!-- 프로필화면에서 구매한 상품목록 보여주는 쿼리문 -->
-	<select id="shopping" parameterType="ProfileProductDTO" resultType="ProfileProductDTO">
+	<select id="shoppingList" parameterType="String" resultType="ProfileProductDTO">
 		select P.product_img
 		from product P
-		where P.product_name = #{product_name}
+		where P.product_name = product_name
 		and exists (
    			select 1
     		from shopping_list S
    		    where S.mem_id = #{mem_id}
-   			and S.product_name = #{product_name});
+   			and S.product_name = P.product_name)
 	</select>
 
 </mapper>

@@ -125,16 +125,17 @@
                 </div>
                 
                <div class="div_post" id="productPart">
-                	<c:set var="shopping_list" value="${ProfileDAO.shopping(ProfileProductDTO)}"></c:set>
-                	<c:forEach var="post_shop" items="${shopping_list.product_img}">
+                	<c:set var="shopping_list" value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
+                	<c:forEach var="post_shop" items="${shopping_list}">
                 	<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
-                	<img src="${post_shop.shopping_list}" alt="" >
+                	<img src="./image/${post_shop.shopping_list}" alt="" >
                 	</c:forEach>
                 </div>
             </div>
         </div>
     </div>
     <!-- <section class="overlay"></section> -->
+
 
     <script>
 
@@ -144,18 +145,20 @@
            window.location.href = "./Profile_edit.jsp";   
        });
       
-       
+       // 게시물 메뉴를 클릭했을 때 -> 게시물 이미지O / 상품 목록X
        function showPost() {
     	   document.getElementById("postPart").style.display="block";
     	   document.getElementById("productPart").style.display="none";
        }
        
+       // 상품 목록 메뉴를 클릭했을 때 -> 게시물 이미지X / 상품 목록O
        function showProduct() {
     	   document.getElementById("productPart").style.display="block";
     	   document.getElementById("postPart").style.display="none";
        }
        
     </script>
+
 
 </body>
 
