@@ -1,7 +1,8 @@
-<%@page import="com.smhrd.model.ProfileDTO"%>
+<%-- <%@page import="com.smhrd.model.ProfileDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored = "false"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -95,7 +96,12 @@
                 </div>
                 <div class="div_user">
                     <div class="user_icon">
-                        <img src="./img/${member.mem_img}" alt="" id="profile_img">
+                    <!-- 프로필 이미지 기본값 설정 -->
+                    <c:choose>
+                    <c:when test="${member.mem_img eq member.mem_pw}">
+                      <img alt="" src="./image/user.png"></c:when>
+                      <c:otherwise><img src="./image/${member.mem_img}" alt="" id="profile_img"></c:otherwise>
+                    </c:choose>
                     </div>
                     <div class="user_name">
                         user_name : ${member.mem_id}
@@ -140,6 +146,8 @@
     
     <script type="text/javascript">
     
+    
+    // 비밀번호 수정 시 팝업창
     $('#input_submit').on('click', function(){
     	  let pw1 = $('#pw1').val();
 		  let pw2 = $('#pw2').val();
@@ -153,7 +161,7 @@
     });
     
     
-  
+ // 프로필 이미지 변경 시, 이미지 데이터 넘기기
  $(function() {
 		$('#input_submit').on('click', function(){
 			uploadFile();
@@ -183,4 +191,4 @@
   
 </body>
 
-</html>
+</html> --%>

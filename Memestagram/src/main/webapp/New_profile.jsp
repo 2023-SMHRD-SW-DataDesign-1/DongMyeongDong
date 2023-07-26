@@ -1,5 +1,13 @@
+<%@page import="com.smhrd.model.ProfileProductDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.smhrd.model.ProfileImgDTO"%>
+<%@page import="com.smhrd.model.MemberDTO"%>
+<%@page import="com.smhrd.model.ProfileDTO"%>
+<%@page import="com.smhrd.model.ProfileDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page isELIgnored = "false"%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -89,34 +97,44 @@
             <div class="div_profile">
                 <div class="div_user">
                     <div class="user_icon">
-                        <img src="./image/user.png" alt="">
+                    <!-- 프로필 이미지 기본값 설정 -->
+                    <c:choose>
+                    	<c:when test="${member.mem_img eq member.mem_pw}">
+                    	<img alt="" src="./image/user.png"></c:when>
+                    	<c:otherwise><img alt="" src="./image/${member.mem_img}"></c:otherwise>
+                    </c:choose>
                     </div>
                     <div class="user_info">
                         <div class="user_info_name">
-                            <div>아이디</div>
+                            <div>${member.mem_id}</div>
                             <div><button id="btn_profile_edit">프로필 편집</button></div>
                         </div>
                         <div class="user_info_others">
-                            <div>게시물 0</div>
-                            <div>팔로워 0</div>
-                            <div>팔로우 0</div>
-                            <div>리워드 0</div>
+                        <c:set var="show" value="${ProfileDAO.profileShow2(member.mem_id)}"></c:set>
+                           <div>게시물 ${show.boardcount}</div>
+                           <div>팔로워 ${show.follower}</div>
+                           <div>팔로우 ${show.following}</div>
+                           <div>리워드 ${show.mem_reward}</div>
                         </div>
                     </div>
                 </div>
                 <div class="div_menu">
-                    <button>게시물</button>
-                    <button>상품 목록</button>
+                    <button onclick="showPost()">게시물</button>
+                    <button onclick="showProduct()">상품 목록</button>
                 </div>
-                <div class="div_post">
-                    <!-- 사용자 게시물 보여주는 영역 -->
-                    <img src="./image/astronaut-8061095_1280.png" alt="">
-                    <img src="./image/dolomites-8095996_1280.jpg" alt="">
-                    <img src="./image/herons-7881512_1280.png" alt="">
-                    <img src="./image/hummingbird-8013214_1280.jpg" alt="">
-                    <img src="./image/public-speaking-8093767_1280.png" alt="">
-                    <img src="./image/tennis-7968714_1280.png" alt="">
-                    <img src="./image/vietnam-8121062_1920.jpg" alt="">
+                <div class="div_post" id="postPart">
+                   <!-- 사용자 게시물 보여주는 영역 -->
+                	<c:set var="board_img" value="${ProfileDAO.boardImg(member.mem_id)}"></c:set>
+                	<c:forEach var="post_board" items="${board_img}">
+                    <img src= "./image/${post_board.board_img}" alt="">
+                    </c:forEach>
+                </div>
+                <div class="div_post" id="productPart">
+                	<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
+                	<c:set var="shopping_list" value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
+                	<c:forEach var="post_shop" items="${shopping_list}">
+                	<img src="./image/${post_shop.product_img}" alt="" >
+                	</c:forEach>
                 </div>
             </div>
         </div>
@@ -132,6 +150,20 @@
         btn_profile_edit.addEventListener("click", ()=>{
             window.location.href = "./New_profile_edit.jsp";
         });
+        
+        
+        // 게시물 메뉴를 클릭했을 때 -> 게시물 이미지O / 상품 목록X
+        function showPost() {
+     	   document.getElementById("postPart").style.display="block";
+     	   document.getElementById("productPart").style.display="none";
+        }
+        
+        // 상품 목록 메뉴를 클릭했을 때 -> 게시물 이미지X / 상품 목록O
+        function showProduct() {
+     	   document.getElementById("productPart").style.display="block";
+     	   document.getElementById("postPart").style.display="none";
+        }
+        
 
     </script>
     <script src="js/new_post.js"></script>

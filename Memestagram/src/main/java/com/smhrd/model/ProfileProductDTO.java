@@ -1,9 +1,9 @@
 package com.smhrd.model;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-@AllArgsConstructor
+import lombok.NoArgsConstructor;
+
 @Getter
+@NoArgsConstructor
 public class ProfileProductDTO {
 
 	private String product_name;
