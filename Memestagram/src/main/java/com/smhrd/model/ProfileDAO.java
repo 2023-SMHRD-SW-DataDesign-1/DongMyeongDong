@@ -37,9 +37,9 @@ public class ProfileDAO {
 	
 
 	// 프로필편집화면에서 사진 변경하는 메소드
-	public int uploadImg(String mem_id) {
+	public int uploadImg(ProfileImgDTO pdto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.update("uploadImg", mem_id);
+		int row = session.update("uploadImg", pdto);
 		session.close();
 		return row;
 	}
@@ -55,9 +55,9 @@ public class ProfileDAO {
 	
 
 	// 프로필화면에서 구매한 상품목록 보여주는 메소드
-	public static ArrayList<ProfileDTO> shopping(String mem_id) {
+	public static ArrayList<ProfileProductDTO> shopping(ProfileProductDTO pdto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		ArrayList<ProfileDTO> shopping_list = (ArrayList)session.selectList("shopping", mem_id);
+		ArrayList<ProfileProductDTO> shopping_list = (ArrayList)session.selectList("shopping", pdto);
 		session.close();
 		return shopping_list;
 	}

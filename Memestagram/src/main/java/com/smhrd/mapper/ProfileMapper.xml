@@ -24,7 +24,7 @@
 	
 	
 	<!-- 프로필편집화면에서 프로필 사진 변경하는 쿼리문 -->
-	<update id="uploadImg" parameterType="String">
+	<update id="uploadImg" parameterType="ProfileImgDTO">
 		update member_info set mem_img = #{mem_img}
 		where mem_id = #{mem_id}
 	</update> 
@@ -38,9 +38,15 @@
 	
 	
 	<!-- 프로필화면에서 구매한 상품목록 보여주는 쿼리문 -->
-	<select id="shopping" parameterType="String" resultType="ProfileDTO">
-		select product_name from shopping_list
-		where mem_id = #{mem_id}
+	<select id="shopping" parameterType="ProfileProductDTO" resultType="ProfileProductDTO">
+		select P.product_img
+		from product P
+		where P.product_name = #{product_name}
+		and exists (
+   			select 1
+    		from shopping_list S
+   		    where S.mem_id = #{mem_id}
+   			and S.product_name = #{product_name});
 	</select>
 
 </mapper>

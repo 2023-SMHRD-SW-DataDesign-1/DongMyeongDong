@@ -95,7 +95,7 @@
                 </div>
                 <div class="div_user">
                     <div class="user_icon">
-                        <img src="${savePath}/${mem_img}" alt="" id="profile_img">
+                        <img src="./img/${member.mem_img}" alt="" id="profile_img">
                     </div>
                     <div class="user_name">
                         user_name : ${member.mem_id}
