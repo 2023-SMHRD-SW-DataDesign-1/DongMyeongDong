@@ -22,11 +22,11 @@ public class BalanceDTO {
 	private int bal_like;
 	@NonNull private String bal_img;
 	private String bal_vid;
-	private String bal_left;
+	@NonNull private String bal_left;
 	private int bal_left_count;
-	private String bal_right;
+	@NonNull private String bal_right;
 	private int bal_right_count;
-	@NonNull private int bal_reward;
+	private int bal_reward;
 	@NonNull private String bal_time;
 	
 	
@@ -34,8 +34,21 @@ public class BalanceDTO {
 		this.bal_seq = bal_seq;
 		this.mem_id = mem_id;
 	}
+
+
+	public BalanceDTO(@NonNull String mem_id, @NonNull String bal_content, @NonNull String bal_img,
+			@NonNull String bal_left, @NonNull String bal_right, int bal_reward, @NonNull String bal_time) {
+		this.mem_id = mem_id;
+		this.bal_content = bal_content;
+		this.bal_img = bal_img;
+		this.bal_left = bal_left;
+		this.bal_right = bal_right;
+		this.bal_reward = bal_reward;
+		this.bal_time = bal_time;
+	}
 	
 
+	
 	
 	
 }

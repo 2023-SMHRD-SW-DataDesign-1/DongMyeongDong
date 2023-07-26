@@ -12,8 +12,6 @@ import com.google.gson.Gson;
 import com.smhrd.command.command;
 import com.smhrd.model.BalanceDAO;
 import com.smhrd.model.BalanceDTO;
-import com.smhrd.model.BoardDAO;
-import com.smhrd.model.BoardDTO;
 import com.smhrd.model.MemberDTO;
 
 public class BalLikeSaveCon implements command {
