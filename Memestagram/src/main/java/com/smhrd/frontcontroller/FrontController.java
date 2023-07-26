@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
+import com.smhrd.controller.BalLikeDeleteCon;
+import com.smhrd.controller.BalLikeSaveCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
@@ -65,7 +67,12 @@ public class FrontController extends HttpServlet {
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
 
+
 		list.put("ProfileShopCon.do", new ProfileShopCon());
+
+		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
+		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
+		
 
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
 
