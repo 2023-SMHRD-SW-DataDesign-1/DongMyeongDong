@@ -28,6 +28,8 @@ public class BalanceDTO {
 	private int bal_right_count;
 	private int bal_reward;
 	@NonNull private String bal_time;
+	private int bal_cmt_cnt;
+	private String balCheckLike;
 	
 	
 	public BalanceDTO(int bal_seq, @NonNull String mem_id) {
