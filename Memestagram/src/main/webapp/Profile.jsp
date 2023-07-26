@@ -1,3 +1,6 @@
+<%@page import="com.smhrd.model.ProfileProductDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.smhrd.model.ProfileImgDTO"%>
 <%@page import="com.smhrd.model.MemberDTO"%>
 <%@page import="com.smhrd.model.ProfileDTO"%>
 <%@page import="com.smhrd.model.ProfileDAO"%>
@@ -92,10 +95,8 @@
             <div class="div_profile">
                 <div class="div_user">
                     <div class="user_icon">
-                        <img src="./image/user.png" alt="">
+                        <img src=".img/${member.mem_img}" onerror="./image/user.png" alt="">
                     </div>
-                    
-                    
                     <div class="user_info">
                         <div class="user_info_name">
                             <div>아이디 : ${member.mem_id} </div>
@@ -122,9 +123,10 @@
                     <img src= "./image/${post_board.board_img}" alt="">
                     </c:forEach>
                 </div>
-                <div class="div_post" id="productPart">
-                	<c:set var="shopping_list" value="${ProfileDAO.shopping(member.mem_id)}"></c:set>
-                	<c:forEach var="post_shop" items="${shopping_list}">
+                
+               <div class="div_post" id="productPart">
+                	<c:set var="shopping_list" value="${ProfileDAO.shopping(ProfileProductDTO)}"></c:set>
+                	<c:forEach var="post_shop" items="${shopping_list.product_img}">
                 	<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
                 	<img src="${post_shop.shopping_list}" alt="" >
                 	</c:forEach>

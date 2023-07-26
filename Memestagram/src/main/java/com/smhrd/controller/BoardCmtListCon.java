@@ -7,11 +7,13 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.smhrd.command.command;
 import com.smhrd.model.BoardCmtDAO;
 import com.smhrd.model.BoardCmtDTO;
+import com.smhrd.model.MemberDTO;
 
 public class BoardCmtListCon implements command {
 
@@ -19,8 +21,9 @@ public class BoardCmtListCon implements command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int board_seq = Integer.parseInt(request.getParameter("bseq"));
-
-		List<BoardCmtDTO> cmtList = new BoardCmtDAO().cmtList(board_seq);
+		HttpSession session = request.getSession();
+		MemberDTO m = (MemberDTO) session.getAttribute("member");
+		List<BoardCmtDTO> cmtList = new BoardCmtDAO().cmtList(new BoardCmtDTO(board_seq, m.getMem_id()));
 
 		Gson gson = new Gson();
 		String json = gson.toJson(cmtList);

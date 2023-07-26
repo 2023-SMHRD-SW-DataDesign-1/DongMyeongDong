@@ -3,6 +3,7 @@ package com.smhrd.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import com.google.gson.Gson;
 import com.smhrd.command.command;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.BoardDTO;
+import com.smhrd.model.FollowDAO;
+import com.smhrd.model.FollowDTO;
 import com.smhrd.model.MemberDTO;
 import com.smhrd.model.PagingDTO;
 
@@ -23,7 +26,7 @@ public class BoardShowCon implements command {
 			throws ServletException, IOException {
 		System.out.println("[showboard]");
 		
-		System.out.println(request.getServletContext().getRealPath("/profile_img"));
+		
 		int page = Integer.parseInt(request.getParameter("page"));
 		BoardDAO BoardDAO = new BoardDAO();
 		int page_row_cnt = 2;
@@ -43,7 +46,28 @@ public class BoardShowCon implements command {
 			String mem_id = ((MemberDTO) session.getAttribute("member")).getMem_id();
 			int board_seq = b.getBoard_seq();
 			int likecheck = new BoardDAO().likecheck(new BoardDTO(board_seq, mem_id));
-			System.out.println(b.getBoard_content());
+			
+			
+			if (mem_id.equals(b.getMem_id()) ) {
+				b.setCheckFollow("E");
+			}else {
+				FollowDTO fdto = new FollowDAO().followCheck(new FollowDTO(mem_id,b.getMem_id()));
+				if(Objects.isNull(fdto) == false) {
+					b.setCheckFollow("Y");
+					
+					System.out.println("if문 들어옴");
+					System.out.println(b.getMem_id());
+				}else if (Objects.isNull(fdto) == true){
+					b.setCheckFollow("N");
+					System.out.println(b.getMem_id());
+					System.out.println("else문 들어옴");
+				} 
+			}
+			
+			
+			
+			
+			
 			if(likecheck>0) {
 				b.setChecklike("Y");
 			}else {

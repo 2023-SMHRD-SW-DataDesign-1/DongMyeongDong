@@ -118,7 +118,7 @@ function cmtList(bseq){
 			$(".comments_list"+bseq).html("");
 			$.each(cmtList,function(index,cmt){
 				
-				$(".comments_list"+bseq).append("<p id='cmt_seq'"+cmt.board_cmt_seq+">"+cmt.board_cmt_content+"</p>");
+				$(".comments_list"+bseq).append("<span id='cmt_seq"+cmt.board_cmt_seq+"'>"+"<span><b>"+cmt.mem_id+"</b></span><span></span><span>  "+cmt.board_cmt_content+"</span><br>");
 				
 				if(index == 2){
 					return false;
@@ -135,8 +135,8 @@ function cmtList(bseq){
 
 // DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
 var count = 1;
-function write_reply() {
-	let bseq = $(this).attr("idx");
+function write_reply(e) {
+	let bseq = $(e).attr("idx");
 
 	let content = $('.input_reply' + bseq).val();
 
@@ -167,6 +167,39 @@ function write_reply() {
 
 }
 
+function follow(e){
+	let follow_id = $(e).data('id');
+	alert(follow_id);
+	
+	if($(e).text()=="팔로우"){
+		$.ajax({
+			url: "FollowCon.do",
+			type : "post",
+			data : {"follow_id" : follow_id},
+			success : function(){
+				$(e).text("언팔로우");
+			},
+			error : function(){
+				alert("팔로우 실패");
+			}
+			
+		})
+	}else if($(e).text()=="언팔로우"){
+		$.ajax({
+			url: "UnFollowCon.do",
+			type : "post",
+			data : {"follow_id" : follow_id},
+			success : function(){
+				$(e).text("팔로우");
+			},
+			error : function(){
+				alert("팔로우 실패");
+			}
+			
+		})
+	}
+}
+
 function getPost(page) {
 	
 	var content = "";
@@ -185,6 +218,17 @@ function getPost(page) {
                 <p class="board_seq" data-no="${data.board_seq}">${data.board_seq}</p>   
                 </div>
                 <div class="id"> ${data.mem_id}</div>
+                <div class="follow${data.mem_id}">`;
+                if(data.checkFollow == 'Y'){
+					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">언팔로우</button>';
+				}else if(data.checkFollow == 'N'){
+					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">팔로우</button>';
+				}else if(data.checkFollow == 'E'){
+					
+				}
+                	
+                
+                content += `</div>
                 <div class="menu">
                     <i class='bx bx-dots-horizontal-rounded'></i>
                 </div>
@@ -231,13 +275,15 @@ function getPost(page) {
                 <span class="show_more">더 보기</span>
             </div>
             <div class="comments_show">
-                <span class="show_all">댓글 ${data.board_cmt_cnt}개 모두 보기</span>
+                <span class="show_all${data.board_seq}">댓글 ${data.board_cmt_cnt}개 모두 보기</span>
             </div>
-            <div class="comments_list${data.board_seq}">
+            
+            <div class="comments_list${data.board_seq} comments_list">
                 
             </div>
+          
             <div class="comments_input">
-                <input type="text" placeholder="댓글 달기...">
+                <input type="text" class="input_reply${data.board_seq}" placeholder="댓글 달기...">
             </div>
 
             <button class="write_reply" idx="${data.board_seq}" onclick="write_reply(this)" >댓글달기</button>
@@ -266,6 +312,15 @@ function getPost(page) {
 		}
 
 	});
+	
+	$.ajax({
+		url : "balBoardShowCon.do",
+		type : "post",
+		data : {"bseq" : bseq},
+		success : function(){
+			
+		}
+	})
 	
 }
 

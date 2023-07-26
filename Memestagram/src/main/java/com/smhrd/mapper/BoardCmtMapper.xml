@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smhrd.mapper.BoardMapper">
+<mapper namespace="com.smhrd.mapper.BoardCmtMapper">
 
 	<insert id="cmtupload" parameterType="BoardCmtDTO">
 		insert into board_cmt values(cmt_board.nextval,
@@ -15,8 +15,8 @@
 	</delete>
 	
 	
-	<select id="cmtList" parameterType="int" resultType="BoardCmtDTO">
-		select * from board_cmt where board_seq = #{board_seq} order by board_cmt_seq desc
+	<select id="cmtList" parameterType="BoardCmtDTO" resultType="BoardCmtDTO">
+		select * from board_cmt where board_seq = #{board_seq} and mem_id = #{mem_id} order by board_cmt_seq desc
 	</select>
 	
 	<select id="cmtCount" parameterType="int" resultType="int">

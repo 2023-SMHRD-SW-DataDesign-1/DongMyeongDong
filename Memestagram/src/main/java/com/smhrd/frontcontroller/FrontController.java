@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
+import com.smhrd.controller.BalLikeDeleteCon;
+import com.smhrd.controller.BalLikeSaveCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
@@ -19,6 +21,7 @@ import com.smhrd.controller.BoardShowCon;
 import com.smhrd.controller.BoardUpdateCon;
 import com.smhrd.controller.BoardWriteCon;
 import com.smhrd.controller.BuyProductCon;
+import com.smhrd.controller.FollowCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
@@ -35,7 +38,11 @@ import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
 import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
+import com.smhrd.controller.ProfileShopCon;
 import com.smhrd.controller.SnsJoinCon;
+import com.smhrd.controller.UnFollowCon;
+
+
 
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -60,13 +67,27 @@ public class FrontController extends HttpServlet {
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
 
+
+		list.put("ProfileShopCon.do", new ProfileShopCon());
+
+		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
+		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
+		
+
+		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
+
+
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
 
 		// 로그아웃 컨트롤러
 		list.put("LogoutCon.do", new LogoutCon());
-
+		// 리워드 샵 컨트롤러
 		list.put("buyProduct.do", new BuyProductCon());
+		// 팔로우 관련 컨트롤러
+		list.put("FollowCon.do", new FollowCon());
+		list.put("UnFollowCon.do", new UnFollowCon());
+		
 
 	}
 

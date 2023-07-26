@@ -245,6 +245,12 @@ nav.open ~ .overlay {
   height: 50px;
   text-align: left;
 }
+.comments_list {
+	
+  	font-size: 15px !important;
+ 	height: 50px !important;
+  	text-align: left !important;
+}
 
 .comments_show{
   font-size: 15px;
