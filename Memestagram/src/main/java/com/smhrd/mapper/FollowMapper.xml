@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.mapper.FollowMapper">
+
+	<insert id="Follow" parameterType="FollowDTO">
+		insert into follow values(#{following},#{follower})
+	</insert>
+	
+	<delete id="unFollow" parameterType="FollowDTO">
+		delete from follow where following = #{following} and follower = #{follower}
+	</delete>
+	
+	<select id="followCheck" parameterType="FollowDTO" resultType="FollowDTO">
+		select * from follow where following = #{following} and follower = #{follower}
+	</select>
+	
+
+</mapper>
+	
+	

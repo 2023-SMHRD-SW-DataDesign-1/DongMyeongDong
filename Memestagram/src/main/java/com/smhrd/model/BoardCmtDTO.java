@@ -27,6 +27,12 @@ public class BoardCmtDTO {
 		this.board_cmt_seq = board_cmt_seq;
 	}
 
+	public BoardCmtDTO(@NonNull int board_seq, @NonNull String mem_id) {
+		super();
+		this.board_seq = board_seq;
+		this.mem_id = mem_id;
+	}
+
 	
 	
 

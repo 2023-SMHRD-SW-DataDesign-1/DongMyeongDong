@@ -1,44 +1,40 @@
 package com.smhrd.model;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.smhrd.database.sqlsessionmanager;
 
-public class BoardCmtDAO {
-	
+public class FollowDAO {
 	static SqlSessionFactory sqlSessionFactory = sqlsessionmanager.getSqlSession();
 
-	public int cmtupload(BoardCmtDTO dto) {
+	// 프로필 화면에서 회원정보 보여주는 메소드
+	public static ProfileDTO profileShow2(String mem_id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.insert("cmtupload", dto);
+		ProfileDTO show = session.selectOne("profileShow", mem_id);
 		session.close();
-		
-		return row;
-	}
-	public int cmtdelete(String board_cmt_seq) {
-		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.delete("deletecmt", board_cmt_seq);
-		session.close();
-		
-		return row;
-	}
-	
-	public List<BoardCmtDTO> cmtList(BoardCmtDTO bcmt) {
-		SqlSession session = sqlSessionFactory.openSession(true);
-		List<BoardCmtDTO> cmtList = session.selectList("cmtList", bcmt);
-		session.close();
-		
-		return cmtList;
-	}
-	public int cmtCount(int board_seq) {
-		SqlSession session = sqlSessionFactory.openSession(true);
-		int cmt_count = session.selectOne("cmtCount", board_seq);
-		session.close();
-		
-		return cmt_count;		
+		return show;
+
 	}
 
+	public int follow(FollowDTO f) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int result = session.insert("Follow", f);
+		session.close();
+		return result;
+	}
+
+	public int unfollow(FollowDTO f) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int result = session.delete("unFollow", f);
+		session.close();
+		return result;
+	}
+
+	public FollowDTO followCheck(FollowDTO f) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		FollowDTO fdto = session.selectOne("followCheck", f);
+		session.close();
+		return fdto;
+	}
 }
