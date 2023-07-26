@@ -1,7 +1,5 @@
-<%@page import="com.smhrd.model.ProfileDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page isELIgnored = "false"%> 
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -12,53 +10,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu | Side Navigation Bar</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/profile_edit.css" />
+    <link rel="stylesheet" href="css/new_profile_edit.css" />
+    <link rel="stylesheet" href="css/new_post.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
-    <!-- jquery -->
-    <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <div class="logo">
             <span class="logo-name">Memestagram</span>
         </div>
         <div class="sidebar-content">
             <ul class="lists">
                 <li class="list">
-                    <a href="Home.jsp" class="nav-link">
+                    <a href="New_home.jsp" class="nav-link">
                         <i class='bx bx-home icon'></i>
                         <span class="link">홈</span>
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link search">
                         <i class="bx bx-search icon"></i>
                         <span class="link">검색</span>
                     </a>
                 </li>
                 <li class="list">
-                    <a href="Balance.jsp" class="nav-link">
-                        <i class="bx bx-joystick-alt icon"></i>
+                    <a href="New_Balance.jsp" class="nav-link">
+                        <i class='bx bx-joystick-alt icon'></i>
                         <span class="link">밸런스게임</span>
                     </a>
                 </li>
                 <li class="list">
-                    <a href="Shop.jsp" class="nav-link">
+                    <a href="New_shop.jsp" class="nav-link">
                         <i class="bx bx-cart-alt icon"></i>
                         <span class="link">리워드상점</span>
                     </a>
                 </li>
                 <li class="list">
-                    <a href="Post.jsp" class="nav-link">
+                    <a class="nav-link create_post">
                         <i class="bx bx-plus-circle icon"></i>
                         <span class="link">만들기</span>
                     </a>
                 </li>
                 <li class="list">
-                    <a href="Profile.jsp" class="nav-link">
+                    <a href="New_profile.jsp" class="nav-link">
                         <i class="bx bx-user-circle icon"></i>
                         <span class="link">프로필</span>
                     </a>
@@ -88,35 +84,31 @@
             
         </div>
 
-		<div class="box-contents">
+        <div class="box-contents">
             <div class="profile_edit">
                 <div class="div_head">
                     <h2>프로필 편집</h2>
                 </div>
                 <div class="div_user">
                     <div class="user_icon">
-                        <img src="./img/${member.mem_img}" alt="" id="profile_img">
+                        <img src="./image/user.png" alt="">
                     </div>
                     <div class="user_name">
-                        user_name : ${member.mem_id}
+                        user_name
                     </div>
                     <div class="user_icon_change">
                         <label for="btn_change_icon">프로필 사진 바꾸기</label>
-                        <form id="uploadForm">
-                        <input type="file" id="btn_change_icon" name="mem_img">
-                        <input type="hidden" name="member_id" value="${member.mem_id}">
-                        <input type="submit">
-                        </form>
+                        <input type="file" id="btn_change_icon">
                     </div>
                 </div>
                 <div class="div_edit">
-                    <form action="ProfileEditCon.do" method="post">
+                    <form action="" method="post">
                         <div class="div_edit_inner">
                             <div class="div_edit_1">
                                 <span>비밀번호</span>
                             </div>
                             <div class="div_edit_2">
-                                <input type="password" placeholder="수정할 비밀번호 입력" name="mem_pw" id="pw1">
+                                <input type="password" placeholder="수정할 비밀번호 입력" name="pw">
                             </div>
                         </div>
                         <div class="div_edit_inner">
@@ -124,8 +116,7 @@
                                 <span>비밀번호 확인</span>
                             </div>
                             <div class="div_edit_2">
-                                <input type="password" placeholder="수정할 비밀번호 입력" name="mem_pw2" id="pw2">
-                                <input type="hidden" name="mem_id" value="${member.mem_id}">
+                                <input type="password" placeholder="수정할 비밀번호 입력" name="pw">
                             </div>
                         </div>
                         <div class="div_edit_submit">
@@ -135,52 +126,14 @@
                     </form>
                 </div>
             </div>
+            
+            <!-- 게시글 작성 modal 창 -->
+            <div id="create_modal" class="create_modal">
+            </div>
+            
         </div>
     </div>
-    
-    <script type="text/javascript">
-    
-    $('#input_submit').on('click', function(){
-    	  let pw1 = $('#pw1').val();
-		  let pw2 = $('#pw2').val();
-		  
-		  if(pw1 == pw2) {
-			  alert("비밀번호가 수정되었습니다.")
-		  }else {
-			  alert("비밀번호가 일치하지 않습니다.")
-		  } 
-    	
-    });
-    
-    
-  
- $(function() {
-		$('#input_submit').on('click', function(){
-			uploadFile();
-		}); 
- });
-    
- function uploadFile(){
-	 
-	 var form = $('#uploadForm')[0];
-	 var formData = new FormData(form);
-	 
-	 $.ajax({
-		url : 'ProImgCon.do',
-		type : 'POST',
-		data : formData,
-		contentType : false,
-		processData : false
-	 }).done(function(data){
-		 callback(data);
-	 });
- }
-    
-    
-    
-    </script>
-    
-  
+    <script src="js/new_post.js"></script>
 </body>
 
 </html>

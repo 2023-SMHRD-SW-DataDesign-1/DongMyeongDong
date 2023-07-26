@@ -5,18 +5,22 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.smhrd.command.command;
 import com.smhrd.model.ProfileDAO;
 import com.smhrd.model.ProfileDTO;
+import com.smhrd.model.ProfileImgDTO;
 
 public class ProImgCon implements command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	
 		
 System.out.println("[ProImgCon연결 성공]");
 		
@@ -47,17 +51,16 @@ System.out.println("[ProImgCon연결 성공]");
 		
 		
 		// uploadImg메소드 호출하기
-		ProfileDTO pdto = new ProfileDTO(mem_id);
+		
 		ProfileDAO pdao = new ProfileDAO();
-		int row = pdao.uploadImg(mem_id);
+		int row = pdao.uploadImg(new ProfileImgDTO(mem_id, mem_img));
+	
 		
 		// 성공 or 실패
 		if(row > 0) {
 			System.out.println("프로필 이미지 변경 성공");
 			// 성공 시 이미지 경로인 mem_img 저장
-			request.setAttribute("mem_img", mem_img);
-			// 성공 시 이미지 저장경로인 savePath 저장
-			request.setAttribute("savePath", savePath);
+			request.setAttribute("member", mem_img);	
 			
 		} else {
 			System.out.println("프로필 이미지 변경 실패");

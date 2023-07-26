@@ -38,6 +38,7 @@ import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
 import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
+import com.smhrd.controller.ProfileShopCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
 
@@ -66,11 +67,15 @@ public class FrontController extends HttpServlet {
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
 
+
+		list.put("ProfileShopCon.do", new ProfileShopCon());
+
 		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
 		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
 		
 
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
+
 
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
