@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target.classList.contains('bx-comment') || event.target.classList.contains('show_all')) {
             const postId = event.target.dataset.postId;
             
-            var isBalance = true;
+            var isBalance = false;
 
             if(isBalance){
                 showDetailView_balance(postId);

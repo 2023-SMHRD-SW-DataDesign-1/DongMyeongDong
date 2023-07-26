@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
-import com.smhrd.controller.BalLikeDeleteCon;
-import com.smhrd.controller.BalLikeSaveCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
@@ -38,7 +36,6 @@ import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
 import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
-import com.smhrd.controller.ProfileShopCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
 
@@ -66,16 +63,7 @@ public class FrontController extends HttpServlet {
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
-
-
-		list.put("ProfileShopCon.do", new ProfileShopCon());
-
-		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
-		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
-		
-
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
-
 
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
@@ -108,7 +96,7 @@ public class FrontController extends HttpServlet {
 		// substring메소드 사용해서 요청 값만 출력
 		String path = reqURI.substring(contextPath.length() + 1);
 		System.out.println(path);
-
+		
 		command con = list.get(path);
 		String moveURL = con.execute(request, response);
 		if (moveURL != null) {

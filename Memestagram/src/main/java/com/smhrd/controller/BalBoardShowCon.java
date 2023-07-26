@@ -3,6 +3,7 @@ package com.smhrd.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.smhrd.command.command;
 import com.smhrd.model.BalanceDAO;
+import com.smhrd.model.BalanceDTO;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.BoardDTO;
 import com.smhrd.model.MemberDTO;
@@ -35,16 +37,18 @@ public class BalBoardShowCon implements command {
 		
 		PagingDTO p = new PagingDTO(start, end);
 		
-		/*
-		 * ArrayList<BoardDTO> boardList = BalDAO.balanceShow(p); HttpSession session =
-		 * request.getSession();
-		 * 
-		 * for (BoardDTO b : boardList) { String mem_id = ((MemberDTO)
-		 * session.getAttribute("member")).getMem_id(); int board_seq =
-		 * b.getBoard_seq(); int likecheck = new BoardDAO().likecheck(new
-		 * BoardDTO(board_seq, mem_id)); System.out.println(b.getBoard_content());
-		 * if(likecheck>0) { b.setChecklike("Y"); }else { b.setChecklike("N"); } }
-		 */
+		
+		 List<BalanceDTO> boardList = BalDAO.balanceShow(p); 
+		 HttpSession session = request.getSession();
+		  
+			/*
+			 * for (BalanceDTO b : boardList) { String mem_id = ((MemberDTO)
+			 * session.getAttribute("member")).getMem_id(); int board_seq =
+			 * b.getBoard_seq(); int likecheck = new BoardDAO().likecheck(new
+			 * BoardDTO(board_seq, mem_id)); System.out.println(b.getBoard_content());
+			 * if(likecheck>0) { b.setChecklike("Y"); }else { b.setChecklike("N"); } }
+			 */
+		 
 		
 		//request.setAttribute("boardList", boardList);
 		
