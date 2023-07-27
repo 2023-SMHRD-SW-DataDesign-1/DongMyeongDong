@@ -113,6 +113,7 @@
     <script src="js/new_home_scroll.js"></script>
     <script src="js/new_show_detail.js"></script>
     <script src="js/new_post.js"></script>
+    
     <script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
@@ -140,7 +141,7 @@
 
 		}
 	</script>
-	<script >
+	<script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function () {
 	    const sidebar = document.getElementById('sidebar');
 	    const create_modal = document.getElementById('create_modal');

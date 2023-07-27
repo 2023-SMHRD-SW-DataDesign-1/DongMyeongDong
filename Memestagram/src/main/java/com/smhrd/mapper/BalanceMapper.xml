@@ -48,6 +48,16 @@
 		between #{start} and #{end}
 	</select>
 
+
+	<select id="detailShowBal" parameterType="int" resultType="BalanceDTO" >
+		select b.*,(select count(*) from
+		balance_like l where l.bal_seq = b.bal_seq ) as bal_like,
+		(select mem_img from member_info m where m.mem_id = b.mem_id) as mem_img,
+		(select count(*) from balance_cmt c where c.bal_seq = b.bal_seq) as bal_cmt_cnt,
+		(select count(*) from balance_vote v where v.bal_seq = b.bal_seq and bal_vote ='L' ) as bal_left_count,
+		(select count(*) from balance_vote v where v.bal_seq = b.bal_seq and bal_vote ='R' ) as bal_right_count
+		from balance b where bal_seq = #{bal_seq}
+	</select>
 		
 
 </mapper>

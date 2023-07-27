@@ -22,6 +22,7 @@ public class BoardCmtDTO {
     @NonNull private String board_cmt_content;
 	private String board_cmt_date;
 	private int cmt_count;
+	private String mem_img;
 	
 	public BoardCmtDTO(int board_cmt_seq) {
 		this.board_cmt_seq = board_cmt_seq;

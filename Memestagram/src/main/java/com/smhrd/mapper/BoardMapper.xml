@@ -65,7 +65,16 @@
 		#{board_seq}
 	</select>
 	
-
+	<select id="detailShow" parameterType="int" resultType="BoardDTO" >
+		select b.*,(select count(*) from
+		board_like l where l.board_seq = b.board_seq ) as
+		board_likes,(select
+		mem_img from member_info m where m.mem_id =
+		b.mem_id) as mem_img
+		,(select count(*) from board_cmt c where
+		c.board_seq = b.board_seq) as
+		board_cmt_cnt from board b where board_seq = #{board_seq}
+	</select>
 	<!-- <update id="boardupdate" parameterType="BoardDTO"> update board set 
 		board_img =#{},board_content =#{}, board_date=sysdate where id=#{board_writer} 
 		</update> -->

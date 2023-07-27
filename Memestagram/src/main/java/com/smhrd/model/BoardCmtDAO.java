@@ -40,5 +40,11 @@ public class BoardCmtDAO {
 		
 		return cmt_count;		
 	}
+	public List<BoardCmtDTO> cmtAllList(int board_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		List<BoardCmtDTO> list = session.selectList("cmtAllList", board_seq);
+		session.close();
+		return list;
+	}
 
 }
