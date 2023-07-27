@@ -16,6 +16,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/new_home.css" />
     <link rel="stylesheet" href="css/new_post.css" />
+    <link rel="stylesheet" href="css/new_search.css" />
+    
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.0.js"
@@ -36,7 +38,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link search">
+                    <a class="nav-link search">
                         <i class="bx bx-search icon"></i>
                         <span class="link">검색</span>
                     </a>
@@ -89,7 +91,7 @@
         <div class="box-sidebar">
         </div>
 
-        <div class="box-contents">
+        <div class="box-contents" id="box">
             <div id="posts">
                 
                
@@ -112,7 +114,9 @@
 
     <script src="js/new_home_scroll.js"></script>
     <script src="js/new_show_detail.js"></script>
-    <script src="js/new_post.js"></script>
+    <!-- <script src="js/new_post.js"></script> -->
+    <script src="js/new_search.js"></script>
+    
     <script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
@@ -140,7 +144,8 @@
 
 		}
 	</script>
-	<script >
+	
+	<script>
 	document.addEventListener('DOMContentLoaded', function () {
 	    const sidebar = document.getElementById('sidebar');
 	    const create_modal = document.getElementById('create_modal');
@@ -173,7 +178,7 @@
 	        }
 	    });
 	    
-	     function setThumbnail(event){
+	    function setThumbnail(event){
 		var reader = new FileReader();
 		
 		//기존 이미지 숨김
