@@ -26,14 +26,22 @@ $(document).ready(function () {
             $('#posts').append(getBalancePost());
             $('#loading').hide();
         }
-
+        
         // 비디오 자동재생
+        var videoElement = $('.scroll').get(0);
+
         if ($(document).scrollTop() > bodyOffset.top) {
-            $('#video').addClass('scroll');
-            $('.scroll').get(0).play();
+            if (videoElement) {
+                $('#video').addClass('scroll');
+                videoElement.play();
+            } else {
+                // 비디오 요소를 찾지 못한 경우에 대한 처리
+            }
         } else {
-            $('.scroll').get(0).pause();
-            $('#video').removeClass('scroll');
+            if (videoElement) {
+                videoElement.pause();
+                $('#video').removeClass('scroll');
+            }
         }
     });
 });

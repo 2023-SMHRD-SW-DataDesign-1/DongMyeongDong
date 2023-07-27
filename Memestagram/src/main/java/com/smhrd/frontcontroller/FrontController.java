@@ -25,20 +25,15 @@ import com.smhrd.controller.FollowCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
-
 import com.smhrd.controller.KakaoLogoutCon;
-
 import com.smhrd.controller.LikeDeleteCon;
 import com.smhrd.controller.LikeSaveCon;
-
 import com.smhrd.controller.LoginCon;
 import com.smhrd.controller.LogoutCon;
 import com.smhrd.controller.NaverLoginCon;
-
 import com.smhrd.controller.NaverLogoutCon;
 import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
-import com.smhrd.controller.ProfileShopCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
 
@@ -66,16 +61,9 @@ public class FrontController extends HttpServlet {
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
-
-
-		list.put("ProfileShopCon.do", new ProfileShopCon());
-
 		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
 		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
-		
-
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
-
 
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
