@@ -99,8 +99,7 @@
                     <div class="user_icon">
                     <!-- 프로필 이미지 기본값 설정 -->
                     <c:choose>
-                    	<c:when test="${member.mem_img eq member.mem_pw}">
-                    	<img alt="" src="./image/user.png"></c:when>
+                    	<c:when test="${member.mem_img eq member.mem_pw}"><img alt="" src="./image/user.png"></c:when>
                     	<c:otherwise><img alt="" src="./image/${member.mem_img}"></c:otherwise>
                     </c:choose>
                     </div>
@@ -126,7 +125,8 @@
                    <!-- 사용자 게시물 보여주는 영역 -->
                 	<c:set var="board_img" value="${ProfileDAO.boardImg(member.mem_id)}"></c:set>
                 	<c:forEach var="post_board" items="${board_img}">
-                    <img src= "./image/${post_board.board_img}" alt="">
+                	<!-- 팝업창 띄우기 시도 -->
+                    <img src= "./image/${post_board.board_img}" alt="" id="popup">
                     </c:forEach>
                 </div>
                 <div class="div_post" id="productPart">

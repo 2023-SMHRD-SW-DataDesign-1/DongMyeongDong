@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/new_post.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -114,7 +115,7 @@
                     </div>
                 </div>
                 <div class="div_edit">
-                    <form action="" method="post">
+                    <form action="" method="post" onsubmit="return submitForm();">
                         <div class="div_edit_inner">
                             <div class="div_edit_1">
                                 <span>비밀번호</span>
@@ -134,7 +135,7 @@
                         </div>
                         <div class="div_edit_submit">
                             <label for="input_submit">제출</label>
-                            <input type="submit" id="input_submit" value="제출" onclick="submitForm();">
+                            <input type="submit" id="input_submit" value="제출">
                         </div>
                     </form>
                 </div>
@@ -152,42 +153,43 @@
     
   <script type="text/javascript">
     
-    // 비밀번호 수정 시 팝업창
-    function submitForm() {
+  // 비밀번호 수정 시 팝업창
+function submitForm() {
     	let pw1 = $('#pw1').val();
     	let pw2 = $('#pw2').val();
     	
     	if(pw1 == pw2) {
     		alert("비밀번호가 수정되었습니다.");
+    		return true;
     	}else {
     		alert("비밀번호가 일치하지 않습니다.");
-    		event.preventDefault();
-    	}
+    		return false;
+        }
     }
     
     
   // 프로필 이미지 변경 시, 이미지 데이터 넘기기
- $(function() {
-		$('#input_submit').on('click', function(){
-			uploadFile();
-		}); 
- });
+$(function() {
+    $('#input_submit').on('click', function(){
+        uploadFile();
+    });
+});
+
+function uploadFile(){
+    var form = $('#uploadForm')[0];
+    var formData = new FormData(form);
     
- function uploadFile(){
-	 
-	 var form = $('#uploadForm')[0];
-	 var formData = new FormData(form);
-	 
-	 $.ajax({
-		url : 'ProImgCon.do',
-		type : 'POST',
-		data : formData,
-		contentType : false,
-		processData : false
-	 }).done(function(data){
-		 callback(data);
-	 });
- }
+    $.ajax({
+        url : 'ProImgCon.do',
+        type : 'POST',
+        data : formData,
+        contentType : false,
+        processData : false
+    }).done(function(data){
+        callback(data);
+    });
+}
+
     
  </script>  
     

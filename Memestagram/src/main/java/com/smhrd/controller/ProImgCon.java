@@ -66,7 +66,7 @@ System.out.println("[ProImgCon연결 성공]");
          System.out.println("프로필 이미지 변경 실패");
       }
    
-      return "./New_profile_edit.jsp";   
+      return "./New_profile.jsp";   
       
       
       

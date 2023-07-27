@@ -1,4 +1,4 @@
-<%-- <%@page import="com.smhrd.model.ProfileProductDTO"%>
+<%@page import="com.smhrd.model.ProfileProductDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.smhrd.model.ProfileImgDTO"%>
 <%@page import="com.smhrd.model.MemberDTO"%>
@@ -170,4 +170,4 @@
 
 </body>
 
-</html> --%>
+</html> 
