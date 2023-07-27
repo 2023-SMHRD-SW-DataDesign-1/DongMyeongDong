@@ -28,39 +28,43 @@ public class BalBoardShowCon implements command {
 		int page = Integer.parseInt(request.getParameter("page"));
 		BalanceDAO BalDAO = new BalanceDAO();
 		int page_row_cnt = 1;
-		int start = 1 + (page -1) * page_row_cnt ;
+		int start = 1 + (page - 1) * page_row_cnt;
 		int end = page * page_row_cnt;
-		
+
 		System.out.println("page : " + page);
 		System.out.println("start : " + start);
 		System.out.println("end : " + end);
-		
+
 		PagingDTO p = new PagingDTO(start, end);
-		
-		
-		 List<BalanceDTO> boardList = BalDAO.balanceShow(p); 
-		 HttpSession session = request.getSession();
-		  
-			/*
-			 * for (BalanceDTO b : boardList) { String mem_id = ((MemberDTO)
-			 * session.getAttribute("member")).getMem_id(); int board_seq =
-			 * b.getBoard_seq(); int likecheck = new BoardDAO().likecheck(new
-			 * BoardDTO(board_seq, mem_id)); System.out.println(b.getBoard_content());
-			 * if(likecheck>0) { b.setChecklike("Y"); }else { b.setChecklike("N"); } }
-			 */
-		 
-		
-		//request.setAttribute("boardList", boardList);
-		
-		/*
-		 * Gson gson = new Gson();
-		 * 
-		 * String json = gson.toJson(boardList);
-		 * response.setContentType("text/json;charset=utf-8"); PrintWriter out =
-		 * response.getWriter(); out.println(json);
-		 */
-		
+
+
+		List<BalanceDTO> balanceList = BalDAO.balanceShow(p);
+		HttpSession session = request.getSession();
+
+		for (BalanceDTO b : balanceList) {
+			String mem_id = ((MemberDTO) session.getAttribute("member")).getMem_id();
+			int bal_seq = b.getBal_seq();
+			int ballikecheck = new BalanceDAO().ballikecheck(new BalanceDTO(bal_seq, mem_id));
+			System.out.println("밸런스 게시글 내용 : " +b.getBal_content());
+			System.out.println("왼쪽 선택자 수 : "+ b.getBal_left_count() );
+			System.out.println("오른쪽 선택자 수 : "+ b.getBal_right_count() );
+			if (ballikecheck > 0) {
+				b.setBalCheckLike("Y");
+			} else {
+				b.setBalCheckLike("N");
+			}
+		}
+
+		// request.setAttribute("boardList", boardList);
+
+		Gson gson = new Gson();
+
+		String json = gson.toJson(balanceList);
+		response.setContentType("text/json;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+
 		return null;
 
-}
+	}
 }

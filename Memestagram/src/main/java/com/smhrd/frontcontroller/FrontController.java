@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
+import com.smhrd.controller.BalBoardShowCon;
+import com.smhrd.controller.BalCmtListCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
@@ -38,6 +40,8 @@ import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
+
+
 
 
 
@@ -75,6 +79,10 @@ public class FrontController extends HttpServlet {
 		// 팔로우 관련 컨트롤러
 		list.put("FollowCon.do", new FollowCon());
 		list.put("UnFollowCon.do", new UnFollowCon());
+		
+		// 밸런스게임 관련
+		list.put("balBoardShowCon.do", new BalBoardShowCon());
+		list.put("BalCmtListCon.do", new BalCmtListCon());
 		
 
 	}
