@@ -41,6 +41,8 @@ import com.smhrd.controller.UnFollowCon;
 
 
 
+
+
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HashMap<String, command> list = new HashMap<String, command>();
@@ -63,6 +65,7 @@ public class FrontController extends HttpServlet {
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
+
 		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
 		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
@@ -77,6 +80,10 @@ public class FrontController extends HttpServlet {
 		// 팔로우 관련 컨트롤러
 		list.put("FollowCon.do", new FollowCon());
 		list.put("UnFollowCon.do", new UnFollowCon());
+		
+		// 밸런스게임 관련
+		list.put("balBoardShowCon.do", new BalBoardShowCon());
+		list.put("BalCmtListCon.do", new BalCmtListCon());
 		
 
 	}
@@ -98,7 +105,7 @@ public class FrontController extends HttpServlet {
 		// substring메소드 사용해서 요청 값만 출력
 		String path = reqURI.substring(contextPath.length() + 1);
 		System.out.println(path);
-
+		
 		command con = list.get(path);
 		String moveURL = con.execute(request, response);
 		if (moveURL != null) {
