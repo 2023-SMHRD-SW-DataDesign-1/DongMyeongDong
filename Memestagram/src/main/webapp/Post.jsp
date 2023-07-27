@@ -37,6 +37,8 @@ img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "
  function setThumbnail(event){
 	var reader = new FileReader();
 	
+	//기존 이미지 숨김
+	
 	reader.onload = function(event){
 		
 		
@@ -128,7 +130,7 @@ img = ["png", "PNG", "JPG", "jpg", "GIF", "gif", "TIFF", "tiff", "psd", "PSD", "
                 <div class="cp_header">
                     <div class="cp_header_div1"><i class='bx bx-arrow-back'></i></div>
                     <div class="cp_header_div2"><span>새 게시물 만들기</span></div>
-                    <div class="cp_header_div3"><span><input type="submit" value="공유하기"></span></div>
+                    <div class="cp_header_div3"><input type="submit" value="공유하기"></div>
                 </div>
                 <div class="cp_content">
                     <div class="cp_file">

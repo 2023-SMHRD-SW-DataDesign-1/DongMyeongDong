@@ -55,9 +55,9 @@ public class ProfileDAO {
 	
 
 	// 프로필화면에서 구매한 상품목록 보여주는 메소드
-	public static ArrayList<ProfileProductDTO> shopping(ProfileProductDTO pdto) {
+	public static ArrayList<ProfileProductDTO> shoppingList(String mem_id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		ArrayList<ProfileProductDTO> shopping_list = (ArrayList)session.selectList("shopping", pdto);
+		ArrayList<ProfileProductDTO> shopping_list = (ArrayList)session.selectList("shoppingList", mem_id);
 		session.close();
 		return shopping_list;
 	}

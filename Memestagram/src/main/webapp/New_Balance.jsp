@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link" onclick="LogoutCheck()">
                         <i class="bx bx-log-out icon"></i>
                         <span class="link">로그아웃</span>
                     </a>
@@ -243,6 +243,33 @@
     <script src="js/new_home_scroll.js"></script>
     <script src="js/new_show_detail.js"></script>
     <script src="js/new_post.js"></script>
+    	<script type="text/javascript">
+		function LogoutCheck() {
+			let type = "${member.login_type}";
+			alert(type);
+
+			if (type == "kakao") {
+				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
+				
+				if (!Kakao.Auth.getAccessToken()) {
+					alert('Not logged in.');
+					return;
+				}
+				Kakao.Auth.logout(function() {
+					alert('logout ok\naccess token -> '
+							+ Kakao.Auth.getAccessToken());
+				});
+				
+				location.href = "LogoutCon.do";
+			} else if (type == "naver") {
+				location.href = "LogoutCon.do";
+
+			} else {
+				location.href = "LogoutCon.do";
+			}
+
+		}
+	</script>
 </body>
 
 </html>

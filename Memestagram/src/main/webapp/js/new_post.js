@@ -5,7 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // 버튼 이벤트 위임
     sidebar.addEventListener('click', function (event) {
         if (event.target.classList.contains('create_post')) {
-
+			
+			//
+			var username = `<%= session.getAttribute("member") %>`;
+			console.log(username.mem_id);
+			
             var isAdmin = true; // 관리자계정 판별
 
             if (isAdmin) {
@@ -25,16 +29,46 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         }
     });
+    
+     function setThumbnail(event){
+	var reader = new FileReader();
+	
+	//기존 이미지 숨김
+	$(".btn-upload").hide();
+	$("#mimg").hide();
+	
+	reader.onload = function(event){
+		
+		
+			var filetype = event.target.result;
+			var result = filetype.substr(5,10).substr(0,5);
+			if(result =="video"){
+				var img = document.createElement("video");
+			}else if(result =="image"){
+				var img = document.createElement("img");
+			}
+			
+		
+		img.setAttribute("src", event.target.result);
+		img.setAttribute("class", "col-lg-6");
+		//document.querySelector("#cp_file").appendChild(img);
+		$('.cp_file').append(img);
+	};
+	
+	reader.readAsDataURL(event.target.files[0]);
+} 
+    
 
     // 일반 게시글 모달 창
     function create_post() {
         create_modal.innerHTML = `
+        <form action="BoardWriteCon.do" method="post" enctype="multipart/form-data" onsubmit="return test()">
         <div class="create_modal-content">
                 <div class="create_post">
                     <div class="cp_header">
                         <div class="cp_header_div1"><i class='bx bx-arrow-back'></i></div>
                         <div class="cp_header_div2"><span>새 게시물 만들기</span></div>
-                        <div class="cp_header_div3"><span>공유하기</span></div>
+                        <div class="cp_header_div3"><input type="submit" value="공유하기"></div>
                     </div>
                     <div class="cp_content">
                         <div class="cp_file">
@@ -42,12 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             <label for="file">
                                 <div class="btn-upload">파일 올리기</div>
                               </label>
-                            <input type="file" id="file"></input>
+                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
+                        <input type="hidden" value="${member.mem_id}" name="id">
                         </div>
                         <div class="cp_text">
                             <div class="cp_text_user">
                                 <div><img src="./image/user.png" alt=""></div>
-                                <div>user_name</div>
+                                <div>${member.mem_id}</div>
                             </div>
                             <div class="cp_text_area_normal">
                                 <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
@@ -55,30 +90,34 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     </div>
                 </div>
-        </div>`;
+        </div>
+        </form>`;
     }
 
     // 밸런스게임 글 모달 창
     function create_balance() {
-        create_modal.innerHTML = `<div class="create_modal-content">
+        create_modal.innerHTML = `
+        <form action="BalBoardWriteCon.do" method="post" enctype="multipart/form-data" onsubmit="return test()">
+        <div class="create_modal-content">
             <div class="create_post">
                 <div class="cp_header">
                     <div class="cp_header_div1"><i class='bx bx-arrow-back'></i></div>
                     <div class="cp_header_div2"><span>새 밸런스게임 만들기</span></div>
-                    <div class="cp_header_div3"><span>공유하기</span></div>
+                    <div class="cp_header_div3"><input type="submit" value="공유하기"></div>
                 </div>
                 <div class="cp_content">
                     <div class="cp_file">
-                        <img src="./image/files.png" alt="">
+                        <img src="./image/files.png" alt="" id="mimg">
                         <label for="file">
                             <div class="btn-upload">파일 올리기</div>
                         </label>
-                        <input type="file" id="file"></input>
+                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
+                        <input type="hidden" value="${member.mem_id}" name="id">
                     </div>
                     <div class="cp_text">
                         <div class="cp_text_user">
                             <div><img src="./image/user.png" alt=""></div>
-                            <div>user_name</div>
+                            <div>${member.mem_id}</div>
                         </div>
                         <div class="cp_text_area">
                             <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
@@ -108,7 +147,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             </div>
-    </div>`;
+    </div>
+    </form>`;
     }
 
     // 상세화면 닫기 함수

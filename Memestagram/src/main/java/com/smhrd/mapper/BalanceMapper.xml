@@ -36,12 +36,14 @@
 	
 	<select id="balanceShow" parameterType="BalanceDTO" resultType="BalanceDTO">
 		select * from (select rownum as r,x.* from (select
+
 		b.*,(select count(*) from balance_like l where l.bal_seq = b.bal_seq ) as bal_like,
 		(select mem_img from member_info m where m.mem_id = b.mem_id) as mem_img,
 		(select count(*) from balance_cmt c where c.bal_seq = b.bal_seq) as bal_cmt_cnt,
 		(select count(*) from balance_vote v where v.bal_seq = b.bal_seq and bal_vote ='L' ) as bal_left_count,
 		(select count(*) from balance_vote v where v.bal_seq = b.bal_seq and bal_vote ='R' ) as bal_right_count
 		from balance b order by
+
 		b.bal_seq desc) x) a where a.r
 		between #{start} and #{end}
 	</select>

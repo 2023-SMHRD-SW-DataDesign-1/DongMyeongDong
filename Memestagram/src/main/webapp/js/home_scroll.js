@@ -309,8 +309,6 @@ function write_reply(e) {
 			});
 		}
 	}
-	
-
 
 }
 

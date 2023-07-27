@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.command.command;
 import com.smhrd.controller.BalBoardShowCon;
 import com.smhrd.controller.BalCmtListCon;
+import com.smhrd.controller.BalLikeDeleteCon;
+import com.smhrd.controller.BalLikeSaveCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
@@ -25,16 +27,12 @@ import com.smhrd.controller.FollowCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
 import com.smhrd.controller.KakaoLoginCon;
-
 import com.smhrd.controller.KakaoLogoutCon;
-
 import com.smhrd.controller.LikeDeleteCon;
 import com.smhrd.controller.LikeSaveCon;
-
 import com.smhrd.controller.LoginCon;
 import com.smhrd.controller.LogoutCon;
 import com.smhrd.controller.NaverLoginCon;
-
 import com.smhrd.controller.NaverLogoutCon;
 import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
@@ -67,6 +65,9 @@ public class FrontController extends HttpServlet {
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
+
+		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
+		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
 
 		list.put("KakaoLogout.do", new KakaoLogoutCon());

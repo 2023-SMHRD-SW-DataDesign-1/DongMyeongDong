@@ -53,7 +53,7 @@ public class ProfileEditCon implements command {
 		}
 		 
 
-		return "./Profile.jsp";
+		return "./New_profile.jsp";
 
 	}
 
