@@ -16,6 +16,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/new_home.css" />
     <link rel="stylesheet" href="css/new_post.css" />
+    <link rel="stylesheet" href="css/new_search.css" />
+    
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.0.js"
@@ -36,7 +38,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link search">
+                    <a class="nav-link search">
                         <i class="bx bx-search icon"></i>
                         <span class="link">검색</span>
                     </a>
@@ -89,7 +91,7 @@
         <div class="box-sidebar">
         </div>
 
-        <div class="box-contents">
+        <div class="box-contents" id="box">
             <div id="posts">
                 
                
@@ -110,10 +112,14 @@
         </div>
     </div>
 
-    <script src="js/new_home_scroll.js"></script>
+    <script src="js/home_scroll.js"></script>
     <script src="js/new_show_detail.js"></script>
+
     <script src="js/new_post.js"></script>
     
+
+    <script src="js/new_search.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
@@ -141,7 +147,9 @@
 
 		}
 	</script>
+
 	<script type="text/javascript">
+
 	document.addEventListener('DOMContentLoaded', function () {
 	    const sidebar = document.getElementById('sidebar');
 	    const create_modal = document.getElementById('create_modal');
@@ -150,11 +158,15 @@
 	    sidebar.addEventListener('click', function (event) {
 	        if (event.target.classList.contains('create_post')) {
 				
-				//
-				var username = `<%= session.getAttribute("member") %>`;
-				console.log(username.mem_id);
+				/* var username = session.getAttribute("member");
+				console.log(username.mem_id); */
 				
-	            var isAdmin = true; // 관리자계정 판별
+				if(${member.mem_id eq 'admin'} ){
+					 var isAdmin = true;
+				}else{
+					var isAdmin = false;
+				}
+	            // 관리자계정 판별
 
 	            if (isAdmin) {
 	                create_balance();
@@ -174,36 +186,10 @@
 	        }
 	    });
 	    
-	     function setThumbnail(event){
-		var reader = new FileReader();
-		
-		//기존 이미지 숨김
-		$(".btn-upload").hide();
-		$("#mimg").hide();
-		
-		reader.onload = function(event){
-			
-			
-				var filetype = event.target.result;
-				var result = filetype.substr(5,10).substr(0,5);
-				if(result =="video"){
-					var img = document.createElement("video");
-				}else if(result =="image"){
-					var img = document.createElement("img");
-				}
-				
-			
-			img.setAttribute("src", event.target.result);
-			img.setAttribute("class", "col-lg-6");
-			//document.querySelector("#cp_file").appendChild(img);
-			$('.cp_file').append(img);
-		};
-		
-		reader.readAsDataURL(event.target.files[0]);
-	} 
+	    
 	    
 
-	    // 일반 게시글 모달 창
+	    // 일반 게시글 작성 모달창
 	    function create_post() {
 	        create_modal.innerHTML = `
 	        <form action="BoardWriteCon.do" method="post" enctype="multipart/form-data" onsubmit="return test()">
@@ -221,7 +207,6 @@
 	                                <div class="btn-upload">파일 올리기</div>
 	                              </label>
 	                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
-	                        <input type="hidden" value="${member.mem_id}" name="id">
 	                        </div>
 	                        <div class="cp_text">
 	                            <div class="cp_text_user">
@@ -229,7 +214,7 @@
 	                                <div>${member.mem_id}</div>
 	                            </div>
 	                            <div class="cp_text_area_normal">
-	                                <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
+	                                <textarea name="board_content" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -238,7 +223,7 @@
 	        </form>`;
 	    }
 
-	    // 밸런스게임 글 모달 창
+	    // 밸런스게임 작성 글 모달 창
 	    function create_balance() {
 	        create_modal.innerHTML = `
 	        <form action="BalBoardWriteCon.do" method="post" enctype="multipart/form-data" onsubmit="return test()">
@@ -256,7 +241,6 @@
 	                            <div class="btn-upload">파일 올리기</div>
 	                        </label>
 	                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
-	                        <input type="hidden" value="${member.mem_id}" name="id">
 	                    </div>
 	                    <div class="cp_text">
 	                        <div class="cp_text_user">
@@ -264,28 +248,28 @@
 	                            <div>${member.mem_id}</div>
 	                        </div>
 	                        <div class="cp_text_area">
-	                            <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
+	                            <textarea name="bal_content" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
 	                        </div>
 	                        <div class="cp_setting_area">
 	                            <div class="select_1_div">
 	                                <label for="select_1">선택지 1</label>
-	                                <input type="text" id="select_1" required
+	                                <input name="bal_left" type="text" id="select_1" required
 	                                minlength="4" maxlength="8>
 	                                <input type="color" name="select_1_color">
 	                            </div>
 	                            <div class="select_2_div">
 	                                <label for="select_2">선택지 2</label>
-	                                <input type="text" id="select_2" required
+	                                <input name="bal_right" type="text" id="select_2" required
 	                                minlength="4" maxlength="8>
 	                                <input type="color" name="select_2_color">
 	                            </div>
 	                            <div class="end_time_div">
 	                                <label for="end_time">종료시간</label>
-	                                <input type="datetime" id="end_time">
+	                                <input name="bal_time" type="datetime" id="end_time">
 	                            </div>
 	                            <div class="reward_div">
 	                                <label for="reward">리워드</label>
-	                                <input type="number" id="reward">
+	                                <input name="bal_reward" type="number" id="reward">
 	                            </div>
 	                        </div>
 	                    </div>
@@ -301,6 +285,38 @@
 	        create_modal.style.display = 'none';
 	    }
 	});
+	// 미리보기 
+	  function setThumbnail(event){
+			var reader = new FileReader();
+			
+			//기존 이미지 숨김
+			$(".btn-upload").hide();
+			$("#mimg").hide();
+			
+			reader.onload = function(event){
+				
+				
+					var filetype = event.target.result;
+					var result = filetype.substr(5,10).substr(0,5);
+					
+					var img;
+					if(result =="video"){
+						img = document.createElement("video");
+						img.setAttribute("autoplay","true")
+					}else if(result =="image"){
+						img = document.createElement("img");
+					}
+					
+				img.setAttribute("style", "max-width: 500px; max-height: 500px;");
+
+				img.setAttribute("src", event.target.result);
+				img.setAttribute("class", "col-lg-6");
+				//document.querySelector("#cp_file").appendChild(img);
+				$('.cp_file').append(img);
+			};
+			
+			reader.readAsDataURL(event.target.files[0]);
+		}
 	</script>
 </body>
 

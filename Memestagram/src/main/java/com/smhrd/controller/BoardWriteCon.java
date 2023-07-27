@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.smhrd.command.command;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.BoardDTO;
+import com.smhrd.model.MemberDTO;
 
 public class BoardWriteCon implements command {
 
@@ -24,7 +26,7 @@ public class BoardWriteCon implements command {
 		System.out.println(savePath);
 		
 		//3.maxsize
-		int maxsize = 100*1024*1024;
+		int maxsize = 1000*1024*1024;
 		
 		//4.encoding
 		String encoding = "UTF-8";
@@ -42,7 +44,8 @@ public class BoardWriteCon implements command {
 			e.printStackTrace();
 		}
 		
-		String mem_id = multi.getParameter("id");
+		HttpSession session = request.getSession();
+		String mem_id = ((MemberDTO) session.getAttribute("member")).getMem_id();
 		String board_content = multi.getParameter("board_content");
 		String board_img = multi.getFilesystemName("board_img");
 		
@@ -71,7 +74,7 @@ public class BoardWriteCon implements command {
 			System.out.println("업로드 실패");
 		}
 		
-		return "Home.jsp";
+		return "New_home.jsp";
 	}
 
 }

@@ -63,6 +63,6 @@ public class BalBoardWriteCon implements command {
 			System.out.println("업로드 실패");
 		}
 		
-		return null;
+		return "New_home.jsp";
 }
 }
