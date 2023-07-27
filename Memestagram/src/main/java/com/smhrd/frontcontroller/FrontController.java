@@ -11,15 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
+
 import com.smhrd.controller.BalBoardShowCon;
 import com.smhrd.controller.BalBoardWriteCon;
 import com.smhrd.controller.BalCmtListCon;
+import com.smhrd.controller.BalCmtWriteCon;
+
 import com.smhrd.controller.BalLikeDeleteCon;
 import com.smhrd.controller.BalLikeSaveCon;
+
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
 import com.smhrd.controller.BoardDeleteCon;
+
 import com.smhrd.controller.BoardShowCon;
 import com.smhrd.controller.BoardUpdateCon;
 import com.smhrd.controller.BoardWriteCon;
@@ -67,15 +72,13 @@ public class FrontController extends HttpServlet {
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
 
-		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
-		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
+		
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
-
-		list.put("KakaoLogout.do", new KakaoLogoutCon());
-		list.put("NaverLogout.do", new NaverLogoutCon());
 
 		// 로그아웃 컨트롤러
 		list.put("LogoutCon.do", new LogoutCon());
+		list.put("KakaoLogout.do", new KakaoLogoutCon());
+		list.put("NaverLogout.do", new NaverLogoutCon());
 		// 리워드 샵 컨트롤러
 		list.put("buyProduct.do", new BuyProductCon());
 		// 팔로우 관련 컨트롤러
