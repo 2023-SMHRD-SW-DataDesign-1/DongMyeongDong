@@ -1,0 +1,119 @@
+@charset "UTF-8";
+/* ---------------검색창 css -----------------*/
+.sb_logo {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+}
+
+.sb_logo .menu-icon {
+  color: black;
+  font-size: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.sb_logo .sb_logo-name {
+  color: black;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Billabong";
+  display: none;
+}
+
+.sidebar .sb_sidebar-content {
+  display: flex;
+  height: 100%;
+}
+
+.sb_sidebar_menu{
+  display: flex;
+  height: 100%;
+  width: 85px;
+  flex-direction: column; /* 요소들을 세로로 배치 */
+  justify-content: space-between; /* 요소들을 양쪽 정렬 */
+  padding: 30px 16px;
+  border-right: 1px solid lightgray;
+}
+
+.search:hover{
+  cursor: pointer;
+}
+
+.search_bar{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.search_bar input{
+  border-radius: 10px;
+  margin-top: 30px;
+  font-size: 15px;
+  height: 40px;
+  background-color: #EFEFEF;
+  border: 0;
+}
+
+.search_bar div{
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+.search_bar button{
+  border: 0;
+  background-color: white;
+}
+
+.search_bar button:hover{
+  cursor: pointer;
+}
+
+.delete_all{
+  color: #0095F6;
+  font-weight: bold;
+}
+
+.search_log{
+  display: flex;
+  flex-direction: column;
+}
+
+.search_log div{
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between; /* 요소들을 양쪽 정렬 */
+}
+
+.sb_sidebar-content .sb_list {
+  list-style: none;
+}
+
+.sb_list .nav-link {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.sb_lists .nav-link:hover {
+  background-color: #0095F6;
+}
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 25px;
+  color: black;
+}
+.nav-link .link {
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
+}
+.sb_lists .nav-link:hover .icon,
+.sb_lists .nav-link:hover .link {
+  color: #fff;
+}
+/* --------------------------------------- */

@@ -31,26 +31,13 @@
                 <h1>memestagram</h1>
             </div>
             <div class="form_div">
-                
-                    <div>
-                        <input type="text" placeholder="사용자 이름 또는 이메일" name="id" id="id_input">
-                    </div>
-                    <div>
-                        <input type="password" placeholder="비밀번호" name="pw" id="pw_input">
-                    </div>
-                    <div>
-                        <input type="submit" value="로그인" id="submit_login">
-                    </div>
-                    <div id="naver_id_login" style="display:none;">
-                        
-                    </div>
-                    <button id="naver_login">네이버 로그인</button>
-                    <div >
-                        <button id="kakao-login-btn">카카오 로그인</button>
-                    </div>
-                
+				<input type="text" placeholder="사용자 이름 또는 이메일" name="id" id="id_input">
+				<input type="password" placeholder="비밀번호" name="pw" id="pw_input">
+				<input type="submit" value="로그인" id="submit_login">
+				<div id="naver_id_login" style="display:none;"></div>
+				<button id="naver_login">네이버 로그인</button>
+				<button id="kakao-login-btn">카카오 로그인</button>
             </div>
-
 
             <div class="join_div">
                 <p>계정이 없으신가요? <a href="./Join.jsp" class="p_join">가입하기</a></p>
@@ -115,8 +102,7 @@
 			//1. 로그인 시도
 			Kakao.Auth.login({
 				success : function(authObj) {
-
-							//2. 로그인 성공시, API 호출
+					//2. 로그인 성공시, API 호출
 					Kakao.API.request({
 						url : '/v2/user/me',
 						data : { property_keys : ["kakao_account.email","kakao_account.profile.nickname" ]
