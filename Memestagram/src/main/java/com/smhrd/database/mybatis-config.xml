@@ -24,6 +24,7 @@
 
 
 	<typeAlias type="com.smhrd.model.FollowDTO" alias="FollowDTO"/>
+	<typeAlias type="com.smhrd.model.BalCmtDTO" alias="BalCmtDTO"/>
 
 	</typeAliases>
 	
@@ -48,5 +49,6 @@
      <mapper resource="com/smhrd/mapper/BalanceMapper.xml"/>
 
      <mapper resource="com/smhrd/mapper/FollowMapper.xml"/>
+     <mapper resource="com/smhrd/mapper/BalCmtMapper.xml"/>
   </mappers>
 </configuration>
