@@ -628,7 +628,7 @@ function getPost(page) {
 							            
 							       content += `</div>
 							        <div class="balance_select_div">
-							            <div class="content_select_1" onclick="">
+							            <div class="content_select_1" >
 							                <div class="content_select_1_name">
 							                    <h3>${data.bal_left}</h3>
 							                </div>
