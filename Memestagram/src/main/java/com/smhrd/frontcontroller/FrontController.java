@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
 import com.smhrd.controller.BalBoardShowCon;
+import com.smhrd.controller.BalBoardWriteCon;
 import com.smhrd.controller.BalCmtListCon;
 import com.smhrd.controller.BalLikeDeleteCon;
 import com.smhrd.controller.BalLikeSaveCon;
@@ -84,6 +85,7 @@ public class FrontController extends HttpServlet {
 		// 밸런스게임 관련
 		list.put("balBoardShowCon.do", new BalBoardShowCon());
 		list.put("BalCmtListCon.do", new BalCmtListCon());
+		list.put("BalBoardWriteCon.do", new BalBoardWriteCon());
 		
 
 	}
