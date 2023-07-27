@@ -61,6 +61,7 @@ public class MemberDTO {
 		this.login_type = login_type;
 	}
 
+	
 
 
 

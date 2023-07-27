@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.mapper.BalCmtMapper">
+
+	<insert id="balCmtUpload" parameterType="BalCmtDTO">
+		insert into balance_cmt values(cmt_bal.nextval,
+		#{bal_seq}, #{mem_id}, #{bal_cmt_content} ,sysdate)
+	</insert>
+	
+
+	<delete id="balDeleteCmt" parameterType="BalCmtDTO">
+	delete from balance_cmt where bal_seq = #{bal_seq}
+	</delete>
+	
+	
+	<select id="balCmtList" parameterType="BalCmtDTO" resultType="BalCmtDTO">
+		select * from balance_cmt where bal_seq = #{bal_seq} and mem_id = #{mem_id} order by bal_cmt_seq desc
+	</select>
+	
+	<select id="balCmtCount" parameterType="int" resultType="int">
+		select count(*) from balance_cmt where bal_seq = #{bal_seq} 
+	</select>
+</mapper>
