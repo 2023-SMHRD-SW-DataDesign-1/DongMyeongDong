@@ -16,6 +16,20 @@
 </head>
 
 <body>
+<script type="text/javascript">
+	function buyProduct(e){
+		let price = $(e).children('.shop_product_price').text();
+		let product_name = $(e).children('.shop_product_brand').text();
+		console.log(${member.mem_reward});
+		if(parseInt(price) > ${member.mem_reward}){
+			alert("리워드가 부족합니다");
+		}else{
+			alert("구매 완료");
+			location.href="buyProduct.do?product_name="+product_name+"&product_price="+price;
+		}
+	}
+
+</script>
     <div class="sidebar" id="sidebar">
         <div class="logo">
             <span class="logo-name">Memestagram</span>
@@ -47,7 +61,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a class="nav-link create_post">
+                    <a href="new_post.js" class="nav-link create_post">
                         <i class="bx bx-plus-circle icon"></i>
                         <span class="link">만들기</span>
                     </a>
@@ -68,7 +82,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link" onclick="LogoutCheck()">
                         <i class="bx bx-log-out icon"></i>
                         <span class="link">로그아웃</span>
                     </a>
@@ -89,8 +103,8 @@
                 <div class="shop_user_info_icon">
                     <img src="./image/user.png" alt="">
                 </div>
-                <div class="shop_user_info_name">user_name</div>
-                <div class="shop_user_info_point">10,000,000 P</div>
+                <div class="shop_user_info_name">${member.mem_id}</div>
+                <div class="shop_user_info_point">${member.mem_reward}</div>
             </div>
             <div class="shop_product_div">
                 <div class="shop_product">
@@ -276,7 +290,33 @@
 
     
     <script src="js/new_post.js"></script>
+<script type="text/javascript">
+		function LogoutCheck() {
+			let type = "${member.login_type}";
+			alert(type);
 
+			if (type == "kakao") {
+				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
+				
+				if (!Kakao.Auth.getAccessToken()) {
+					alert('Not logged in.');
+					return;
+				}
+				Kakao.Auth.logout(function() {
+					alert('logout ok\naccess token -> '
+							+ Kakao.Auth.getAccessToken());
+				});
+				
+				location.href = "LogoutCon.do";
+			} else if (type == "naver") {
+				location.href = "LogoutCon.do";
+
+			} else {
+				location.href = "LogoutCon.do";
+			}
+
+		}
+	</script>
 </body>
 
 </html>

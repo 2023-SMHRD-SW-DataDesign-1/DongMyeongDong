@@ -37,33 +37,225 @@ $(document).ready(function () {
         }
     });
 });
+// 좋아요
+function heartCheck(e){
+				let board_seq = $(e).children("img").attr('idx');
+
+				if ($(e).children('img').attr('class') == "emptyheart") {
+					console.log("빈하트 클릭" + board_seq);
+
+					$.ajax({
+						url: 'LikeSaveCon.do',
+						type: 'post',
+						data: {
+							board_seq: board_seq,
+						},
+						success: function(data) {
+							let heart = data;
+							
+							$('.like_count' + board_seq).text(heart);
+
+							console.log("좋아요 성공");
+							
+						},
+						error: function() {
+							alert('좋아요 실패');
+						}
+					});
+					$("img[idx="+board_seq+"]").attr("src", "./img/fullheart.png");
+					
+										//$(".emptyheart").attr("src", "./img/fullheart.png");
+										$("img[idx="+board_seq+"]").attr("class", "fullheart");
+										//console.log("꽉찬하트로 바껴라!");
+
+
+
+
+					// 꽉찬 하트를 눌렀을 때
+				} else if (($(e).children('img').attr('class') == "fullheart")) {
+					let board_seq = $(e).children("img").attr('idx');
+					console.log("꽉찬하트 클릭" + board_seq);
+
+					$.ajax({
+						url: 'LikeDeleteCon.do',
+						type: 'post',
+						data: {
+							board_seq: board_seq,
+						},
+						success: function(data) {
+							let heart = data;
+							
+							$('.like_count' + board_seq).text(heart);
+
+
+						},
+						error: function() {
+							alert('좋아요 해제 실패');
+						}
+					});
+				console.log("빈하트로 바껴라!")
+					$("img[idx="+board_seq+"]").attr("src", "./img/emptyheart.png");
+					$("img[idx="+board_seq+"]").attr("class", "emptyheart");
+				}
+}
+
+//미리보기 타입 구별
+function getExtension(filename) {
+
+	var filelen = filename.length;
+	var lastdot = filename.lastIndexOf('.');
+	var fileExt = filename.substring(lastdot + 1, filelen).toLowerCase();
+
+	return fileExt;
+}
+
+//댓글 불러오기
+function cmtList(bseq){
+	$.ajax({
+		url : "CmtListCon.do",
+		type : "post",
+		data : {"bseq" : bseq},
+		success : function(cmtList){
+			$(".comments_list"+bseq).html("");
+			$.each(cmtList,function(index,cmt){
+				
+				$(".comments_list"+bseq).append("<span id='cmt_seq"+cmt.board_cmt_seq+"'>"+"<span><b>"+cmt.mem_id+"</b></span><span></span><span>  "+cmt.board_cmt_content+"</span><br>");
+				
+				if(index == 2){
+					return false;
+				}
+			})
+		},
+		error:function(){
+			alert("댓글 리스트 불러오기 실패");
+		}
+	})
+}
 
 // DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
-var count = 3;
+var count = 1;
+function write_reply(e) {
+	let bseq = $(e).attr("idx");
 
-function getPost() {
+	let content = $('.input_reply' + bseq).val();
 
-    if (count > 7) {
-        count = 1;
-    }
-    var content = `<div class="post">
+	if (content == "") {
+		alert("댓글을 입력하세요");
+	} else {
+
+		$('.input_reply' + bseq).val("");
+
+
+		$.ajax({
+			url: "CmtWriteCon.do",
+			type: "get",
+			data: { "bseq": bseq, "content": content },
+			success: function(cmtCount) {
+				alert("댓글 작성 성공");
+
+				$(".show_all" + bseq).text("댓글 " + cmtCount + "개 모두 보기");
+				cmtList(bseq);
+			},
+			fail: function() {
+				alert("댓글 작성 실패");
+			}
+
+		});
+	}
+}
+
+//팔로우
+function follow(e){
+	let follow_id = $(e).data('id');
+	alert(follow_id);
+	
+	if($(e).text()=="팔로우"){
+		$.ajax({
+			url: "FollowCon.do",
+			type : "post",
+			data : {"follow_id" : follow_id},
+			success : function(){
+				$(e).text("언팔로우");
+			},
+			error : function(){
+				alert("팔로우 실패");
+			}
+			
+		})
+	}else if($(e).text()=="언팔로우"){
+		$.ajax({
+			url: "UnFollowCon.do",
+			type : "post",
+			data : {"follow_id" : follow_id},
+			success : function(){
+				$(e).text("팔로우");
+			},
+			error : function(){
+				alert("팔로우 실패");
+			}
+			
+		})
+	}
+}
+
+// DB에서 데이터를 받아서 새로운 글을 만들어 주는 부분
+function getPost(page) {
+	
+	var content = "";
+	$.ajax({
+		url: "BoardShowCon.do",
+		type: "post",
+		data: { "page": page },
+		datatype: "json",
+		success: function(data) {
+			
+			$.each(data, function(index, data) {
+				console.log(data);
+				content += `<div class="post">
             <div class="header">
                 <div class="profile_icon">
-                    <img src="./image/user.png" alt="">
+                <p class="board_seq" data-no="${data.board_seq}">${data.board_seq}</p>   
                 </div>
-                <div class="id">사용자 아이디 ${count}</div>
+                <div class="id"> ${data.mem_id}</div>
+                <div class="follow${data.mem_id}">`;
+                if(data.checkFollow == 'Y'){
+					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">언팔로우</button>';
+				}else if(data.checkFollow == 'N'){
+					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">팔로우</button>';
+				}else if(data.checkFollow == 'E'){
+					
+				}
+                	
+                
+                content += `</div>
                 <div class="menu">
                     <i class='bx bx-dots-horizontal-rounded'></i>
                 </div>
             </div>
-            <div class="content">
-                <video id="video" src="./video/${count}.mp4" controls autoplay muted playsinline></video>
-            </div>
+            <div class="content">`;
+				var fileExtension = getExtension(data.board_img);
+				console.log("dd");
+				if (img.includes(fileExtension)) {
+					content += '<img src="img/' + data.board_img + '">';
+				} else {
+					content += '<video id="video" src="img/' + data.board_img + '" controls autoplay muted playsinline></video>';
+				}
+				content += `</div>
             <div class="buttons">
+
                 <div class="button">
-                    <i class="bx bx-heart icon"></i>
-                </div>
-                <div class="button btn_show_comment" data-post-id="${count++}">
+                <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">`;
+                
+				if (data.checklike == 'Y') {
+					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
+				} else {
+					content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="' + data.board_seq + '">';
+				}
+
+
+				content += `</a></div>
+
+                <div class="button">
                     <i class="bx bx-comment icon"></i>
                 </div>
                 <div class="button">
@@ -72,26 +264,53 @@ function getPost() {
             </div>
             <div class="like">
                 <span>좋아요</span>
-                <span class="like_count">7.7만</span>
+                <span class="like_count${data.board_seq}">${data.board_likes}</span>
                 <span>개</span>
             </div>
             <div class="comments">
-                <span><b>작성자</b></span>
+                <span><b>${data.mem_id}</b></span>
                 <span> </span>
-                <span>댓글 내용입니다.</span> <br>
+                <span>${data.board_content}</span> <br>
                 <span class="show_more">더 보기</span>
             </div>
             <div class="comments_show">
-                <span class="show_all">댓글 1234개 모두 보기</span>
+                <span class="show_all${data.board_seq}">댓글 ${data.board_cmt_cnt}개 모두 보기</span>
             </div>
+            
+            <div class="comments_list${data.board_seq} comments_list">
+                
+            </div>
+          
             <div class="comments_input">
-                <input type="text" placeholder="댓글 달기...">
-                <button id="comments_btn">게시</button>
+                <input type="text" class="input_reply${data.board_seq}" placeholder="댓글 달기...">
             </div>
+
+            <button class="write_reply" idx="${data.board_seq}" onclick="write_reply(this)" >댓글달기</button>
+
             <hr>
         </div>`;
 
-    return content;
+
+				/*let button = document.querySelector('.write_reply'+data.board_seq);*/
+
+				/*button.addEventListener('click',function(){
+					write_reply();
+				})*/
+				
+				cmtList(data.board_seq);
+			});
+			
+
+
+		$('#posts').append(content);
+		},
+		
+		// success 닫히는 곳
+		fail: function() {
+			alert("통신 실패");
+		}
+
+	});
 }
 
 function getBalancePost() {

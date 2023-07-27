@@ -163,8 +163,6 @@ function write_reply(e) {
 
 		});
 	}
-
-
 }
 
 function follow(e){

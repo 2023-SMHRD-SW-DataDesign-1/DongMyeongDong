@@ -81,7 +81,7 @@
 				success : function(data){
 					if(data == 'Y'){
 						
-						location.href = "Home.jsp";
+						location.href = "New_home.jsp";
 					}else if(data == 'N'){
 						
 						alert("존재하지 않는 회원입니다.")
@@ -141,7 +141,7 @@
 								success : function(result) {
 									if(result == 'Y'){
 										
-										location.href = "Home.jsp";
+										location.href = "New_home.jsp";
 									}else{
 										
 										location.href = "insertId.jsp";
