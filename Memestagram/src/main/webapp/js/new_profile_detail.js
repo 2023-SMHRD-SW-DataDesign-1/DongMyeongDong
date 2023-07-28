@@ -48,12 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				content += `</div>
                 <div class="sp_detail">
                     <div class="sp_detail_user">
-                        <div><img src="./image/${data.mem_img}" alt=""></div>
-                        <div>${data.mem_id}</div>
+                        <div class="sp_detail_user_img_div"><img src="./image/${data.mem_img}" alt=""></div>
+                        <div class="sp_detail_user_id_div">${data.mem_id}</div>
+                        <div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' onclick="delete_board(${data.board_seq})"></i></div>
                     </div>
                     <div class="sp_content_area">
                         <div class="sp_comment">
-							
 							<div>
 								<b>${data.mem_id}</b><span>${data.board_content}</span>
 							</div>
@@ -360,4 +360,32 @@ function allCmtList(bseq,type){
 			}
 		})
 	}
+}
+
+function delete_board(board_seq){
+	const result = confirm("게시글을 삭제하시겠습니까? 글 번호 : " + board_seq);
+    var board_seq = document.querySelector('.post-image').getAttribute('data-post-id');
+    console.log('board_seq값', board_seq);
+    
+    if (result) {
+      // 사용자가 "예"를 선택한 경우
+      alert("게시글 삭제 합니다.");
+      // 여기에 추가적인 작업을 수행하는 코드를 작성할 수 있습니다.
+      $.ajax({
+		  type: "POST",
+		  url: "BoardDeleteCon.do",
+		  data: {board_seq, board_seq},
+		  success : function(response) {
+			 console.log(response);
+		  },
+		  error : function(xhr, status, error) {
+			  console.log("게시물삭제실패"+error)
+		  }
+	  })
+	  
+    } else {
+      // 사용자가 "아니오"를 선택한 경우 또는 팝업을 닫은 경우
+      alert("작업을 취소했습니다.");
+      // 여기에 다른 처리를 수행하는 코드를 작성할 수 있습니다.
+    }
 }

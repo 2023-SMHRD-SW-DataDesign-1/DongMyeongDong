@@ -174,6 +174,10 @@
      	   document.getElementById("productPart").style.display="block";
      	   document.getElementById("postPart").style.display="none";
         }
+        
+        
+
+        
 
     </script>
     <script src="js/new_post.js"></script>
