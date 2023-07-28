@@ -67,6 +67,8 @@ public class BalBoardWriteCon implements command {
 		int row = new BalanceDAO().balboardupload(new BalanceDTO(
 				mem_id, bal_content, bal_img, bal_left, bal_right, bal_reward, bal_time, bal_left_color, bal_right_color));
 		
+		session.setAttribute("balboard", row);
+		
 		// 성공 실패 여부확인
 		if(row>0) {
 			System.out.println("업로드 성공");
