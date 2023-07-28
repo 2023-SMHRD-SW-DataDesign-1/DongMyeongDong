@@ -377,6 +377,7 @@ function delete_board(board_seq){
 		  data: {board_seq, board_seq},
 		  success : function(response) {
 			 console.log(response);
+			 window.location.href="./New_profile.jsp"
 		  },
 		  error : function(xhr, status, error) {
 			  console.log("게시물삭제실패"+error)
