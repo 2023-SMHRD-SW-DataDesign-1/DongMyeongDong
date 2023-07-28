@@ -99,7 +99,7 @@
                     <div class="user_icon">
                     <!-- 프로필 이미지 기본값 설정 -->
                     <c:choose>
-                    	<c:when test="${member.mem_img eq member.mem_pw}">
+                    	<c:when test="${(member.mem_img eq member.mem_pw)or(member.mem_pw eq null)}">
                     	<img alt="" src="./image/user.png"></c:when>
                     	<c:otherwise><img alt="" src="./image/${member.mem_img}"></c:otherwise>
                     </c:choose>

@@ -48,12 +48,6 @@ public class ProfileEditCon implements command {
 		String mem_pw2 = multi.getParameter("mem_pw2");
 		String mem_img = multi.getFilesystemName("mem_img");
 
-		// 2. 수정한 비밀번호 데이터 가져오기
-//		String mem_id = request.getParameter("mem_id");
-//		String mem_pw = request.getParameter("mem_pw");
-//		String mem_pw2 = request.getParameter("mem_pw2");
-//		String mem_img = request.getParameter("mem_img");
-//		
 
 		// 3. 콘솔창에 확인하기
 		System.out.println("로그인한 아이디 : " + mem_id);
