@@ -32,7 +32,7 @@ public class BoardDeleteCon implements command {
 		
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write("게시물 삭제 완료");		
+		response.getWriter().write(row);		
 		
 	return "./New_profile.jsp";
       
