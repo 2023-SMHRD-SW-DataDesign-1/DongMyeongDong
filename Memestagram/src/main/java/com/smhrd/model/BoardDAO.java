@@ -82,4 +82,9 @@ public class BoardDAO {
 		session.close();
 		return likecount;
 	}
+	public BoardDTO detailShow(int board_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		BoardDTO b = session.selectOne("detailShow", board_seq);
+		return b;
+	}
 }

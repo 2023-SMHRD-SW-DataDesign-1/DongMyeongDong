@@ -22,4 +22,8 @@
 	<select id="cmtCount" parameterType="int" resultType="int">
 		select count(*) from board_cmt where board_seq = #{board_seq} 
 	</select>
+	
+	<select id="cmtAllList" parameterType="int" resultType="BoardCmtDTO">
+		select a.*,(select mem_img from member_info m where a.mem_id = m.mem_id ) as mem_img from board_cmt a where board_seq = #{board_seq} order by board_cmt_seq desc
+	</select>
 </mapper>

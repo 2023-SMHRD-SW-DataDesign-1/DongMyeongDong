@@ -7,10 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target.classList.contains('create_post')) {
 			
 			//
-			var username = `<%= session.getAttribute("member") %>`;
-			console.log(username.mem_id);
+			/*var username = `<%= session.getAttribute("member") %>`;
+			console.log(username.mem_id);*/
 			
-            var isAdmin = true; // 관리자계정 판별
+		
+				var isAdmin = false;
+
+             // 관리자계정 판별
 
             if (isAdmin) {
                 create_balance();
@@ -77,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="btn-upload">파일 올리기</div>
                               </label>
                         <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
-                        <input type="hidden" value="${member.mem_id}" name="id">
                         </div>
                         <div class="cp_text">
                             <div class="cp_text_user">
@@ -111,8 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <label for="file">
                             <div class="btn-upload">파일 올리기</div>
                         </label>
-                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
-                        <input type="hidden" value="${member.mem_id}" name="id">
+                        <input type="file" name="board_img" onchange="setThumbnail(event);" style="max-width:100%; max-height:100%;">
                     </div>
                     <div class="cp_text">
                         <div class="cp_text_user">

@@ -1,20 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     const postList = document.getElementById('posts');
     const detailView = document.getElementById('balance_post_modal');
+    const show_post = document.getElementsByClassName('show_post');
 
     // 버튼 이벤트 위임
     postList.addEventListener('click', function (event) {
-        if (event.target.classList.contains('bx-comment') || event.target.classList.contains('show_all')) {
+        if(event.target.classList.contains('board') || event.target.classList.contains('show_all')) {
             const postId = event.target.dataset.postId;
-            
-            var isBalance = false;
 
-            if(isBalance){
-                showDetailView_balance(postId);
-                balanceDetailAnimation(detailView, 123456, 78910);
-            }else{
-                showDetailView(postId);
-            }
+            showDetailView(postId);
+            
             detailView.style.display = "block";
             document.body.classList.add('modal-open');
 
@@ -26,79 +21,142 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.body.classList.remove('modal-open');
                 }
             };
-        }
-    });
+        }else if(event.target.classList.contains('balance') || event.target.classList.contains('bal_show_all')) {
+			const postId = event.target.dataset.postId;
+			
+			showDetailView_balance(postId);
+			
+			let num1 = Number(detailView.getElementsByClassName('sp_count_num1')[0].textContent);
+			let num2 = Number(detailView.getElementsByClassName('sp_count_num2')[0].textContent);
+			/*alert(detailView.getElementsByClassName('sp_count_num2')[0].innerHTML);
+			alert(num2);*/
+            balanceDetailAnimation(detailView, num1, num2);
+            
+            detailView.style.display = "block";
+            document.body.classList.add('modal-open');
 
-    // 상세화면을 보여주는 함수
-    function showDetailView(postId) {
-        // 상세화면 표시
-        detailView.innerHTML = `
+            // 모달 바깥 영역을 클릭하면 모달이 닫히도록 이벤트 리스너 추가
+            window.onclick = function (event) {
+                if (event.target === detailView) {
+					stopBalanceAnimation();
+                    closeDetailView();
+                    document.body.classList.remove('modal-open');
+                }
+            };
+		}
+    });
+function showDetailView(postId) {
+		let content = "";
+		
+		$.ajax({
+			url : "BoardDetailShowCon.do",
+			type: "post",
+			data : {"board_seq" : postId},
+			success : function(data){
+				content += `
         <div class="post_modal_content_balance">
         <div class="show_post">
             <div class="sp_content">
-                <div class="sp_file">
-                    <img src="./image/astronaut-8061095_1280.png" alt="">
-                </div>
+                <div class="sp_file">`;
+                    var fileExtension = getExtension(data.board_img);
+				console.log("dd");
+				if (img.includes(fileExtension)) {
+					content += '<img src="img/' + data.board_img + '">';
+				} else {
+					content += '<video id="video" src="img/' + data.board_img + '" controls autoplay muted playsinline></video>';
+				}
+                content += `</div>
                 <div class="sp_detail">
                     <div class="sp_detail_user">
-                        <div><img src="./image/user.png" alt=""></div>
-                        <div>user_name</div>
+                        <div><img src="./image/${data.mem_img}" alt=""></div>
+                        <div>${data.mem_id}</div>
+                    </div>
+                    <div class="sp_content_area">
+                        <div class="sp_comment">
+							
+							<div>
+								<b>${data.mem_id}</b><span>${data.board_content}</span>
+							</div>
+						</div>
                     </div>
                     <div class="sp_comment_area">
-                        <div class="sp_comment">
-                            <div><img src="./image/user.png" alt=""></div>
-                            <div><b>user_name1</b><span>게시글 내용이 엄청 길어지면 어떻게 되지 2줄로 내려가서 공간을 차지하나 아니면 한줄로 쭉 작성되나?</span></div>
-                        </div>
-                        <div class="sp_comment">
-                            <div><img src="./image/user.png" alt=""></div>
-                            <div><b>user_name2</b><span>댓글 내용입니다.</span></div>
-                        </div>
-                        <div class="sp_comment">
-                            <div><img src="./image/user.png" alt=""></div>
-                            <div><b>user_name3</b><span>댓글 내용입니다.</span></div>
-                        </div>
+                    
                     </div>
                     <div class="sp_button_area">
                         <div class="button">
-                            <i class="bx bx-heart icon"></i>
-                        </div>
-                        <div>좋아요 88.5만개</div>
-                    </div>
+                            <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">`;
+                
+						if (data.checklike == 'Y') {
+							content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
+						} else {
+							content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="' + data.board_seq + '">';
+						}
+                       content += `</a></div>
+                        <div>
+                        	<span>좋아요</span>
+                			<span class="like_count${data.board_seq}">${data.board_likes}</span>
+                			<span>개</span></div>
+                    	</div>
                     <div class="sp_comment_input_area">
-                        <input type="text" placeholder="댓글 달기...">
-                        <button id="sp_comments_btn">게시</button>
+                        <input type="text" class="detail_input_reply${data.board_seq}" placeholder="댓글 달기...">
+                		<button class="comments_btn" idx="${data.board_seq}" onclick="write_reply(this)" >게시</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>`;
+    detailView.innerHTML = content;
+    allCmtList(data.board_seq,"d");
+			},
+			error : function(){
+				alert("일반글 상세화면 불러오기 실패");
+			}
+		})
+		
+        // 상세화면 표시
+        
     }
 
     // 밸런스게임글 상세화면
     function showDetailView_balance(postId){
-        detailView.innerHTML = `
+		
+		let content = "";
+		$.ajax({
+			url : "BalDetailShowCon.do",
+			type: "post",
+			data : {"bal_seq" : postId},
+			success : function(data){
+				
+				content += `
     <div class="post_modal_content_balance">
         <div class="show_post">
             <div class="sp_content">
                 <div class="sp_balance">
-                    <div class="sp_balance_content_div">
-                        <img src="./image/balance_01.png" alt="">
-                    </div>
+                    <div class="sp_balance_content_div">`;
+                        
+			        var fileExtension = getExtension(data.bal_img);
+					
+					if (img.includes(fileExtension)) {
+						content += '<img src="img/' + data.bal_img + '">';
+					} else {
+						content += '<video id="video" src="img/' + data.bal_vid + '" controls autoplay muted playsinline></video>';
+					}
+                   content += `</div>
                     <div class="sp_balance_select_div">
                         <div class="sp_content_select_1">
                             <div class="sp_content_select_1_name">
-                                <h2>월 200 백수</h2>
+                                <h2>${data.bal_left}</h2>
                             </div>
                             <div class="sp_content_select_1_count">
-                                <h3 class="sp_count_num1">0</h3>
+                                <h3 class="sp_count_num1">${data.bal_left_count}</h3>
                             </div>
                         </div>
                         <div class="sp_content_select_2">
                             <div class="sp_content_select_2_name">
-                                <h2>월 500 직장인</h2>
+                                <h2>${data.bal_right}</h2>
                             </div>
                             <div class="sp_content_select_2_count">
-                                <h3 class="sp_count_num2">0</h3>
+                                <h3 class="sp_count_num2">${data.bal_right_count}</h3>
                             </div>
                         </div>
                     </div>
@@ -108,44 +166,62 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="sp_balance_title"></div>
                         <div class="sp_balance_time">
                             <i class='bx bx-time-five'></i>
-                            <span><b>12:30</b></span>
+                            <span><b>${data.bal_time}</b></span>
                         </div>
                         <div class="sp_balance_reward">
                             <i class='bx bx-coin'></i>
-                            <span><b>120P</b></span>
+                            <span><b>${data.bal_reward}P</b></span>
                         </div>
                         <div class="sp_menu">
                             <i class='bx bx-dots-horizontal-rounded'></i>
                         </div>
                     </div>
+                    <div class="sp_content_area">
+                        <div class="sp_comment">
+							
+							<div>
+								<b>${data.mem_id}</b><span>${data.bal_content}</span>
+							</div>
+						</div>
+                    </div>
                     <div class="sp_comment_area">
-                        <div class="sp_comment">
-                            <div><img src="./image/user.png" alt=""></div>
-                            <div><b>user_name1</b><span>게시글 내용이 엄청 길어지면 어떻게 되지 2줄로 내려가서 공간을 차지하나 아니면 한줄로 쭉 작성되나?</span></div>
-                        </div>
-                        <div class="sp_comment">
-                            <div><img src="./image/user.png" alt=""></div>
-                            <div><b>user_name2</b><span>댓글 내용입니다.</span></div>
-                        </div>
-                        <div class="sp_comment">
-                            <div><img src="./image/user.png" alt=""></div>
-                            <div><b>user_name3</b><span>댓글 내용입니다.</span></div>
-                        </div>
+                    
                     </div>
                     <div class="sp_button_area">
                         <div class="button">
-                            <i class="bx bx-heart icon"></i>
-                        </div>
-                        <div>좋아요 88.5만개</div>
+                            <a idx=${data.bal_seq} href="javascript:void(0)" class="heart" onclick="balHeartCheck(this)">`;
+							            
+									if (data.balCheckLike == 'Y') {
+										content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="bal' + data.bal_seq + '">';
+									} else {
+										content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="bal' + data.bal_seq + '">';
+									}
+                        content += `</a></div>
+                        <div>
+	                        <span>좋아요</span>
+							<span class="ballike_count${data.bal_seq}">${data.bal_like}</span>
+							<span>개</span>
+						</div>
                     </div>
                     <div class="sp_comment_input_area">
-                        <input type="text" placeholder="댓글 달기...">
-                        <button id="sp_comments_btn">게시</button>
+                        <input type="text" class="detail_bal_input_reply${data.bal_seq}" placeholder="댓글 달기...">
+						<button class="bal_comments_btn" idx="${data.bal_seq}" onclick="write_reply(this)">게시</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>`;
+    
+    detailView.innerHTML = content;
+    allCmtList(data.bal_seq,"bal");
+			},
+			
+			error : function(){
+				alert("일반글 상세화면 불러오기 실패");
+			}
+		})
+		
+        
     }
 
     // 상세화면 닫기 함수
@@ -153,7 +229,11 @@ document.addEventListener('DOMContentLoaded', function () {
         detailView.innerHTML = ''; // 상세화면 비움
         detailView.style.display = 'none';
     }
+    
 });
+
+// 상세화면을 보여주는 함수
+    
 
 // 숫자 3자리마다 ',' 추가해주는 함수
 function numberWithCommas(x) {

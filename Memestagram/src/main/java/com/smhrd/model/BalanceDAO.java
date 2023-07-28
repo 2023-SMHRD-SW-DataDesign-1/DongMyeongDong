@@ -53,4 +53,15 @@ public class BalanceDAO {
 		session.close();		
 		return bList;
 	}
+	
+	public BalanceDTO detailShowBal(int bal_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		BalanceDTO bdto= session.selectOne("detailShowBal", bal_seq);
+		session.close();		
+		return bdto;
+	}
+	
+	
+	
+	
 }
