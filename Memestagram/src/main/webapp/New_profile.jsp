@@ -24,6 +24,7 @@
    
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -124,9 +125,9 @@
                 </div>
                 <div class="div_post" id="postPart">
                    <!-- 사용자 게시물 보여주는 영역 -->
-                	<c:set var="board_img" value="${ProfileDAO.boardImg(member.mem_id)}"></c:set>
-                	<c:forEach var="post_board" items="${board_img}">
-                    <img src= "./image/${post_board.board_img}" alt="" class="post-image">
+                	<c:set var="board_list" value="${ProfileDAO.boardList(member.mem_id)}"></c:set>
+                	<c:forEach var="post_board" items="${board_list}">
+                    	<img src= "./image/${post_board.board_img}" alt="" class="post-image" data-post-id="${post_board.board_seq}">
                     </c:forEach>
                 </div>
                 
@@ -141,7 +142,7 @@
         </div>
         
          <!-- 게시글 세부 화면 modal 창 -->
-            <div id="balance_post_modal" class="post_modal">
+            <div id="post_modal" class="post_modal">
             </div>
         
         
@@ -149,7 +150,7 @@
         <!-- 게시글 작성 modal 창 -->
             <div id="create_modal" class="create_modal">
             </div>
-	<script src="js/new_show_detail.js"></script>
+         
     <script>
 
         let btn_profile_edit = document.getElementById('btn_profile_edit');
@@ -176,7 +177,8 @@
         
     </script>
     <script src="js/new_post.js"></script>
-
+    <script src="js/new_profile.js"></script>
+    <script src="js/new_profile_detail.js"></script>
 </body>
 
 </html>

@@ -46,6 +46,18 @@ public class BoardDTO {
 		this.mem_id = mem_id;
 	}
 
+	public BoardDTO(int board_seq, @NonNull String mem_id, @NonNull String board_content, String board_date,
+			int board_likes, @NonNull String board_img, String board_vid) {
+		super();
+		this.board_seq = board_seq;
+		this.mem_id = mem_id;
+		this.board_content = board_content;
+		this.board_date = board_date;
+		this.board_likes = board_likes;
+		this.board_img = board_img;
+		this.board_vid = board_vid;
+	}
+
 	
 	
 	

@@ -46,11 +46,11 @@ public class ProfileDAO {
 	
 	
 	// 프로필화면에서 게시물 보여주는 메소드
-	public static ArrayList<ProfileDTO> boardImg(String mem_id) {
+	public static ArrayList<BoardDTO> boardList(String mem_id) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		ArrayList<ProfileDTO> board_img = (ArrayList)session.selectList("boardImg", mem_id);
+		ArrayList<BoardDTO> board_list = (ArrayList)session.selectList("boardList", mem_id);
 		session.close();
-		return board_img;
+		return board_list;
 	}
 	
 
