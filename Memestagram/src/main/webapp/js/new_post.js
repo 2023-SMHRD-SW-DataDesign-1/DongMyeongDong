@@ -67,33 +67,34 @@ document.addEventListener('DOMContentLoaded', function () {
         create_modal.innerHTML = `
         <form action="BoardWriteCon.do" method="post" enctype="multipart/form-data" onsubmit="return test()">
         <div class="create_modal-content">
-                <div class="create_post">
-                    <div class="cp_header">
-                        <div class="cp_header_div1"><i class='bx bx-arrow-back'></i></div>
-                        <div class="cp_header_div2"><span>새 게시물 만들기</span></div>
-                        <div class="cp_header_div3"><input type="submit" value="공유하기"></div>
-                    </div>
-                    <div class="cp_content">
-                        <div class="cp_file">
-                            <img src="./image/files.png" alt="">
-                            <label for="file">
-                                <div class="btn-upload">파일 올리기</div>
-                              </label>
+            <div class="create_post">
+                <div class="cp_header">
+                    <div class="cp_header_div1"><i class='bx bx-arrow-back'></i></div>
+                    <div class="cp_header_div2"><span>새 게시물 만들기</span></div>
+                    <div class="cp_header_div3"><input type="submit" value="공유하기"></div>
+                </div>
+                <div class="cp_content">
+                    <div class="cp_file">
+                        <img src="./image/files.png" alt="">
+                        <label for="file">
+                            <div class="btn-upload">파일 올리기</div>
+                        </label>
                         <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
+                    </div>
+                    <div class="cp_text">
+                        <div class="cp_text_user">
+                            <div><img src="./image/user.png" alt=""></div>
+                            <div>${member.mem_id}</div>
                         </div>
-                        <div class="cp_text">
-                            <div class="cp_text_user">
-                                <div><img src="./image/user.png" alt=""></div>
-                                <div>${member.mem_id}</div>
-                            </div>
-                            <div class="cp_text_area_normal">
-                                <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10" placeholder="문구 입력..."></textarea>
-                            </div>
+                        <div class="cp_text_area_normal">
+                            <textarea name="cp_ta" id="cp_text_area" cols="30" rows="10"
+                                placeholder="문구 입력..."></textarea>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        </form>`;
+    </form>`;
     }
 
     // 밸런스게임 글 모달 창
@@ -126,14 +127,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="cp_setting_area">
                             <div class="select_1_div">
                                 <label for="select_1">선택지 1</label>
-                                <input type="text" id="select_1" required
-                                maxlength="8">
+                                <input type="text" id="select_1" required maxlength="8">
                                 <input type="color" name="select_1_color">
                             </div>
                             <div class="select_2_div">
                                 <label for="select_2">선택지 2</label>
-                                <input type="text" id="select_2" required
-                                 maxlength="8">
+                                <input type="text" id="select_2" required maxlength="8">
                                 <input type="color" name="select_2_color">
                             </div>
                             <div class="end_time_div">

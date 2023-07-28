@@ -173,7 +173,7 @@
 	            } else {
 	                create_post();
 	            }
-	            create_modal.style.display = "block";
+	            create_modal.style.display = "flex";
 	            document.body.classList.add('modal-open');
 
 	            // 모달 바깥 영역을 클릭하면 모달이 닫히도록 이벤트 리스너 추가
