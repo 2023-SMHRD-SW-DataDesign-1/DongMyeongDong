@@ -19,9 +19,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-
 <body>
-
     <div class="login_form">
         <div class="image_section">
             <img src="image/memstagram_login.png" alt="">
@@ -53,12 +51,9 @@
 			btnNaverLogin.click();
 		})
 	
-	
-	
 		$('#submit_login').on('click',function(){
 			let id = $('#id_input').val();
 			let pw = $('#pw_input').val();
-			
 			
 			$.ajax({
 				url : "LoginCon.do",
@@ -135,7 +130,6 @@
 									
 								}
 							})
-
 					}
 				})
 				
@@ -149,7 +143,6 @@
 			});
 
 		})
-		
 		
 	</script>
 	
