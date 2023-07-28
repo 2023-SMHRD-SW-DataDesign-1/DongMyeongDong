@@ -31,8 +31,8 @@
 	
 	
 	<!-- 프로필화면에서 게시물 이미지 보여주는 쿼리문 -->
-	<select id="boardImg" parameterType="String" resultType="ProfileDTO">
-		select board_img 
+	<select id="boardList" parameterType="String" resultType="BoardDTO">
+		select *
 		from board 
 		where mem_id = #{mem_id}
 	</select>
