@@ -99,6 +99,7 @@
 
             <!-- 게시글 세부 화면 modal 창 -->
             <div id="balance_post_modal" class="post_modal">
+            
             </div>
 
             <!-- 게시글 작성 modal 창 -->

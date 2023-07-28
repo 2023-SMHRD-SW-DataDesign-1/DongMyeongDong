@@ -126,7 +126,7 @@
                         ${product.product_name}
                     </div>
                     <div class="shop_product_price">
-                        ${product.product_price}P
+                        ${product.product_price}
                     </div>
                 </div>
                 </c:forEach>

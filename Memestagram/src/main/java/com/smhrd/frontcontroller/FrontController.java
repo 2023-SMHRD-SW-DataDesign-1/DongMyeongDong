@@ -89,7 +89,7 @@ public class FrontController extends HttpServlet {
 		list.put("UnFollowCon.do", new UnFollowCon());
 		
 		// 밸런스게임 관련
-		list.put("BalBoardShowCon.do", new BalBoardShowCon());
+		list.put("balBoardShowCon.do", new BalBoardShowCon());
 		list.put("BalCmtListCon.do", new BalCmtListCon());
 
 		list.put("BalBoardWriteCon.do", new BalBoardWriteCon());
