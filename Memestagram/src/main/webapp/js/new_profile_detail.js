@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					content += '<video id="video" src="img/' + data.board_img + '" controls autoplay muted playsinline></video>';
 				}
 				content += `</div>
-                <div class="sp_detail"> 
+                <div class="sp_detail">
                     <div class="sp_detail_user">
                         <div><img src="./image/${data.mem_img}" alt=""></div>
                         <div>${data.mem_id}</div> 

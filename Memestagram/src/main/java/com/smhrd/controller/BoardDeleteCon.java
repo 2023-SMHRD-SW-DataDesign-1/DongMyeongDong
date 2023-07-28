@@ -25,6 +25,7 @@ public class BoardDeleteCon implements command {
 		
 		if (row > 0) {
 	         System.out.println("게시글 삭제 성공");
+	     
 	      } else {
 	         System.out.println("게시글 삭제 실패");
 	      }
