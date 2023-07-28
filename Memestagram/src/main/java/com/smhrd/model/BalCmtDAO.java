@@ -40,4 +40,10 @@ public class BalCmtDAO {
 		
 		return cmt_count;		
 	}
+	public List<BalCmtDTO> balCmtAllList(int bal_seq) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		List<BalCmtDTO> list = session.selectList("balCmtAllList", bal_seq);
+		session.close();
+		return list;
+	}
 }

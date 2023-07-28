@@ -29,7 +29,7 @@ public class BoardCmtWriteCon implements command {
 		 // 댓글 내용을 받아옴
         String board_cmt_content = request.getParameter("content");
         // 게시글 고유 번호를 받아옴
-        int board_seq = Integer.parseInt(request.getParameter("bseq"));
+        int bseq = Integer.parseInt(request.getParameter("bseq"));
         // 사용자 ID를 받아옴
         String mem_id = ((MemberDTO) session.getAttribute("member")).getMem_id();
 
@@ -37,10 +37,10 @@ public class BoardCmtWriteCon implements command {
         // 여기서 댓글 내용, 게시글 고유 번호, 사용자 ID를 활용하여 데이터베이스에 저장 또는 처리 작업을 수행
 
         int row = new BoardCmtDAO().cmtupload(new BoardCmtDTO(
-        		board_seq, mem_id, board_cmt_content));
+        		bseq, mem_id, board_cmt_content));
 		
         
-		int cmt_count = new BoardCmtDAO().cmtCount(board_seq);
+		int cmt_count = new BoardCmtDAO().cmtCount(bseq);
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(cmt_count);
