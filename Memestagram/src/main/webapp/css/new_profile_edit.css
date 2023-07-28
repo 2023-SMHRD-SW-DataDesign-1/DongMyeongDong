@@ -308,19 +308,20 @@ article p {
 .profile_edit{
   margin-top: 20px;
   width: 60%;
-  height: 60%;
+  height: 100%;
 }
 
 .div_head{
   width: 100%;
-  height: 15%;
+  height: 10%;
 }
 
 .div_user{
   display: flex;
   width: 100%;
-  height: 15%;
-  border-bottom: 1px solid lightgray;
+  height: 20%;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .user_icon{
@@ -335,6 +336,7 @@ article p {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: 1px solid lightgray;
 }
 
 .user_name{
@@ -367,16 +369,14 @@ article p {
 
 .div_edit{
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 70%;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-}
-
-.div_edit form{
-  width: 100%;
-  height: 100%;
+  border-top: 1px solid lightgray;
+  padding-top: 10px;
 }
 
 .div_edit_inner{
@@ -409,8 +409,11 @@ article p {
 }
 
 .div_edit_submit{
+  width: 100%;
+  display: flex;
   margin-top: 50px;
-  text-align: right;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .div_edit_submit input{

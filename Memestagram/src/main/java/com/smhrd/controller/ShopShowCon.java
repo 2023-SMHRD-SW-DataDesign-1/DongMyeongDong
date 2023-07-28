@@ -33,7 +33,7 @@ public class ShopShowCon implements command {
 		
 		
 		
-		return "forward/Shop.jsp";
+		return "forward/New_shop.jsp";
 	}
 
 }

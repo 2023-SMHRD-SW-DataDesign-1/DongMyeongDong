@@ -97,10 +97,10 @@
                             <!-- 프로필 이미지 기본값 설정 -->
                             <c:choose>
                                 <c:when test="${(member.mem_img eq member.mem_pw) or (member.mem_pw eq null)}">
-                                    <img alt="" src="./image/user.png">
+                                    <img alt="" src="./image/user.png" id="previewImage">
                                 </c:when>
                                 <c:otherwise>
-                                    <img alt="" src="./image/${member.mem_img}">
+                                    <img alt="" src="./image/${member.mem_img}" id="previewImage">
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -144,12 +144,31 @@
             <!-- 게시글 작성 modal 창 -->
             <div id="create_modal" class="create_modal">
             </div>
-
         </div>
     </div>
     <script src="js/new_post.js"></script>
 
     <script type="text/javascript">
+    
+    // input 태그의 값이 변경될 때 미리 보기 기능을 실행하는 함수
+    function previewImage(event) {
+      const input = event.target;
+      const preview = document.getElementById("previewImage");
+
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          preview.setAttribute("src", e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // input 태그에 change 이벤트를 등록하여 이미지 선택 시 미리 보기 함수를 호출
+    const imageInput = document.getElementById("btn_change_icon");
+    imageInput.addEventListener("change", previewImage);
 
         // 비밀번호 수정 시 팝업창
         function submitForm() {
