@@ -4,6 +4,7 @@
 <%@page import="com.smhrd.model.MemberDTO"%>
 <%@page import="com.smhrd.model.ProfileDTO"%>
 <%@page import="com.smhrd.model.ProfileDAO"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page isELIgnored = "false"%>  
@@ -19,6 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu | Side Navigation Bar</title>
     <!-- CSS -->
+    <link rel="stylesheet" href="css/new_home.css" />
     <link rel="stylesheet" href="css/new_profile.css" />
     <link rel="stylesheet" href="css/new_post.css" />
    
@@ -177,7 +179,6 @@
         
     </script>
     <script src="js/new_post.js"></script>
-    <script src="js/new_profile.js"></script>
     <script src="js/new_profile_detail.js"></script>
 </body>
 
