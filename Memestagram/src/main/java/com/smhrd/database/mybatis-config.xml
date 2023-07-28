@@ -25,6 +25,7 @@
 
 	<typeAlias type="com.smhrd.model.FollowDTO" alias="FollowDTO"/>
 	<typeAlias type="com.smhrd.model.BalCmtDTO" alias="BalCmtDTO"/>
+	<typeAlias type="com.smhrd.model.BalVoteDTO" alias="BalVoteDTO"/>
 
 	</typeAliases>
 	

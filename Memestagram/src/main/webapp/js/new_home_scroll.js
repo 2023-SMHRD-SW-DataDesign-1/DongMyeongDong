@@ -5,7 +5,7 @@ $(document).ready(function() {
 	var bodyOffset = $('body').offset();
 
 	getPost(currentPage);
-
+	
 
 	// 스크롤 시 이벤트 처리
 	win.scroll(function() {
@@ -16,23 +16,24 @@ $(document).ready(function() {
 
 		for (let post of posts) {
 
-
-			const rect = post.getBoundingClientRect();
-			let num1 = Number(post.getElementsByClassName("count_num1")[0].textContent);
-			let num2 = Number(post.getElementsByClassName("count_num2")[0].textContent);
-
-			/*console.log(post);*/
-			/*let left_count = post.getElementsByClassName("count_num1");
-			let right_count = post.getElementsByClassName("count_num2");*/
-			// 화면 중앙으로 게시글이 오면 애니메이션 효과를 주기 위한 처리
-			if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-				if (!post.classList.contains('animated')) {
-					post.classList.add('animated');
-					balanceAnimation(post, num1, num2);
-					
-				}
-			}
-		}
+			
+			
+            const rect = post.getBoundingClientRect();
+            let num1 = Number(post.getElementsByClassName("count_num1")[0].textContent);
+            let num2 = Number(post.getElementsByClassName("count_num2")[0].textContent);
+           	
+            
+			let left_count = post.getElementsByClassName("count_num1");
+			let right_count = post.getElementsByClassName("count_num2");
+            // 화면 중앙으로 게시글이 오면 애니메이션 효과를 주기 위한 처리
+            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                if (!post.classList.contains('animated')) {
+                    post.classList.add('animated');
+                    balanceAnimation2(post, num1, num2);
+                }
+            }
+        }
+		
 
 		if ($(document).height() - win.height() == win.scrollTop()) {
 
@@ -53,74 +54,189 @@ $(document).ready(function() {
 
 }); //document ready 끝나는 부분
 
+function balanceLoad(left,right){
+	
+	const feedDiv = document.getElementById('posts');
+        const posts = feedDiv.getElementsByClassName('balance_post');
+		
+		for (let post of posts) {
+			
+			
+            const rect = post.getBoundingClientRect();
+            let num1 = Number(post.getElementsByClassName("count_num1")[0].textContent);
+            let num2 = Number(post.getElementsByClassName("count_num2")[0].textContent);
+           	
+            /*console.log(post);*/
+			/*let left_count = post.getElementsByClassName("count_num1");
+			let right_count = post.getElementsByClassName("count_num2");*/
+            // 화면 중앙으로 게시글이 오면 애니메이션 효과를 주기 위한 처리
+            /*if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                if (!post.classList.contains('animated')) {*/
+                    post.classList.add('animated');
+                    
+                    balanceAnimation(post, num1, num2 , left, right);
+            /*    }
+            }*/
+        }
+}
+
+
+
 // 숫자 3자리마다 ',' 추가해주는 함수
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// 밸런스 글 애니메이션 처리
-function balanceAnimation(post, num1, num2) {
+
+function balanceAnimation(post, num1, num2, left, right) {
+	
+	
+    // var num1 = 123456;  // 선택지 1 값
+    // var num2 = 78910;   // 선택지 2 값
+	left = Number(left);
+	right = Number(right);
+    const count_num = post.getElementsByClassName("count_num1");
+    const content_select_1 = post.getElementsByClassName("content_select_1");
+    const count_num2 = post.getElementsByClassName("count_num2");
+    const content_select_2 = post.getElementsByClassName("content_select_2");
+	
+	
+    // 투표 하기전 비율
+	var left_ratio = Math.round((left / (left + right)) * 100);
+    var right_ratio = Math.round((right / (left + right)) * 100);
+    /*alert("num1 : "+num1);
+  	
+  	alert("num22 : "+num2);*/
+    // 투표 후 비율
+    var select_1_ratio = Math.round((num1 / (num1 + num2)) * 100);
+    var select_2_ratio = Math.round((num2 / (num1 + num2)) * 100);
+  	
+  	if(isNaN(left_ratio) && isNaN(right_ratio)){
+		  left_ratio = 50;
+		  right_ratio = 50;
+	}else if(isNaN(select_1_ratio) && isNaN(select_2_ratio)){
+		select_1_ratio = 50;
+		select_2_ratio = 50;
+	}
+	
+    // 첫번째 선택지 숫자 증가 애니메이션
+    $({ val: left }).animate({ val: num1 }, {
+        duration: 1000,
+        step: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num[0].textContent = num;
+        },
+        complete: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num[0].textContent = num;
+        }
+    });
+
+    // 첫번째 선택지 비율 증감 애니메이션
+    $({ val: left_ratio }).animate({ val: select_1_ratio }, {
+        duration: 1000,
+        step: function () {
+            content_select_1[0].style.width = this.val + '%';
+        },
+        complete: function () {
+            content_select_1[0].style.width = this.val + '%';
+        }
+    });
+
+    // 두번째 선택지 숫자 증가 애니메이션
+    $({ val: right }).animate({ val: num2 }, {
+        duration: 1000,
+        step: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num2[0].textContent = num;
+        },
+        complete: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num2[0].textContent = num;
+        }
+    });
+
+    // 두번째 선택지 비율 증감 애니메이션
+    $({ val: right_ratio }).animate({ val: select_2_ratio }, {
+        duration: 1000,
+        step: function () {
+            content_select_2[0].style.width = this.val + '%';
+        },
+        complete: function () {
+            content_select_2[0].style.width = this.val + '%';
+        }
+    });
+}
+
+function balanceAnimation2(post, num1, num2) {
+	
+	
+    // var num1 = 123456;  // 선택지 1 값
+    // var num2 = 78910;   // 선택지 2 값
+	
+    const count_num = post.getElementsByClassName("count_num1");
+    const content_select_1 = post.getElementsByClassName("content_select_1");
+    const count_num2 = post.getElementsByClassName("count_num2");
+    const content_select_2 = post.getElementsByClassName("content_select_2");
+	
+    var select_1_ratio = Math.round((num1 / (num1 + num2)) * 100);
+    var select_2_ratio = Math.round((num2 / (num1 + num2)) * 100);
+	
+	
+    // 첫번째 선택지 숫자 증가 애니메이션
+    $({ val: 0 }).animate({ val: num1 }, {
+        duration: 1000,
+        step: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num[0].textContent = num;
+        },
+        complete: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num[0].textContent = num;
+        }
+    });
 
 
-	// var num1 = 123456;  // 선택지 1 값
-	// var num2 = 78910;   // 선택지 2 값
 
-	const count_num = post.getElementsByClassName("count_num1");
-	const content_select_1 = post.getElementsByClassName("content_select_1");
-	const count_num2 = post.getElementsByClassName("count_num2");
-	const content_select_2 = post.getElementsByClassName("content_select_2");
+    // 첫번째 선택지 비율 증감 애니메이션
+    $({ val: 50 }).animate({ val: select_1_ratio }, {
+        duration: 1000,
+        step: function () {
+            content_select_1[0].style.width = this.val + '%';
+        },
+        complete: function () {
+            content_select_1[0].style.width = this.val + '%';
+        }
+    });
 
-	var select_1_ratio = Math.round(((num1 + num2) / num1) * 100);
-	var select_2_ratio = Math.round((num2 / (num1 + num2)) * 100);
 
 
-	// 첫번째 선택지 숫자 증가 애니메이션
-	$({ val: 0 }).animate({ val: num1 }, {
-		duration: 1500,
-		step: function() {
-			var num = numberWithCommas(Math.floor(this.val));
-			count_num[0].textContent = num;
-		},
-		complete: function() {
-			var num = numberWithCommas(Math.floor(this.val));
-			count_num[0].textContent = num;
-		}
-	});
+    // 두번째 선택지 숫자 증가 애니메이션
+    $({ val: 0 }).animate({ val: num2 }, {
+        duration: 1000,
+        step: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num2[0].textContent = num;
+        },
+        complete: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num2[0].textContent = num;
+        }
+    });
 
-	// 첫번째 선택지 비율 증감 애니메이션
-	$({ val: 50 }).animate({ val: select_1_ratio }, {
-		duration: 1500,
-		step: function() {
-			content_select_1[0].style.width = this.val + '%';
-		},
-		complete: function() {
-			content_select_1[0].style.width = this.val + '%';
-		}
-	});
 
-	// 두번째 선택지 숫자 증가 애니메이션
-	$({ val: 0 }).animate({ val: num2 }, {
-		duration: 1500,
-		step: function() {
-			var num = numberWithCommas(Math.floor(this.val));
-			count_num2[0].textContent = num;
-		},
-		complete: function() {
-			var num = numberWithCommas(Math.floor(this.val));
-			count_num2[0].textContent = num;
-		}
-	});
 
-	// 두번째 선택지 비율 증감 애니메이션
-	$({ val: 50 }).animate({ val: select_2_ratio }, {
-		duration: 1500,
-		step: function() {
-			content_select_2[0].style.width = this.val + '%';
-		},
-		complete: function() {
-			content_select_2[0].style.width = this.val + '%';
-		}
-	});
+    // 두번째 선택지 비율 증감 애니메이션
+    $({ val: 50 }).animate({ val: select_2_ratio }, {
+        duration: 1000,
+        step: function () {
+            content_select_2[0].style.width = this.val + '%';
+        },
+        complete: function () {
+            content_select_2[0].style.width = this.val + '%';
+        }
+    });
+
 }
 
 function heartCheck(e) {
@@ -374,7 +490,7 @@ var count = 1;
 function write_reply(e) {
 	let bseq = $(e).attr("idx");
 	let className = $(e).attr('class');
-	alert(bseq);
+	
 	// 밸런스 글일때
 	if (className == 'bal_comments_btn') {
 		let content = $('.bal_input_reply' + bseq).val();
@@ -448,9 +564,11 @@ function write_reply(e) {
 
 function follow(e) {
 	let follow_id = $(e).data('id');
-	alert(follow_id);
 
-	if ($(e).text() == "팔로우") {
+	
+	
+	if($(e).text()=="팔로우"){
+
 		$.ajax({
 			url: "FollowCon.do",
 			type: "post",
@@ -477,6 +595,51 @@ function follow(e) {
 
 		})
 	}
+}
+
+function balanceVote(e){
+	let bal_seq = $(e).attr('idx');
+	let className = $(e).attr('class');
+	let vote;
+	if(className == 'content_select_1' || className == 'sp_content_select_1'){
+		vote = 'L';
+	}else if(className == 'content_select_2' || className == 'sp_content_select_2'){
+		vote = 'R';
+	}
+	let left = $(e).parent().find('.count_num1').text();
+	let right =$(e).parent().find('.count_num2').text();
+	
+	
+	$.ajax({
+		url : "BalVoteCon.do",
+		type : "post",
+		data : {"bal_seq" : bal_seq, "vote" : vote},
+		success : function(vote){
+			$(e).parent().find('.count_num1').text(vote.bal_left_count);
+			$(e).parent().find('.count_num2').text(vote.bal_right_count);
+			if(className == 'sp_content_select_1' || className == 'sp_content_select_2'){
+				
+				/*$("img[idx=bal"+bal_seq+"]")*/
+				$('[data-id="'+bal_seq+'"]').parent().find('.count_num1').text(vote.bal_left_count);
+				$('[data-id="'+bal_seq+'"]').parent().find('.count_num2').text(vote.bal_right_count);
+				let bal_left = $(e).parent().find('.sp_count_num1').text();
+				let bal_right = $(e).parent().find('.sp_count_num2').text();
+				$(e).parent().find('.sp_count_num1').text(vote.bal_left_count);
+				$(e).parent().find('.sp_count_num2').text(vote.bal_right_count);
+				
+				detailBalanceLoad(bal_left,bal_right);
+			}else{
+				
+			}
+			
+			
+			balanceLoad(left,right);
+			
+		},
+		error : function(){
+			alert("balanceVote 실패");
+		}
+	})
 }
 
 function getPost(page) {
@@ -625,15 +788,21 @@ function getPost(page) {
 
 				content += `</div>
 							        <div class="balance_select_div">
-							            <div class="content_select_1" style="background-color: ${data.bal_left_color};">
+
+
+							            <div class="content_select_1" style="background-color: ${data.bal_left_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
+
 							                <div class="content_select_1_name">
-							                    <h3>${data.bal_left}</h3>
+							                    <h3 >${data.bal_left}</h3>
 							                </div>
 							                <div class="content_select_1_count">
-							                    <h4 class="count_num1">${data.bal_left_count}</h4>
+							                    <h4 class="count_num1" >${data.bal_left_count}</h4>
 							                </div>
 							            </div>
-							            <div class="content_select_2" style="background-color: ${data.bal_right_color};">
+
+
+							            <div class="content_select_2" style="background-color: ${data.bal_right_color}" idx="${data.bal_seq}" onclick="balanceVote(this)">
+
 							                <div class="content_select_2_name">
 							                    <h3>${data.bal_right}</h3>
 							                </div>

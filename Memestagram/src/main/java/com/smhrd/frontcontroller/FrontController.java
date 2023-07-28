@@ -18,7 +18,11 @@ import com.smhrd.controller.BalCmtListCon;
 import com.smhrd.controller.BalCmtWriteCon;
 import com.smhrd.controller.BalDetailShowCon;
 import com.smhrd.controller.BalLikeDeleteCon;
+
 import com.smhrd.controller.BalLikeSaveCon;
+import com.smhrd.controller.BalVoteCon;
+
+
 import com.smhrd.controller.BoardAllCmtListCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
@@ -97,6 +101,7 @@ public class FrontController extends HttpServlet {
 		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
 		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
 		list.put("BalCmtWriteCon.do", new BalCmtWriteCon());
+		list.put("BalVoteCon.do", new BalVoteCon());
 		
 		//상세화면 관련
 		list.put("BalDetailShowCon.do", new BalDetailShowCon());

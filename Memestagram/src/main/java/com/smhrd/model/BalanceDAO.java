@@ -61,6 +61,42 @@ public class BalanceDAO {
 		return bdto;
 	}
 	
+	public BalVoteDTO voteCheck(BalVoteDTO balVoteDTO) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		BalVoteDTO b = session.selectOne("voteCheck", balVoteDTO);
+		session.close();		
+
+		return b;
+	}
+	public int voteInsert(BalVoteDTO balVoteDTO) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int result = session.insert("voteInsert", balVoteDTO);
+		session.close();
+		return result;
+		
+	}
+	public int voteDelte(BalVoteDTO balVoteDTO) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int result = session.delete("voteDelte", balVoteDTO);
+		session.close();
+		return result;
+		
+	}
+	public int voteUpdate(BalVoteDTO balVoteDTO) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		int result = session.update("voteUpdate", balVoteDTO);
+		session.close();
+		return result;
+
+		
+	}
+	public BalanceDTO voteCount(BalVoteDTO balVoteDTO) {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		BalanceDTO b = session.selectOne("voteCount", balVoteDTO);
+		session.close();
+		return b;
+	}
+	
 	
 	
 	
