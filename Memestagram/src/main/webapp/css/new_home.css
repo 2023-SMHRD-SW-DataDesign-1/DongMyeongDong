@@ -654,11 +654,40 @@ body.modal-open {
 .sp_detail_user div{
   margin-left: 15px;
 }
+.sp_detail_user_img_div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 100%
+}
+.sp_detail_user_id_div{
+  display: flex;
+  align-items: center;
+  width: 20%;
+  height: 100%
+}
+.sp_detail_user_dots_div{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#menu_dot{
+  font-size: 25px;
+  margin-right: 10px;
+}
 
-.sp_detail_user div img{
-  width: 30px;
-  height: 30px;
+#menu_dot:hover{
+  cursor: pointer;
+}
+
+.sp_detail_user_img_div img{
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  border: 1px solid lightgray;
 }
 
 .sp_comment_area{
