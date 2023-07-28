@@ -54,7 +54,16 @@ public class BalBoardWriteCon implements command {
 		String bal_right_color = multi.getParameter("select_2_color");
 		int bal_reward = Integer.parseInt(multi.getParameter("bal_reward"));
 		String bal_time = multi.getParameter("bal_time");
+		System.out.println(mem_id);
+		System.out.println(bal_content);
 		System.out.println(bal_img);
+		System.out.println(bal_left);
+		System.out.println(bal_left_color);
+		System.out.println(bal_right);
+		System.out.println(bal_right_color);
+		System.out.println(bal_reward);
+		System.out.println(bal_time);
+		
 		int row = new BalanceDAO().balboardupload(new BalanceDTO(
 				mem_id, bal_content, bal_img, bal_left, bal_right, bal_reward, bal_time, bal_left_color, bal_right_color));
 		
