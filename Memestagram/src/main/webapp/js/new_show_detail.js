@@ -78,7 +78,6 @@ function showDetailView(postId) {
                     </div>
                     <div class="sp_content_area">
                         <div class="sp_comment">
-							
 							<div>
 								<b>${data.mem_id}</b><span>${data.board_content}</span>
 							</div>
