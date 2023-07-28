@@ -29,7 +29,11 @@ public class BoardDeleteCon implements command {
 	         System.out.println("게시글 삭제 실패");
 	      }
 		
-	return "./profile.jsp";
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write("게시물 삭제 완료");		
+		
+	return "./New_profile.jsp";
       
 	}
 }
