@@ -57,12 +57,10 @@
     </div>
 
     <script src="js/new_home_scroll.js"></script>
-<<<<<<< HEAD
-    <script src="js/new_show_detail.js"></script>
-=======
+
     <script src="js/new_show_detail.js"></script>
 
->>>>>>> branch 'main' of https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong.git
+
     <script src="js/new_post.js"></script>
     <script src="js/new_search.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -260,7 +258,7 @@
 			reader.readAsDataURL(event.target.files[0]);
 		}
 	
-<<<<<<< HEAD
+
 	  
 		function LogoutCheck() {
 			let type = "${member.login_type}";
@@ -287,8 +285,8 @@
 			}
 
 		}
-=======
->>>>>>> branch 'main' of https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong.git
+
+
 	
 	</script>
 </body>
