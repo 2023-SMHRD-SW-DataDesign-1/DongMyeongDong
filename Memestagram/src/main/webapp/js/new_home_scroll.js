@@ -789,7 +789,8 @@ function getPost(page) {
 				content += `</div>
 							        <div class="balance_select_div">
 
-							            <div class="content_select_1" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
+
+							            <div class="content_select_1" style="background-color: ${data.bal_left_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
 
 							                <div class="content_select_1_name">
 							                    <h3 >${data.bal_left}</h3>
@@ -799,7 +800,8 @@ function getPost(page) {
 							                </div>
 							            </div>
 
-							            <div class="content_select_2" idx="${data.bal_seq}" onclick="balanceVote(this)">
+
+							            <div class="content_select_2" style="background-color: ${data.bal_right_color}" idx="${data.bal_seq}" onclick="balanceVote(this)">
 
 							                <div class="content_select_2_name">
 							                    <h3>${data.bal_right}</h3>
