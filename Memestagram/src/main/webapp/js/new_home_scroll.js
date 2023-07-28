@@ -7,7 +7,7 @@ $(document).ready(function() {
 	getPost(currentPage);
 
 
-	// Each time the user scrolls
+	// 스크롤 시 이벤트 처리
 	win.scroll(function() {
 		// End of the document reached?
 		// console.log($(document).height(), win.height(), win.scrollTop());
@@ -57,6 +57,7 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// 밸런스 글 애니메이션 처리
 function balanceAnimation(post, num1, num2) {
 	
 	
@@ -499,9 +500,9 @@ function getPost(page) {
                 <div class="id"> ${data.mem_id}</div>
                 <div class="follow${data.mem_id}">`;
                 if(data.checkFollow == 'Y'){
-					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">언팔로우</button>';
+					content += '<button class="btn_follow" data-id="'+data.mem_id+'" onclick="follow(this)">언팔로우</button>';
 				}else if(data.checkFollow == 'N'){
-					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">팔로우</button>';
+					content += '<button class="btn_follow" data-id="'+data.mem_id+'" onclick="follow(this)">팔로우</button>';
 				}else if(data.checkFollow == 'E'){
 					
 				}
@@ -538,9 +539,6 @@ function getPost(page) {
                 <div class="button">
                     <i class="bx bx-comment icon board" data-post-id=${data.board_seq}></i>
                 </div>
-                <div class="button">
-                    <i class="bx bx-navigation icon"></i>
-                </div>
             </div>
             <div class="like">
                 <span>좋아요</span>
@@ -565,8 +563,6 @@ function getPost(page) {
                 <input type="text" class="input_reply${data.board_seq}" placeholder="댓글 달기...">
                 <button class="comments_btn" idx="${data.board_seq}" onclick="write_reply(this)" >게시</button>
             </div>
-
-            
 
             <hr>
         </div>`;
@@ -660,8 +656,6 @@ function getPost(page) {
 							        <div class="button">
 							            <i class="bx bx-comment icon balance" data-post-id="${data.bal_seq}"></i>
 							        </div>
-							        <div class="button">
-							            </div>
 							    </div>
 							    <div class="like">
 							        <span>좋아요</span>
