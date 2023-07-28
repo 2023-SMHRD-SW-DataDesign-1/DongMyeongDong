@@ -142,6 +142,7 @@
                 </div>
             </div>
         </div>
+    </div>
         
          <!-- 게시글 세부 화면 modal 창 -->
             <div id="post_modal" class="post_modal">
@@ -173,10 +174,7 @@
      	   document.getElementById("productPart").style.display="block";
      	   document.getElementById("postPart").style.display="none";
         }
-        
 
-        
-        
     </script>
     <script src="js/new_post.js"></script>
     <script src="js/new_profile_detail.js"></script>
