@@ -58,6 +58,26 @@
 		(select count(*) from balance_vote v where v.bal_seq = b.bal_seq and bal_vote ='R' ) as bal_right_count
 		from balance b where bal_seq = #{bal_seq}
 	</select>
+	
+	<select id="voteCheck" parameterType="balVoteDTO" resultType="balVoteDTO">
+		select * from balance_vote where bal_seq = #{bal_seq} and mem_id = #{mem_id}
+	</select>
+	
+	<insert id="voteInsert" parameterType="balVoteDTO">
+		insert into balance_vote values(#{bal_seq},#{mem_id},#{bal_vote})
+	</insert>
+	
+	<delete id="voteDelte" parameterType="balVoteDTO">
+		delete from balance_vote where bal_seq = #{bal_seq} and mem_id = #{mem_id}
+	</delete>
+	
+	<update id="voteUpdate" parameterType="balVoteDTO">
+		update balance_vote set bal_vote = #{bal_vote} where bal_seq = #{bal_seq} and mem_id = #{mem_id}
+	</update>
+	
+	<select id="voteCount" parameterType="int" resultType="BalanceDTO">
+		select (select count(*) from balance_vote v where bal_vote = 'L' and v.bal_seq = b.bal_seq) as bal_left_count, (select count(*) from balance_vote v where bal_vote = 'R' and v.bal_seq = b.bal_seq) as bal_right_count from balance b where bal_seq = #{bal_seq}	
+	</select>
 		
 
 </mapper>

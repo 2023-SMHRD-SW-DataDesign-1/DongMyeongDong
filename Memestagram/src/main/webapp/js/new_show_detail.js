@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			let num2 = Number(detailView.getElementsByClassName('sp_count_num2')[0].textContent);
 			/*alert(detailView.getElementsByClassName('sp_count_num2')[0].innerHTML);
 			alert(num2);*/
-            balanceDetailAnimation(detailView, num1, num2);
+            balanceDetailAnimation2(detailView, num1, num2);
             
             detailView.style.display = "block";
             document.body.classList.add('modal-open');
@@ -59,7 +59,7 @@ function showDetailView(postId) {
             <div class="sp_content">
                 <div class="sp_file">`;
                     var fileExtension = getExtension(data.board_img);
-				console.log("dd");
+				
 				if (img.includes(fileExtension)) {
 					content += '<img src="img/' + data.board_img + '">';
 				} else {
@@ -143,7 +143,7 @@ function showDetailView(postId) {
 					}
                    content += `</div>
                     <div class="sp_balance_select_div">
-                        <div class="sp_content_select_1">
+                        <div class="sp_content_select_1" idx="${data.bal_seq}" onclick="balanceVote(this)">
                             <div class="sp_content_select_1_name">
                                 <h2>${data.bal_left}</h2>
                             </div>
@@ -151,7 +151,7 @@ function showDetailView(postId) {
                                 <h3 class="sp_count_num1">${data.bal_left_count}</h3>
                             </div>
                         </div>
-                        <div class="sp_content_select_2">
+                        <div class="sp_content_select_2" idx="${data.bal_seq}" onclick="balanceVote(this)">
                             <div class="sp_content_select_2_name">
                                 <h2>${data.bal_right}</h2>
                             </div>
@@ -232,8 +232,16 @@ function showDetailView(postId) {
     
 });
 
-// 상세화면을 보여주는 함수
-    
+// 투표후 애니메이션 처리 전 함수
+function detailBalanceLoad(left,right){
+	const detailView = document.getElementById('balance_post_modal');
+	
+	let num1 = Number(detailView.getElementsByClassName('sp_count_num1')[0].textContent);
+	let num2 = Number(detailView.getElementsByClassName('sp_count_num2')[0].textContent);
+	
+	
+	balanceDetailAnimation(detailView,num1,num2,left,right);
+}
 
 // 숫자 3자리마다 ',' 추가해주는 함수
 function numberWithCommas(x) {
@@ -242,7 +250,89 @@ function numberWithCommas(x) {
 
 let animation1, animation2, animation3, animation4; // 애니메이션 객체를 저장할 변수들
 
-function balanceDetailAnimation(post, num1, num2) {
+function balanceDetailAnimation(post, num1, num2, left, right) {
+
+    // var num1 = 123456;  // 선택지 1 값
+    // var num2 = 78910;   // 선택지 2 값
+	left = Number(left);
+	right = Number(right);
+    const count_num = post.getElementsByClassName("sp_count_num1");
+    const content_select_1 = post.getElementsByClassName("sp_content_select_1");
+    const count_num2 = post.getElementsByClassName("sp_count_num2");
+    const content_select_2 = post.getElementsByClassName("sp_content_select_2");
+
+/*	alert(num1);
+	alert(num2);
+	alert(left);
+	alert(num1);*/
+	// 투표 하기전 비율
+	var left_ratio = Math.round((left / (left + right)) * 100);
+    var right_ratio = Math.round((right / (left + right)) * 100);
+    
+    var select_1_ratio = Math.round((num1 / (num1 + num2)) * 100);
+    var select_2_ratio = Math.round((num2 / (num1 + num2)) * 100);
+
+	if(isNaN(left_ratio) && isNaN(right_ratio)){
+		  left_ratio = 50;
+		  right_ratio = 50;
+	}else if(isNaN(select_1_ratio) && isNaN(select_2_ratio)){
+		select_1_ratio = 50;
+		select_2_ratio = 50;
+	}
+	/*alert(left_ratio);
+	alert(right_ratio);
+	alert(select_1_ratio);
+	alert(select_2_ratio);*/
+    // 첫번째 선택지 숫자 증가 애니메이션
+    animation1 = $({ val: left }).animate({ val: num1 }, {
+        duration: 1000,
+        step: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num[0].textContent = num;
+        },
+        complete: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num[0].textContent = num;
+        }
+    });
+
+    // 첫번째 선택지 비율 증감 애니메이션
+    animation2 = $({ val: left_ratio }).animate({ val: select_1_ratio }, {
+        duration: 1000,
+        step: function () {
+            content_select_1[0].style.width = this.val + '%';
+        },
+        complete: function () {
+            content_select_1[0].style.width = this.val + '%';
+        }
+    });
+
+    // 두번째 선택지 숫자 증가 애니메이션
+    animation3 = $({ val: right }).animate({ val: num2 }, {
+        duration: 1000,
+        step: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num2[0].textContent = num;
+        },
+        complete: function () {
+            var num = numberWithCommas(Math.floor(this.val));
+            count_num2[0].textContent = num;
+        }
+    });
+
+    // 두번째 선택지 비율 증감 애니메이션
+    animation4 = $({ val: right_ratio }).animate({ val: select_2_ratio }, {
+        duration: 1000,
+        step: function () {
+            content_select_2[0].style.width = this.val + '%';
+        },
+        complete: function () {
+            content_select_2[0].style.width = this.val + '%';
+        }
+    });
+}
+
+function balanceDetailAnimation2(post, num1, num2) {
 
     // var num1 = 123456;  // 선택지 1 값
     // var num2 = 78910;   // 선택지 2 값
@@ -258,7 +348,7 @@ function balanceDetailAnimation(post, num1, num2) {
 
     // 첫번째 선택지 숫자 증가 애니메이션
     animation1 = $({ val: 0 }).animate({ val: num1 }, {
-        duration: 1500,
+        duration: 1000,
         step: function () {
             var num = numberWithCommas(Math.floor(this.val));
             count_num[0].textContent = num;
@@ -271,7 +361,7 @@ function balanceDetailAnimation(post, num1, num2) {
 
     // 첫번째 선택지 비율 증감 애니메이션
     animation2 = $({ val: 50 }).animate({ val: select_1_ratio }, {
-        duration: 1500,
+        duration: 1000,
         step: function () {
             content_select_1[0].style.width = this.val + '%';
         },
@@ -282,7 +372,7 @@ function balanceDetailAnimation(post, num1, num2) {
 
     // 두번째 선택지 숫자 증가 애니메이션
     animation3 = $({ val: 0 }).animate({ val: num2 }, {
-        duration: 1500,
+        duration: 1000,
         step: function () {
             var num = numberWithCommas(Math.floor(this.val));
             count_num2[0].textContent = num;
@@ -295,7 +385,7 @@ function balanceDetailAnimation(post, num1, num2) {
 
     // 두번째 선택지 비율 증감 애니메이션
     animation4 = $({ val: 50 }).animate({ val: select_2_ratio }, {
-        duration: 1500,
+        duration: 1000,
         step: function () {
             content_select_2[0].style.width = this.val + '%';
         },
