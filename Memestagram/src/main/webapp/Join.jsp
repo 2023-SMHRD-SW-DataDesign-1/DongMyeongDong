@@ -54,7 +54,7 @@
             	<div id="emailerror"></div>
             </div>
             <div class="join_div">
-                <p>계정이 있으신가요? <a href="./join.html" class="p_login">로그인</a></p>
+                <p>계정이 있으신가요? <a href="./Login.jsp" class="p_login">로그인</a></p>
             </div>
         </div>
     </div>

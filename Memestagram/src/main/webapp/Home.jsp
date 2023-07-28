@@ -57,8 +57,7 @@
 					<li class="list"><a href="#" class="nav-link"> <i
 							class="bx bx-cog icon"></i> <span class="link">설정</span>
 					</a></li>
-					<li class="list"><a href="javascript:void(0)"
-						onclick="LogoutCheck()" class="nav-link"> <i
+					<li class="list"><a href="javascript:void(0)" onclick="LogoutCheck()" class="nav-link"> <i
 							class="bx bx-log-out icon"></i> <span class="link">로그아웃</span>
 					</a></li>
 				</ul>
@@ -67,7 +66,6 @@
 	</div>
 
 	<div class="container">
-
 
 		<div class="box-sidebar"></div>
 

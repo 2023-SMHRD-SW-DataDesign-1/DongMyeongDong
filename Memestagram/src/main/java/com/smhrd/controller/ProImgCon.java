@@ -21,8 +21,7 @@ public class ProImgCon implements command {
    public String execute(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
    
-      
-System.out.println("[ProImgCon연결 성공]");
+	   System.out.println("[ProImgCon연결 성공]");
       
       String savePath = request.getServletContext().getRealPath("image");  
       System.out.println(savePath);
@@ -60,21 +59,15 @@ System.out.println("[ProImgCon연결 성공]");
       if(row > 0) {
          System.out.println("프로필 이미지 변경 성공");
          // 성공 시 이미지 경로인 mem_img 저장
-         request.setAttribute("member", mem_img);   
+         request.setAttribute("member", mem_img);
         
          
       } else {
          System.out.println("프로필 이미지 변경 실패");
       }
    
-      return "./New_profile.jsp";   
+      return "./New_profile.jsp";
       
-      
-      
-      
-      
-      
-   
    }
 
 }
