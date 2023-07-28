@@ -164,6 +164,25 @@ body {
   font-weight: bold;
   font-size: 15px;
 }
+
+.id+div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn_follow{
+  width: 80px;
+  border : 0;
+  color : #0095F6;
+  background-color: white;
+  font-weight: bold;
+}
+
+.btn_follow:hover{
+	cursor: pointer;
+}
+
 .menu{
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
@@ -278,6 +297,7 @@ body {
 
 .button{
   width: 40px;
+  margin-right: 5px;
 }
 
 .button .icon {
@@ -345,7 +365,7 @@ body {
 .comments_btn{
   border: 0;
   background-color: transparent;
-  color : #4070f4;
+  color : #0095F6;
   font-weight: bold;
   width: 10%;
   height: 100%;
@@ -358,7 +378,7 @@ body {
 .bal_comments_btn{
   border: 0;
   background-color: transparent;
-  color : #4070f4;
+  color : #0095F6;
   font-weight: bold;
   width: 10%;
   height: 100%;

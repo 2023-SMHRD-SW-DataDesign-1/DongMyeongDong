@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <script src="js/home_scroll.js"></script>
+    <script src="js/new_home_scroll.js"></script>
     <script src="js/new_show_detail.js"></script>
 
     <script src="js/new_post.js"></script>
