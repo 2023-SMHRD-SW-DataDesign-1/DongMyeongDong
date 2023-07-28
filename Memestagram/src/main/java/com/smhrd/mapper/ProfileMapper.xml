@@ -16,18 +16,18 @@
 	</select>
 	
 	
-	<!-- 프로필편집화면에서 비밀번호 수정하는 쿼리문-->
+	<!-- 프로필편집화면에서 이미지와 비밀번호 수정하는 쿼리문-->
 	<update id="profileEdit" parameterType="ProfileDTO">
-		update member_info set mem_pw = #{mem_pw}
+		update member_info set mem_pw = #{mem_pw}, mem_img = #{mem_img}
 		where mem_id = #{mem_id}
 	</update>
 	
 	
 	<!-- 프로필편집화면에서 프로필 사진 변경하는 쿼리문 -->
-	<update id="uploadImg" parameterType="ProfileImgDTO">
+	<!-- <update id="uploadImg" parameterType="ProfileImgDTO">
 		update member_info set mem_img = #{mem_img}
 		where mem_id = #{mem_id}
-	</update> 
+	</update>  -->
 	
 	
 	<!-- 프로필화면에서 게시물 이미지 보여주는 쿼리문 -->

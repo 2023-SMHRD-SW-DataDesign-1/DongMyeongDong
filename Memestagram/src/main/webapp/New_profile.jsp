@@ -12,6 +12,7 @@
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -99,7 +100,7 @@
                     <div class="user_icon">
                     <!-- 프로필 이미지 기본값 설정 -->
                     <c:choose>
-                    	<c:when test="${member.mem_img eq member.mem_pw}"><img alt="" src="./image/user.png"></c:when>
+                    	 <c:when test="${(member.mem_img eq member.mem_pw) or (member.mem_pw eq null)}"><img alt="" src="./image/user.png"></c:when>
                     	<c:otherwise><img alt="" src="./image/${member.mem_img}"></c:otherwise>
                     </c:choose>
                     </div>
@@ -125,10 +126,10 @@
                    <!-- 사용자 게시물 보여주는 영역 -->
                 	<c:set var="board_img" value="${ProfileDAO.boardImg(member.mem_id)}"></c:set>
                 	<c:forEach var="post_board" items="${board_img}">
-                	<!-- 팝업창 띄우기 시도 -->
-                    <img src= "./image/${post_board.board_img}" alt="" id="popup">
+                    <img src= "./image/${post_board.board_img}" alt="" class="post-image">
                     </c:forEach>
                 </div>
+                
                 <div class="div_post" id="productPart">
                 	<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
                 	<c:set var="shopping_list" value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
@@ -139,10 +140,16 @@
             </div>
         </div>
         
+         <!-- 게시글 세부 화면 modal 창 -->
+            <div id="balance_post_modal" class="post_modal">
+            </div>
+        
+        
+        
         <!-- 게시글 작성 modal 창 -->
             <div id="create_modal" class="create_modal">
             </div>
-
+	<script src="js/new_show_detail.js"></script>
     <script>
 
         let btn_profile_edit = document.getElementById('btn_profile_edit');
@@ -165,6 +172,8 @@
         }
         
 
+        
+        
     </script>
     <script src="js/new_post.js"></script>
 

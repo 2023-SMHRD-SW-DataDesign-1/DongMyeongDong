@@ -49,6 +49,17 @@ public class ProfileDTO {
 
 
 
+// 프로필 이미지와 비밀번호 변경할 때 사용할 필드들
+	public ProfileDTO(@NonNull String mem_id, String mem_pw, String mem_pw2, String mem_img) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_pw2 = mem_pw2;
+		this.mem_img = mem_img;
+	}
+
+
+
 
 
 

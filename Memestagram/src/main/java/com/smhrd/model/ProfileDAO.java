@@ -27,7 +27,7 @@ public class ProfileDAO {
 	}
 	
 	
-	// 프로필편집화면에서 비밀번호 수정 메소드
+	// 프로필편집화면에서 이미지와 비밀번호 수정 메소드
 	public int profileEdit(ProfileDTO pdto) {
 		SqlSession session = sqlSessionFactory.openSession(true);
 		int row = session.update("profileEdit", pdto);
@@ -37,12 +37,12 @@ public class ProfileDAO {
 	
 
 	// 프로필편집화면에서 사진 변경하는 메소드
-	public int uploadImg(ProfileImgDTO pdto) {
-		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.update("uploadImg", pdto);
-		session.close();
-		return row;
-	}
+//	public int uploadImg(ProfileImgDTO pdto) {
+//		SqlSession session = sqlSessionFactory.openSession(true);
+//		int row = session.update("uploadImg", pdto);
+//		session.close();
+//		return row;
+//	}
 	
 	
 	// 프로필화면에서 게시물 보여주는 메소드

@@ -34,7 +34,7 @@ import com.smhrd.controller.LoginCon;
 import com.smhrd.controller.LogoutCon;
 import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
-import com.smhrd.controller.ProImgCon;
+//import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
@@ -59,7 +59,7 @@ public class FrontController extends HttpServlet {
 		list.put("JoinCon.do", new JoinCon());
 		list.put("LikeSaveCon.do", new LikeSaveCon());
 		list.put("LikeDeleteCon.do", new LikeDeleteCon());
-		list.put("ProImgCon.do", new ProImgCon());
+//		list.put("ProImgCon.do", new ProImgCon());
 		list.put("LoginCon.do", new LoginCon());
 		list.put("SnsJoinCon.do", new SnsJoinCon());
 		list.put("ProfileEditCon.do", new ProfileEditCon());
