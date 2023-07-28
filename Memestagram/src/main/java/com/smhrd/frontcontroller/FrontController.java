@@ -43,6 +43,7 @@ import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
 //import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
+import com.smhrd.controller.ShopShowCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
 
@@ -72,6 +73,7 @@ public class FrontController extends HttpServlet {
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
+		list.put("ShopShowCon.do", new ShopShowCon());
 
 		
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
@@ -81,13 +83,13 @@ public class FrontController extends HttpServlet {
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
 		// 리워드 샵 컨트롤러
-		list.put("buyProduct.do", new BuyProductCon());
+		list.put("BuyProductCon.do", new BuyProductCon());
 		// 팔로우 관련 컨트롤러
 		list.put("FollowCon.do", new FollowCon());
 		list.put("UnFollowCon.do", new UnFollowCon());
 		
 		// 밸런스게임 관련
-		list.put("balBoardShowCon.do", new BalBoardShowCon());
+		list.put("BalBoardShowCon.do", new BalBoardShowCon());
 		list.put("BalCmtListCon.do", new BalCmtListCon());
 
 		list.put("BalBoardWriteCon.do", new BalBoardWriteCon());

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/new_post.css">
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+	integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -26,8 +29,11 @@
 		if(parseInt(price) > ${member.mem_reward}){
 			alert("리워드가 부족합니다");
 		}else{
+			if(!confirm('구매하시면 포인트는 차감됩니다. \n 정말로 구매하시겠습니까??')){
+	            return false;
+	        }
 			alert("구매 완료");
-			location.href="buyProduct.do?product_name="+product_name+"&product_price="+price;
+			location.href="BuyProductCon.do?product_name="+product_name+"&product_price="+price;
 		}
 	}
 
@@ -110,18 +116,17 @@
             </div>
             <div class="shop_product_div">
             <c:forEach var="product" items="${productList }">
-                <div class="shop_product" onlick="buyProduct(this)">
+                <div class="shop_product" onclick="buyProduct(this)">
                     <div class="shop_product_img">
-                        <img src="./image/gs_1000.jpg" alt="">
+                        <img src="./img/${product.product_img}" alt="">
                     </div>
                     <div class="shop_product_brand">
-                        GS25
                     </div>
                     <div class="shop_product_name">
-                        모바일 상품권 1000
+                        ${product.product_name}
                     </div>
                     <div class="shop_product_price">
-                        1,000 P
+                        ${product.product_price}P
                     </div>
                 </div>
                 </c:forEach>
