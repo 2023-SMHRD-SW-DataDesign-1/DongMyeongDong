@@ -240,7 +240,7 @@
 	                        <label for="file">
 	                            <div class="btn-upload">파일 올리기</div>
 	                        </label>
-	                        <input type="file" id="file" name="board_img" onchange="setThumbnail(event);">
+	                        <input type="file" id="file" name="bal_img" onchange="setThumbnail(event);">
 	                    </div>
 	                    <div class="cp_text">
 	                        <div class="cp_text_user">

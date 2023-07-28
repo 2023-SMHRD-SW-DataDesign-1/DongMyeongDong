@@ -127,13 +127,13 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="select_1_div">
                                 <label for="select_1">선택지 1</label>
                                 <input type="text" id="select_1" required
-                                minlength="4" maxlength="8>
+                                maxlength="8">
                                 <input type="color" name="select_1_color">
                             </div>
                             <div class="select_2_div">
                                 <label for="select_2">선택지 2</label>
                                 <input type="text" id="select_2" required
-                                minlength="4" maxlength="8>
+                                 maxlength="8">
                                 <input type="color" name="select_2_color">
                             </div>
                             <div class="end_time_div">
