@@ -1,3 +1,4 @@
+
 package com.smhrd.controller;
 
 import java.io.IOException;
@@ -5,15 +6,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.smhrd.command.command;
-import com.smhrd.model.ProfileDAO;
-import com.smhrd.model.ProfileDTO;
-import com.smhrd.model.ProfileImgDTO;
 
 public class ProImgCon implements command {
 
@@ -49,25 +45,11 @@ public class ProImgCon implements command {
       System.out.println("mem_id : " + mem_id);
       
       
-      // uploadImg메소드 호출하기
+  //***************** 삭제해야할 파일!!!!! *********************//
       
-      ProfileDAO pdao = new ProfileDAO();
-      int row = pdao.uploadImg(new ProfileImgDTO(mem_id, mem_img));
-   
-      
-      // 성공 or 실패
-      if(row > 0) {
-         System.out.println("프로필 이미지 변경 성공");
-         // 성공 시 이미지 경로인 mem_img 저장
-         request.setAttribute("member", mem_img);
-        
-         
-      } else {
-         System.out.println("프로필 이미지 변경 실패");
-      }
-   
-      return "./New_profile.jsp";
+      return null;
       
    }
 
 }
+

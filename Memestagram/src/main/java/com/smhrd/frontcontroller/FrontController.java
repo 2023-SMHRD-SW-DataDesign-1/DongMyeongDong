@@ -13,17 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.command.command;
 import com.smhrd.controller.BalAllCmtListCon;
 import com.smhrd.controller.BalBoardShowCon;
+import com.smhrd.controller.BalBoardWriteCon;
 import com.smhrd.controller.BalCmtListCon;
 import com.smhrd.controller.BalCmtWriteCon;
 import com.smhrd.controller.BalDetailShowCon;
 import com.smhrd.controller.BalLikeDeleteCon;
+
 import com.smhrd.controller.BalLikeSaveCon;
 import com.smhrd.controller.BalVoteCon;
+
+
 import com.smhrd.controller.BoardAllCmtListCon;
 import com.smhrd.controller.BoardCmtDeleteCon;
 import com.smhrd.controller.BoardCmtListCon;
 import com.smhrd.controller.BoardCmtWriteCon;
 import com.smhrd.controller.BoardDeleteCon;
+
 import com.smhrd.controller.BoardDetailShowCon;
 import com.smhrd.controller.BoardShowCon;
 import com.smhrd.controller.BoardUpdateCon;
@@ -40,8 +45,9 @@ import com.smhrd.controller.LoginCon;
 import com.smhrd.controller.LogoutCon;
 import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
-import com.smhrd.controller.ProImgCon;
+//import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
+import com.smhrd.controller.ShopShowCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
 
@@ -65,12 +71,13 @@ public class FrontController extends HttpServlet {
 		list.put("JoinCon.do", new JoinCon());
 		list.put("LikeSaveCon.do", new LikeSaveCon());
 		list.put("LikeDeleteCon.do", new LikeDeleteCon());
-		list.put("ProImgCon.do", new ProImgCon());
+//		list.put("ProImgCon.do", new ProImgCon());
 		list.put("LoginCon.do", new LoginCon());
 		list.put("SnsJoinCon.do", new SnsJoinCon());
 		list.put("ProfileEditCon.do", new ProfileEditCon());
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
+		list.put("ShopShowCon.do", new ShopShowCon());
 
 		
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
@@ -80,7 +87,7 @@ public class FrontController extends HttpServlet {
 		list.put("KakaoLogout.do", new KakaoLogoutCon());
 		list.put("NaverLogout.do", new NaverLogoutCon());
 		// 리워드 샵 컨트롤러
-		list.put("buyProduct.do", new BuyProductCon());
+		list.put("BuyProductCon.do", new BuyProductCon());
 		// 팔로우 관련 컨트롤러
 		list.put("FollowCon.do", new FollowCon());
 		list.put("UnFollowCon.do", new UnFollowCon());
@@ -88,6 +95,9 @@ public class FrontController extends HttpServlet {
 		// 밸런스게임 관련
 		list.put("balBoardShowCon.do", new BalBoardShowCon());
 		list.put("BalCmtListCon.do", new BalCmtListCon());
+
+		list.put("BalBoardWriteCon.do", new BalBoardWriteCon());
+
 		list.put("BalLikeSaveCon.do", new BalLikeSaveCon());
 		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
 		list.put("BalCmtWriteCon.do", new BalCmtWriteCon());

@@ -38,7 +38,8 @@
             </div>
 
             <div class="join_div">
-                <p>계정이 없으신가요? <a href="./Join.jsp" class="p_join">가입하기</a></p>
+                <p>계정이 없으신가요? <a href="./Join.jsp" class="p_join"
+                >가입하기</a></p>
             </div>
         </div>
     </div>

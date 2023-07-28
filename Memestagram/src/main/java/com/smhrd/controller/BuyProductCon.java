@@ -22,7 +22,8 @@ public class BuyProductCon implements command {
 		int price = Integer.parseInt(request.getParameter("product_price"));
 		HttpSession session = request.getSession();
 		MemberDTO m =  (MemberDTO) session.getAttribute("member");
-		
+		System.out.println(name);
+		System.out.println(price);
 		
 		ShopDAO sdao = new ShopDAO();
 		int result = sdao.buyProduct(new ShopDTO(name, m.getMem_id()));

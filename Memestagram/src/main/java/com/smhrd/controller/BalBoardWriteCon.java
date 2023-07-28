@@ -27,7 +27,7 @@ public class BalBoardWriteCon implements command {
 		System.out.println(savePath);
 		
 		//3.maxsize
-		int maxsize = 100*1024*1024;
+		int maxsize = 1000*1024*1024;
 		
 		//4.encoding
 		String encoding = "UTF-8";
@@ -49,12 +49,25 @@ public class BalBoardWriteCon implements command {
 		String bal_content = multi.getParameter("bal_content");
 		String bal_img = multi.getFilesystemName("bal_img");
 		String bal_left = multi.getParameter("bal_left");
+		String bal_left_color = multi.getParameter("select_1_color");
 		String bal_right = multi.getParameter("bal_right");
+		String bal_right_color = multi.getParameter("select_2_color");
 		int bal_reward = Integer.parseInt(multi.getParameter("bal_reward"));
 		String bal_time = multi.getParameter("bal_time");
+		System.out.println(mem_id);
+		System.out.println(bal_content);
+		System.out.println(bal_img);
+		System.out.println(bal_left);
+		System.out.println(bal_left_color);
+		System.out.println(bal_right);
+		System.out.println(bal_right_color);
+		System.out.println(bal_reward);
+		System.out.println(bal_time);
 		
 		int row = new BalanceDAO().balboardupload(new BalanceDTO(
-				mem_id,  bal_content, bal_img, bal_left, bal_right, bal_reward, bal_time));
+				mem_id, bal_content, bal_img, bal_left, bal_right, bal_reward, bal_time, bal_left_color, bal_right_color));
+		
+		session.setAttribute("balboard", row);
 		
 		// 성공 실패 여부확인
 		if(row>0) {

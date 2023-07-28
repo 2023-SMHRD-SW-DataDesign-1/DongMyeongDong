@@ -29,9 +29,9 @@
 	
 		<insert id="balboardupload" parameterType="BalanceDTO">
 		insert into balance
-		(bal_seq, mem_id, bal_content, bal_date, bal_img, bal_left, bal_right, bal_reward, bal_time)
-		values(bal.seqnum.nextval,
-		#{mem_id}, #{bal_content}, sysdate, #{bal_img}, #{bal_left}, #{bal_right}, #{bal_reward}, #{bal_time})
+		(bal_seq, mem_id, bal_content, bal_date, bal_img, bal_left, bal_right, bal_reward, bal_time, bal_left_color, bal_right_color)
+		values(bal_seqnum.nextval,
+		#{mem_id}, #{bal_content}, sysdate, #{bal_img}, #{bal_left}, #{bal_right}, #{bal_reward}, #{bal_time}, #{bal_left_color},#{bal_right_color})
 	</insert>
 	
 	<select id="balanceShow" parameterType="BalanceDTO" resultType="BalanceDTO">

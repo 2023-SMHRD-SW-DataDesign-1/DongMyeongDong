@@ -98,7 +98,7 @@
                     <div class="user_icon">
                     <!-- 프로필 이미지 기본값 설정 -->
                     <c:choose>
-                    <c:when test="${member.mem_img eq member.mem_pw}">
+                    <c:when test="${(member.mem_img eq member.mem_pw) or (member.mem_pw eq null)}">
                       <img alt="" src="./image/user.png"></c:when>
                       <c:otherwise><img src="./image/${member.mem_img}" alt="" id="profile_img"></c:otherwise>
                     </c:choose>
@@ -161,28 +161,35 @@
     });
     
     
- // 프로필 이미지 변경 시, 이미지 데이터 넘기기
- $(function() {
-		$('#input_submit').on('click', function(){
-			uploadFile();
-		}); 
- });
+ // 프로필 이미지 변경 시, 이미지와 비밀번호 데이터 넘기기
+$(function() {
+    $('#input_submit').on('click', function(){
+        uploadFile();
+    });
+});
+
+function uploadFile(){
+	var mem_img = $('#btn_change_icon')[0].files[0]; // 파일 객체 가져오기
+    var mem_id = $('#member_id').val();
+    var mem_pw = $('#pw1').val();
+    var mem_pw2 = $('#pw2').val();
+    var formData = new FormData();
     
- function uploadFile(){
-	 
-	 var form = $('#uploadForm')[0];
-	 var formData = new FormData(form);
-	 
-	 $.ajax({
-		url : 'ProImgCon.do',
-		type : 'POST',
-		data : formData,
-		contentType : false,
-		processData : false
-	 }).done(function(data){
-		 callback(data);
-	 });
- }
+    formData.append('mem_img', mem_img);
+    formData.append('mem_id', mem_id);
+    formData.append('mem_pw', mem_pw);
+    formData.append('mem_pw2', mem_pw2);
+    
+    $.ajax({
+        url : 'ProfileEditCon.do',
+        type : 'POST',
+        data : formData,
+        contentType : false,
+        processData : false
+    }).done(function(data){
+        callback(data);
+    });
+}
     
     
     

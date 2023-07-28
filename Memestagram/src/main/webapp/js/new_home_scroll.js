@@ -3,18 +3,19 @@ var currentPage = 1;
 $(document).ready(function() {
 	var win = $(window);
 	var bodyOffset = $('body').offset();
-	
+
 	getPost(currentPage);
 	
 
-	// Each time the user scrolls
+	// 스크롤 시 이벤트 처리
 	win.scroll(function() {
 		// End of the document reached?
 		// console.log($(document).height(), win.height(), win.scrollTop());
 		const feedDiv = document.getElementById('posts');
-        const posts = feedDiv.getElementsByClassName('balance_post');
-		
+		const posts = feedDiv.getElementsByClassName('balance_post');
+
 		for (let post of posts) {
+
 			
 			
             const rect = post.getBoundingClientRect();
@@ -33,8 +34,9 @@ $(document).ready(function() {
             }
         }
 		
+
 		if ($(document).height() - win.height() == win.scrollTop()) {
-			
+
 			$('#loading').show();
 			currentPage += 1;
 			getPost(currentPage);
@@ -82,8 +84,9 @@ function balanceLoad(left,right){
 
 // 숫자 3자리마다 ',' 추가해주는 함수
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 
 function balanceAnimation(post, num1, num2, left, right) {
 	
@@ -193,6 +196,8 @@ function balanceAnimation2(post, num1, num2) {
         }
     });
 
+
+
     // 첫번째 선택지 비율 증감 애니메이션
     $({ val: 50 }).animate({ val: select_1_ratio }, {
         duration: 1000,
@@ -203,6 +208,8 @@ function balanceAnimation2(post, num1, num2) {
             content_select_1[0].style.width = this.val + '%';
         }
     });
+
+
 
     // 두번째 선택지 숫자 증가 애니메이션
     $({ val: 0 }).animate({ val: num2 }, {
@@ -217,6 +224,8 @@ function balanceAnimation2(post, num1, num2) {
         }
     });
 
+
+
     // 두번째 선택지 비율 증감 애니메이션
     $({ val: 50 }).animate({ val: select_2_ratio }, {
         duration: 1000,
@@ -227,132 +236,133 @@ function balanceAnimation2(post, num1, num2) {
             content_select_2[0].style.width = this.val + '%';
         }
     });
-}
-
-function heartCheck(e){
-				let board_seq = $(e).children("img").attr('idx');
-
-				if ($(e).children('img').attr('class') == "emptyheart") {
-					console.log("빈하트 클릭" + board_seq);
-
-					$.ajax({
-						url: 'LikeSaveCon.do',
-						type: 'post',
-						data: {
-							"board_seq": board_seq,
-						},
-						success: function(data) {
-							let heart = data;
-							
-							$('.like_count' + board_seq).text(heart);
-
-							console.log("좋아요 성공");
-							
-						},
-						error: function() {
-							alert('좋아요 실패');
-						}
-					});
-					$("img[idx="+board_seq+"]").attr("src", "./img/fullheart.png");
-					
-										//$(".emptyheart").attr("src", "./img/fullheart.png");
-										$("img[idx="+board_seq+"]").attr("class", "fullheart");
-										//console.log("꽉찬하트로 바껴라!");
-
-
-
-
-					// 꽉찬 하트를 눌렀을 때
-				} else if (($(e).children('img').attr('class') == "fullheart")) {
-					let board_seq = $(e).children("img").attr('idx');
-					console.log("꽉찬하트 클릭" + board_seq);
-
-					$.ajax({
-						url: 'LikeDeleteCon.do',
-						type: 'post',
-						data: {
-							"board_seq": board_seq,
-						},
-						success: function(data) {
-							let heart = data;
-							
-							$('.like_count' + board_seq).text(heart);
-
-
-						},
-						error: function() {
-							alert('좋아요 해제 실패');
-						}
-					});
-				console.log("빈하트로 바껴라!")
-					$("img[idx="+board_seq+"]").attr("src", "./img/emptyheart.png");
-					$("img[idx="+board_seq+"]").attr("class", "emptyheart");
-
-				}
-
 
 }
 
-function balHeartCheck(e){
-				let bal_seq = $(e).attr('idx');
+function heartCheck(e) {
+	let board_seq = $(e).children("img").attr('idx');
 
-				if ($(e).children('img').attr('class') == "emptyheart") {
-					console.log("빈하트 클릭" + bal_seq);
+	if ($(e).children('img').attr('class') == "emptyheart") {
+		console.log("빈하트 클릭" + board_seq);
 
-					$.ajax({
-						url: 'BalLikeSaveCon.do',
-						type: 'post',
-						data: {
-							"bal_seq": bal_seq,
-						},
-						success: function(data) {
-							let heart = data;
-							
-							$('.ballike_count' + bal_seq).text(heart);
+		$.ajax({
+			url: 'LikeSaveCon.do',
+			type: 'post',
+			data: {
+				"board_seq": board_seq,
+			},
+			success: function(data) {
+				let heart = data;
 
-							console.log("좋아요 성공");
-							
-						},
-						error: function() {
-							alert('좋아요 실패');
-						}
-					});
-					$("img[idx=bal"+bal_seq+"]").attr("src", "./img/fullheart.png");
-					
-										//$(".emptyheart").attr("src", "./img/fullheart.png");
-										$("img[idx=bal"+bal_seq+"]").attr("class", "fullheart");
-										//console.log("꽉찬하트로 바껴라!");
+				$('.like_count' + board_seq).text(heart);
 
+				console.log("좋아요 성공");
 
+			},
+			error: function() {
+				alert('좋아요 실패');
+			}
+		});
+		$("img[idx=" + board_seq + "]").attr("src", "./img/fullheart.png");
+
+		//$(".emptyheart").attr("src", "./img/fullheart.png");
+		$("img[idx=" + board_seq + "]").attr("class", "fullheart");
+		//console.log("꽉찬하트로 바껴라!");
 
 
-					// 꽉찬 하트를 눌렀을 때
-				} else if (($(e).children('img').attr('class') == "fullheart")) {
-					let bal_seq = $(e).attr('idx');
-					console.log("꽉찬하트 클릭" + bal_seq);
-
-					$.ajax({
-						url: 'BalLikeDeleteCon.do',
-						type: 'post',
-						data: {
-							"bal_seq": bal_seq,
-						},
-						success: function(data) {
-							let heart = data;
-							
-							$('.ballike_count' + bal_seq).text(heart);
 
 
-						},
-						error: function() {
-							alert('좋아요 해제 실패');
-						}
-					});
-				console.log("빈하트로 바껴라!")
-					$("img[idx=bal"+bal_seq+"]").attr("src", "./img/emptyheart.png");
-					$("img[idx=bal"+bal_seq+"]").attr("class", "emptyheart");
+		// 꽉찬 하트를 눌렀을 때
+	} else if (($(e).children('img').attr('class') == "fullheart")) {
+		let board_seq = $(e).children("img").attr('idx');
+		console.log("꽉찬하트 클릭" + board_seq);
 
-				}
+		$.ajax({
+			url: 'LikeDeleteCon.do',
+			type: 'post',
+			data: {
+				"board_seq": board_seq,
+			},
+			success: function(data) {
+				let heart = data;
+
+				$('.like_count' + board_seq).text(heart);
+
+
+			},
+			error: function() {
+				alert('좋아요 해제 실패');
+			}
+		});
+		console.log("빈하트로 바껴라!")
+		$("img[idx=" + board_seq + "]").attr("src", "./img/emptyheart.png");
+		$("img[idx=" + board_seq + "]").attr("class", "emptyheart");
+
+	}
+
+
+}
+
+function balHeartCheck(e) {
+	let bal_seq = $(e).attr('idx');
+
+	if ($(e).children('img').attr('class') == "emptyheart") {
+		console.log("빈하트 클릭" + bal_seq);
+
+		$.ajax({
+			url: 'BalLikeSaveCon.do',
+			type: 'post',
+			data: {
+				"bal_seq": bal_seq,
+			},
+			success: function(data) {
+				let heart = data;
+
+				$('.ballike_count' + bal_seq).text(heart);
+
+				console.log("좋아요 성공");
+
+			},
+			error: function() {
+				alert('좋아요 실패');
+			}
+		});
+		$("img[idx=bal" + bal_seq + "]").attr("src", "./img/fullheart.png");
+
+		//$(".emptyheart").attr("src", "./img/fullheart.png");
+		$("img[idx=bal" + bal_seq + "]").attr("class", "fullheart");
+		//console.log("꽉찬하트로 바껴라!");
+
+
+
+
+		// 꽉찬 하트를 눌렀을 때
+	} else if (($(e).children('img').attr('class') == "fullheart")) {
+		let bal_seq = $(e).attr('idx');
+		console.log("꽉찬하트 클릭" + bal_seq);
+
+		$.ajax({
+			url: 'BalLikeDeleteCon.do',
+			type: 'post',
+			data: {
+				"bal_seq": bal_seq,
+			},
+			success: function(data) {
+				let heart = data;
+
+				$('.ballike_count' + bal_seq).text(heart);
+
+
+			},
+			error: function() {
+				alert('좋아요 해제 실패');
+			}
+		});
+		console.log("빈하트로 바껴라!")
+		$("img[idx=bal" + bal_seq + "]").attr("src", "./img/emptyheart.png");
+		$("img[idx=bal" + bal_seq + "]").attr("class", "emptyheart");
+
+	}
 
 
 }
@@ -369,66 +379,66 @@ function getExtension(filename) {
 
 }
 
-function cmtList(bseq,type){
+function cmtList(bseq, type) {
 	// 밸런스 글일때
-	
-	if(type == 'bal'){
+
+	if (type == 'bal') {
 		$.ajax({
-			url : "BalCmtListCon.do",
-			type : "post",
-			data : {"bseq" : bseq},
-			success : function(cmtList){
-				$(".bal_comments_list"+bseq).html("");
-				$.each(cmtList,function(index,cmt){
-					
-					$(".bal_comments_list"+bseq).append("<span id='cmt_seq"+cmt.bal_cmt_seq+"'>"+"<span><b>"+cmt.mem_id+"</b></span><span></span><span>  "+cmt.bal_cmt_content+"</span><br>");
-					
-					if(index == 2){
+			url: "BalCmtListCon.do",
+			type: "post",
+			data: { "bseq": bseq },
+			success: function(cmtList) {
+				$(".bal_comments_list" + bseq).html("");
+				$.each(cmtList, function(index, cmt) {
+
+					$(".bal_comments_list" + bseq).append("<span id='cmt_seq" + cmt.bal_cmt_seq + "'>" + "<span><b>" + cmt.mem_id + "</b></span><span></span><span>  " + cmt.bal_cmt_content + "</span><br>");
+
+					if (index == 2) {
 						return false;
 					}
 				})
 			},
-			error:function(){
+			error: function() {
 				alert("댓글 리스트 불러오기 실패");
 			}
 		})
-	// 일반 글일때
-	}else{
+		// 일반 글일때
+	} else {
 		$.ajax({
-			url : "CmtListCon.do",
-			type : "post",
-			data : {"bseq" : bseq},
-			success : function(cmtList){
-				$(".comments_list"+bseq).html("");
-				$.each(cmtList,function(index,cmt){
-					
-					$(".comments_list"+bseq).append("<span id='cmt_seq"+cmt.board_cmt_seq+"'>"+"<span><b>"+cmt.mem_id+"</b></span><span></span><span>  "+cmt.board_cmt_content+"</span><br>");
-					
-					if(index == 2){
+			url: "CmtListCon.do",
+			type: "post",
+			data: { "bseq": bseq },
+			success: function(cmtList) {
+				$(".comments_list" + bseq).html("");
+				$.each(cmtList, function(index, cmt) {
+
+					$(".comments_list" + bseq).append("<span id='cmt_seq" + cmt.board_cmt_seq + "'>" + "<span><b>" + cmt.mem_id + "</b></span><span></span><span>  " + cmt.board_cmt_content + "</span><br>");
+
+					if (index == 2) {
 						return false;
 					}
 				})
 			},
-			error:function(){
+			error: function() {
 				alert("댓글 리스트 불러오기 실패");
 			}
 		})
 	}
-	
-	
+
+
 }
 
-function allCmtList(bseq,type){
-	if(type == 'bal'){
+function allCmtList(bseq, type) {
+	if (type == 'bal') {
 		$.ajax({
-			url : "BalAllCmtListCon.do",
-			type : "post",
-			data : {"bal_seq" : bseq},
-			success : function(cmtList){
-				
+			url: "BalAllCmtListCon.do",
+			type: "post",
+			data: { "bal_seq": bseq },
+			success: function(cmtList) {
+
 				$(".sp_comment_area").html("");
-				$.each(cmtList,function(index,cmt){
-					
+				$.each(cmtList, function(index, cmt) {
+
 					$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
@@ -437,24 +447,24 @@ function allCmtList(bseq,type){
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
 													
 												  </div>`);
-					
-					
+
+
 				})
 			},
-			error:function(){
+			error: function() {
 				alert("댓글 리스트 불러오기 실패");
 			}
 		})
-	// 일반 글일때
-	}else{
+		// 일반 글일때
+	} else {
 		$.ajax({
-			url : "BoardAllCmtListCon.do",
-			type : "post",
-			data : {"board_seq" : bseq},
-			success : function(cmtList){
+			url: "BoardAllCmtListCon.do",
+			type: "post",
+			data: { "board_seq": bseq },
+			success: function(cmtList) {
 				$(".sp_comment_area").html("");
-				$.each(cmtList,function(index,cmt){
-					
+				$.each(cmtList, function(index, cmt) {
+
 					$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
@@ -463,10 +473,10 @@ function allCmtList(bseq,type){
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
 													
 												  </div>`);
-					
+
 				})
 			},
-			error:function(){
+			error: function() {
 				alert("댓글 리스트 불러오기 실패");
 			}
 		})
@@ -482,17 +492,17 @@ function write_reply(e) {
 	let className = $(e).attr('class');
 	
 	// 밸런스 글일때
-	if(className == 'bal_comments_btn'){
+	if (className == 'bal_comments_btn') {
 		let content = $('.bal_input_reply' + bseq).val();
 		let detail = $('.detail_bal_input_reply' + bseq).val();
-		
+
 		if (content == "" && detail == "") {
 			alert("댓글을 입력하세요");
 		} else {
-			
-			if(content != ""){
+
+			if (content != "") {
 				$('.bal_input_reply' + bseq).val("");
-			}else if(detail != ""){
+			} else if (detail != "") {
 				$('.detail_bal_input_reply' + bseq).val("");
 				content = detail;
 			}
@@ -503,10 +513,10 @@ function write_reply(e) {
 				data: { "balSeq": bseq, "content": content },
 				success: function(cmtCount) {
 					alert("댓글 작성 성공");
-	
+
 					$(".show_allbal" + bseq).text("댓글 " + cmtCount + "개 모두 보기");
-					cmtList(bseq,"bal");
-					allCmtList(bseq,"bal");
+					cmtList(bseq, "bal");
+					allCmtList(bseq, "bal");
 				},
 				fail: function() {
 					alert("댓글 작성 실패");
@@ -514,21 +524,21 @@ function write_reply(e) {
 
 			});
 		}
-	// 일반 글일 때
-	}else{
+		// 일반 글일 때
+	} else {
 		let content = $('.input_reply' + bseq).val();
 		let detail = $('.detail_input_reply' + bseq).val();
 		if (content == "" && detail == "") {
 			alert("댓글을 입력하세요");
 		} else {
-			
-			if(content != ""){
+
+			if (content != "") {
 				$('.input_reply' + bseq).val("");
-			}else if(detail != ""){
+			} else if (detail != "") {
 				$('.detail_input_reply' + bseq).val("");
 				content = detail;
 			}
-			
+
 
 
 			$.ajax({
@@ -537,10 +547,10 @@ function write_reply(e) {
 				data: { "bseq": bseq, "content": content },
 				success: function(cmtCount) {
 					alert("댓글 작성 성공");
-	
+
 					$(".show_all" + bseq).text("댓글 " + cmtCount + "개 모두 보기");
-					cmtList(bseq,"board");
-					allCmtList(bseq,"board");
+					cmtList(bseq, "board");
+					allCmtList(bseq, "board");
 				},
 				fail: function() {
 					alert("댓글 작성 실패");
@@ -552,35 +562,37 @@ function write_reply(e) {
 
 }
 
-function follow(e){
+function follow(e) {
 	let follow_id = $(e).data('id');
+
 	
 	
 	if($(e).text()=="팔로우"){
+
 		$.ajax({
 			url: "FollowCon.do",
-			type : "post",
-			data : {"follow_id" : follow_id},
-			success : function(){
+			type: "post",
+			data: { "follow_id": follow_id },
+			success: function() {
 				$(e).text("언팔로우");
 			},
-			error : function(){
+			error: function() {
 				alert("팔로우 실패");
 			}
-			
+
 		})
-	}else if($(e).text()=="언팔로우"){
+	} else if ($(e).text() == "언팔로우") {
 		$.ajax({
 			url: "UnFollowCon.do",
-			type : "post",
-			data : {"follow_id" : follow_id},
-			success : function(){
+			type: "post",
+			data: { "follow_id": follow_id },
+			success: function() {
 				$(e).text("팔로우");
 			},
-			error : function(){
+			error: function() {
 				alert("팔로우 실패");
 			}
-			
+
 		})
 	}
 }
@@ -631,16 +643,16 @@ function balanceVote(e){
 }
 
 function getPost(page) {
-	
+
 	var content = "";
 	$.ajax({
 		url: "BoardShowCon.do",
 		type: "post",
 		data: { "page": page },
 		datatype: "json",
-		async : false,
+		async: false,
 		success: function(data) {
-			
+
 			$.each(data, function(index, data) {
 				console.log(data);
 				content += `<div class="post">
@@ -651,16 +663,16 @@ function getPost(page) {
                 </div>
                 <div class="id"> ${data.mem_id}</div>
                 <div class="follow${data.mem_id}">`;
-                if(data.checkFollow == 'Y'){
-					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">언팔로우</button>';
-				}else if(data.checkFollow == 'N'){
-					content += '<button data-id="'+data.mem_id+'" onclick="follow(this)">팔로우</button>';
-				}else if(data.checkFollow == 'E'){
-					
+				if (data.checkFollow == 'Y') {
+					content += '<button class="btn_follow" data-id="' + data.mem_id + '" onclick="follow(this)">언팔로우</button>';
+				} else if (data.checkFollow == 'N') {
+					content += '<button class="btn_follow" data-id="' + data.mem_id + '" onclick="follow(this)">팔로우</button>';
+				} else if (data.checkFollow == 'E') {
+
 				}
-                	
-                
-                content += `</div>
+
+
+				content += `</div>
                 <div class="menu">
                     <i class='bx bx-dots-horizontal-rounded'></i>
                 </div>
@@ -678,7 +690,7 @@ function getPost(page) {
 
                 <div class="button">
                 <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">`;
-                
+
 				if (data.checklike == 'Y') {
 					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
 				} else {
@@ -690,9 +702,6 @@ function getPost(page) {
 
                 <div class="button">
                     <i class="bx bx-comment icon board" data-post-id=${data.board_seq}></i>
-                </div>
-                <div class="button">
-                    <i class="bx bx-navigation icon"></i>
                 </div>
             </div>
             <div class="like">
@@ -719,8 +728,6 @@ function getPost(page) {
                 <button class="comments_btn" idx="${data.board_seq}" onclick="write_reply(this)" >게시</button>
             </div>
 
-            
-
             <hr>
         </div>`;
 
@@ -730,35 +737,35 @@ function getPost(page) {
 				/*button.addEventListener('click',function(){
 					write_reply();
 				})*/
-				
-				cmtList(data.board_seq,"d");
+
+				cmtList(data.board_seq, "d");
 			});
-			
-			
+
+
 		},
-		
+
 		// success 닫히는 곳
 		fail: function() {
 			alert("통신 실패");
 		}
 
 	});
-	
+
 	$.ajax({
-		
-		url : "balBoardShowCon.do",
-		type : "post",
-		data : {"page" : page},
-		async : false,
-		success : function(data){
-			
-			$.each(data, function(index,data){
+
+		url: "balBoardShowCon.do",
+		type: "post",
+		data: { "page": page },
+		async: false,
+		success: function(data) {
+
+			$.each(data, function(index, data) {
 				content += ` <div class="balance_post">
 							    <div class="header">
 							    <div class="balance_title"></div>
 							    <div class="balance_time">
 							        <i class='bx bx-time-five'></i>
-							        <span><b>${data.bal_time}</b></span>
+							        <span id="countdown"></span>
 							    </div>
 							    <div class="balance_reward">
 							        <i class='bx bx-coin'></i>
@@ -771,17 +778,21 @@ function getPost(page) {
 							    <!-- 게시물 컨텐츠 영역 -->
 							    <div class="balance_content">
 							        <div class="balance_content_div">`;
-							        var fileExtension = getExtension(data.bal_img);
-									console.log("dd");
-									if (img.includes(fileExtension)) {
-										content += '<img src="img/' + data.bal_img + '">';
-									} else {
-										content += '<video id="video" src="img/' + data.bal_vid + '" controls autoplay muted playsinline></video>';
-									}
-							            
-							       content += `</div>
+				var fileExtension = getExtension(data.bal_img);
+				console.log("dd");
+				if (img.includes(fileExtension)) {
+					content += '<img src="img/' + data.bal_img + '">';
+				} else {
+					content += '<video id="video" src="img/' + data.bal_vid + '" controls autoplay muted playsinline></video>';
+				}
+
+				content += `</div>
 							        <div class="balance_select_div">
+<<<<<<< HEAD
 							            <div class="content_select_1" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
+=======
+							            <div class="content_select_1" style="color: ${data.bal_left_color};">
+>>>>>>> branch 'main' of https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong.git
 							                <div class="content_select_1_name">
 							                    <h3 >${data.bal_left}</h3>
 							                </div>
@@ -789,7 +800,11 @@ function getPost(page) {
 							                    <h4 class="count_num1" >${data.bal_left_count}</h4>
 							                </div>
 							            </div>
+<<<<<<< HEAD
 							            <div class="content_select_2" idx="${data.bal_seq}" onclick="balanceVote(this)">
+=======
+							            <div class="content_select_2" style="color: ${data.bal_right_color};">
+>>>>>>> branch 'main' of https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong.git
 							                <div class="content_select_2_name">
 							                    <h3>${data.bal_right}</h3>
 							                </div>
@@ -802,19 +817,17 @@ function getPost(page) {
 							    <div class="buttons">
 							        <div class="button">
 							            <a idx=${data.bal_seq} href="javascript:void(0)" class="heart" onclick="balHeartCheck(this)">`;
-							            
-									if (data.balCheckLike == 'Y') {
-										content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="bal' + data.bal_seq + '">';
-									} else {
-										content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="bal' + data.bal_seq + '">';
-									}
-							            
-							        content += `</a></div>
+
+				if (data.balCheckLike == 'Y') {
+					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="bal' + data.bal_seq + '">';
+				} else {
+					content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="bal' + data.bal_seq + '">';
+				}
+
+				content += `</a></div>
 							        <div class="button">
 							            <i class="bx bx-comment icon balance" data-post-id="${data.bal_seq}"></i>
 							        </div>
-							        <div class="button">
-							            </div>
 							    </div>
 							    <div class="like">
 							        <span>좋아요</span>
@@ -839,18 +852,18 @@ function getPost(page) {
 							    </div>
 							    <hr>
 							</div>`;
-							
-							cmtList(data.bal_seq,"bal");
+
+				cmtList(data.bal_seq, "bal");
 			})
-			
+
 			$('#posts').append(content);
 		},
-		error : function(){
+		error: function() {
 			alert("balshowcon fail");
 		}
 	})
-	
+
 }
 
-
+	
 
