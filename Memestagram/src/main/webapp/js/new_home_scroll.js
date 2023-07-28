@@ -393,7 +393,7 @@ function cmtList(bseq, type) {
 
 					$(".bal_comments_list" + bseq).append("<span id='cmt_seq" + cmt.bal_cmt_seq + "'>" + "<span><b>" + cmt.mem_id + "</b></span><span></span><span>  " + cmt.bal_cmt_content + "</span><br>");
 
-					if (index == 2) {
+					if (index == 0) {
 						return false;
 					}
 				})
@@ -414,7 +414,7 @@ function cmtList(bseq, type) {
 
 					$(".comments_list" + bseq).append("<span id='cmt_seq" + cmt.board_cmt_seq + "'>" + "<span><b>" + cmt.mem_id + "</b></span><span></span><span>  " + cmt.board_cmt_content + "</span><br>");
 
-					if (index == 2) {
+					if (index == 0) {
 						return false;
 					}
 				})
