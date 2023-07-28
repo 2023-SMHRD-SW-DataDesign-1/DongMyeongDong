@@ -67,7 +67,7 @@
 						location.href = "New_home.jsp";
 					}else if(data == 'N'){
 						
-						alert("존재하지 않는 회원입니다.")
+						alert("계정정보가 틀렸습니다.")
 						location.href = "Login.jsp";
 					}
 				},

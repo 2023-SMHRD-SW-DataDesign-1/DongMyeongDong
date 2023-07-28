@@ -173,14 +173,14 @@
 				$('#emailerror').html("이메일을 입력해주세요.");
 				$('#emailerror').css('color','red');
 				
-				$('#email').focus();
+				
 				return false;
 			}
 			
 			if (!emailcheck.test(email) || email.length < 6) {
 				$('#emailerror').html("잘못된 이메일 형식입니다.");
 				$('#emailerror').css('color','red');
-				$('#email').focus();
+				
 				return false;
 			}else{
 				$('#emailerror').html("");

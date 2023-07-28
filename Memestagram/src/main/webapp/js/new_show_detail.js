@@ -26,25 +26,30 @@ document.addEventListener('DOMContentLoaded', function () {
 			
 			showDetailView_balance(postId);
 			
-			let num1 = Number(detailView.getElementsByClassName('sp_count_num1')[0].textContent);
-			let num2 = Number(detailView.getElementsByClassName('sp_count_num2')[0].textContent);
+			/*let num1 = Number(detailView.getElementsByClassName('sp_count_num1')[0].textContent);
+			let num2 = Number(detailView.getElementsByClassName('sp_count_num2')[0].textContent);*/
 			/*alert(detailView.getElementsByClassName('sp_count_num2')[0].innerHTML);
 			alert(num2);*/
-            balanceDetailAnimation2(detailView, num1, num2);
+            
             
             detailView.style.display = "block";
             document.body.classList.add('modal-open');
-
+            
+			
             // 모달 바깥 영역을 클릭하면 모달이 닫히도록 이벤트 리스너 추가
             window.onclick = function (event) {
+				console.log(event.target);
                 if (event.target === detailView) {
 					stopBalanceAnimation();
                     closeDetailView();
                     document.body.classList.remove('modal-open');
                 }
             };
+            balanceDetailAnimation2(detailView);
 		}
     });
+
+
 function showDetailView(postId) {
 		let content = "";
 		
@@ -232,6 +237,11 @@ function showDetailView(postId) {
     
 });
 
+function sleep(ms) {
+  const wakeUpTime = Date.now() + ms;
+  while (Date.now() < wakeUpTime) {}
+}
+
 // 투표후 애니메이션 처리 전 함수
 function detailBalanceLoad(left,right){
 	const detailView = document.getElementById('balance_post_modal');
@@ -261,7 +271,7 @@ function balanceDetailAnimation(post, num1, num2, left, right) {
     const count_num2 = post.getElementsByClassName("sp_count_num2");
     const content_select_2 = post.getElementsByClassName("sp_content_select_2");
 
-/*	alert(num1);
+	/*alert(num1);
 	alert(num2);
 	alert(left);
 	alert(num1);*/
@@ -332,11 +342,15 @@ function balanceDetailAnimation(post, num1, num2, left, right) {
     });
 }
 
-function balanceDetailAnimation2(post, num1, num2) {
+function balanceDetailAnimation2(post) {
 
     // var num1 = 123456;  // 선택지 1 값
     // var num2 = 78910;   // 선택지 2 값
-
+    
+    const detailView2 = document.getElementById('balance_post_modal');
+	let num1 = Number(detailView2.getElementsByClassName('sp_count_num1')[0].innerHTML);
+	let num2 = Number(detailView2.getElementsByClassName('sp_count_num2')[0].innerHTML);
+	
     const count_num = post.getElementsByClassName("sp_count_num1");
     const content_select_1 = post.getElementsByClassName("sp_content_select_1");
     const count_num2 = post.getElementsByClassName("sp_count_num2");

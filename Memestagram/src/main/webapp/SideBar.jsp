@@ -52,12 +52,7 @@
             </ul>
 
             <div class="bottom-cotent">
-                <li class="list">
-                    <a href="#" class="nav-link">
-                        <i class="bx bx-cog icon"></i>
-                        <span class="link">설정</span>
-                    </a>
-                </li>
+               
                 <li class="list">
                     <a href="javascript:void(0)" class="nav-link" onclick="LogoutCheck()">
                         <i class="bx bx-log-out icon"></i>
