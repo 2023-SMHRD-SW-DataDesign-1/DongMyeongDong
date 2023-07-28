@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="New_shop.jsp" class="nav-link">
+                    <a href="ShopShowCon.do" class="nav-link">
                         <i class="bx bx-cart-alt icon"></i>
                         <span class="link">리워드상점</span>
                     </a>
