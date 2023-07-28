@@ -67,33 +67,6 @@
 
 	<script type="text/javascript">
 	
-	// 로그아웃 메소드
-	function LogoutCheck() {
-		let type = "${member.login_type}";
-		alert(type);
-
-		if (type == "kakao") {
-			Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
-			
-			if (!Kakao.Auth.getAccessToken()) {
-				alert('Not logged in.');
-				return;
-			}
-			Kakao.Auth.logout(function() {
-				alert('logout ok\naccess token -> '
-						+ Kakao.Auth.getAccessToken());
-			});
-			
-			location.href = "LogoutCon.do";
-		} else if (type == "naver") {
-			location.href = "LogoutCon.do";
-
-		} else {
-			location.href = "LogoutCon.do";
-		}
-
-	}
-	
 	document.addEventListener('DOMContentLoaded', function () {
 	    const sidebar = document.getElementById('sidebar');
 	    const create_modal = document.getElementById('create_modal');
