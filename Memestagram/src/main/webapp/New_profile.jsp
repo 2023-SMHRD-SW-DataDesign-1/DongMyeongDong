@@ -142,6 +142,7 @@
                 </div>
             </div>
         </div>
+    </div>
         
          <!-- 게시글 세부 화면 modal 창 -->
             <div id="post_modal" class="post_modal">
@@ -152,9 +153,6 @@
         <!-- 게시글 작성 modal 창 -->
             <div id="create_modal" class="create_modal">
             </div>
-   
-   
-   
          
     <script>
 
@@ -176,43 +174,7 @@
      	   document.getElementById("productPart").style.display="block";
      	   document.getElementById("postPart").style.display="none";
         }
-        
 
-        // 게시물 클릭하고 삭제하는 기능
-        // "..." 점 세개 버튼을 클릭했을 때 이벤트 실행: <button onclick="showConfirmation()">~)
-        
-        function showConfirmation() {
-        	var result = confirm("삭제하시겠습니까?");
-         // var board_seq = $('#data-post-id').val();
-        	var board_seq = document.querySelector('.post-image').getAttribute('data-post-id');
-        	console.log('board_seq 값:', board_seq);
-
-        	
-        	if(result == true) {
-        		$.ajax({
-       	        	type : "POST",
-       	        	url : "BoardDeleteCon.do",
-       	        	data : {board_seq : board_seq},
-       	        	success : function(response) {
-       	        		console.log(response)
-       	        		alert("삭제되었습니다.");
-       	        	},
-       	        	error : function(xhr, status, error) {
-       	        		console.log("게시물 삭제 실패" + error)
-       	        	}
-       	        })
-        	
-        		
-        	}else {
-        		alert("취소하겠습니다.");
-        	}
-        	
-        }; 
-        
-     
-        
-        
-        
     </script>
     <script src="js/new_post.js"></script>
     <script src="js/new_profile_detail.js"></script>
