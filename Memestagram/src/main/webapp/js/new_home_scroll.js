@@ -788,11 +788,9 @@ function getPost(page) {
 
 				content += `</div>
 							        <div class="balance_select_div">
-<<<<<<< HEAD
+
 							            <div class="content_select_1" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
-=======
-							            <div class="content_select_1" style="color: ${data.bal_left_color};">
->>>>>>> branch 'main' of https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong.git
+
 							                <div class="content_select_1_name">
 							                    <h3 >${data.bal_left}</h3>
 							                </div>
@@ -800,11 +798,9 @@ function getPost(page) {
 							                    <h4 class="count_num1" >${data.bal_left_count}</h4>
 							                </div>
 							            </div>
-<<<<<<< HEAD
+
 							            <div class="content_select_2" idx="${data.bal_seq}" onclick="balanceVote(this)">
-=======
-							            <div class="content_select_2" style="color: ${data.bal_right_color};">
->>>>>>> branch 'main' of https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong.git
+
 							                <div class="content_select_2_name">
 							                    <h3>${data.bal_right}</h3>
 							                </div>
