@@ -64,6 +64,22 @@ public class MemberDAO {
 		public MemberDTO memLogin(MemberDTO m) {
 			SqlSession session = sqlSessionFactory.openSession(true);
 			MemberDTO mem = session.selectOne("memLogin", m);
+			session.close();
 			return mem;
+		}
+
+
+		public int plusReward(MemberDTO memberDTO) {
+			SqlSession session = sqlSessionFactory.openSession(true);
+			int result = session.update("plusReward", memberDTO);
+			session.close();
+			return result;
+		}
+		
+		public int minusReward(MemberDTO memberDTO) {
+			SqlSession session = sqlSessionFactory.openSession(true);
+			int result = session.update("minusReward", memberDTO);
+			session.close();
+			return result;
 		}
 }

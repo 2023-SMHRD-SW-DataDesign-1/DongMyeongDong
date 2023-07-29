@@ -655,95 +655,53 @@ function follow(e) {
 	}
 }
 
-function balanceVote(e){
+function balanceVote(e) {
 	let bal_seq = $(e).attr('idx');
 	let className = $(e).attr('class');
+	let reward = $(e).data('reward');
 	let vote;
-	if(className == 'content_select_1' || className == 'sp_content_select_1'){
+	if (className == 'content_select_1' || className == 'sp_content_select_1') {
 		vote = 'L';
-	}else if(className == 'content_select_2' || className == 'sp_content_select_2'){
+	} else if (className == 'content_select_2' || className == 'sp_content_select_2') {
 		vote = 'R';
 	}
 	let left = $(e).parent().find('.count_num1').text();
-	let right =$(e).parent().find('.count_num2').text();
-	
-	
+	let right = $(e).parent().find('.count_num2').text();
+
+
 	$.ajax({
-		url : "BalVoteCon.do",
-		type : "post",
-		data : {"bal_seq" : bal_seq, "vote" : vote},
-		success : function(vote){
+		url: "BalVoteCon.do",
+		type: "post",
+		data: { "bal_seq": bal_seq, "vote": vote ,"reward":reward},
+		success: function(vote) {
 			$(e).parent().find('.count_num1').text(vote.bal_left_count);
 			$(e).parent().find('.count_num2').text(vote.bal_right_count);
-			if(className == 'sp_content_select_1' || className == 'sp_content_select_2'){
-				
+			if (className == 'sp_content_select_1' || className == 'sp_content_select_2') {
+
 				/*$("img[idx=bal"+bal_seq+"]")*/
-				$('[data-id="'+bal_seq+'"]').parent().find('.count_num1').text(vote.bal_left_count);
-				$('[data-id="'+bal_seq+'"]').parent().find('.count_num2').text(vote.bal_right_count);
+				$('[data-id="' + bal_seq + '"]').parent().find('.count_num1').text(vote.bal_left_count);
+				$('[data-id="' + bal_seq + '"]').parent().find('.count_num2').text(vote.bal_right_count);
 				let bal_left = $(e).parent().find('.sp_count_num1').text();
 				let bal_right = $(e).parent().find('.sp_count_num2').text();
 				$(e).parent().find('.sp_count_num1').text(vote.bal_left_count);
 				$(e).parent().find('.sp_count_num2').text(vote.bal_right_count);
-				
-				detailBalanceLoad(bal_left,bal_right);
-			}else{
-				
+
+				detailBalanceLoad(bal_left, bal_right);
+			} else {
+
 			}
-			
-			
-			balanceLoad(left,right);
-			
+
+
+			balanceLoad(left, right);
+
 		},
-		error : function(){
+		error: function() {
 			alert("balanceVote 실패");
 		}
 	})
 }
 
-function balanceVote(e){
-	let bal_seq = $(e).attr('idx');
-	let className = $(e).attr('class');
-	let vote;
-	if(className == 'content_select_1' || className == 'sp_content_select_1'){
-		vote = 'L';
-	}else if(className == 'content_select_2' || className == 'sp_content_select_2'){
-		vote = 'R';
-	}
-	let left = $(e).parent().find('.count_num1').text();
-	let right =$(e).parent().find('.count_num2').text();
-	
-	
-	$.ajax({
-		url : "BalVoteCon.do",
-		type : "post",
-		data : {"bal_seq" : bal_seq, "vote" : vote},
-		success : function(vote){
-			$(e).parent().find('.count_num1').text(vote.bal_left_count);
-			$(e).parent().find('.count_num2').text(vote.bal_right_count);
-			if(className == 'sp_content_select_1' || className == 'sp_content_select_2'){
-				
-				/*$("img[idx=bal"+bal_seq+"]")*/
-				$('[data-id="'+bal_seq+'"]').parent().find('.count_num1').text(vote.bal_left_count);
-				$('[data-id="'+bal_seq+'"]').parent().find('.count_num2').text(vote.bal_right_count);
-				let bal_left = $(e).parent().find('.sp_count_num1').text();
-				let bal_right = $(e).parent().find('.sp_count_num2').text();
-				$(e).parent().find('.sp_count_num1').text(vote.bal_left_count);
-				$(e).parent().find('.sp_count_num2').text(vote.bal_right_count);
-				
-				detailBalanceLoad(bal_left,bal_right);
-			}else{
-				
-			}
-			
-			
-			balanceLoad(left,right);
-			
-		},
-		error : function(){
-			alert("balanceVote 실패");
-		}
-	})
-}
+
 
 function getPost(page) {
 
@@ -788,7 +746,7 @@ function getPost(page) {
 							        <div class="balance_select_div">
 
 
-							            <div class="content_select_1" style="background-color: ${data.bal_left_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
+							            <div class="content_select_1" style="background-color: ${data.bal_left_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)">
 
 							                <div class="content_select_1_name">
 							                    <h3 >${data.bal_left}</h3>
@@ -799,7 +757,7 @@ function getPost(page) {
 							            </div>
 
 
-							            <div class="content_select_2" style="background-color: ${data.bal_right_color}" idx="${data.bal_seq}" onclick="balanceVote(this)">
+							            <div class="content_select_2" style="background-color: ${data.bal_right_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)">
 
 							                <div class="content_select_2_name">
 							                    <h3>${data.bal_right}</h3>

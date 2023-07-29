@@ -653,6 +653,7 @@ function follow(e) {
 function balanceVote(e) {
 	let bal_seq = $(e).attr('idx');
 	let className = $(e).attr('class');
+	let reward = $(e).data('reward');
 	let vote;
 	if (className == 'content_select_1' || className == 'sp_content_select_1') {
 		vote = 'L';
@@ -666,7 +667,7 @@ function balanceVote(e) {
 	$.ajax({
 		url: "BalVoteCon.do",
 		type: "post",
-		data: { "bal_seq": bal_seq, "vote": vote },
+		data: { "bal_seq": bal_seq, "vote": vote ,"reward":reward},
 		success: function(vote) {
 			$(e).parent().find('.count_num1').text(vote.bal_left_count);
 			$(e).parent().find('.count_num2').text(vote.bal_right_count);
@@ -838,7 +839,7 @@ function getPost(page) {
 							        <div class="balance_select_div">
 
 
-							            <div class="content_select_1" style="background-color: ${data.bal_left_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" onclick="balanceVote(this)">
+							            <div class="content_select_1" style="background-color: ${data.bal_left_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)">
 
 							                <div class="content_select_1_name">
 							                    <h3>${data.bal_left}</h3>
@@ -849,7 +850,7 @@ function getPost(page) {
 							            </div>
 
 
-							            <div class="content_select_2" style="background-color: ${data.bal_right_color}" idx="${data.bal_seq}" onclick="balanceVote(this)">
+							            <div class="content_select_2" style="background-color: ${data.bal_right_color}" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)">
 
 							                <div class="content_select_2_name">
 							                    <h3>${data.bal_right}</h3>

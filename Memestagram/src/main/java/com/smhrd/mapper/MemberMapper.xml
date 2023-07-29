@@ -34,6 +34,14 @@
 		where M.mem_id = #{mem_id};
 
 	</select>
+	
+	<update id="minusReward" parameterType="MemberDTO">
+		update member_info set mem_reward = mem_reward - #{mem_reward} where mem_id = #{mem_id}
+	</update>
+	
+	<update id="plusReward" parameterType="MemberDTO">
+		update member_info set mem_reward = mem_reward + #{mem_reward} where mem_id = #{mem_id}
+	</update>
 
 	
 
