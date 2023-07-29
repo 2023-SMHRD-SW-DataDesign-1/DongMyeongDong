@@ -830,14 +830,14 @@ body.modal-open {
 }
 
 .balance_title{
-  width: 50%;
+  width: 10%;
 }
 
 .balance_time{
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
   justify-content: center;  /* 수평 정렬 */
-  width: 20%;
+  width: 50%;
 }
 
 .balance_time i{
@@ -850,7 +850,7 @@ body.modal-open {
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
   justify-content: center;  /* 수평 정렬 */
-  width: 20%;
+  width: 50%;
 }
 
 .balance_reward i{
