@@ -435,7 +435,7 @@ function deleteCmt(e,type){
 	const result = confirm("댓글을 삭제하시겠습니까?");
 	let cmt_seq  = $(e).data('seq');
 	let board_seq = $('.sp_comment_area').attr('id');
-	alert(board_seq);
+	
 	
 	if(result){
 		
@@ -498,7 +498,7 @@ function allCmtList(bseq, type) {
 					
 				})
 				
-				/*$(".show_allbal" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");*/
+				$(".show_allbal" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -536,7 +536,7 @@ function allCmtList(bseq, type) {
 					
 
 				})
-				
+				$(".show_all" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");

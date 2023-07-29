@@ -9,7 +9,7 @@
 	<select id="profileShow" parameterType="String" resultType="ProfileDTO">
 		select M.mem_img, M.mem_reward, M.mem_id
 			,(select count(F.following) as following from follow F where F.following = M.mem_id) AS following
-			,(select count(F.follower) as follower from follow F where F.following = M.mem_id) AS follower
+			,(select count(F.follower) as follower from follow F where F.follower = M.mem_id) AS follower
 			,(select count(B.board_seq) from board B where B.mem_id = M.mem_id) AS boardcount
 		from member_info M
 		where M.mem_id = #{mem_id}
