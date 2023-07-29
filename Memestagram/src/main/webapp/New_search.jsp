@@ -248,6 +248,7 @@
 				img.setAttribute("class", "col-lg-6");
 				//document.querySelector("#cp_file").appendChild(img);
 				$('.cp_file').append(img);
+				
 			};
 			
 			reader.readAsDataURL(event.target.files[0]);

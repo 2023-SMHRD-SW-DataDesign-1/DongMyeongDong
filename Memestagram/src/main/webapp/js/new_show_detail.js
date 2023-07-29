@@ -79,6 +79,7 @@ function showDetailView(postId) {
                     <div class="sp_content_area">
                         <div class="sp_comment">
 							<div>
+								<img src="./image/${data.mem_img}" alt="">
 								<b>${data.mem_id}</b><span>${data.board_content}</span>
 							</div>
 						</div>
