@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/new_home.css" />
     <link rel="stylesheet" href="css/new_profile.css" />
     <link rel="stylesheet" href="css/new_post.css" />
+    
    
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
