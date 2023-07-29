@@ -77,6 +77,10 @@
   color: #0095F6;
 }
 
+.cp_header_div3 input:hover{
+	cursor: pointer;
+}
+
 .cp_content{
   display: flex;
   height: 95%;
@@ -84,12 +88,16 @@
 }
 
 .cp_file{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 70%;
   border-right: 1px solid lightgray;
   position: relative;
 }
 
-.cp_file img{
+.mimg{
   position: absolute;
   top: 40%;
   left: 50%;
@@ -134,13 +142,17 @@
 }
 
 .cp_text_user div{
-  margin-left: 15px;
+  height:100%;
+  display:flex;
+  align-items: center;
+  margin-left: 10px;
 }
 
-.cp_text_user div img{
-  width: 30px;
-  height: 30px;
+.cp_text_user>div>img{
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  border: 1px solid lightgray;
 }
 
 .cp_text_area_normal{

@@ -15,7 +15,7 @@ body {
   align-items: center;
   margin: 0 24px;
 }
-.create_post:hover{
+.list>.create_post:hover{
 	cursor: pointer;
 }
 .logo .menu-icon {

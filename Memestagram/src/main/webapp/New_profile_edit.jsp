@@ -88,7 +88,7 @@
             </div>
         </div>
     </div>
-    <script src="js/new_post.js"></script>
+    <script src="js/new_post.js" data-id="${member.mem_id}" data-img="${member.mem_img}"></script>
 	<script src="js/new_search.js"></script>
     <script type="text/javascript">
     
