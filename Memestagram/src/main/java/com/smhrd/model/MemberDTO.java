@@ -74,6 +74,15 @@ public class MemberDTO {
 
 
 
+	public MemberDTO(@NonNull String mem_id, int mem_reward) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_reward = mem_reward;
+	}
+
+
+
+
 
 
 

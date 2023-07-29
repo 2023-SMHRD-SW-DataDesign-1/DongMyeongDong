@@ -147,7 +147,7 @@ function showDetailView(postId) {
 					}
                    content += `</div>
                     <div class="sp_balance_select_div">
-                        <div class="sp_content_select_1" idx="${data.bal_seq}" onclick="balanceVote(this)">
+                        <div class="sp_content_select_1" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)">
                             <div class="sp_content_select_1_name">
                                 <h2>${data.bal_left}</h2>
                             </div>
@@ -155,7 +155,7 @@ function showDetailView(postId) {
                                 <h3 class="sp_count_num1">${data.bal_left_count}</h3>
                             </div>
                         </div>
-                        <div class="sp_content_select_2" idx="${data.bal_seq}" onclick="balanceVote(this)">
+                        <div class="sp_content_select_2" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)">
                             <div class="sp_content_select_2_name">
                                 <h2>${data.bal_right}</h2>
                             </div>

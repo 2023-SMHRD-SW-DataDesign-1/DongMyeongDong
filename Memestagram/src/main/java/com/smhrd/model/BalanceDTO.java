@@ -41,7 +41,7 @@ public class BalanceDTO {
 		this.mem_id = mem_id;
 	}
 
-
+	
 	public BalanceDTO(@NonNull String mem_id, @NonNull String bal_content, @NonNull String bal_img,
 			@NonNull String bal_left, @NonNull String bal_right, int bal_reward, @NonNull String bal_time,
 			String bal_left_color, String bal_right_color) {
@@ -55,6 +55,13 @@ public class BalanceDTO {
 		this.bal_time = bal_time;
 		this.bal_left_color = bal_left_color;
 		this.bal_right_color = bal_right_color;
+	}
+
+
+	public BalanceDTO(@NonNull String mem_id, int bal_reward) {
+		super();
+		this.mem_id = mem_id;
+		this.bal_reward = bal_reward;
 	}
 	
 
