@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	const sidebar = document.getElementById('sidebar');
 	const box = document.getElementById('box');
 
-
 	// 버튼 이벤트 위임
 	sidebar.addEventListener('click', function(event) {
 		if (event.target.classList.contains('search')) {
@@ -13,7 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			sidebar.style.width = "470px";
 			showSearchBar();
 			showSessionArray();
-
+			
+			const userInput = document.getElementById('userInput');
+			userInput.focus();
+			
 			// 검색창 바깥 영역을 클릭하면 이전 사이드바로 변경
 			window.onclick = function(event) {
 
@@ -68,11 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </ul>
 
         <div class="bottom-cotent">
-            <li class="sb_list">
-                <a href="#" class="nav-link">
-                    <i class="bx bx-cog icon"></i>
-                </a>
-            </li>
             <li class="sb_list">
                 <a href="#" class="nav-link">
                     <i class="bx bx-log-out icon"></i>
@@ -142,12 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="bottom-cotent">
         <li class="list">
             <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">설정</span>
-            </a>
-        </li>
-        <li class="list">
-            <a href="#" class="nav-link">
                 <i class="bx bx-log-out icon"></i>
                 <span class="link">로그아웃</span>
             </a>
@@ -161,10 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleEnter(event) {
 	if (event.key === "Enter") {
 		event.preventDefault(); // 기본 엔터 행동 방지 (폼 전송 방지)
-		const userInput = document.getElementById("userInput").value;
-		processInput(userInput); // 입력값을 처리하는 함수 호출
+		const userInput_value = document.getElementById("userInput").value;
+		processInput(userInput_value); // 입력값을 처리하는 함수 호출
 		document.getElementById("userInput").value = "";
-		window.location.href = "New_search.jsp?keyword=" + userInput;
+		window.location.href = "New_search.jsp?keyword=" + userInput_value;
 	}
 }
 
@@ -185,7 +176,7 @@ function showSessionArray() {
 	search_log.innerHTML = "";
 
 	for (var i = 0; i < sessionData.length; i++) {
-		search_log.innerHTML += `<div><span>${sessionData[i]}</span><button>X</button></div>`;
+		search_log.innerHTML += `<div><span>${sessionData[i]}</span></div>`;
 	}
 }
 

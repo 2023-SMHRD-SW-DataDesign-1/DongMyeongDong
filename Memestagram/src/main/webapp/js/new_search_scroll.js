@@ -500,9 +500,14 @@ function getPost(page, keyword) {
 		datatype: "json",
 		async: false,
 		success: function(data) {
-
+			
+			if(data.length < 1){
+				content = `<h2>검색결과가 없습니다<h2>`;
+				$('#posts').append(content);
+			}
+			
 			$.each(data, function(index, data) {
-				console.log(data);
+				
 				content = `<div class="post">
             <div class="header">
                 <div class="profile_icon">

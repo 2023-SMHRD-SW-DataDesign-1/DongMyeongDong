@@ -120,6 +120,12 @@ body {
   list-style-type: none;
 }
 
+#posts h2{
+	margin-top : 100px;
+	color: #0095F6;
+	font-weight:bold;
+}
+
 /* 게시글 내용 */
 .post{
   padding: auto;
