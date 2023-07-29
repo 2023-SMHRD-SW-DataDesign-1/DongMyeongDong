@@ -119,7 +119,7 @@
 	                        </div>
 	                        <div class="cp_content">
 	                            <div class="cp_file">
-	                                <img src="./image/files.png" alt="">
+	                                <img src="./image/files.png" alt="" class="mimg">
 	                                <label for="file">
 	                                    <div class="btn-upload">파일 올리기</div>
 	                                  </label>
@@ -127,7 +127,7 @@
 	                            </div>
 	                            <div class="cp_text">
 	                                <div class="cp_text_user">
-	                                    <div><img src="./image/user.png" alt=""></div>
+	                                    <div><img src="./image/${data.mem_img}" alt=""></div>
 	                                    <div>${member.mem_id}</div>
 	                                </div>
 	                                <div class="cp_text_area_normal">
@@ -153,7 +153,7 @@
 	                    </div>
 	                    <div class="cp_content">
 	                        <div class="cp_file">
-	                            <img src="./image/files.png" alt="" id="mimg">
+	                            <img src="./image/files.png" alt="" class="mimg">
 	                            <label for="file">
 	                                <div class="btn-upload">파일 올리기</div>
 	                            </label>
@@ -161,7 +161,7 @@
 	                        </div>
 	                        <div class="cp_text">
 	                            <div class="cp_text_user">
-	                                <div><img src="./image/user.png" alt=""></div>
+	                                <div><img src="./image/${data.mem_img}" alt=""></div>
 	                                <div>${member.mem_id}</div>
 	                            </div>
 	                            <div class="cp_text_area">
@@ -207,7 +207,8 @@
 			
 			//기존 이미지 숨김
 			$(".btn-upload").hide();
-			$("#mimg").hide();
+			 $(".mimg").hide(); 
+			/* document.getElementByid("mimg").style.display="none"; */
 			
 			reader.onload = function(event){
 				

@@ -130,7 +130,7 @@
 		                        </div>
 		                        <div class="cp_content">
 		                            <div class="cp_file">
-		                                <img src="./image/files.png" alt="">
+		                                <img src="./image/files.png" alt="" class="mimg">
 		                                <label for="file">
 		                                    <div class="btn-upload">파일 올리기</div>
 		                                  </label>
@@ -138,7 +138,7 @@
 		                            </div>
 		                            <div class="cp_text">
 		                                <div class="cp_text_user">
-		                                    <div><img src="./image/user.png" alt=""></div>
+		                                    <div><img src="./image/${data.mem_img}" alt=""></div>
 		                                    <div>${member.mem_id}</div>
 		                                </div>
 		                                <div class="cp_text_area_normal">
@@ -164,7 +164,7 @@
 		                    </div>
 		                    <div class="cp_content">
 		                        <div class="cp_file">
-		                            <img src="./image/files.png" alt="" id="mimg">
+		                            <img src="./image/files.png" alt="" class="mimg">
 		                            <label for="file">
 		                                <div class="btn-upload">파일 올리기</div>
 		                            </label>
@@ -172,7 +172,7 @@
 		                        </div>
 		                        <div class="cp_text">
 		                            <div class="cp_text_user">
-		                                <div><img src="./image/user.png" alt=""></div>
+		                                <div><img src="./image/${data.mem_img}" alt=""></div>
 		                                <div>${member.mem_id}</div>
 		                            </div>
 		                            <div class="cp_text_area">
@@ -218,7 +218,8 @@
 				
 				//기존 이미지 숨김
 				$(".btn-upload").hide();
-				$("#mimg").hide();
+				 $(".mimg").hide(); 
+				/* document.getElementByid("mimg").style.display="none"; */
 				
 				reader.onload = function(event){
 					
@@ -243,6 +244,34 @@
 				};
 				
 				reader.readAsDataURL(event.target.files[0]);
+			}
+		
+
+		  
+			function LogoutCheck() {
+				let type = "${member.login_type}";
+				
+
+				if (type == "kakao") {
+					Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
+					
+					if (!Kakao.Auth.getAccessToken()) {
+						alert('Not logged in.');
+						return;
+					}
+					Kakao.Auth.logout(function() {
+						alert('logout ok\naccess token -> '
+								+ Kakao.Auth.getAccessToken());
+					});
+					
+					location.href = "LogoutCon.do";
+				} else if (type == "naver") {
+					location.href = "LogoutCon.do";
+
+				} else {
+					location.href = "LogoutCon.do";
+				}
+
 			}
 	</script>
 </body>
