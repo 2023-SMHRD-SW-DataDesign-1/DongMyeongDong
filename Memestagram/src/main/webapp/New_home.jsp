@@ -55,6 +55,9 @@
             </p>
         </div>
     </div>
+    
+    <input type="hidden" id="my_id" value="${member.mem_id}">
+    
 
     <script src="js/new_home_scroll.js"></script>
 
@@ -235,7 +238,7 @@
 	  
 		function LogoutCheck() {
 			let type = "${member.login_type}";
-			alert(type);
+			
 
 			if (type == "kakao") {
 				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');

@@ -10,8 +10,8 @@
 	</insert>
 	
 
-	<delete id="balDeleteCmt" parameterType="BalCmtDTO">
-	delete from balance_cmt where bal_seq = #{bal_seq}
+	<delete id="balDeleteCmt" parameterType="int">
+	delete from balance_cmt where bal_cmt_seq = #{bal_cmt_seq}
 	</delete>
 	
 	

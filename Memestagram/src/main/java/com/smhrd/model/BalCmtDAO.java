@@ -18,9 +18,9 @@ public class BalCmtDAO {
 		
 		return row;
 	}
-	public int balDeleteCmt(String board_cmt_seq) {
+	public int balDeleteCmt(int bal_cmt_seq) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.delete("balDeleteCmt", board_cmt_seq);
+		int row = session.delete("balDeleteCmt", bal_cmt_seq);
 		session.close();
 		
 		return row;
@@ -45,5 +45,9 @@ public class BalCmtDAO {
 		List<BalCmtDTO> list = session.selectList("balCmtAllList", bal_seq);
 		session.close();
 		return list;
+	}
+	public int balCmtDelete(BalCmtDTO balCmtDTO) {
+		
+		return 0;
 	}
 }

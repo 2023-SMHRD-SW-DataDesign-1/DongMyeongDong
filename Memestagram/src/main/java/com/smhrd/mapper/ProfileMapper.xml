@@ -40,14 +40,15 @@
 	
 	<!-- 프로필화면에서 구매한 상품목록 보여주는 쿼리문 -->
 	<select id="shoppingList" parameterType="String" resultType="ProfileProductDTO">
-		select P.product_img
+		<!-- select P.product_img
 		from product P
 		where P.product_name = product_name
 		and exists (
    			select 1
     		from shopping_list S
    		    where S.mem_id = #{mem_id}
-   			and S.product_name = P.product_name)
+   			and S.product_name = P.product_name) -->
+   			select s.*,(select product_img from product p where s.product_name = p.product_name) as product_img from shopping_list s where mem_id = #{admin}
 	</select>
 
 </mapper>

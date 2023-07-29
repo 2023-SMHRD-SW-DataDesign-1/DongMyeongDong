@@ -17,6 +17,7 @@
 	charset="utf-8"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js"></script>
 </head>
 
 <body>
@@ -44,7 +45,7 @@
         </div>
     </div>
 
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
 	<script type="text/javascript">
 		$('#naver_login').on('click',function(){
 			alert("naver click!");
@@ -93,10 +94,16 @@
 
 	<script type="text/javascript">
 		Kakao.init('ffaba3cad1608806d9940769fa4c7c8b'); // 사용하려는 앱의 JavaScript 키 입력
-
+		
 		$("#kakao-login-btn").on("click",function() {
+			/* Kakao.Auth.authorize({
+				throughTalk : false,
+				prompts: "login"
+				
+			}); */
 			//1. 로그인 시도
 			Kakao.Auth.login({
+				throughTalk : true,
 				success : function(authObj) {
 					//2. 로그인 성공시, API 호출
 					Kakao.API.request({
@@ -138,6 +145,7 @@
 				var token = authObj.access_token;
 				
 				},
+				
 				fail : function(err) {
 					alert(JSON.stringify(err));
 				}

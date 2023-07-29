@@ -38,14 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
 			
             // 모달 바깥 영역을 클릭하면 모달이 닫히도록 이벤트 리스너 추가
             window.onclick = function (event) {
-				console.log(event.target);
+				
                 if (event.target === detailView) {
 					stopBalanceAnimation();
                     closeDetailView();
                     document.body.classList.remove('modal-open');
                 }
             };
-            balanceDetailAnimation2(detailView);
+            
 		}
     });
 
@@ -83,7 +83,7 @@ function showDetailView(postId) {
 							</div>
 						</div>
                     </div>
-                    <div class="sp_comment_area">
+                    <div class="sp_comment_area" id="${data.board_seq}">
                     
                     </div>
                     <div class="sp_button_area">
@@ -188,7 +188,7 @@ function showDetailView(postId) {
 							</div>
 						</div>
                     </div>
-                    <div class="sp_comment_area">
+                    <div class="sp_comment_area" id="${data.bal_seq}">
                     
                     </div>
                     <div class="sp_button_area">
@@ -217,7 +217,9 @@ function showDetailView(postId) {
     </div>`;
     
     detailView.innerHTML = content;
+    balanceDetailAnimation2(detailView);
     allCmtList(data.bal_seq,"bal");
+    
 			},
 			
 			error : function(){
@@ -347,9 +349,9 @@ function balanceDetailAnimation2(post) {
     // var num2 = 78910;   // 선택지 2 값
     
     const detailView2 = document.getElementById('balance_post_modal');
-	let num1 = Number(detailView2.getElementsByClassName('sp_count_num1')[0].innerHTML);
-	let num2 = Number(detailView2.getElementsByClassName('sp_count_num2')[0].innerHTML);
 	
+	let num1 = Number(detailView2.getElementsByClassName('sp_count_num1')[0].textContent);
+	let num2 = Number(detailView2.getElementsByClassName('sp_count_num2')[0].textContent);
     const count_num = post.getElementsByClassName("sp_count_num1");
     const content_select_1 = post.getElementsByClassName("sp_content_select_1");
     const count_num2 = post.getElementsByClassName("sp_count_num2");
@@ -415,3 +417,4 @@ function stopBalanceAnimation() {
     if (animation3) animation3.finish();
     if (animation4) animation4.finish();
 }
+

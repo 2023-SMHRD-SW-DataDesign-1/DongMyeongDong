@@ -52,7 +52,7 @@
             <div class="shop_user_info">
                 <div class="shop_user_info_title">리워드 상점</div>
                 <div class="shop_user_info_icon">
-                    <img src="./image/user.png" alt="">
+                    <img src="./image/${member.mem_img }" alt="">
                 </div>
                 <div class="shop_user_info_name">${member.mem_id}</div>
                 <div class="shop_user_info_point">${member.mem_reward}</div>
@@ -87,7 +87,7 @@
 <script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
-			alert(type);
+			
 
 			if (type == "kakao") {
 				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
@@ -110,8 +110,7 @@
 			}
 
 		}
-	</script>
-	<script type="text/javascript">
+	
 
 	document.addEventListener('DOMContentLoaded', function () {
 	    const sidebar = document.getElementById('sidebar');

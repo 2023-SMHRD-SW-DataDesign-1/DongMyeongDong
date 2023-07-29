@@ -20,21 +20,19 @@ public class BoardCmtDeleteCon implements command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("[BoardCmtDeleteCon]");
-		
-		String board_cmt_seq = request.getParameter("board_cmt_seq");
-		System.out.println("번호 : " + board_cmt_seq);
-		
-		BoardCmtDAO dao = new BoardCmtDAO();
-		int row = dao.cmtdelete(board_cmt_seq);
-
-	
-		// 성공 실패 여부확인
-		if(row>0) {
-			System.out.println("업로드 성공");
-		}else {
-			System.out.println("업로드 실패");
-		}
+		/*
+		 * System.out.println("[BoardCmtDeleteCon]");
+		 * 
+		 * String board_cmt_seq = request.getParameter("board_cmt_seq");
+		 * System.out.println("번호 : " + board_cmt_seq);
+		 * 
+		 * BoardCmtDAO dao = new BoardCmtDAO(); int row =
+		 * dao.BoardcmtDelete(board_cmt_seq);
+		 * 
+		 * 
+		 * // 성공 실패 여부확인 if(row>0) { System.out.println("업로드 성공"); }else {
+		 * System.out.println("업로드 실패"); }
+		 */
 		
 		return "./Home.jsp";
 		

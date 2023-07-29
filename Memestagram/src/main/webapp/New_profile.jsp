@@ -79,6 +79,8 @@
                 	<c:set var="shopping_list" value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
                 	<c:forEach var="post_shop" items="${shopping_list}">
                 	<img src="./image/${post_shop.product_img}" alt="" >
+                    <div class="shop_product_name">상품명 : ${post_shop.product_name}</div>
+                	<div class="shop_product_buy_date">구매시간 : ${post_shop.buy_date}</div>
                 	</c:forEach>
                 </div>
             </div>
@@ -280,7 +282,31 @@
     			
     			reader.readAsDataURL(event.target.files[0]);
     		}        
-        
+    	  function LogoutCheck() {
+  			let type = "${member.login_type}";
+  			
+
+  			if (type == "kakao") {
+  				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
+  				
+  				if (!Kakao.Auth.getAccessToken()) {
+  					alert('Not logged in.');
+  					return;
+  				}
+  				Kakao.Auth.logout(function() {
+  					alert('logout ok\naccess token -> '
+  							+ Kakao.Auth.getAccessToken());
+  				});
+  				
+  				location.href = "LogoutCon.do";
+  			} else if (type == "naver") {
+  				location.href = "LogoutCon.do";
+
+  			} else {
+  				location.href = "LogoutCon.do";
+  			}
+
+  		}
 
         
 

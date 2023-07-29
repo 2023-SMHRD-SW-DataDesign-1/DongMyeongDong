@@ -12,6 +12,7 @@ public class ShopDTO {
 	private int product_price;
 	private String product_img;
 	private String mem_id;
+	private String buy_date;
 	
 	
 	public ShopDTO(String product_name, String mem_id) {
