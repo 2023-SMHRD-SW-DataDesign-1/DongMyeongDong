@@ -9,6 +9,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
@@ -69,7 +70,7 @@
 							<div>게시물 ${show.boardcount}</div>
 							<div>팔로워 ${show.follower}</div>
 							<div>팔로우 ${show.following}</div>
-							<div>리워드 ${show.mem_reward}</div>
+							<div>리워드 ${show.mem_reward} P</div>
 						</div>
 					</div>
 				</div>
@@ -82,16 +83,27 @@
 					<c:set var="board_list"
 						value="${ProfileDAO.boardList(member.mem_id)}"></c:set>
 					<c:forEach var="post_board" items="${board_list}">
-						<img src="./image/${post_board.board_img}" alt=""
-							class="post-image" data-post-id="${post_board.board_seq}">
+						<c:set var="extension" value="${fn:substringAfter(post_board.board_img, '.')}" />
+						<c:choose>
+							<%-- 이미지 파일인 경우 --%>
+							<c:when test="${extension eq 'jpg' || extension eq 'jpeg' || extension eq 'png' || extension eq 'gif'}">
+								<img src="./image/${post_board.board_img}" alt="" class="post-image" data-post-id="${post_board.board_seq}">
+							</c:when>
+							<%-- 비디오 파일인 경우 --%>
+							<c:when test="${extension eq 'mp4' || extension eq 'avi' || extension eq 'mov' || extension eq 'wmv'}">
+								<video preload="metadata" src="./image/${post_board.board_img}#t=0.5" class="post-image" data-post-id="${post_board.board_seq}"></video>
+							</c:when>
+							<%-- 기타 파일인 경우 --%>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</div>
 
 				<div class="div_post" id="productPart">
 					<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
 					<div class="shop_product_div">
-						<c:set var="shopping_list"
-							value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
+						<c:set var="shopping_list" value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
 						<c:forEach var="post_shop" items="${shopping_list}">
 							<div class="shop_product">
 								<div class="shop_product_img">
@@ -112,14 +124,8 @@
 	<!-- 게시글 세부 화면 modal 창 -->
 	<div id="post_modal" class="post_modal"></div>
 
-
-
 	<!-- 게시글 작성 modal 창 -->
 	<div id="create_modal" class="create_modal"></div>
-
-
-
-
 
 	<script src="js/new_post.js" data-id="${member.mem_id}" data-img="${member.mem_img}"></script>
 	<script src="js/new_profile_detail.js"></script>
@@ -132,16 +138,15 @@
         window.location.href = "./New_profile_edit.jsp";
     });
     
-    
     // 게시물 메뉴를 클릭했을 때 -> 게시물 이미지O / 상품 목록X
     function showPost() {
- 	   document.getElementById("postPart").style.display="block";
+ 	   document.getElementById("postPart").style.display="flex";
  	   document.getElementById("productPart").style.display="none";
     }
     
     // 상품 목록 메뉴를 클릭했을 때 -> 게시물 이미지X / 상품 목록O
     function showProduct() {
- 	   document.getElementById("productPart").style.display="block";
+ 	   document.getElementById("productPart").style.display="flex";
  	   document.getElementById("postPart").style.display="none";
     }
     </script>

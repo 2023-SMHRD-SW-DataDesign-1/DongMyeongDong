@@ -690,20 +690,18 @@ body.modal-open {
 .sp_detail_user_id_div{
   display: flex;
   align-items: center;
-  width: 20%;
+  justify-content:flex-start;
+  width: 40%;
   height: 100%
 }
 .sp_detail_user_dots_div{
-  width: 25px;
-  height: 100%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
 }
-.sp_detail_user_dots_div>i{
-  margin-left :auto;
-  margin-bottom : auto;
-}
+
 #menu_dot{
   font-size: 25px;
   margin-right: 10px;

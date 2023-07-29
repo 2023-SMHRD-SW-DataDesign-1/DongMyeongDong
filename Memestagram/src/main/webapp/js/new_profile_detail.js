@@ -363,13 +363,10 @@ function allCmtList(bseq,type){
 }
 
 function delete_board(board_seq){
-	const result = confirm("게시글을 삭제하시겠습니까? 글 번호 : " + board_seq);
-    var board_seq = document.querySelector('.post-image').getAttribute('data-post-id');
-    console.log('board_seq값', board_seq);
+	const result = confirm("게시글을 삭제하시겠습니까? " + board_seq);
     
     if (result) {
       // 사용자가 "예"를 선택한 경우
-      alert("게시글 삭제 합니다.");
       // 여기에 추가적인 작업을 수행하는 코드를 작성할 수 있습니다.
       $.ajax({
 		  type: "POST",
@@ -377,10 +374,11 @@ function delete_board(board_seq){
 		  data: {board_seq, board_seq},
 		  success : function(response) {
 			 console.log(response);
+			 alert("게시글이 삭제 되었습니다.");
 			 window.location.href="./New_profile.jsp"
 		  },
 		  error : function(xhr, status, error) {
-			  console.log("게시물삭제실패"+error)
+			 console.log("게시글 삭제 실패 : " + error);
 		  }
 	  })
 	  
