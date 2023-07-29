@@ -735,9 +735,6 @@ function getPost(page) {
 
 
 				content += `</div>
-                <div class="menu">
-                    <i class='bx bx-dots-horizontal-rounded'></i>
-                </div>
             </div>
             <div class="content">`;
 				var fileExtension = getExtension(data.board_img);
@@ -832,9 +829,6 @@ function getPost(page) {
 							    <div class="balance_reward">
 							        <i class='bx bx-coin'></i>
 							        <span><b>${data.bal_reward}P</b></span>
-							    </div>
-							    <div class="menu">
-							        <i class='bx bx-dots-horizontal-rounded'></i>
 							    </div>
 							    </div>
 							    <!-- 게시물 컨텐츠 영역 -->
