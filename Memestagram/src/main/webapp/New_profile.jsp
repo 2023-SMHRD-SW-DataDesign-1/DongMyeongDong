@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/new_home.css" />
     <link rel="stylesheet" href="css/new_profile.css" />
     <link rel="stylesheet" href="css/new_post.css" />
+    <link rel="stylesheet" href="css/new_search.css" />
     
    
     <!-- Boxicons CSS -->
@@ -350,6 +351,7 @@
     </script>
     <script src="js/new_post.js"></script>
     <script src="js/new_profile_detail.js"></script>
+    <script src="js/new_search.js"></script>
 </body>
 
 </html>

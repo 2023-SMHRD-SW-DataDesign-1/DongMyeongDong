@@ -14,6 +14,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/new_home.css" />
     <link rel="stylesheet" href="css/new_post.css">
+    <link rel="stylesheet" href="css/new_search.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.0.js"
@@ -53,6 +54,7 @@
  <input type="hidden" id="my_id" value="${member.mem_id}">
     <script src="js/new_show_detail.js"></script>
     <script src="js/new_balance_scroll.js"></script>
+    <script src="js/new_search.js"></script>
     <!-- <script src="js/new_post.js"></script> -->
     	<script type="text/javascript">
 		function LogoutCheck() {
