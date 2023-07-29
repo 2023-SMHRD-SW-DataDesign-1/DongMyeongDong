@@ -51,8 +51,9 @@ $(document).ready(function() {
 			$('#video').removeClass('scroll');
 		}
 	});
-	let my_id = $("#my_id").val();
+	
 }); //document ready 끝나는 부분
+let my_id = $("#my_id").val();
 
 function balanceLoad(left,right){
 	
@@ -428,28 +429,74 @@ function cmtList(bseq, type) {
 
 }
 
+function deleteCmt(e,type){
+	const result = confirm("댓글을 삭제하시겠습니까?");
+	let cmt_seq  = $(e).data('seq');
+	let board_seq = $('.sp_comment_area').attr('id');
+	
+	
+	if(result){
+		
+		$.ajax({
+			url : "CmtDeleteCon.do",
+			type : "post",
+			data : {"cmt_seq" : cmt_seq , "type": type},
+			success : function(){
+				alert("댓글 삭제 성공");
+				if(type == 'bal'){
+					/*$(".show_allbal" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
+					cmtList(board_seq, "bal");
+					allCmtList(board_seq, "bal");
+				}else{
+					/*$(".show_all" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
+					cmtList(board_seq, "board");
+					allCmtList(board_seq, "board");
+				}
+				
+			}
+			
+		})
+	}else{
+		
+	}
+}
+
 function allCmtList(bseq, type) {
+	
 	if (type == 'bal') {
 		$.ajax({
 			url: "BalAllCmtListCon.do",
 			type: "post",
 			data: { "bal_seq": bseq },
 			success: function(cmtList) {
-
+				
 				$(".sp_comment_area").html("");
+				
 				$.each(cmtList, function(index, cmt) {
-
-					$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
+					
+					if(my_id == cmt.mem_id){
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
-													
+														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.bal_cmt_seq}" onclick="deleteCmt(this,'bal')"></i></div>
 												  </div>`);
-
-
+					}else{
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
+													
+														<img src="./image/${cmt.mem_img}" alt="">
+													
+													
+														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
+														
+												  </div>`);
+					}
+					
 				})
+				
+				$(".show_allbal" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -464,8 +511,18 @@ function allCmtList(bseq, type) {
 			success: function(cmtList) {
 				$(".sp_comment_area").html("");
 				$.each(cmtList, function(index, cmt) {
-
-					$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
+					if(my_id == cmt.mem_id){
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
+													
+														<img src="./image/${cmt.mem_img}" alt="">
+													
+													
+														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
+														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.board_cmt_seq}" onclick="deleteCmt(this,'board')"></i></div>
+													
+												  </div>`);
+					}else{
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
 													
@@ -473,8 +530,11 @@ function allCmtList(bseq, type) {
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
 													
 												  </div>`);
+					}
+					
 
 				})
+				$(".show_all" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -595,6 +655,51 @@ function follow(e) {
 
 		})
 	}
+}
+
+function balanceVote(e){
+	let bal_seq = $(e).attr('idx');
+	let className = $(e).attr('class');
+	let vote;
+	if(className == 'content_select_1' || className == 'sp_content_select_1'){
+		vote = 'L';
+	}else if(className == 'content_select_2' || className == 'sp_content_select_2'){
+		vote = 'R';
+	}
+	let left = $(e).parent().find('.count_num1').text();
+	let right =$(e).parent().find('.count_num2').text();
+	
+	
+	$.ajax({
+		url : "BalVoteCon.do",
+		type : "post",
+		data : {"bal_seq" : bal_seq, "vote" : vote},
+		success : function(vote){
+			$(e).parent().find('.count_num1').text(vote.bal_left_count);
+			$(e).parent().find('.count_num2').text(vote.bal_right_count);
+			if(className == 'sp_content_select_1' || className == 'sp_content_select_2'){
+				
+				/*$("img[idx=bal"+bal_seq+"]")*/
+				$('[data-id="'+bal_seq+'"]').parent().find('.count_num1').text(vote.bal_left_count);
+				$('[data-id="'+bal_seq+'"]').parent().find('.count_num2').text(vote.bal_right_count);
+				let bal_left = $(e).parent().find('.sp_count_num1').text();
+				let bal_right = $(e).parent().find('.sp_count_num2').text();
+				$(e).parent().find('.sp_count_num1').text(vote.bal_left_count);
+				$(e).parent().find('.sp_count_num2').text(vote.bal_right_count);
+				
+				detailBalanceLoad(bal_left,bal_right);
+			}else{
+				
+			}
+			
+			
+			balanceLoad(left,right);
+			
+		},
+		error : function(){
+			alert("balanceVote 실패");
+		}
+	})
 }
 
 function balanceVote(e){

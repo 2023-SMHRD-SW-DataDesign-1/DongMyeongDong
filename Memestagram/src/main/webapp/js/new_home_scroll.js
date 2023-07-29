@@ -48,7 +48,7 @@ $(document).ready(function() {
 	});
 
 }); //document ready 끝나는 부분
-
+let my_id = $("#my_id").val();
 function balanceLoad(left, right) {
 
 	const feedDiv = document.getElementById('posts');
@@ -374,6 +374,7 @@ function getExtension(filename) {
 
 }
 
+
 function cmtList(bseq, type) {
 	// 밸런스 글일때
 
@@ -423,28 +424,74 @@ function cmtList(bseq, type) {
 
 }
 
+function deleteCmt(e,type){
+	const result = confirm("댓글을 삭제하시겠습니까?");
+	let cmt_seq  = $(e).data('seq');
+	let board_seq = $('.sp_comment_area').attr('id');
+	alert(board_seq);
+	
+	if(result){
+		
+		$.ajax({
+			url : "CmtDeleteCon.do",
+			type : "post",
+			data : {"cmt_seq" : cmt_seq , "type": type},
+			success : function(){
+				alert("댓글 삭제 성공");
+				if(type == 'bal'){
+					/*$(".show_allbal" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
+					cmtList(board_seq, "bal");
+					allCmtList(board_seq, "bal");
+				}else{
+					/*$(".show_all" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
+					cmtList(board_seq, "board");
+					allCmtList(board_seq, "board");
+				}
+				
+			}
+			
+		})
+	}else{
+		
+	}
+}
+
 function allCmtList(bseq, type) {
+	
 	if (type == 'bal') {
 		$.ajax({
 			url: "BalAllCmtListCon.do",
 			type: "post",
 			data: { "bal_seq": bseq },
 			success: function(cmtList) {
-
+				
 				$(".sp_comment_area").html("");
+				
 				$.each(cmtList, function(index, cmt) {
-
-					$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
+					
+					if(my_id == cmt.mem_id){
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
-													
+														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.bal_cmt_seq}" onclick="deleteCmt(this,'bal')"></i></div>
 												  </div>`);
-
-
+					}else{
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
+													
+														<img src="./image/${cmt.mem_img}" alt="">
+													
+													
+														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
+														
+												  </div>`);
+					}
+					
 				})
+				
+				/*$(".show_allbal" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");*/
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -459,8 +506,18 @@ function allCmtList(bseq, type) {
 			success: function(cmtList) {
 				$(".sp_comment_area").html("");
 				$.each(cmtList, function(index, cmt) {
-
-					$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
+					if(my_id == cmt.mem_id){
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
+													
+														<img src="./image/${cmt.mem_img}" alt="">
+													
+													
+														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
+														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.board_cmt_seq}" onclick="deleteCmt(this,'board')"></i></div>
+													
+												  </div>`);
+					}else{
+						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
 													
@@ -468,8 +525,11 @@ function allCmtList(bseq, type) {
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
 													
 												  </div>`);
+					}
+					
 
 				})
+				
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -485,7 +545,7 @@ var count = 1;
 function write_reply(e) {
 	let bseq = $(e).attr("idx");
 	let className = $(e).attr('class');
-
+	
 	// 밸런스 글일때
 	if (className == 'bal_comments_btn') {
 		let content = $('.bal_input_reply' + bseq).val();
@@ -560,9 +620,9 @@ function write_reply(e) {
 function follow(e) {
 	let follow_id = $(e).data('id');
 
-
-
-	if ($(e).text() == "팔로우") {
+	
+	
+	if($(e).text()=="팔로우"){
 
 		$.ajax({
 			url: "FollowCon.do",
