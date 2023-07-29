@@ -50,7 +50,7 @@ public class JoinCon implements command {
 		String pro_img = multi.getFilesystemName("pro_img");
 		
 		if (pro_img == null) {
-			pro_img = " ";
+			pro_img = "user.png";
 		}
 		
 		System.out.println("id : " + id);
@@ -58,7 +58,7 @@ public class JoinCon implements command {
 		System.out.println("email : " + email);
 		System.out.println("pro_img : " + pro_img);
 		
-		int result = new MemberDAO().JoinMember(new MemberDTO(id, pw, pw, email, pro_img));
+		int result = new MemberDAO().JoinMember(new MemberDTO(id, pw, pro_img, email, "user"));
 		
 		if(result > 0) {
 			System.out.println("회원가입 성공");

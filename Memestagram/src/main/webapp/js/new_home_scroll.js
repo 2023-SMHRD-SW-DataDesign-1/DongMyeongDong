@@ -99,9 +99,7 @@ function balanceAnimation(post, num1, num2, left, right) {
 	// 투표 하기전 비율
 	var left_ratio = Math.round((left / (left + right)) * 100);
 	var right_ratio = Math.round((right / (left + right)) * 100);
-	/*alert("num1 : "+num1);
-  	
-		alert("num22 : "+num2);*/
+	
 	// 투표 후 비율
 	var select_1_ratio = Math.round((num1 / (num1 + num2)) * 100);
 	var select_2_ratio = Math.round((num2 / (num1 + num2)) * 100);
@@ -428,7 +426,7 @@ function deleteCmt(e,type){
 	const result = confirm("댓글을 삭제하시겠습니까?");
 	let cmt_seq  = $(e).data('seq');
 	let board_seq = $('.sp_comment_area').attr('id');
-	alert(board_seq);
+	
 	
 	if(result){
 		
@@ -472,7 +470,7 @@ function allCmtList(bseq, type) {
 					if(my_id == cmt.mem_id){
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="">
+														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
@@ -481,7 +479,7 @@ function allCmtList(bseq, type) {
 					}else{
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="">
+														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
@@ -509,7 +507,7 @@ function allCmtList(bseq, type) {
 					if(my_id == cmt.mem_id){
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="">
+														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
@@ -519,7 +517,7 @@ function allCmtList(bseq, type) {
 					}else{
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="">
+														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
@@ -715,7 +713,7 @@ function getPost(page) {
             <div class="header">
                 <div class="profile_icon">
                
-                	<img src="./image/${data.mem_img}" alt="">
+                	<img src="./image/${data.mem_img}" alt="./image/user.png">
                 </div>
                 <div class="id"> ${data.mem_id}</div>
                 <div class="follow${data.mem_id}">`;
