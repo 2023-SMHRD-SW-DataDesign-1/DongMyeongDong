@@ -407,6 +407,11 @@ body {
 .show_all:hover{
   cursor:pointer;
 }
+.bal_comments_show{
+	display:flex;
+	align-items: center;
+	justify-content: flex-start;
+}
 
 .bal_show_all{
   font-size: 12px;
@@ -592,7 +597,6 @@ body.modal-open {
   height: 10%;
   display: flex;
   align-items: center;
-  justify-content: right;
   border-bottom: 1px solid lightgray;
 }
 
@@ -618,7 +622,7 @@ body.modal-open {
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
   justify-content: center;  /* 수평 정렬 */
-  width: 40%;
+  width: 50%;
 }
 
 .sp_balance_time i{
@@ -631,7 +635,7 @@ body.modal-open {
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
   justify-content: center;  /* 수평 정렬 */
-  width: 20%;
+  width: 50%;
 }
 
 .sp_balance_reward i{
@@ -690,9 +694,8 @@ body.modal-open {
   height: 100%
 }
 .sp_detail_user_dots_div{
-  width: 70%;
+  width: 25px;
   height: 100%;
-  
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -700,7 +703,6 @@ body.modal-open {
 .sp_detail_user_dots_div>i{
   margin-left :auto;
   margin-bottom : auto;
-  
 }
 #menu_dot{
   font-size: 25px;
@@ -731,24 +733,24 @@ body.modal-open {
   margin-left: 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
-
-.sp_comment div>img{
+.sp_comment_area div>img{
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid lightgray;
 }
-
-.sp_comment div>b{
+.sp_comment_area div>b{
   margin-left: 10px;
+  width: 100px;
+  text-align: left;
 }
-
-.sp_comment div>span{
+.sp_comment_area div>span{
+  width: 360px;
   margin-left: 10px;
   text-align: left;
 }
+
 
 .sp_content_area{
   width: 100%;
