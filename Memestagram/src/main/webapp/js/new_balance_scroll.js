@@ -51,11 +51,8 @@ $(document).ready(function() {
 			$('#video').removeClass('scroll');
 		}
 	});
-	
-	
-	
+	let my_id = $("#my_id").val();
 }); //document ready 끝나는 부분
-let my_id = $("#my_id").val();
 
 function balanceLoad(left,right){
 	
@@ -246,7 +243,7 @@ function heartCheck(e) {
 	let board_seq = $(e).children("img").attr('idx');
 
 	if ($(e).children('img').attr('class') == "emptyheart") {
-		
+		console.log("빈하트 클릭" + board_seq);
 
 		$.ajax({
 			url: 'LikeSaveCon.do',
@@ -259,7 +256,7 @@ function heartCheck(e) {
 
 				$('.like_count' + board_seq).text(heart);
 
-				
+				console.log("좋아요 성공");
 
 			},
 			error: function() {
@@ -278,7 +275,7 @@ function heartCheck(e) {
 		// 꽉찬 하트를 눌렀을 때
 	} else if (($(e).children('img').attr('class') == "fullheart")) {
 		let board_seq = $(e).children("img").attr('idx');
-		
+		console.log("꽉찬하트 클릭" + board_seq);
 
 		$.ajax({
 			url: 'LikeDeleteCon.do',
@@ -297,7 +294,7 @@ function heartCheck(e) {
 				alert('좋아요 해제 실패');
 			}
 		});
-		
+		console.log("빈하트로 바껴라!")
 		$("img[idx=" + board_seq + "]").attr("src", "./img/emptyheart.png");
 		$("img[idx=" + board_seq + "]").attr("class", "emptyheart");
 
@@ -310,7 +307,7 @@ function balHeartCheck(e) {
 	let bal_seq = $(e).attr('idx');
 
 	if ($(e).children('img').attr('class') == "emptyheart") {
-		
+		console.log("빈하트 클릭" + bal_seq);
 
 		$.ajax({
 			url: 'BalLikeSaveCon.do',
@@ -323,7 +320,7 @@ function balHeartCheck(e) {
 
 				$('.ballike_count' + bal_seq).text(heart);
 
-				
+				console.log("좋아요 성공");
 
 			},
 			error: function() {
@@ -334,7 +331,7 @@ function balHeartCheck(e) {
 
 		//$(".emptyheart").attr("src", "./img/fullheart.png");
 		$("img[idx=bal" + bal_seq + "]").attr("class", "fullheart");
-		
+		//console.log("꽉찬하트로 바껴라!");
 
 
 
@@ -342,7 +339,7 @@ function balHeartCheck(e) {
 		// 꽉찬 하트를 눌렀을 때
 	} else if (($(e).children('img').attr('class') == "fullheart")) {
 		let bal_seq = $(e).attr('idx');
-		
+		console.log("꽉찬하트 클릭" + bal_seq);
 
 		$.ajax({
 			url: 'BalLikeDeleteCon.do',
@@ -361,7 +358,7 @@ function balHeartCheck(e) {
 				alert('좋아요 해제 실패');
 			}
 		});
-		
+		console.log("빈하트로 바껴라!")
 		$("img[idx=bal" + bal_seq + "]").attr("src", "./img/emptyheart.png");
 		$("img[idx=bal" + bal_seq + "]").attr("class", "emptyheart");
 
@@ -431,74 +428,28 @@ function cmtList(bseq, type) {
 
 }
 
-function deleteCmt(e,type){
-	const result = confirm("댓글을 삭제하시겠습니까?");
-	let cmt_seq  = $(e).data('seq');
-	let board_seq = $('.sp_comment_area').attr('id');
-	alert(board_seq);
-	
-	if(result){
-		
-		$.ajax({
-			url : "CmtDeleteCon.do",
-			type : "post",
-			data : {"cmt_seq" : cmt_seq , "type": type},
-			success : function(){
-				alert("댓글 삭제 성공");
-				if(type == 'bal'){
-					/*$(".show_allbal" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
-					cmtList(board_seq, "bal");
-					allCmtList(board_seq, "bal");
-				}else{
-					/*$(".show_all" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
-					cmtList(board_seq, "board");
-					allCmtList(board_seq, "board");
-				}
-				
-			}
-			
-		})
-	}else{
-		
-	}
-}
-
 function allCmtList(bseq, type) {
-	
 	if (type == 'bal') {
 		$.ajax({
 			url: "BalAllCmtListCon.do",
 			type: "post",
 			data: { "bal_seq": bseq },
 			success: function(cmtList) {
-				
+
 				$(".sp_comment_area").html("");
-				
 				$.each(cmtList, function(index, cmt) {
-					
-					if(my_id == cmt.mem_id){
-						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
+
+					$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
-														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.bal_cmt_seq}" onclick="deleteCmt(this,'bal')"></i></div>
+													
 												  </div>`);
-					}else{
-						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
-													
-														<img src="./image/${cmt.mem_img}" alt="">
-													
-													
-														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
-														
-												  </div>`);
-					}
-					
+
+
 				})
-				
-				/*$(".show_allbal" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");*/
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -513,18 +464,8 @@ function allCmtList(bseq, type) {
 			success: function(cmtList) {
 				$(".sp_comment_area").html("");
 				$.each(cmtList, function(index, cmt) {
-					if(my_id == cmt.mem_id){
-						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
-													
-														<img src="./image/${cmt.mem_img}" alt="">
-													
-													
-														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
-														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.board_cmt_seq}" onclick="deleteCmt(this,'board')"></i></div>
-													
-												  </div>`);
-					}else{
-						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
+
+					$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
 													
@@ -532,11 +473,8 @@ function allCmtList(bseq, type) {
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
 													
 												  </div>`);
-					}
-					
 
 				})
-				
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -706,116 +644,11 @@ function balanceVote(e){
 
 function getPost(page) {
 
-	var content = "";
-	$.ajax({
-		url: "BoardShowCon.do",
-		type: "post",
-		data: { "page": page },
-		datatype: "json",
-		async: false,
-		success: function(data) {
-
-			$.each(data, function(index, data) {
-				
-				content += `<div class="post">
-            <div class="header">
-                <div class="profile_icon">
-               
-                	<img src="./image/${data.mem_img}" alt="">
-                </div>
-                <div class="id"> ${data.mem_id}</div>
-                <div class="follow${data.mem_id}">`;
-				if (data.checkFollow == 'Y') {
-					content += '<button class="btn_follow" data-id="' + data.mem_id + '" onclick="follow(this)">언팔로우</button>';
-				} else if (data.checkFollow == 'N') {
-					content += '<button class="btn_follow" data-id="' + data.mem_id + '" onclick="follow(this)">팔로우</button>';
-				} else if (data.checkFollow == 'E') {
-
-				}
-
-
-				content += `</div>
-                <div class="menu">
-                    <i class='bx bx-dots-horizontal-rounded'></i>
-                </div>
-            </div>
-            <div class="content">`;
-				var fileExtension = getExtension(data.board_img);
-				
-				if (img.includes(fileExtension)) {
-					content += '<img src="img/' + data.board_img + '">';
-				} else {
-					content += '<video id="video" src="img/' + data.board_img + '" controls autoplay muted playsinline></video>';
-				}
-				content += `</div>
-            <div class="buttons">
-
-                <div class="button">
-                <a idx=${data.board_seq} href="javascript:void(0)" class="heart" onclick="heartCheck(this)">`;
-
-				if (data.checklike == 'Y') {
-					content += '<img src="./img/fullheart.png" height="25px" width ="27px" class="fullheart" idx="' + data.board_seq + '">';
-				} else {
-					content += '<img src="./img/emptyheart.png" height="25px" width ="25px" class="emptyheart" idx="' + data.board_seq + '">';
-				}
-
-
-				content += `</a></div>
-
-                <div class="button">
-                    <i class="bx bx-comment icon board" data-post-id=${data.board_seq}></i>
-                </div>
-            </div>
-            <div class="like">
-                <span>좋아요</span>
-                <span class="like_count${data.board_seq}">${data.board_likes}</span>
-                <span>개</span>
-            </div>
-            <div class="comments">
-                <span><b>${data.mem_id}</b></span>
-                <span> </span>
-                <span>${data.board_content}</span> <br>
-                <span class="show_more">더 보기</span>
-            </div>
-            <div class="comments_show">
-                <span class="show_all${data.board_seq} show_all" data-post-id=${data.board_seq} >댓글 ${data.board_cmt_cnt}개 모두 보기</span>
-            </div>
-            
-            <div class="comments_list${data.board_seq} comments_list">
-                
-            </div>
-          
-            <div class="comments_input">
-                <input type="text" class="input_reply${data.board_seq}" placeholder="댓글 달기...">
-                <button class="comments_btn" idx="${data.board_seq}" onclick="write_reply(this)" >게시</button>
-            </div>
-
-            <hr>
-        </div>`;
-
-
-				/*let button = document.querySelector('.write_reply'+data.board_seq);*/
-
-				/*button.addEventListener('click',function(){
-					write_reply();
-				})*/
-
-				cmtList(data.board_seq, "d");
-			});
-
-
-		},
-
-		// success 닫히는 곳
-		fail: function() {
-			alert("통신 실패");
-		}
-
-	});
+	let content ="";
 
 	$.ajax({
 
-		url: "balBoardShowCon.do",
+		url: "BalBoardAllShowCon.do",
 		type: "post",
 		data: { "page": page },
 		async: false,
@@ -841,7 +674,7 @@ function getPost(page) {
 							    <div class="balance_content">
 							        <div class="balance_content_div">`;
 				var fileExtension = getExtension(data.bal_img);
-				
+				console.log("dd");
 				if (img.includes(fileExtension)) {
 					content += '<img src="img/' + data.bal_img + '">';
 				} else {

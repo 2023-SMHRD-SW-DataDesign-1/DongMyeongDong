@@ -9,6 +9,7 @@ public class ProfileProductDTO {
 	private String product_name;
 	private String product_img;
 	private String mem_id;
+	private String buy_date;
 	
 	
 	

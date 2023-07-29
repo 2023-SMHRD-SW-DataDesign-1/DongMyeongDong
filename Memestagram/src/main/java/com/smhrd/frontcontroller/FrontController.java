@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.command.command;
 import com.smhrd.controller.BalAllCmtListCon;
+import com.smhrd.controller.BalBoardAllShowCon;
 import com.smhrd.controller.BalBoardShowCon;
 import com.smhrd.controller.BalBoardWriteCon;
 import com.smhrd.controller.BalCmtListCon;
@@ -34,6 +35,7 @@ import com.smhrd.controller.BoardShowCon;
 import com.smhrd.controller.BoardUpdateCon;
 import com.smhrd.controller.BoardWriteCon;
 import com.smhrd.controller.BuyProductCon;
+import com.smhrd.controller.CmtDeleteCon;
 import com.smhrd.controller.FollowCon;
 import com.smhrd.controller.IdCheckCon;
 import com.smhrd.controller.JoinCon;
@@ -79,8 +81,9 @@ public class FrontController extends HttpServlet {
 		list.put("CmtListCon.do", new BoardCmtListCon());
 		list.put("ShopShowCon.do", new ShopShowCon());
 
-		
+		// 댓글 관련
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
+		list.put("CmtDeleteCon.do", new CmtDeleteCon());
 
 		// 로그아웃 컨트롤러
 		list.put("LogoutCon.do", new LogoutCon());
@@ -102,6 +105,7 @@ public class FrontController extends HttpServlet {
 		list.put("BalLikeDeleteCon.do", new BalLikeDeleteCon());
 		list.put("BalCmtWriteCon.do", new BalCmtWriteCon());
 		list.put("BalVoteCon.do", new BalVoteCon());
+		list.put("BalBoardAllShowCon.do", new BalBoardAllShowCon());
 		
 		//상세화면 관련
 		list.put("BalDetailShowCon.do", new BalDetailShowCon());

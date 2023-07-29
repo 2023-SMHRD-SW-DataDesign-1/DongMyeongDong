@@ -78,7 +78,7 @@
 		</div>
 	</div>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
 			alert(type);
@@ -104,7 +104,7 @@
 			}
 
 		}
-	</script>
+	</script> -->
 
 
 </body>

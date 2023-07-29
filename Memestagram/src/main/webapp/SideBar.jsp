@@ -68,7 +68,7 @@
 	// 로그아웃 메소드
 	function LogoutCheck() {
 		let type = "${member.login_type}";
-		alert(type);
+		
 
 		if (type == "kakao") {
 			Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');

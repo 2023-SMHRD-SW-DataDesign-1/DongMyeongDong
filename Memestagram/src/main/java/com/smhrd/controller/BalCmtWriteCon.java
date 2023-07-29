@@ -37,7 +37,7 @@ public class BalCmtWriteCon implements command {
 		
        
 		int cmt_count = new BalCmtDAO().balCmtCount(balSeq);
-		
+		System.err.println("cmt_count : "+ cmt_count);
 		Gson gson = new Gson();
 		String json = gson.toJson(cmt_count);
 		response.setContentType("text/json;charset=utf-8");

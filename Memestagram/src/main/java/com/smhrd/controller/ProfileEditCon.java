@@ -49,14 +49,19 @@ public class ProfileEditCon implements command {
 		String mem_img = multi.getFilesystemName("mem_img");
 
 
+		System.out.println("===========================");
+		HttpSession session = request.getSession();
+		MemberDTO mdto = (MemberDTO) session.getAttribute("member");
+
+		// 사용자가 이미지만 변경했거나 비밀번호 수정을 하지 않았을때 기존 비밀번호를 채워넣기
+		if(mem_pw == null || mem_pw.isEmpty()) {
+			mem_pw = mdto.getMem_pw();
+		}
 		// 3. 콘솔창에 확인하기
 		System.out.println("로그인한 아이디 : " + mem_id);
 		System.out.println("비밀번호 확인 : " + mem_pw);
 		System.out.println("변경비밀번호 확인 : " + mem_pw2);
 		System.out.println("변경이미지 확인 : " + mem_img);
-
-		System.out.println("===========================");
-
 		// 6. profileEdit메소드 불러오기
 		ProfileDTO pdto = new ProfileDTO(mem_id, mem_pw, mem_pw2, mem_img);
 		ProfileDAO pdao = new ProfileDAO();
@@ -68,8 +73,6 @@ public class ProfileEditCon implements command {
 
 			// 수정 성공 시 session의 기존 member도 업데이트
 			// 기존의 member객체에는 eamil, reward도 포함되어 있으므로 pw와 img만 업데이트한다
-			HttpSession session = request.getSession();
-			MemberDTO mdto = (MemberDTO) session.getAttribute("member");
 			mdto.setMem_pw(mem_pw);
 			mdto.setMem_img(mem_img);
 			session.setAttribute("member", mdto);

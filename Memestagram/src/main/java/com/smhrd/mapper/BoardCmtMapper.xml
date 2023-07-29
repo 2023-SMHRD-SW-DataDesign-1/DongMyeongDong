@@ -10,8 +10,8 @@
 	</insert>
 	
 
-	<delete id="cmtdelete" parameterType="BoardCmtDTO">
-	delete from board_cmt where board_seq = #{board_seq}
+	<delete id="BoardcmtDelete" parameterType="int">
+	delete from board_cmt where board_cmt_seq = #{board_cmt_seq}
 	</delete>
 	
 	

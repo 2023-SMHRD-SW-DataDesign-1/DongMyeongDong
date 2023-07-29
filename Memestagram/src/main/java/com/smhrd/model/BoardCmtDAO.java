@@ -18,9 +18,9 @@ public class BoardCmtDAO {
 		
 		return row;
 	}
-	public int cmtdelete(String board_cmt_seq) {
+	public int BoardcmtDelete(int board_cmt_seq) {
 		SqlSession session = sqlSessionFactory.openSession(true);
-		int row = session.delete("deletecmt", board_cmt_seq);
+		int row = session.delete("BoardcmtDelete", board_cmt_seq);
 		session.close();
 		
 		return row;

@@ -23,7 +23,7 @@ public class BalAllCmtListCon implements command {
 		int bal_seq = Integer.parseInt(request.getParameter("bal_seq"));
 
 		List<BalCmtDTO> cmtList = new BalCmtDAO().balCmtAllList(bal_seq);
-
+		System.out.println("balAllCmtList");
 		Gson gson = new Gson();
 		String json = gson.toJson(cmtList);
 		response.setContentType("text/json;charset=utf-8");

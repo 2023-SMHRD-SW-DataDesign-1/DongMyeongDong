@@ -154,7 +154,32 @@
                 callback(data);
             });
         }
+        
+        function LogoutCheck() {
+			let type = "${member.login_type}";
+			
 
+			if (type == "kakao") {
+				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
+				
+				if (!Kakao.Auth.getAccessToken()) {
+					alert('Not logged in.');
+					return;
+				}
+				Kakao.Auth.logout(function() {
+					alert('logout ok\naccess token -> '
+							+ Kakao.Auth.getAccessToken());
+				});
+				
+				location.href = "LogoutCon.do";
+			} else if (type == "naver") {
+				location.href = "LogoutCon.do";
+
+			} else {
+				location.href = "LogoutCon.do";
+			}
+
+        }
     </script>
 </body>
 

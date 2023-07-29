@@ -32,143 +32,7 @@
 
         <div class="box-contents">
             <div id="posts">
-                <div class="balance_post">
-                    <div class="header">
-                        <div class="balance_title"></div>
-                        <div class="balance_time">
-                            <i class='bx bx-time-five'></i>
-                            <span><b>12:30</b></span>
-                        </div>
-                        <div class="balance_reward">
-                            <i class='bx bx-coin'></i>
-                            <span><b>120P</b></span>
-                        </div>
-                        <div class="menu">
-                            <i class='bx bx-dots-horizontal-rounded'></i>
-                        </div>
-                    </div>
-                    <!-- 게시물 컨텐츠 영역 -->
-                    <div class="balance_content">
-                        <div class="balance_content_div">
-                            <img src="./image/balance_01.png" alt="">
-                        </div>
-                        <div class="balance_select_div">
-                            <div class="content_select_1">
-                                <div class="content_select_1_name">
-                                    <h3>월 200 백수</h3>
-                                </div>
-                                <div class="content_select_1_count">
-                                    <h4 class="count_num1">0</h4>
-                                </div>
-                            </div>
-                            <div class="content_select_2">
-                                <div class="content_select_2_name">
-                                    <h3>월 500 직장인</h3>
-                                </div>
-                                <div class="content_select_2_count">
-                                    <h4 class="count_num2">0</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <div class="button">
-                            <i class="bx bx-heart icon"></i>
-                        </div>
-                        <div class="button">
-                            <i class="bx bx-comment icon"></i>
-                        </div>
-                    </div>
-                    <div class="like">
-                        <span>좋아요</span>
-                        <span class="like_count">10.8만</span>
-                        <span>개</span>
-                    </div>
-                    <div class="comments">
-                        <span><b>작성자</b></span>
-                        <span> </span>
-                        <span>댓글 내용입니다.</span> <br>
-                        <span class="show_more">더 보기</span>
-                    </div>
-                    <div class="comments_show">
-                        <span class="show_all">댓글 1004개 모두 보기</span>
-                    </div>
-                    <div class="comments_input">
-                        <input type="text" placeholder="댓글 달기...">
-                        <button id="comments_btn">게시</button>
-                    </div>
-                    <hr>
-                </div>
-                <div class="balance_post">
-                    <div class="header">
-                        <div class="balance_title"></div>
-                        <div class="balance_time">
-                            <i class='bx bx-time-five'></i>
-                            <span><b>12:30</b></span>
-                        </div>
-                        <div class="balance_reward">
-                            <i class='bx bx-coin'></i>
-                            <span><b>120P</b></span>
-                        </div>
-                        <div class="menu">
-                            <i class='bx bx-dots-horizontal-rounded'></i>
-                        </div>
-                    </div>
-                    <!-- 게시물 컨텐츠 영역 -->
-                    <div class="balance_content">
-                        <div class="balance_content_div">
-                            <img src="./image/balance_01.png" alt="">
-                        </div>
-                        <div class="balance_select_div">
-                            <div class="content_select_1">
-                                <div class="content_select_1_name">
-                                    <h3>월 200 백수</h3>
-                                </div>
-                                <div class="content_select_1_count">
-                                    <h4 class="count_num1">0</h4>
-                                </div>
-                            </div>
-                            <div class="content_select_2">
-                                <div class="content_select_2_name">
-                                    <h3>월 500 직장인</h3>
-                                </div>
-                                <div class="content_select_2_count">
-                                    <h4 class="count_num2">0</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <div class="button">
-                            <i class="bx bx-heart icon"></i>
-                        </div>
-                        <div class="button">
-                            <i class="bx bx-comment icon"></i>
-                        </div>
-                        <div class="button">
-                            <i class="bx bx-navigation icon"></i>
-                        </div>
-                    </div>
-                    <div class="like">
-                        <span>좋아요</span>
-                        <span class="like_count">10.8만</span>
-                        <span>개</span>
-                    </div>
-                    <div class="comments">
-                        <span><b>작성자</b></span>
-                        <span> </span>
-                        <span>댓글 내용입니다.</span> <br>
-                        <span class="show_more">더 보기</span>
-                    </div>
-                    <div class="comments_show">
-                        <span class="show_all">댓글 1004개 모두 보기</span>
-                    </div>
-                    <div class="comments_input">
-                        <input type="text" placeholder="댓글 달기...">
-                        <button id="comments_btn">게시</button>
-                    </div>
-                    <hr>
-                </div>
+                
             </div>
             
             <!-- 게시글 세부 화면 modal 창 -->
@@ -186,13 +50,14 @@
     </div>
 
 
-    <script src="js/new_home_scroll.js"></script>
+ <input type="hidden" id="my_id" value="${member.mem_id}">
     <script src="js/new_show_detail.js"></script>
+    <script src="js/new_balance_scroll.js"></script>
     <!-- <script src="js/new_post.js"></script> -->
     	<script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
-			alert(type);
+			
 
 			if (type == "kakao") {
 				Kakao.init('ffaba3cad1608806d9940769fa4c7c8b');
@@ -215,8 +80,7 @@
 			}
 
 		}
-	</script>
-		<script>
+	
 		document.addEventListener('DOMContentLoaded', function () {
 		    const sidebar = document.getElementById('sidebar');
 		    const create_modal = document.getElementById('create_modal');

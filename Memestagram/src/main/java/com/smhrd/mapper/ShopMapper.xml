@@ -8,7 +8,7 @@
 	</select>
 
 	<insert id="buyProduct" parameterType="ShopDTO">
-		insert into shopping_list values(#{product_name},#{mem_id})
+		insert into shopping_list values(#{product_name},#{mem_id},sysdate)
 	</insert>
 	
 	
