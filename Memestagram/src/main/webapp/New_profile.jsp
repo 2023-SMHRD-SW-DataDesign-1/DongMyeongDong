@@ -76,12 +76,18 @@
                 
                 <div class="div_post" id="productPart">
                 	<!-- 사용자가 구매한 상품 이미지 보여주는 영역 -->
+                	<div class="shop_product_div">
                 	<c:set var="shopping_list" value="${ProfileDAO.shoppingList(member.mem_id)}"></c:set>
                 	<c:forEach var="post_shop" items="${shopping_list}">
-                	<img src="./image/${post_shop.product_img}" alt="" >
-                    <div class="shop_product_name">상품명 : ${post_shop.product_name}</div>
-                	<div class="shop_product_buy_date">구매시간 : ${post_shop.buy_date}</div>
+                	<div class="shop_product">
+                		<div class="shop_product_img">
+	                		<img src="./image/${post_shop.product_img}" alt="" >
+	                	</div>
+	                    <div class="shop_product_name">상품명 : ${post_shop.product_name}</div>
+	                	<div class="shop_product_buy_date">구매시간 : ${post_shop.buy_date}</div>
+                	</div>
                 	</c:forEach>
+                	</div>
                 </div>
             </div>
         </div>
