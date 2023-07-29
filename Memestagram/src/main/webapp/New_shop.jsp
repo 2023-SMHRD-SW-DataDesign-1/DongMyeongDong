@@ -85,7 +85,7 @@
 
     
     <script src="js/new_search.js"></script>
-<script type="text/javascript">
+	<script type="text/javascript">
 		function LogoutCheck() {
 			let type = "${member.login_type}";
 			

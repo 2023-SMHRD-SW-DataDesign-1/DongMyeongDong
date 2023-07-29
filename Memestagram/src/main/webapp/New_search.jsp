@@ -34,7 +34,6 @@
 
         <div class="box-contents" id="box">
             <div id="posts">
-                <h1>검색 결과 화면 입니다!</h1>
                
             </div>
 
