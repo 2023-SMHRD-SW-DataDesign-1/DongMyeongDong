@@ -160,11 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // 검색창에 엔터 입력
 function handleEnter(event) {
 	if (event.key === "Enter") {
-		window.location.href = "New_search.jsp"
 		event.preventDefault(); // 기본 엔터 행동 방지 (폼 전송 방지)
 		const userInput = document.getElementById("userInput").value;
 		processInput(userInput); // 입력값을 처리하는 함수 호출
 		document.getElementById("userInput").value = "";
+		window.location.href = "New_search.jsp?keyword="+userInput;
 	}
 }
 

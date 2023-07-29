@@ -26,6 +26,14 @@ public class BoardDAO {
 	return board_list;
 	}
 	
+	public static ArrayList<BoardDTO> searchshow(PagingDTO p){
+		SqlSession session = sqlSessionFactory.openSession(true);
+		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("searchshow", p);
+	session.close();
+	
+	return board_list;
+	}
+	
 	public static ArrayList<BoardDTO> myboard(){
 		SqlSession session = sqlSessionFactory.openSession(true);
 		ArrayList<BoardDTO> board_list =(ArrayList)session.selectList("myboard");

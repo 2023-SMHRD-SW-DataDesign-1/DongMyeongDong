@@ -49,6 +49,7 @@ import com.smhrd.controller.NaverLoginCon;
 import com.smhrd.controller.NaverLogoutCon;
 //import com.smhrd.controller.ProImgCon;
 import com.smhrd.controller.ProfileEditCon;
+import com.smhrd.controller.SearchShowCon;
 import com.smhrd.controller.ShopShowCon;
 import com.smhrd.controller.SnsJoinCon;
 import com.smhrd.controller.UnFollowCon;
@@ -80,6 +81,8 @@ public class FrontController extends HttpServlet {
 		list.put("BoardShowCon.do", new BoardShowCon());
 		list.put("CmtListCon.do", new BoardCmtListCon());
 		list.put("ShopShowCon.do", new ShopShowCon());
+		list.put("SearchShowCon.do", new SearchShowCon());
+		
 
 		// 댓글 관련
 		list.put("CmtWriteCon.do", new BoardCmtWriteCon());
