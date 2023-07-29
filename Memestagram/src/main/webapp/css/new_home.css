@@ -783,6 +783,22 @@ body.modal-open {
   margin-right: 10px;
   margin-left: 10px;
 }
+.sp_comment>div>img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+}
+.sp_comment>div>b{
+  width:100px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.sp_comment>div>span{
+  text-align: left;
+  margin-left: 10px;
+}
 
 .sp_comment_area b{
   margin-left: 10px;
