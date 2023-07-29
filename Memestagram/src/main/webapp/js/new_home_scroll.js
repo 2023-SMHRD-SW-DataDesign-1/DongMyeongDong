@@ -470,7 +470,7 @@ function allCmtList(bseq, type) {
 					if(my_id == cmt.mem_id){
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
+														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
@@ -479,7 +479,7 @@ function allCmtList(bseq, type) {
 					}else{
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
+														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
@@ -507,7 +507,7 @@ function allCmtList(bseq, type) {
 					if(my_id == cmt.mem_id){
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
+														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
@@ -517,7 +517,7 @@ function allCmtList(bseq, type) {
 					}else{
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
-														<img src="./image/${cmt.mem_img}" alt="./image/user.png">
+														<img src="./image/${cmt.mem_img}" alt="">
 													
 													
 														<b>${cmt.mem_id}</b><span>${cmt.board_cmt_content}</span>
@@ -713,7 +713,7 @@ function getPost(page) {
             <div class="header">
                 <div class="profile_icon">
                
-                	<img src="./image/${data.mem_img}" alt="./image/user.png">
+                	<img src="./image/${data.mem_img}" alt="">
                 </div>
                 <div class="id"> ${data.mem_id}</div>
                 <div class="follow${data.mem_id}">`;
