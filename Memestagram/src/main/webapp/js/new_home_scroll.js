@@ -820,9 +820,8 @@ function getPost(page) {
 			$.each(data, function(index, data) {
 				content = ` <div class="balance_post">
 							  <div class="header">
-							    <div class="balance_time">
+							    <div class="balance_time" id='countdown${data.bal_seq}'>
 							        <i class='bx bx-time-five'></i>
-							        <span id='countdown${data.bal_seq}'></span>
 							    </div>
 							    <div class="balance_reward">
 							        <i class='bx bx-coin'></i>
@@ -907,58 +906,52 @@ function getPost(page) {
 
 				cmtList(data.bal_seq, "bal");
 				$('#posts').append(content);
-				countdown('countdown' + data.bal_seq, data.bal_seq);
+				addSpan('countdown' + data.bal_seq, data.bal_time);
 			})
-			//$('#posts').append(content);
 		},
 		error: function() {
 			alert("balshowcon fail");
 		}
 	})
-
 }
 
-// 카운트다운 함수
-// 카운트다운 시작일과 시간 (예: '2023-07-30T12:00:00')
-//const targetDate = '2023-07-30T12:00:00';
-function countdown(id, time) {
-	const countdownElement = document.getElementById(id);
-	const targetDate = '2023-07-30T12:00:00';
-	console.log(time);
+function addSpan(id, time) {
+	//console.log("id : " + id + ", time : " + time);
+	const spanContainer = document.getElementById(id);
+	const newSpan = document.createElement("span");
+	newSpan.textContent = `남은 시간`;
+	spanContainer.appendChild(newSpan);
 
-	// 카운트다운 갱신 함수
-	function updateCountdown() {
-		// 현재 날짜와 시간
-		const now = new Date().getTime();
+	startCountdown(newSpan, time);
+}
+
+function startCountdown(spanElement, targetDate) {
+
+	// 타깃 날짜와 시간
+	let targetTime = new Date(targetDate).getTime();
+	// 남은 시간 계산 (초단위)
+	let now = new Date().getTime();
+	let remainingSeconds = Math.floor((targetTime - now) / 1000);
 
 
-		// 타깃 날짜와 시간
-		const targetTime = new Date(targetDate).getTime();
+	let countdownInterval = setInterval(function() {
 
-		// 남은 시간 계산 (초단위)
-		let remainingSeconds = Math.floor((targetTime - now) / 1000);
+		if (remainingSeconds <= 0) {
+			clearInterval(countdownInterval);
+			spanElement.textContent = "종료";
+		} else {
+			// 일, 시간, 분, 초 계산
+			let days = Math.floor(remainingSeconds / (60 * 60 * 24));
+			let hours = Math.floor(remainingSeconds % (60 * 60 * 24) / (60 * 60));
+			let minutes = Math.floor(remainingSeconds % (60 * 60 * 24) % (60 * 60) / 60);
+			let seconds = remainingSeconds % (60 * 60 * 24) % (60 * 60) % 60 % 60;
 
-		// 일, 시간, 분, 초 계산
-		const days = Math.floor(remainingSeconds / (60 * 60 * 24));
-		remainingSeconds -= days * (60 * 60 * 24);
-		const hours = Math.floor(remainingSeconds / (60 * 60));
-		remainingSeconds -= hours * (60 * 60);
-		const minutes = Math.floor(remainingSeconds / 60);
-		const seconds = remainingSeconds % 60;
+			let countdownString = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
 
-		// 표시할 문자열 생성
-		const countdownString = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
-
-		countdownElement.textContent = countdownString;
-
-		// 남은 시간이 0보다 크면 1초 뒤에 updateCountdown 함수를 호출하여 다시 갱신
-		if (remainingSeconds > 0) {
-			setTimeout(updateCountdown, 1000);
+			spanElement.textContent = countdownString;
 		}
-	}
-
-	updateCountdown();
+		remainingSeconds--;
+	}, 1000);
 }
-
 
 
