@@ -24,7 +24,7 @@
 	function buyProduct(e){
 		let price = $(e).children('.shop_product_price').text();
 		let product_name = $(e).children('.shop_product_brand').text();
-		console.log(${member.mem_reward});
+		//console.log(${member.mem_reward});
 		if(parseInt(price) > ${member.mem_reward}){
 			alert("리워드가 부족합니다");
 		}else{

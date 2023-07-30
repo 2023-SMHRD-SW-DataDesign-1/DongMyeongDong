@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		if (event.target.classList.contains('post-image')) {
 			const postId = event.target.dataset.postId;
 			
-			console.log(postId);
+			//console.log(postId);
 
 			showDetailView(postId);
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="sp_content">
                 <div class="sp_file">`;
 				var fileExtension = getExtension(data.board_img);
-				console.log("dd");
+				//console.log("dd");
 				if (img.includes(fileExtension)) {
 					content += '<img src="img/' + data.board_img + '">';
 				} else {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     	</div>
                     <div class="sp_comment_input_area">
                         <input type="text" class="detail_input_reply${data.board_seq}" placeholder="댓글 달기...">
-                		<button class="comments_btn" idx="${data.board_seq}" onclick="write_reply(this)" >게시</button>
+                		<button class="comments_btn" idx="${data.board_seq}" onclick="write_reply(this)">게시</button>
                     </div>
                 </div>
             </div>
@@ -373,18 +373,18 @@ function delete_board(board_seq){
 		  url: "BoardDeleteCon.do",
 		  data: {board_seq, board_seq},
 		  success : function(response) {
-			 console.log(response);
+			 //console.log(response);
 			 alert("게시글이 삭제 되었습니다.");
 			 window.location.href="./New_profile.jsp"
 		  },
 		  error : function(xhr, status, error) {
-			 console.log("게시글 삭제 실패 : " + error);
+			 //console.log("게시글 삭제 실패 : " + error);
 		  }
 	  })
 	  
     } else {
       // 사용자가 "아니오"를 선택한 경우 또는 팝업을 닫은 경우
-      alert("작업을 취소했습니다.");
+      // alert("작업을 취소했습니다.");
       // 여기에 다른 처리를 수행하는 코드를 작성할 수 있습니다.
     }
 }

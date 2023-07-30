@@ -129,7 +129,7 @@
 		$('#pw_input').on("focusout",function(){	
 			let pwdcheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 			let pw = $('#pw_input').val();
-			console.log(pw);
+			//console.log(pw);
 			if (!pwdcheck.test(pw) || pw.length < 8) {
 				$('#pwerror').html("비밀번호는 최소 8자리에 숫자, 문자, 특수문자 각 1개 이상 포함해주세요.");
 				$('#error').css('color','red');

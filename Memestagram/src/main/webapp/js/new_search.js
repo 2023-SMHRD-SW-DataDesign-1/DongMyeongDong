@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			// 검색창 바깥 영역을 클릭하면 이전 사이드바로 변경
 			window.onclick = function(event) {
 
-				console.log(event.target);
+				//console.log(event.target);
 
 				if (event.target === sidebar || event.target === box || event.target.classList.contains('box-contents')) {
 					sidebar.style.width = "340px";
