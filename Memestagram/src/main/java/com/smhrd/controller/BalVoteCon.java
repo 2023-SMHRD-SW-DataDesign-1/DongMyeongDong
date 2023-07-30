@@ -27,7 +27,8 @@ public class BalVoteCon implements command{
 		int reward = Integer.parseInt(request.getParameter("reward"));
 		BalanceDAO bdao = new BalanceDAO();
 		HttpSession session = request.getSession();
-		String mem_id = ((MemberDTO)session.getAttribute("member")).getMem_id();
+		MemberDTO m = (MemberDTO)session.getAttribute("member");
+		String mem_id = m.getMem_id();
 		
 		BalVoteDTO bvdto  = bdao.voteCheck(new BalVoteDTO(bal_seq, mem_id));
 		
@@ -35,6 +36,8 @@ public class BalVoteCon implements command{
 			// 해당 밸런스 글에 투표 한적이 없을때
 			bdao.voteInsert(new BalVoteDTO(bal_seq, mem_id, vote));
 			new MemberDAO().plusReward(new MemberDTO(mem_id, reward));
+			m.setMem_reward(m.getMem_reward()+reward);
+			session.setAttribute("member", m);
 		}else {
 			 
 			
@@ -42,6 +45,8 @@ public class BalVoteCon implements command{
 				// 투표 데이터가 있는데 투표할 위치와 데이터의 위치가 동일할때 
 				bdao.voteDelte(new BalVoteDTO(bal_seq, mem_id));
 				new MemberDAO().minusReward(new MemberDTO(mem_id, reward));
+				m.setMem_reward(m.getMem_reward()-reward);
+				session.setAttribute("member", m);
 			}else {
 				// 투표 데이터가 있는데 투표할 위치와 데이터의 위치가 다를때
 				bdao.voteUpdate(new BalVoteDTO(bal_seq, mem_id, vote));

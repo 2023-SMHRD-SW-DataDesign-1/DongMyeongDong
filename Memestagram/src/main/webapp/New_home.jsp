@@ -48,7 +48,7 @@
 			</p>
 		</div>
 	</div>
-
+	<input type="hidden" id="my_id" value="${member.mem_id }">
 	<script src="js/new_home_scroll.js"></script>
 	<script src="js/new_show_detail.js"></script>
 	<script src="js/new_post.js" data-id="${member.mem_id}" data-img="${member.mem_img}"></script>
