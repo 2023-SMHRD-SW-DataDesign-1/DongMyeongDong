@@ -6,7 +6,6 @@ $(document).ready(function() {
 
 	getPost(currentPage);
 	
-
 	// 스크롤 시 이벤트 처리
 	win.scroll(function() {
 		// End of the document reached?
@@ -43,7 +42,7 @@ $(document).ready(function() {
 		}
 
 		// 비디오 요소가 있는지 확인
-		const videoElement = document.querySelector('video.scroll');
+		const videoElement = document.getElementById('video');
 		if (videoElement) {
 			// 비디오 요소가 존재하는 경우
 			if ($(document).scrollTop() > bodyOffset.top) {
@@ -720,12 +719,11 @@ function getPost(page) {
 		success: function(data) {
 
 			$.each(data, function(index, data) {
-				content += ` <div class="balance_post">
+				content = ` <div class="balance_post">
 							    <div class="header">
 							    <div class="balance_title"></div>
-							    <div class="balance_time">
+							    <div class="balance_time" id='countdown${data.bal_seq}'>
 							        <i class='bx bx-time-five'></i>
-							        <span id="countdown"></span>
 							    </div>
 							    <div class="balance_reward">
 							        <i class='bx bx-coin'></i>
@@ -812,9 +810,11 @@ function getPost(page) {
 							</div>`;
 
 				cmtList(data.bal_seq, "bal");
+				$('#posts').append(content);
+				addSpan('countdown' + data.bal_seq, data.bal_time);
 			})
 
-			$('#posts').append(content);
+			//$('#posts').append(content);
 		},
 		error: function() {
 			alert("balshowcon fail");
@@ -823,5 +823,41 @@ function getPost(page) {
 
 }
 
-	
+function addSpan(id, time) {
+	const spanContainer = document.getElementById(id);
+	const newSpan = document.createElement("span");
+	newSpan.textContent = `남은 시간`;
+	spanContainer.appendChild(newSpan);
+
+	startCountdown(newSpan, time);
+}
+
+function startCountdown(spanElement, targetDate) {
+
+	// 타깃 날짜와 시간
+	let targetTime = new Date(targetDate).getTime();
+	// 남은 시간 계산 (초단위)
+	let now = new Date().getTime();
+	let remainingSeconds = Math.floor((targetTime - now) / 1000);
+
+
+	let countdownInterval = setInterval(function() {
+
+		if (remainingSeconds <= 0) {
+			clearInterval(countdownInterval);
+			spanElement.textContent = "종료";
+		} else {
+			// 일, 시간, 분, 초 계산
+			let days = Math.floor(remainingSeconds / (60 * 60 * 24));
+			let hours = Math.floor(remainingSeconds % (60 * 60 * 24) / (60 * 60));
+			let minutes = Math.floor(remainingSeconds % (60 * 60 * 24) % (60 * 60) / 60);
+			let seconds = remainingSeconds % (60 * 60 * 24) % (60 * 60) % 60 % 60;
+
+			let countdownString = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+
+			spanElement.textContent = countdownString;
+		}
+		remainingSeconds--;
+	}, 1000);
+}
 
