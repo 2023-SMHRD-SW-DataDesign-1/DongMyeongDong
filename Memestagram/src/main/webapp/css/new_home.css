@@ -15,7 +15,7 @@ body {
   align-items: center;
   margin: 0 24px;
 }
-.create_post:hover{
+.list>.create_post:hover{
 	cursor: pointer;
 }
 .logo .menu-icon {
@@ -118,6 +118,12 @@ body {
   padding: 0;
   width: 470px;
   list-style-type: none;
+}
+
+#posts h2{
+	margin-top : 100px;
+	color: #0095F6;
+	font-weight:bold;
 }
 
 /* 게시글 내용 */
@@ -401,6 +407,11 @@ body {
 .show_all:hover{
   cursor:pointer;
 }
+.bal_comments_show{
+	display:flex;
+	align-items: center;
+	justify-content: flex-start;
+}
 
 .bal_show_all{
   font-size: 12px;
@@ -586,7 +597,6 @@ body.modal-open {
   height: 10%;
   display: flex;
   align-items: center;
-  justify-content: right;
   border-bottom: 1px solid lightgray;
 }
 
@@ -612,7 +622,7 @@ body.modal-open {
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
   justify-content: center;  /* 수평 정렬 */
-  width: 40%;
+  width: 50%;
 }
 
 .sp_balance_time i{
@@ -625,7 +635,7 @@ body.modal-open {
   display: flex; /* 정렬을 위한 속성 정의 */
   align-items: center; /* 수직 정렬 */
   justify-content: center;  /* 수평 정렬 */
-  width: 20%;
+  width: 50%;
 }
 
 .sp_balance_reward i{
@@ -680,22 +690,18 @@ body.modal-open {
 .sp_detail_user_id_div{
   display: flex;
   align-items: center;
-  width: 20%;
+  justify-content:flex-start;
+  width: 40%;
   height: 100%
 }
 .sp_detail_user_dots_div{
-  width: 70%;
-  height: 100%;
-  
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
 }
-.sp_detail_user_dots_div>i{
-  margin-left :auto;
-  margin-bottom : auto;
-  
-}
+
 #menu_dot{
   font-size: 25px;
   margin-right: 10px;
@@ -716,44 +722,44 @@ body.modal-open {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 53%;
+  height: 58%;
   border-bottom: 1px solid lightgray;
 }
 
 .sp_comment_area div{
   margin-top: 10px;
+  margin-left: 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
 }
-
 .sp_comment_area div>img{
-  margin-left: 10px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid lightgray;
 }
-
 .sp_comment_area div>b{
   margin-left: 10px;
+  width: 100px;
+  text-align: left;
 }
-
 .sp_comment_area div>span{
+  width: 360px;
   margin-left: 10px;
   text-align: left;
 }
 
+
 .sp_content_area{
   width: 100%;
-  height: 10%;
-  border-bottom: 1px solid lightgray;
+  height: 7%;
 }
 
 .sp_comment_area img{
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  border: 1px solid lightgray;
 }
 .sp_content_area img{
   width: 30px;
@@ -775,8 +781,25 @@ body.modal-open {
   margin-right: 10px;
   margin-left: 10px;
 }
+.sp_comment>div>img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+}
+.sp_comment>div>b{
+  width:100px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.sp_comment>div>span{
+  text-align: left;
+  margin-left: 10px;
+}
 
 .sp_comment_area b{
+  margin-left: 10px;
   margin-right: 10px;
 }
 
@@ -801,16 +824,17 @@ body.modal-open {
 
 .sp_comment_input_area{
   width: 100%;
-  height: 10%;
+  height: 7%;
   font-size: 15px;
   display: flex;
+  align-items: center;
 }
 
 .sp_comment_input_area input{
   border: none;
   background-color: white;
   width: 90%;
-  height: 50px;
+  height: 100%;
 }
 
 #sp_comments_btn{

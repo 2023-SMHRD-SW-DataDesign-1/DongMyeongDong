@@ -26,21 +26,26 @@
 		board_seq = #{board_seq}
 	</delete>
 
-	<select id="boardshow" parameterType="PagingDTO"
-		resultType="boardDTO">
+	<select id="boardshow" parameterType="PagingDTO" resultType="boardDTO">
 
-		select * from (select rownum as r,x.* from (select
-		b.*,(select count(*) from
-		board_like l where l.board_seq = b.board_seq ) as
-		board_likes,(select
-		mem_img from member_info m where m.mem_id =
-		b.mem_id) as mem_img
-		,(select count(*) from board_cmt c where
-		c.board_seq = b.board_seq) as
-		board_cmt_cnt from board b order by
-		b.board_seq desc) x) a where a.r
-		between #{start} and #{end}
+		select * from 
+		(select rownum as r, x.* from (select b.*,
+		(select count(*) from board_like l where l.board_seq = b.board_seq ) as board_likes,
+		(select mem_img from member_info m where m.mem_id = b.mem_id) as mem_img,
+		(select count(*) from board_cmt c where c.board_seq = b.board_seq) as board_cmt_cnt from board b order by b.board_seq desc) x) a 
+		where a.r between #{start} and #{end}
 	</select>
+	
+	<select id="searchshow" parameterType="PagingDTO" resultType="boardDTO">
+		select * from 
+		(select rownum as r, x.* from (select b.*,
+		(select count(*) from board_like l where l.board_seq = b.board_seq ) as board_likes,
+		(select mem_img from member_info m where m.mem_id = b.mem_id) as mem_img,
+		(select count(*) from board_cmt c where c.board_seq = b.board_seq) as board_cmt_cnt from board b where b.board_content like '%' ||#{keyword}|| '%' order by b.board_seq desc) x) a 
+		where a.r between #{start} and #{end}
+	</select>
+	
+	<!--  -->
 
 	<insert id="likesave" parameterType="BoardDTO">
 		insert into

@@ -19,7 +19,7 @@ body {
   margin: 0 24px;
 }
 
-.create_post:hover{
+.list>.create_post:hover{
 	cursor: pointer;
 }
 

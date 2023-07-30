@@ -14,6 +14,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/new_profile_edit.css" />
     <link rel="stylesheet" href="css/new_post.css" />
+    <link rel="stylesheet" href="css/new_search.css" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -87,8 +88,8 @@
             </div>
         </div>
     </div>
-    <script src="js/new_post.js"></script>
-
+    <script src="js/new_post.js" data-id="${member.mem_id}" data-img="${member.mem_img}"></script>
+	<script src="js/new_search.js"></script>
     <script type="text/javascript">
     
     // input 태그의 값이 변경될 때 미리 보기 기능을 실행하는 함수

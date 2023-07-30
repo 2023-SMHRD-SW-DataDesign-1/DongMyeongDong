@@ -79,7 +79,9 @@ function showDetailView(postId) {
                     <div class="sp_content_area">
                         <div class="sp_comment">
 							<div>
-								<b>${data.mem_id}</b><span>${data.board_content}</span>
+								<img src="./image/${data.mem_img}" alt="">
+								<b>${data.mem_id}</b>
+								<span>${data.board_content}</span>
 							</div>
 						</div>
                     </div>
@@ -147,7 +149,7 @@ function showDetailView(postId) {
 					}
                    content += `</div>
                     <div class="sp_balance_select_div">
-                        <div class="sp_content_select_1" idx="${data.bal_seq}" onclick="balanceVote(this)">
+                        <div class="sp_content_select_1" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)" style="background-color: ${data.bal_left_color};">
                             <div class="sp_content_select_1_name">
                                 <h2>${data.bal_left}</h2>
                             </div>
@@ -155,7 +157,7 @@ function showDetailView(postId) {
                                 <h3 class="sp_count_num1">${data.bal_left_count}</h3>
                             </div>
                         </div>
-                        <div class="sp_content_select_2" idx="${data.bal_seq}" onclick="balanceVote(this)">
+                        <div class="sp_content_select_2" idx="${data.bal_seq}" data-id="${data.bal_seq}" data-reward="${data.bal_reward}" onclick="balanceVote(this)" style="background-color: ${data.bal_right_color};">
                             <div class="sp_content_select_2_name">
                                 <h2>${data.bal_right}</h2>
                             </div>
@@ -167,7 +169,6 @@ function showDetailView(postId) {
                 </div>
                 <div class="sp_detail">
                     <div class="sp_detail_balance">
-                        <div class="sp_balance_title"></div>
                         <div class="sp_balance_time">
                             <i class='bx bx-time-five'></i>
                             <span><b>${data.bal_time}</b></span>
@@ -176,15 +177,13 @@ function showDetailView(postId) {
                             <i class='bx bx-coin'></i>
                             <span><b>${data.bal_reward}P</b></span>
                         </div>
-                        <div class="sp_menu">
-                            <i class='bx bx-dots-horizontal-rounded'></i>
-                        </div>
                     </div>
                     <div class="sp_content_area">
                         <div class="sp_comment">
-							
 							<div>
-								<b>${data.mem_id}</b><span>${data.bal_content}</span>
+							    <img src="./image/${data.mem_img}" alt="">
+								<b>${data.mem_id}</b>
+								<span>${data.bal_content}</span>
 							</div>
 						</div>
                     </div>

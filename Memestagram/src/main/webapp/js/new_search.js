@@ -4,22 +4,24 @@
 document.addEventListener('DOMContentLoaded', function() {
 	const sidebar = document.getElementById('sidebar');
 	const box = document.getElementById('box');
-	const htmlElement = document.documentElement;
 
 	// 버튼 이벤트 위임
 	sidebar.addEventListener('click', function(event) {
 		if (event.target.classList.contains('search')) {
-			
+
 			sidebar.style.width = "470px";
 			showSearchBar();
 			showSessionArray();
-
+			
+			const userInput = document.getElementById('userInput');
+			userInput.focus();
+			
 			// 검색창 바깥 영역을 클릭하면 이전 사이드바로 변경
 			window.onclick = function(event) {
-				
+
 				console.log(event.target);
-				
-				if (event.target === box || event.target === htmlElement) {
+
+				if (event.target === sidebar || event.target === box || event.target.classList.contains('box-contents')) {
 					sidebar.style.width = "340px";
 					showSideBar();
 				}
@@ -68,11 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </ul>
 
         <div class="bottom-cotent">
-            <li class="sb_list">
-                <a href="#" class="nav-link">
-                    <i class="bx bx-cog icon"></i>
-                </a>
-            </li>
             <li class="sb_list">
                 <a href="#" class="nav-link">
                     <i class="bx bx-log-out icon"></i>
@@ -142,12 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="bottom-cotent">
         <li class="list">
             <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">설정</span>
-            </a>
-        </li>
-        <li class="list">
-            <a href="#" class="nav-link">
                 <i class="bx bx-log-out icon"></i>
                 <span class="link">로그아웃</span>
             </a>
@@ -160,11 +151,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // 검색창에 엔터 입력
 function handleEnter(event) {
 	if (event.key === "Enter") {
-		window.location.href = "New_search.jsp"
 		event.preventDefault(); // 기본 엔터 행동 방지 (폼 전송 방지)
-		const userInput = document.getElementById("userInput").value;
-		processInput(userInput); // 입력값을 처리하는 함수 호출
+		const userInput_value = document.getElementById("userInput").value;
+		processInput(userInput_value); // 입력값을 처리하는 함수 호출
 		document.getElementById("userInput").value = "";
+		window.location.href = "New_search.jsp?keyword=" + userInput_value;
 	}
 }
 
@@ -172,48 +163,48 @@ function processInput(input) {
 	// 여기에서 입력값을 원하는대로 처리합니다.
 	// 이 예시에서는 입력값을 그대로 결과 영역에 출력하는 것으로 합니다.
 	addToSessionArray(input);
-	
+
 	showSessionArray();
 }
 
-function showSessionArray(){
-	
+function showSessionArray() {
+
 	const sessionData = getSessionArray();
-	
+
 	const search_log = document.getElementById("search_log");
-	
+
 	search_log.innerHTML = "";
-	
-	for(var i=0; i<sessionData.length; i++){
-		search_log.innerHTML += `<div><span>${sessionData[i]}</span><button>X</button></div>`;
+
+	for (var i = 0; i < sessionData.length; i++) {
+		search_log.innerHTML += `<div><span>${sessionData[i]}</span></div>`;
 	}
 }
 
 // 모두 지우기 버튼 클릭
 function handleRemoveAll() {
-	
+
 	deleteToSessionArray();
-	
+
 	const search_log = document.getElementById("search_log");
-	
+
 	search_log.innerHTML = "";
 }
 
 // 세션 스토리지에서 배열을 가져오는 함수
 function getSessionArray() {
 	const sessionData = sessionStorage.getItem('mySessionArray');
-		
+
 	return sessionData ? JSON.parse(sessionData) : [];
 }
 
 // 배열에 데이터를 추가하는 함수
 function addToSessionArray(input) {
 	const sessionArray = getSessionArray();
-	
-	if(sessionArray.length > 15){
+
+	if (sessionArray.length > 15) {
 		sessionArray.shift();
 	}
-	
+
 	sessionArray.push(input);
 
 	// 세션 스토리지에 배열 데이터를 저장
