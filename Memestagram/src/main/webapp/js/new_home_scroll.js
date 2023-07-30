@@ -17,7 +17,6 @@ $(document).ready(function() {
 			const rect = post.getBoundingClientRect();
 			let num1 = Number(post.getElementsByClassName("count_num1")[0].textContent);
 			let num2 = Number(post.getElementsByClassName("count_num2")[0].textContent);
-
 			let left_count = post.getElementsByClassName("count_num1");
 			let right_count = post.getElementsByClassName("count_num2");
 			// 화면 중앙으로 게시글이 오면 애니메이션 효과를 주기 위한 처리
@@ -30,21 +29,27 @@ $(document).ready(function() {
 		}
 
 
+		// 스크롤 페이지 추가
 		if ($(document).height() - win.height() == win.scrollTop()) {
-
 			$('#loading').show();
 			currentPage += 1;
 			getPost(currentPage);
 			$('#loading').hide();
 		}
 
-		if ($(document).scrollTop() > bodyOffset.top) {
-			$('#video').addClass('scroll');
-			$('.scroll').get(0).play();
-		} else {
-			$('.scroll').get(0).pause();
-			$('#video').removeClass('scroll');
+		// 비디오 요소가 있는지 확인
+		const videoElement = document.querySelector('video.scroll');
+		if (videoElement) {
+			// 비디오 요소가 존재하는 경우
+			if ($(document).scrollTop() > bodyOffset.top) {
+				$('#video').addClass('scroll');
+				$('.scroll').get(0).play();
+			} else {
+				$('.scroll').get(0).pause();
+				$('#video').removeClass('scroll');
+			}
 		}
+
 	});
 
 }); //document ready 끝나는 부분
@@ -57,7 +62,7 @@ function balanceLoad(left, right) {
 	for (let post of posts) {
 
 
-		const rect = post.getBoundingClientRect();
+		//const rect = post.getBoundingClientRect();
 		let num1 = Number(post.getElementsByClassName("count_num1")[0].textContent);
 		let num2 = Number(post.getElementsByClassName("count_num2")[0].textContent);
 
@@ -99,7 +104,7 @@ function balanceAnimation(post, num1, num2, left, right) {
 	// 투표 하기전 비율
 	var left_ratio = Math.round((left / (left + right)) * 100);
 	var right_ratio = Math.round((right / (left + right)) * 100);
-	
+
 	// 투표 후 비율
 	var select_1_ratio = Math.round((num1 / (num1 + num2)) * 100);
 	var select_2_ratio = Math.round((num2 / (num1 + num2)) * 100);
@@ -422,52 +427,52 @@ function cmtList(bseq, type) {
 
 }
 
-function deleteCmt(e,type){
+function deleteCmt(e, type) {
 	const result = confirm("댓글을 삭제하시겠습니까?");
-	let cmt_seq  = $(e).data('seq');
+	let cmt_seq = $(e).data('seq');
 	let board_seq = $('.sp_comment_area').attr('id');
-	
-	
-	if(result){
-		
+
+
+	if (result) {
+
 		$.ajax({
-			url : "CmtDeleteCon.do",
-			type : "post",
-			data : {"cmt_seq" : cmt_seq , "type": type},
-			success : function(){
+			url: "CmtDeleteCon.do",
+			type: "post",
+			data: { "cmt_seq": cmt_seq, "type": type },
+			success: function() {
 				alert("댓글 삭제 성공");
-				if(type == 'bal'){
+				if (type == 'bal') {
 					/*$(".show_allbal" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
 					cmtList(board_seq, "bal");
 					allCmtList(board_seq, "bal");
-				}else{
+				} else {
 					/*$(".show_all" + cmt_seq).text("댓글 " + cmtCount + "개 모두 보기");*/
 					cmtList(board_seq, "board");
 					allCmtList(board_seq, "board");
 				}
-				
+
 			}
-			
+
 		})
-	}else{
-		
+	} else {
+
 	}
 }
 
 function allCmtList(bseq, type) {
-	
+
 	if (type == 'bal') {
 		$.ajax({
 			url: "BalAllCmtListCon.do",
 			type: "post",
 			data: { "bal_seq": bseq },
 			success: function(cmtList) {
-				
+
 				$(".sp_comment_area").html("");
-				
+
 				$.each(cmtList, function(index, cmt) {
-					
-					if(my_id == cmt.mem_id){
+
+					if (my_id == cmt.mem_id) {
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
@@ -476,7 +481,7 @@ function allCmtList(bseq, type) {
 														<b>${cmt.mem_id}</b><span>${cmt.bal_cmt_content}</span>
 														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.bal_cmt_seq}" onclick="deleteCmt(this,'bal')"></i></div>
 												  </div>`);
-					}else{
+					} else {
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.bal_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
@@ -486,9 +491,9 @@ function allCmtList(bseq, type) {
 														
 												  </div>`);
 					}
-					
+
 				})
-				
+
 				/*$(".show_allbal" + bseq).text("댓글 " + Object.keys(cmtList).length + "개 모두 보기");*/
 			},
 			error: function() {
@@ -504,7 +509,7 @@ function allCmtList(bseq, type) {
 			success: function(cmtList) {
 				$(".sp_comment_area").html("");
 				$.each(cmtList, function(index, cmt) {
-					if(my_id == cmt.mem_id){
+					if (my_id == cmt.mem_id) {
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
@@ -514,7 +519,7 @@ function allCmtList(bseq, type) {
 														<div class="sp_detail_user_dots_div"><i class='bx bx-dots-horizontal-rounded' id='menu_dot' data-seq="${cmt.board_cmt_seq}" onclick="deleteCmt(this,'board')"></i></div>
 													
 												  </div>`);
-					}else{
+					} else {
 						$(".sp_comment_area").append(`<div class="sp_comment${cmt.board_cmt_seq}">
 													
 														<img src="./image/${cmt.mem_img}" alt="">
@@ -524,10 +529,10 @@ function allCmtList(bseq, type) {
 													
 												  </div>`);
 					}
-					
+
 
 				})
-				
+
 			},
 			error: function() {
 				alert("댓글 리스트 불러오기 실패");
@@ -543,7 +548,7 @@ var count = 1;
 function write_reply(e) {
 	let bseq = $(e).attr("idx");
 	let className = $(e).attr('class');
-	
+
 	// 밸런스 글일때
 	if (className == 'bal_comments_btn') {
 		let content = $('.bal_input_reply' + bseq).val();
@@ -618,9 +623,9 @@ function write_reply(e) {
 function follow(e) {
 	let follow_id = $(e).data('id');
 
-	
-	
-	if($(e).text()=="팔로우"){
+
+
+	if ($(e).text() == "팔로우") {
 
 		$.ajax({
 			url: "FollowCon.do",
@@ -667,7 +672,7 @@ function balanceVote(e) {
 	$.ajax({
 		url: "BalVoteCon.do",
 		type: "post",
-		data: { "bal_seq": bal_seq, "vote": vote ,"reward":reward},
+		data: { "bal_seq": bal_seq, "vote": vote, "reward": reward },
 		success: function(vote) {
 			$(e).parent().find('.count_num1').text(vote.bal_left_count);
 			$(e).parent().find('.count_num2').text(vote.bal_right_count);
@@ -902,7 +907,7 @@ function getPost(page) {
 
 				cmtList(data.bal_seq, "bal");
 				$('#posts').append(content);
-				countdown('countdown'+data.bal_seq, data.bal_seq);
+				countdown('countdown' + data.bal_seq, data.bal_seq);
 			})
 			//$('#posts').append(content);
 		},
@@ -920,13 +925,13 @@ function countdown(id, time) {
 	const countdownElement = document.getElementById(id);
 	const targetDate = '2023-07-30T12:00:00';
 	console.log(time);
-	
+
 	// 카운트다운 갱신 함수
 	function updateCountdown() {
 		// 현재 날짜와 시간
 		const now = new Date().getTime();
-		
-		
+
+
 		// 타깃 날짜와 시간
 		const targetTime = new Date(targetDate).getTime();
 
@@ -951,9 +956,9 @@ function countdown(id, time) {
 			setTimeout(updateCountdown, 1000);
 		}
 	}
-	
+
 	updateCountdown();
 }
 
-	
+
 

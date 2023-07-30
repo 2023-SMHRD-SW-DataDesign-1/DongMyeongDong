@@ -34,21 +34,25 @@ $(document).ready(function() {
             }
         }
 		
-
+		// 스크롤 페이지 추가
 		if ($(document).height() - win.height() == win.scrollTop()) {
-
 			$('#loading').show();
 			currentPage += 1;
 			getPost(currentPage);
 			$('#loading').hide();
 		}
 
-		if ($(document).scrollTop() > bodyOffset.top) {
-			$('#video').addClass('scroll');
-			$('.scroll').get(0).play();
-		} else {
-			$('.scroll').get(0).pause();
-			$('#video').removeClass('scroll');
+		// 비디오 요소가 있는지 확인
+		const videoElement = document.querySelector('video.scroll');
+		if (videoElement) {
+			// 비디오 요소가 존재하는 경우
+			if ($(document).scrollTop() > bodyOffset.top) {
+				$('#video').addClass('scroll');
+				$('.scroll').get(0).play();
+			} else {
+				$('.scroll').get(0).pause();
+				$('#video').removeClass('scroll');
+			}
 		}
 	});
 	
