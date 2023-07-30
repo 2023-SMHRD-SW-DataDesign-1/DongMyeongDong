@@ -129,10 +129,8 @@
 								data : param,
 								success : function(result) {
 									if(result == 'Y'){
-										
 										location.href = "New_home.jsp";
 									}else{
-										
 										location.href = "insertId.jsp";
 									}
 									
