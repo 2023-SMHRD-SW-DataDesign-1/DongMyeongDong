@@ -169,7 +169,7 @@
 		                            </div>
 		                            <div class="cp_text">
 		                                <div class="cp_text_user">
-		                                    <div><img src="./image/${data.mem_img}" alt=""></div>
+		                                    <div><img src=./image/$'{data.mem_img}' alt=""></div>
 		                                    <div>${member.mem_id}</div>
 		                                </div>
 		                                <div class="cp_text_area_normal">
@@ -203,7 +203,7 @@
 		                        </div>
 		                        <div class="cp_text">
 		                            <div class="cp_text_user">
-		                                <div><img src="./image/${data.mem_img}" alt=""></div>
+		                                <div><img src="./image/${member.mem_img}" alt=""></div> 
 		                                <div>${member.mem_id}</div>
 		                            </div>
 		                            <div class="cp_text_area">
