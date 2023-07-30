@@ -28,7 +28,7 @@
 		let product_name = $(e).children('.shop_product_name').text();
 		console.log(${member.mem_reward});
 		if(parseInt(price) > ${member.mem_reward}){
-			alert("리워드가 부족합니다");
+			alert("리워드 포인트가 부족합니다");
 		}else{
 			if(!confirm('구매하시면 포인트는 차감됩니다. \n 정말로 구매하시겠습니까??')){
 	            return false;
@@ -53,10 +53,11 @@
             <div class="shop_user_info">
                 <div class="shop_user_info_title">리워드 상점</div>
                 <div class="shop_user_info_icon">
-                    <img src="./image/${member.mem_img }" alt="">
+                    <img src="./image/${member.mem_img}" alt="">
                 </div>
                 <div class="shop_user_info_name">${member.mem_id}</div>
                 <div class="shop_user_info_point">${member.mem_reward}</div>
+                <span>P</span>
             </div>
             <div class="shop_product_div">
             <c:forEach var="product" items="${productList }">
