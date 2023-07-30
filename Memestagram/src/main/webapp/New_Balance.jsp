@@ -49,7 +49,7 @@
             </p>
         </div>
     </div>
-
+	<input type="hidden" id="my_id" value="${member.mem_id }">
     <script src="js/new_show_detail.js"></script>
     <script src="js/new_balance_scroll.js"></script>
     <script src="js/new_search.js"></script>

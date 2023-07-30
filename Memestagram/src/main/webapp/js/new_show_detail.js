@@ -295,7 +295,7 @@ function balanceDetailAnimation(post, num1, num2, left, right) {
 	alert(select_2_ratio);*/
     // 첫번째 선택지 숫자 증가 애니메이션
     animation1 = $({ val: left }).animate({ val: num1 }, {
-        duration: 1000,
+        duration: 500,
         step: function () {
             var num = numberWithCommas(Math.floor(this.val));
             count_num[0].textContent = num;
@@ -308,7 +308,7 @@ function balanceDetailAnimation(post, num1, num2, left, right) {
 
     // 첫번째 선택지 비율 증감 애니메이션
     animation2 = $({ val: left_ratio }).animate({ val: select_1_ratio }, {
-        duration: 1000,
+        duration: 500,
         step: function () {
             content_select_1[0].style.width = this.val + '%';
         },
@@ -319,7 +319,7 @@ function balanceDetailAnimation(post, num1, num2, left, right) {
 
     // 두번째 선택지 숫자 증가 애니메이션
     animation3 = $({ val: right }).animate({ val: num2 }, {
-        duration: 1000,
+        duration: 500,
         step: function () {
             var num = numberWithCommas(Math.floor(this.val));
             count_num2[0].textContent = num;
@@ -332,7 +332,7 @@ function balanceDetailAnimation(post, num1, num2, left, right) {
 
     // 두번째 선택지 비율 증감 애니메이션
     animation4 = $({ val: right_ratio }).animate({ val: select_2_ratio }, {
-        duration: 1000,
+        duration: 500,
         step: function () {
             content_select_2[0].style.width = this.val + '%';
         },
