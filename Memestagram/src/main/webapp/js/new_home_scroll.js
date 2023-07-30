@@ -38,7 +38,7 @@ $(document).ready(function() {
 		}
 
 		// 비디오 요소가 있는지 확인
-		const videoElement = document.querySelector('video.scroll');
+		const videoElement = document.getElementById('video');
 		if (videoElement) {
 			// 비디오 요소가 존재하는 경우
 			if ($(document).scrollTop() > bodyOffset.top) {
