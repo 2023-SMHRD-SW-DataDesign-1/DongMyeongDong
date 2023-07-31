@@ -245,7 +245,7 @@ function heartCheck(e) {
 	let board_seq = $(e).children("img").attr('idx');
 
 	if ($(e).children('img').attr('class') == "emptyheart") {
-		console.log("빈하트 클릭" + board_seq);
+		//console.log("빈하트 클릭" + board_seq);
 
 		$.ajax({
 			url: 'LikeSaveCon.do',
@@ -258,7 +258,7 @@ function heartCheck(e) {
 
 				$('.like_count' + board_seq).text(heart);
 
-				console.log("좋아요 성공");
+				//console.log("좋아요 성공");
 
 			},
 			error: function() {
@@ -277,7 +277,7 @@ function heartCheck(e) {
 		// 꽉찬 하트를 눌렀을 때
 	} else if (($(e).children('img').attr('class') == "fullheart")) {
 		let board_seq = $(e).children("img").attr('idx');
-		console.log("꽉찬하트 클릭" + board_seq);
+		//console.log("꽉찬하트 클릭" + board_seq);
 
 		$.ajax({
 			url: 'LikeDeleteCon.do',
@@ -296,7 +296,7 @@ function heartCheck(e) {
 				alert('좋아요 해제 실패');
 			}
 		});
-		console.log("빈하트로 바껴라!")
+		//console.log("빈하트로 바껴라!")
 		$("img[idx=" + board_seq + "]").attr("src", "./img/emptyheart.png");
 		$("img[idx=" + board_seq + "]").attr("class", "emptyheart");
 
@@ -309,7 +309,7 @@ function balHeartCheck(e) {
 	let bal_seq = $(e).attr('idx');
 
 	if ($(e).children('img').attr('class') == "emptyheart") {
-		console.log("빈하트 클릭" + bal_seq);
+		//console.log("빈하트 클릭" + bal_seq);
 
 		$.ajax({
 			url: 'BalLikeSaveCon.do',
@@ -322,7 +322,7 @@ function balHeartCheck(e) {
 
 				$('.ballike_count' + bal_seq).text(heart);
 
-				console.log("좋아요 성공");
+				//console.log("좋아요 성공");
 
 			},
 			error: function() {
@@ -341,7 +341,7 @@ function balHeartCheck(e) {
 		// 꽉찬 하트를 눌렀을 때
 	} else if (($(e).children('img').attr('class') == "fullheart")) {
 		let bal_seq = $(e).attr('idx');
-		console.log("꽉찬하트 클릭" + bal_seq);
+		//console.log("꽉찬하트 클릭" + bal_seq);
 
 		$.ajax({
 			url: 'BalLikeDeleteCon.do',
@@ -360,7 +360,7 @@ function balHeartCheck(e) {
 				alert('좋아요 해제 실패');
 			}
 		});
-		console.log("빈하트로 바껴라!")
+		//console.log("빈하트로 바껴라!")
 		$("img[idx=bal" + bal_seq + "]").attr("src", "./img/emptyheart.png");
 		$("img[idx=bal" + bal_seq + "]").attr("class", "emptyheart");
 
@@ -742,7 +742,7 @@ function getPost(page) {
 							    <div class="balance_content">
 							        <div class="balance_content_div">`;
 				var fileExtension = getExtension(data.bal_img);
-				console.log("dd");
+				//console.log("dd");
 				if (img.includes(fileExtension)) {
 					content += '<img src="img/' + data.bal_img + '">';
 				} else {

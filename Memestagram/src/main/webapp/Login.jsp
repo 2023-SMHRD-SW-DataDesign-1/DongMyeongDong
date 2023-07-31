@@ -139,7 +139,7 @@
 					}
 				})
 				
-				console.log(authObj);
+				//console.log(authObj);
 				var token = authObj.access_token;
 				
 				},
