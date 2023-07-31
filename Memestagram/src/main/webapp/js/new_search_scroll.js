@@ -9,8 +9,13 @@ $(document).ready(function() {
 	var win = $(window);
 	var bodyOffset = $('body').offset();
 
-	getPost(currentPage, keyword);
+	var search_result = getPost(currentPage, keyword);
 	// 스크롤 시 이벤트 처리
+	
+	if(search_result < 1){
+		$('#posts').append(`<h2>검색결과가 없습니다<h2>`);
+	}
+	
 	win.scroll(function() {
 		
 		if ($(document).height() - win.height() == win.scrollTop()) {
@@ -492,6 +497,7 @@ function balanceVote(e) {
 function getPost(page, keyword) {
 
 	var content = "";
+	var count = 0;
 	$.ajax({
 		url: "SearchShowCon.do",
 		type: "post",
@@ -501,13 +507,8 @@ function getPost(page, keyword) {
 		async: false,
 		success: function(data) {
 			
-			if(data.length < 1){
-				content = `<h2>검색결과가 없습니다<h2>`;
-				$('#posts').append(content);
-			}
-			
 			$.each(data, function(index, data) {
-				
+				count++;
 				content = `<div class="post">
             <div class="header">
                 <div class="profile_icon">
@@ -593,6 +594,7 @@ function getPost(page, keyword) {
 		}
 
 	});
+	return count;
 }
 	
 
