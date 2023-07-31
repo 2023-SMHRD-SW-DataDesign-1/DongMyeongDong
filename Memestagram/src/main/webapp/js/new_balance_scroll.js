@@ -663,6 +663,11 @@ function balanceVote(e) {
 	let className = $(e).attr('class');
 	let reward = $(e).data('reward');
 	let vote;
+	
+	if($('#countdown'+bal_seq).find('span').text() == '종료'){
+		alert("종료된 밸런스 게임입니다.");
+		return false;
+	}
 	if (className == 'content_select_1' || className == 'sp_content_select_1') {
 		vote = 'L';
 	} else if (className == 'content_select_2' || className == 'sp_content_select_2') {
