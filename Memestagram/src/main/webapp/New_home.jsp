@@ -12,7 +12,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sidebar Menu | Side Navigation Bar</title>
+<title>memestagram</title>
 <!-- CSS -->
 <link rel="stylesheet" href="css/new_home.css" />
 <link rel="stylesheet" href="css/new_post.css" />

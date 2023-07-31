@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>memestagram</title>
 <!-- CSS -->
 <link rel="stylesheet" href="css/login.css" />
 <!-- Boxicons CSS -->
