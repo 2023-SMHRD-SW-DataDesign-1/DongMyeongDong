@@ -1,5 +1,6 @@
 # 📱 Memestagram (팀명 : 동명동이용)
-이미지 추가
+![1](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/4c465219-6fbc-41dd-a6c0-342eda300be5)
+<br>
 
 ## 👀 서비스 소개
 서비스명 : 유머 컨텐츠와 밸런스게임을 즐기기만 해도 리워드가 쌓이는 SNS
