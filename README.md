@@ -2,30 +2,43 @@
 이미지 추가
 
 ## 👀서비스 소개
-* 서비스명 : 밈스타그램(memestagram)
-* 서비스 설명 : 유머 컨텐츠와 밸런스게임을 즐기기만 해도 리워드가 쌓이는 SNS
+서비스명 : 유머 컨텐츠와 밸런스게임을 즐기기만 해도 리워드가 쌓이는 SNS
+* SNS 기본 기능 (게시글 작성, 댓글 작성, 좋아요 및 팔로우) 제공
+* 밸런스게임형 게시글 개발 및 사용자 참여 후 리워드 제공
+* 리워드 상점을 통해 원하는 제품 구매 기능 제공
 <br>
 
 ## 📅프로젝트 기간
-* 
+2023.06.09 ~ 2023.08.01 (7주)
+<br>
 
 ## 주요기능
-
+* 기능1
+* 기능2
+* 기능3
+* 기능4
+* 기능5
+<br>
 
 ## 기술스택
-
+![17](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/1660aa06-02dc-46d5-9de6-3c99255e9087)
+<br>
 
 ## 시스템 아키텍처
-
+![14](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/6fee1fc7-81a7-43f7-9197-4619cc885acb)
+<br>
 
 ## 유스케이스
-
+![Use case diagram-1](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/d483c4ef-6635-44c7-9971-b5173037065f)
+<br>
 
 ## 서비스 흐름도
-
+![13](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/fc538e5f-922f-44f5-b957-2da3cfc586b2)
+<br>
 
 ## ER 다이어그램
-
+![15](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/f88a3156-f5e5-41ce-b76a-146948a9580d)
+<br>
 
 ## 화면구성
 
