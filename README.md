@@ -50,6 +50,7 @@
 ## 트러블슈팅
 ![25](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/55ea7ac0-2dbf-4fc1-9d67-9a9a4a5c64cd)
 <br>
+<hr>
 
 ![26](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/4d99bf15-18e7-48b2-bbe0-e5059a04a41e)
 <br>
