@@ -33,7 +33,7 @@
 <br>
 
 ## 서비스 흐름도
-![13](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/fc538e5f-922f-44f5-b957-2da3cfc586b2
+![13](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/12d4eea4-f01f-4a63-a8d8-d72d3e175f41)
 <br>
 
 ## ER 다이어그램
@@ -44,6 +44,12 @@
 
 
 ## 팀원역할
-
+![31](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/4f0ed0fa-87d1-470a-b2be-5308262dee00)
+<br>
 
 ## 트러블슈팅
+![25](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/55ea7ac0-2dbf-4fc1-9d67-9a9a4a5c64cd)
+<br>
+
+![26](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/4d99bf15-18e7-48b2-bbe0-e5059a04a41e)
+<br>
