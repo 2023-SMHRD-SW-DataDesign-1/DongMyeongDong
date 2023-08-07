@@ -25,7 +25,7 @@
 <br>
 
 ## 시스템 아키텍처
-![14](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/6fee1fc7-81a7-43f7-9197-4619cc885acb)
+![14](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/f4188d14-5c85-4d45-a6a9-2369b53bc9f2)
 <br>
 
 ## 유스케이스
@@ -33,7 +33,7 @@
 <br>
 
 ## 서비스 흐름도
-![13](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/fc538e5f-922f-44f5-b957-2da3cfc586b2)
+![13](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/fc538e5f-922f-44f5-b957-2da3cfc586b2
 <br>
 
 ## ER 다이어그램
