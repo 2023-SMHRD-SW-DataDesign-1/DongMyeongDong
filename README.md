@@ -64,7 +64,17 @@ UI 기능
 <br>
 
 ## 🖥 화면구성
+![19](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/e1b5ef0f-0269-45c5-bf98-e0b92cb942e6)
+<br>
 
+![20](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/ae4f6add-bd6e-4607-9154-da5498f84088)
+<br>
+
+![23](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/b1f699fd-2f5c-4fb2-ac53-f6bc9df2f214)
+<br>
+
+![24](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/5197664f-3740-473c-859b-e490624759a8)
+<br>
 
 ## 👨‍👩‍👦‍👦 팀원역할
 ![31](https://github.com/2023-SMHRD-SW-DataDesign-1/DongMyeongDong/assets/42428256/4f0ed0fa-87d1-470a-b2be-5308262dee00)
